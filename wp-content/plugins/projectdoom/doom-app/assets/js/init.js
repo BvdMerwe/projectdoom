@@ -1,5 +1,5 @@
 /**
-* 
+*
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -112,9 +112,9 @@ require.config({
 /*-------------------------------------------------------------------------------------------------------------------------------*
  *
  *   ~:: BOOTSTRAP ::~
- * 
+ *
  * init is the root of the app codebase. *
- * 
+ *
  *-------------------------------------------------------------------------------------------------------------------------------*/
 define( function ( require, exports, module ) {
 
@@ -123,12 +123,12 @@ define( function ( require, exports, module ) {
 	Date.prototype.addDays = function(days) {
 	    var dat = new Date(this.valueOf());
 		dat.setDate(dat.getDate() + days);
-		return dat;		
+		return dat;
 	};
 
 	// This script is released to the public domain and may be used, modified and
 	// distributed without restrictions. Attribution not necessary but appreciated.
-	// Source: http://weeknumber.net/how-to/javascript 
+	// Source: http://weeknumber.net/how-to/javascript
 
 	// Returns the ISO week of the date.
 	Date.prototype.getWeek = function() {
@@ -162,22 +162,22 @@ define( function ( require, exports, module ) {
 			return this.push.apply(this, rest);
 		};
 	}
-    
+
     // Load dependent non-module scripts
 	require("app");
-
-	if ( window.addEventListener ) {
-
-		window.document.body.addEventListener("contextmenu", function (e) {
-				
-			e.preventDefault();
-			
-		});
-
-	}
+//Temporarily disabling this for dev TODO: Re-enable
+	// if ( window.addEventListener ) {
+	//
+	// 	window.document.body.addEventListener("contextmenu", function (e) {
+	//
+	// 		e.preventDefault();
+	//
+	// 	});
+	//
+	// }
 
 	/* ================================================
-	@note 	Avoid `console` errors in browsers 
+	@note 	Avoid `console` errors in browsers
 			that lack a console.
 	/* =============================================== */
 	( function() {

@@ -29,21 +29,21 @@ require_once("Admin/meta_options.php");
 #-----------------------------------------------------------------------------------*/
 
 // Removes from post and pages
-add_action('admin_menu','remove_menu_items');
-
-function my_remove_admin_menus() {
+function remove_menu_items() {
     remove_menu_page( 'edit-comments.php' );
     	remove_menu_page('edit.php');
     	// remove_menu_page('edit.php?post_type=page');
     	remove_menu_page('themes.php');
 }
-//Removes comments
-add_action('init', 'remove_comment_support', 100);
+add_action('admin_menu','remove_menu_items');
 
+//Removes comments
 function remove_comment_support() {
     remove_post_type_support( 'post', 'comments' );
     remove_post_type_support( 'page', 'comments' );
 }
+add_action('init', 'remove_comment_support', 100);
+
 // Removes from admin bar
 function mytheme_admin_bar_render() {
     global $wp_admin_bar;
@@ -59,8 +59,6 @@ require_once("Admin/init_scripts.php");
 #-----------------------------------------------------------------------------------*/
 #	Register new templates
 #-----------------------------------------------------------------------------------*/
-add_filter( 'template_include', 'home_page_template', 99 );
-
 function home_page_template( $template ) {
 
 	if ( is_front_page()  ) {
@@ -76,6 +74,8 @@ function home_page_template( $template ) {
   }
 	return $template;
 }
+
+add_filter( 'template_include', 'home_page_template', 99 );
 
 // add_action('wp', function(){
 //     // Allow viewing of home/front_page
