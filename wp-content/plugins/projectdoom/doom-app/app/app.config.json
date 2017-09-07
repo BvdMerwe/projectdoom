@@ -1,0 +1,8 @@
+{
+    "general": {
+        "Appname": "PRJDM",
+        "Version": "0.0.1",
+        "api": "https://wp.bernardus.co.za/wp-json/doom/v1/",
+        "path": "wp-content/plugins/projectdoom/doom-app/"
+    }
+}

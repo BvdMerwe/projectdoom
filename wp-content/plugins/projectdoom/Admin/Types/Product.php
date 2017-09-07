@@ -1,0 +1,143 @@
+<?php // Product Post Type
+
+function post_type_product() {
+
+#-----------------------------------------------------------------
+#
+#	Insect Post Type(s)
+#
+#-----------------------------------------------------------------
+	register_post_type('product', array(
+		'labels' 				=> array('name' => __('Products'), 'singular_label' => __('Product'), 'add_new_item' => __('Add Product'), 'search_items' => __('Search Products'),'edit_item' => __('Edit Product')),
+		'public' 				=> true,
+		'exclude_from_search' 	=> false,
+		'show_ui' 				=> true,
+		'show_in_nav_menus' 	=> true,
+		'_builtin' 				=> false,
+		'_edit_link' 			=> 'post.php?post=%d',
+		'capability_type' 		=> 'post',
+		'hierarchical' 			=> false,
+		'rewrite' 				=> array("slug" => "product"),
+		'menu_position' 		=> 20,
+		'with_front' 			=> true,
+		'supports' 				=> array('title', 'excerpt', 'thumbnail', 'editor'),
+		//'menu_icon' 			=> get_bloginfo('template_directory').'/inc/images/products-icon.png',
+		'has_archive' 			=> true
+	));
+
+
+#-----------------------------------------------------------------
+#
+#	Custom Taxonomy
+#
+#-----------------------------------------------------------------
+  register_taxonomy('product_categories', 'product', array('show_in_nav_menus' => true, 'hierarchical' => true, 'labels' => array('name' => __('Product Categories'), 'singular_label' => __('Category'), 'add_new_item' => __('Add New Product Category'), 'search_items' => __('Search Product Categories')), 'rewrite' => array('slug' => 'product-categories')));
+
+#-----------------------------------------------------------------
+#
+#	Custom Post Type Admin Layout
+#
+#-----------------------------------------------------------------
+  /*************************** Products Page Layout ***************************/
+  add_filter("manage_edit-product_columns", "product_edit_columns");
+  add_action("manage_posts_custom_column",  "product_custom_columns");
+  function product_edit_columns( $columns ){
+
+      $columns = array(
+        "cb" => "<input type=\"checkbox\" />",
+        "title" => "Title",
+        "product_desc" => "Description",
+        "product_categories" => "Categories",
+        "product_image" => "thumbnail",
+        "date" => "Date"
+      );
+
+      return $columns;
+  }
+
+  function product_custom_columns( $column ){
+
+      global $post;
+
+      switch ( $column ) {
+
+        case "product_desc":
+          echo the_excerpt();
+          break;
+        case "product_categories":
+          echo get_the_term_list( $post->ID, 'product_categories', '', ', ', '' );
+          break;
+        case "product_image":
+          // SHOW THE FEATURED IMAGE
+          $post_featured_image = fids_get_featured_image( $post->ID );
+
+          echo '<img src="' . $post_featured_image . '" />';
+
+          break;
+      }
+  }
+  #-----------------------------------------------------------------
+  # PRODUCT META OPTIONS
+  #-----------------------------------------------------------------
+  function doom_product_meta_boxes() {
+
+  	$meta_boxes = array(
+
+  		'format_settings' => array('name' => 'format_settings', 'type' => 'open', 'title' => __('', 'doom')),
+
+  		'doom_product-status' => array( 'name' => 'doom_product-status', 'title' => __('Product Availability', 'doom'), 'desc' => 'Choose the option that describes the availability of this product', 'options' => array('in stock', 'out of stock'), 'type' => 'select'),
+
+  		array('type' => 'divider'),
+
+  		'doom_product-price' => array( 'name' => 'doom_product-price', 'title' => __('Product Price', 'doom'), 'desc' => 'price in ZAR per item', 'type' => 'text'),
+
+  		'doom_product-discount' => array( 'name' => 'doom_product-discount', 'title' => __('Product Discount', 'doom'), 'desc' => 'discount in %', 'type' => 'text'),
+
+  		'doom_product-internal_code' => array( 'name' => 'doom_product-internal_code', 'title' => __('Internal Reference Code', 'doom'), 'desc' => 'eg SKU', 'type' => 'text'),
+
+
+  	array('type' => 'close'),
+
+  	array('type' => 'clear'),
+
+  	);
+
+  	return apply_filters( 'doom_product_meta_boxes', $meta_boxes );
+  }
+  function product_meta_boxes() {
+  	global $post;
+  	$meta_boxes = doom_product_meta_boxes(); ?>
+
+  	<?php echo '<link rel="stylesheet" href="'.get_bloginfo('template_url').'/inc/css/meta.css" type="text/css" media="screen" />'; ?>
+
+  	<?php foreach ( $meta_boxes as $meta ) :
+  		$value = get_post_meta( $post->ID, $meta['name'], true );
+  		if ( $meta['type'] == 'text' )
+  			get_meta_text( $meta, $value );
+  		if ( $meta['type'] == 'text_small' )
+  			get_meta_text_small( $meta, $value );
+  		elseif ( $meta['type'] == 'textarea' )
+  			get_meta_textarea( $meta, $value );
+  		elseif ( $meta['type'] == 'select' )
+  			get_meta_select( $meta, $value );
+  		elseif ( $meta['type'] == 'select_sidebar' )
+  			get_meta_select_sidebar( $meta, $value );
+  		elseif ( $meta['type'] == 'checkbox' )
+  			get_meta_checkbox( $meta, $value );
+  		elseif ( $meta['type'] == 'open' )
+  			get_meta_open( $meta, $value );
+  		elseif ( $meta['type'] == 'close' )
+  			get_meta_close( $meta, $value );
+  		elseif ( $meta['type'] == 'divider' )
+  			get_meta_divider( $meta, $value );
+  		elseif ( $meta['type'] == 'clear' )
+  			get_meta_clear( $meta, $value );
+  	endforeach; ?>
+
+  	<?php
+  }
+
+
+}
+
+?>
