@@ -1,90 +1,29 @@
 <?php
 /**
- * Displays for app navigation
+ * Displays for app carousel
  *
  * @package WordPress
- * @subpackage Twenty_Seventeen
+ * @subpackage doom
  * @since 1.0
  * @version 1.0
  */
 
 ?>
-	<div layout="column">
-		<div layout="row" layout-xs="column" >
-			<md-content class="md-padding" flex="50">
 
-                <div data-ng-transclude>
-                    <md-sidenav
-                        class="md-sidenav-left"
-                        md-component-id="left"
-                        md-is-locked-open="$mdMedia('gt-md')"
-                        md-whiteframe="4"
-                        style="position: fixed;width:100%;height:100%;top:0;left:0;">
-
-                        <md-toolbar class="md-theme-indigo">
-                            <h1 class="md-toolbar-tools">SITEMAP</h1>
-                        </md-toolbar>
-                        <md-content layout-padding>
-                            <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                            Close
-                            </md-button>
-                            <p hide show-gt-md>
-                            This sidenav is locked open on your device. To go back to the default behavior,
-                            narrow your display.
-                            </p>
-                        </md-content>
-
-                    </md-sidenav>
-                    
-                    <md-button ng-click="toggleLeft()"
-                    class="md-primary md-icon-button md-theme-indigo" aria-label="Site Menu" hide-gt-md>
-                        <md-icon style="padding-top:5px;">
-                            <span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-                            <span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-                            <span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-                        </md-icon>
-                    </md-button>
-                    <h3 style="display:inline-block;" data-ng-click="goto('home')">
-                        DOOM PRESENTS...
-                    </h3>
-                </div>
-
-            </md-content>
-		
-			<md-content class="md-padding" flex="50">
-
-                <div data-ng-transclude>
-                    <md-nav-bar
-                        md-selected-nav-item="currentNavItem"
-                        nav-bar-aria-label="navigation links">
-
-                        <md-nav-item md-nav-click="goto('about')" name="about">
-                            ABOUT
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('legal')" name="legal">
-                            LEGAL
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('products')" name="products">
-                            PRODUCTS
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('faq')" name="faq">
-                            FAQ
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('contact')" name="contact">
-                            CONTACT
-                        </md-nav-item>
-                        <!-- these require actual routing with ui-router or ng-route, so they
-                        won't work in the demo
-                        <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-                        <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-                        You can also add options for the <code>ui-sref-opts</code> attribute.
-                        <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-                            Page Six
-                        </md-nav-item>
-                        -->
-                    </md-nav-bar>
-                </div>
-
-            </md-content>
-        </div>   
+<div layout="column" class="carousel-container">
+	<div class="controls" ng-if="itemLength > 0">
+		<span class="carousel-control left lnr lnr-chevron-left-circle" ng-click="goLeft($event)"></span>
+		<span class="carousel-control right lnr lnr-chevron-right-circle" ng-click="goRight($event)"></span>
 	</div>
+	<div class="carousel">
+		<md-grid-list
+			md-row-height="{{maxHeight}}"
+			md-gutter="12px" md-gutter-gt-sm="8px" md-cols="{{itemLength}}" style="width:1000%;width:calc({{maxWidth}} * {{itemLength}});margin: 0 auto;">
+			<md-grid-tile data-ng-repeat="item in items" style="border: 1px solid #d9dadb;">
+				<div class="bg-box" style="padding: 10px;">
+					<div class="bg-image" style="background: url('{{item.image}}') center center no-repeat; background-size: contain;"></div>
+				</div>
+			</md-grid-tile>
+		</md-grid-list>
+</div>
+</div>

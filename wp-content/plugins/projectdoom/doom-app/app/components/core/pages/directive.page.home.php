@@ -12,30 +12,33 @@
 			<md-content class="md-padding">
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]">
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-when="home">
-						<div flex>Hello world</div>		
+						<div flex>Hello world</div>
 					</div>
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-when="about">
-						<div flex>about</div>		
+						<div flex>about</div>
 					</div>
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-when="legal">
-						<div flex>legal</div>		
+						<div flex>legal</div>
 					</div>
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-when="products">
-						<div flex>products</div>		
+						<div flex>products</div>
 					</div>
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-when="faq">
-						<div flex>faq</div>		
+						<div flex>faq</div>
 					</div>
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-when="contact">
-						<div flex>contact</div>		
+						<div flex>contact</div>
 					</div>
 					<div layout="row" class="animate-page-switch" layout-xs="column" data-ng-switch-default>
 						<div flex data-ui-404>
 							<h1>404</h1>
 							<h2>OOPS!</h2>
 							<h3>IT LOOKS LIKE YOU FOUND A DEAD LINK</h3>
-						</div>		
+						</div>
 					</div>
 				</div>
 			</md-content>
 		</div>
+		<h2>Related retailers</h2>
+		<div data-ui-carousel contentType="insect" maxAmount="10" maxHeight="100px" maxwidth="150px"></div>
+		<div data-ui-carousel contentType="retailer" maxAmount="10" maxHeight="100px" maxwidth="150px"></div>

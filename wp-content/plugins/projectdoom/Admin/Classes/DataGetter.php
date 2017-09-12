@@ -75,14 +75,22 @@ class DataGetter
         SELECT meta_key, meta_value
         FROM $wpdb->postmeta AS pm
         WHERE pm.post_id = $post_id
-        AND pm.meta_key LIKE 'doom_%'");
+        AND (pm.meta_key LIKE 'doom_%'
+        OR pm.meta_key LIKE 'fids_%'
+        OR pm.meta_key LIKE '_thumbnail_id')");
       foreach ($keys as $i => $key) {
         $post[$key->meta_key] = $key->meta_value;
+        if ($key->meta_key == '_thumbnail_id') {
+          $post["image"] = $wpdb->get_results($wpdb->prepare("
+            SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+        }
       }
       //--
       array_push($result, $post);
     }
-    $result["queries"] = get_num_queries();
+    if (DOOM_DEBUG) {
+      $result["queries"] = get_num_queries();
+    }
     return $result;
   }
 
@@ -175,7 +183,9 @@ class DataGetter
       array_push($result[$tax->taxonomy], $tax);
     }
    }
-   $result["queries"] = get_num_queries();
+   if (DOOM_DEBUG) {
+     $result["queries"] = get_num_queries();
+   }
    return $result;
  }
 
@@ -268,7 +278,9 @@ class DataGetter
       array_push($result, $tax);
     }
    }
-   $result["queries"] = get_num_queries();
+   if (DOOM_DEBUG) {
+     $result["queries"] = get_num_queries();
+   }
    return $result;
  }
 

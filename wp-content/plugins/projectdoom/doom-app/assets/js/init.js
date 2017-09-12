@@ -13,7 +13,7 @@
 * limitations under the License.
 **/
 require.config({
-	urlArgs: "bust=" + (new Date()).getTime(),
+	//urlArgs: "bust=" + (new Date()).getTime(),
 	paths: {
 		"text":						'../libs/text/text',
 		"angular":					'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min',
@@ -47,6 +47,7 @@ require.config({
 		"app-directives-preloader": '../../app/components/shared/app.directive.preloader',
 		"app-directives-scrolltotop": '../../app/components/shared/app.directive.scrolltotop',
 		"app-directives-navigation": '../../app/components/shared/navigation/app.directive.navigation',
+		"app-directives-carousel": '../../app/components/shared/carousel/app.directive.carousel',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',
