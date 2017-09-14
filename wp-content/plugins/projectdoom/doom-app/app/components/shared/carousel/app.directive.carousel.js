@@ -177,7 +177,7 @@ define( function ( require, exports, module ) {
 						$scope.items = data;
 						$scope.itemLength = data.length;
 
-						console.log(data);
+						// console.log(data);
 					}
 					this.error = function(error){
 						console.log("Fek");

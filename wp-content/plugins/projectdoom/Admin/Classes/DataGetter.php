@@ -333,7 +333,7 @@ static public function getFaqs() {
   $time = microtime();
    global $wpdb;
     // $search = esc_html($search);
-    $sql = "SELECT ".DataGetter::POST_GETS." FROM $wpdb->posts WHERE post_type LIKE '$post' AND post_type NOT LIKE 'post' AND post_type NOT LIKE 'page' AND post_status LIKE 'publish'";
+    $sql = "SELECT ".DataGetter::POST_GETS." FROM $wpdb->posts WHERE post_type LIKE '$post' AND post_type NOT LIKE 'post' AND post_type NOT LIKE 'page' AND post_type NOT LIKE 'retailer' AND post_status LIKE 'publish'";
     $search = urldecode($search);
     $isSpecific = DataGetter::startsAndEndsWith($search,'"');
     //Natural language search if string doesn't start and end with "

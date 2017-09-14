@@ -43,11 +43,14 @@ require.config({
 		"app-product": 				'../../app/components/core/products/app.service.products',
 		"app-package": 				'../../app/components/core/packages/app.service.packages',
 		"app-retailer": 			'../../app/components/core/retailers/app.service.retailers',
+		"app-search": 			'../../app/components/shared/search/app.service.search',
 		// APP DIRECTIVES
 		"app-directives-preloader": '../../app/components/shared/app.directive.preloader',
 		"app-directives-scrolltotop": '../../app/components/shared/app.directive.scrolltotop',
 		"app-directives-navigation": '../../app/components/shared/navigation/app.directive.navigation',
 		"app-directives-carousel": '../../app/components/shared/carousel/app.directive.carousel',
+		"app-directives-searchbar": '../../app/components/shared/searchbar/app.directive.searchbar',
+		"app-directives-search": '../../app/components/shared/search/app.directive.search',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',
