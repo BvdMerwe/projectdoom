@@ -35,6 +35,9 @@ define( function ( require, exports, module ) {
 	require("app-directives-preloader");
 	require("app-directives-scrolltotop");
 	require("app-directives-navigation");
+	
+	require("app-directives-gallery");
+	require("app-directives-contactform");
 
 	require("app-page-directives");
 	//require("app-directives-shared-footer");
@@ -49,7 +52,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * UI MODULE
 		 */
-		appDoom = appDoom || angular.module( 'appDoom', [ 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectivePreloader', 'appDirectiveScrollToTop' ] );
+		appDoom = appDoom || angular.module( 'appDoom', [ 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectivePreloader', 'appDirectiveScrollToTop', 'appDirectiveGallery', 'appDirectiveFormContact' ] );
 
 		// BootStrap App!		
 		angular.bootstrap( window.document, ['appDoom'] );

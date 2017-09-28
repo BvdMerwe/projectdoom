@@ -47,6 +47,8 @@ require.config({
 		"app-directives-preloader": '../../app/components/shared/app.directive.preloader',
 		"app-directives-scrolltotop": '../../app/components/shared/app.directive.scrolltotop',
 		"app-directives-navigation": '../../app/components/shared/navigation/app.directive.navigation',
+		"app-directives-gallery": 	'../../app/components/shared/gallery/app.directive.gallery',
+		"app-directives-contactform": 	'../../app/components/shared/contactform/app.directive.contactform',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',
@@ -98,6 +100,9 @@ require.config({
 		},
 		'angular-material': {
 			deps: ["angular", "angular-messages", "angular-aria", "angular-animate"]
+		},
+		'app-directives-gallery': {
+			deps: ["angular-material"]
 		},
 		'bindonce': {
 			deps: ["angular"]

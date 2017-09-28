@@ -1,9 +1,78 @@
+/**
+* 
+* Styling for the ngProgress itself
+*
+* @App Dependencies [ angular-aria, faqs, pages, insects, products, packages, retailers, domReady ]
+*
+* 
+**/
+#ngProgress {
+    margin: 0;
+    padding: 0;
+    z-index: 99998;
+    background-color: green;
+    color: green;
+    box-shadow: 0 0 10px 0; /* Inherits the font color */
+    height: 2px;
+    opacity: 0;
+
+    /* Add CSS3 styles for transition smoothing */
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Styling for the ngProgress-container */
+#ngProgress-container {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+}
+
+
+.mobile-menu-list {
+	position:relative;
+}
+
+.mobile-menu-list .md-button {
+	padding:0;
+	margin:0;
+	text-align: left;
+}
+
+.mobile-menu-list li {
+	text-align: left;
+}
+
+@media (min-width: 600px) {
+	
+	.md-sidenav-left {
+		max-width:100% !impor
+		
+}
+
+
+/**
+* 
+* Page Transitions Animations
+*
+* 
+*
+* 
+**/
 .animate-page-switch-container {
 	position:relative;
 	background:transparent;
+	/** /
 	text-align: center;
 	height:40px;
 	width:300px;
+	/**/
 	overflow:hidden;
 }
 
@@ -28,4 +97,49 @@
 .animate-page-switch.ng-leave,
 .animate-page-switch.ng-enter.ng-enter-active {
 	top:0;
+}
+
+/**
+* 
+* Gallery UI Component CSS 
+*
+* @App Dependencies [ angular-aria, faqs, pages, insects, products, packages, retailers, domReady ]
+*
+* 
+**/
+.macdaddy-radius {
+	border-radius: 999px;
+}
+
+.toolbar-filter {
+	margin: 2em auto;
+}
+
+.btn-filter {
+	border-radius: 999px;
+}
+
+.gallery-card {
+	padding: 2em;
+}
+
+md-card md-card-content {
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.gallery-directive-grid {
+	margin: 2em auto;
+}
+
+.gallery-card .md-card-image {
+	cursor: pointer;
+	border:1px solid #fff;
+}
+
+.btn-cta {
+	position: relative;
+	display:block;
+	width:100%;
+	padding: 10px;
 }
