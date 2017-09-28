@@ -31,19 +31,20 @@ add_action( 'wp_footer', 'doom_footer_inline_js_ini');
 #------------------------------------------------
 # Reegister CSS files
 #------------------------------------------------
-add_action( 'wp_enqueue_scripts', 'register_plugin_styles', 999 );
+add_action( 'wp_enqueue_scripts', 'register_plugin_styles' );
 
 /**
  * Register style sheet.
  */
 function register_plugin_styles() {
 	wp_register_style( 'material', "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" );
-  wp_register_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons' );
-  wp_register_style( 'app', plugins_url( '../doom-app/assets/css/app.css', __FILE__ ) );
-
-  wp_enqueue_style( 'material' );
-  wp_enqueue_style( 'material-icons' );
+	wp_register_style( 'app', plugins_url( '../doom-app/assets/css/app.css', __FILE__ ) );
+	wp_register_style( 'customStyle', plugins_url( '../doom-app/assets/css/custom.min.css', __FILE__ ) );
+	wp_register_style( 'icons', plugins_url( '../doom-app/assets/libs/LinearIcons/style.css', __FILE__ ) );
+	wp_enqueue_style( 'material' );
 	wp_enqueue_style( 'app' );
+	wp_enqueue_style( 'customStyle' );
+	wp_enqueue_style( 'icons' );
 }
 #------------------------------------------------
 # Remove emojis

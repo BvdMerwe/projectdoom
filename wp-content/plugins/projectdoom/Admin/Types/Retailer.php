@@ -69,7 +69,7 @@ function post_type_retailer() {
           // SHOW THE FEATURED IMAGE
           $post_featured_image = fids_get_featured_image($post->ID);
 
-          echo '<img src="' . $post_featured_image . '" />';
+          echo '<img style="max-height: 200px;max-width:180px" src="' . $post_featured_image . '" />';
 
           break;
       }

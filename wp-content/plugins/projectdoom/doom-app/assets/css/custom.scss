@@ -1,0 +1,173 @@
+
+@import "mixin.scss";
+* {
+  outline: none !important;
+}
+
+/***********************************************
+* Navigation STYLE
+***********************************************/
+
+md-sidenav {
+  margin: 0;
+  max-width: 100% !important;
+  height: 100%;
+
+  ul li {
+    cursor: pointer;
+  }
+}
+
+.close {
+  min-width: 0;
+  width: 33px;
+
+  &::before, &::after {
+    position: absolute;
+    left: 15px;
+    top: 0;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+}
+
+
+
+/***********************************************
+* Carousel STYLE
+***********************************************/
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  .controls {
+    z-index: 10;
+    font-size: 20px;
+    &:hover .carousel-control {
+      opacity: 1;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: calc(50% - 0.5em - 5px);
+      cursor: pointer;
+      transition: 0.3s cubic-bezier(0.42,-0.37, 0.55, 1.43);
+      outline: none;
+      opacity: 0.5;
+      // border-radius: 100%;
+      // background: rgba(#fff, 0.5);
+      // padding: 5px;
+      // border: 1px solid #000;
+
+      &.left {
+        left: 10px;
+      }
+      &.right {
+        right: 10px;
+        //fix for skew font
+        padding: 5px 4px 5px 6px !important;
+      }
+      &.hide {
+        display: none;
+      }
+      &:hover {
+        transform:  scale(1.5);
+      }
+    }
+  }
+  .carousel {
+    overflow-x: scroll !important;
+    margin: 0 40px;
+  }
+
+}
+/***********************************************
+* Search STYLE
+***********************************************/
+#search-takeover {
+  .search-button {
+    outline: none !important;
+    border: 0;
+    background: transparent;
+  }
+
+  &.open {
+    .search-container.layout-fill {
+      right: 0%;
+    }
+    .search-button {
+      // position: absolute;
+      @include animation('spin 0.5s 1');
+      &::before {
+        content: '\e879' !important;
+      }
+    }
+  }
+
+  .search-button {
+    transition: 0.8s;
+    position: relative;
+    z-index: 12;
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}
+
+.searchbar-container {
+  margin: 50px;
+  margin-top: 97px;
+  // width: 100%;
+  .search-bar {
+    position: relative;
+    // width: 100%;
+    input {
+      width: 100%;
+      outline: none;
+      border-radius: 0;
+      padding-right: 2em;
+      box-sizing: border-box;
+    }
+
+    .icon {
+      top: 0;
+      right: 0;
+      padding: 8px;
+      position: absolute;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .search-results {
+    }
+  }
+}
+
+.search-container.layout-fill {
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+  transition: 0.8s ease-in-out;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  background: #fff;
+  z-index: 11;
+  overflow: auto;
+}
+
+@include keyframes(spin) {
+  0% {
+    transform: rotate(0deg) scale(1.5);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1.5);
+  }
+}

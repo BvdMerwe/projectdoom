@@ -7,6 +7,8 @@ Version: 0.1a
 Author URI: http://www.tbwa-africa.com/
 */
 
+define("DOOM_DEBUG", false);
+
 if ( ! defined( 'ABSPATH' ) ){
   echo "Look at you being sneaky. Nothing to see here.";
   exit; // Exit if accessed directly

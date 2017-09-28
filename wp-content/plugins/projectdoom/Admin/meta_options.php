@@ -363,13 +363,13 @@ function doom_save_meta_data( $post_id ) {
 	if ( 'page' == $_POST['post_type'] )
 		$meta_boxes = array_merge( doom_page_meta_boxes() );
 	elseif ( 'post' == $_POST['post_type'] )
-		$meta_boxes = array_merge( doom_post_meta_boxes(), doom_page_meta_boxes() );
+		$meta_boxes = array_merge( doom_post_meta_boxes() /*, doom_page_meta_boxes() */);
 	elseif ( 'product' == $_POST['post_type'] )
-		$meta_boxes = array_merge( doom_product_meta_boxes(), doom_page_meta_boxes() );
+		$meta_boxes = array_merge( doom_product_meta_boxes() /*, doom_page_meta_boxes() */);
 	elseif ( 'retailer' == $_POST['post_type'] )
-		$meta_boxes = array_merge( doom_retailer_meta_boxes(), doom_page_meta_boxes() );
+		$meta_boxes = array_merge( doom_retailer_meta_boxes() /*, doom_page_meta_boxes() */);
 	elseif ( 'package' == $_POST['post_type'] )
-		$meta_boxes = array_merge( doom_package_meta_boxes(), doom_page_meta_boxes() );
+$meta_boxes = array_merge( doom_package_meta_boxes() /*, doom_page_meta_boxes() */);
 	else
 		$meta_boxes = array_merge( doom_insect_meta_boxes() );
 

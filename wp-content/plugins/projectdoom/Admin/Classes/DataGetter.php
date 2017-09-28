@@ -75,14 +75,22 @@ class DataGetter
         SELECT meta_key, meta_value
         FROM $wpdb->postmeta AS pm
         WHERE pm.post_id = $post_id
-        AND pm.meta_key LIKE 'doom_%'");
+        AND (pm.meta_key LIKE 'doom_%'
+        OR pm.meta_key LIKE 'fids_%'
+        OR pm.meta_key LIKE '_thumbnail_id')");
       foreach ($keys as $i => $key) {
         $post[$key->meta_key] = $key->meta_value;
+        if ($key->meta_key == '_thumbnail_id') {
+          $post["image"] = $wpdb->get_results($wpdb->prepare("
+            SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+        }
       }
       //--
       array_push($result, $post);
     }
-    $result["queries"] = get_num_queries();
+    if (DOOM_DEBUG) {
+      $result["queries"] = get_num_queries();
+    }
     return $result;
   }
 
@@ -175,7 +183,9 @@ class DataGetter
       array_push($result[$tax->taxonomy], $tax);
     }
    }
-   $result["queries"] = get_num_queries();
+   if (DOOM_DEBUG) {
+     $result["queries"] = get_num_queries();
+   }
    return $result;
  }
 
@@ -268,7 +278,9 @@ class DataGetter
       array_push($result, $tax);
     }
    }
-   $result["queries"] = get_num_queries();
+   if (DOOM_DEBUG) {
+     $result["queries"] = get_num_queries();
+   }
    return $result;
  }
 
@@ -321,7 +333,7 @@ static public function getFaqs() {
   $time = microtime();
    global $wpdb;
     // $search = esc_html($search);
-    $sql = "SELECT ".DataGetter::POST_GETS." FROM $wpdb->posts WHERE post_type LIKE '$post' AND post_type NOT LIKE 'post' AND post_type NOT LIKE 'page' AND post_status LIKE 'publish'";
+    $sql = "SELECT ".DataGetter::POST_GETS." FROM $wpdb->posts WHERE post_type LIKE '$post' AND post_type NOT LIKE 'post' AND post_type NOT LIKE 'page' AND post_type NOT LIKE 'retailer' AND post_status LIKE 'publish'";
     $search = urldecode($search);
     $isSpecific = DataGetter::startsAndEndsWith($search,'"');
     //Natural language search if string doesn't start and end with "
