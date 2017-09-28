@@ -1,21 +1,22 @@
 /**
 * @public
-* 
-* 
+*
+*
 * @App Dependencies [xhr, utils, memcache, routes, sessionservice, domReady]
 
 * General-purpose Event binding. Bind any event not natively supported by Angular
 * Pass an object with keynames for events to ui-event
 * Allows $event object and $params object to be passed
 *
-* @example <input ui-event="{ focus : 'counter++', blur : 'someCallback()' }">
+* @example <div data-ui-gallery content-type="" content-filter=""->
 * @example <input ui-event="{ myCustomEvent : 'myEventHandler($event, $params)'}">
 *
-* @param ui-event {string|object literal} The event to bind to as a string or a hash of events with their callbacks
+* @param content-type {string} Type of content type to display (Product|Insect|Retailer|Package)
+* @param content-filter {boolean} Type of content type to display (Product|Insect|Retailer|Package)
 *
-* @return Angular.module.appDirectiveNavigation
-* 
-* 
+* @return Angular.module.appDirectiveFormContact
+*
+*
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -29,154 +30,305 @@
 * limitations under the License.
 **/
 define( function ( require, exports, module ) {
-	
-    'use strict';
     
-	require("app-xhr");
-	require("app-utils");
-	require("angular-progress");
-    require("angular-material");
+        'use strict';
+    
+        require("app-xhr");
+        require("app-utils");
+        require("angular-progress");
+        require("angular-material");
 
-	// Load dependent modules
-	var appDirectiveNavigation,
-        domReady 		= require("domReady"),
-        isMobile 		= require("isMobile"),
-		angular 		= require("angular");
+        require("app-routes");
+        require("app-filters");
+        require("app-memcache");
+        require("app-insect");
+        require("app-product");
+        require("app-package");
+        require("app-retailer");
+        
+		require("app-sessionservice");
+		require("app-formvalidation");
+        
+        // Load dependent modules
+        var appDirectiveFormContact,
+            appConfig		= JSON.parse(require("text!../../app/app.config.json")),
+            domReady 		= require("domReady"),
+            isMobile 		= require("isMobile"),
+            angular 		= require("angular");
+    
+        //
+        var Application = Application || {};
+        Application.Directives = {};
+    
+        Application.Directives.uiFormContact = function () {
+    
+            return {
+                restrict: 		'AE',
+                scope:          {},
+                transclude: 	true, // pass entire template?d
+                templateUrl: 	appConfig.general.path + 'app/components/shared/contactform/contactform.php',
+                link:           function(scope, element, attr) {
+                    
+                    //element
+                    var elem = element[0];
 
-	// 
-	var Application = Application || {};
-	Application.Directives = {};
-	
-	Application.Directives.uiNavigation = function () {
-		
-		return {
-			restrict: 		'AE',
-			transclude: 	true, // pass entire template?
-			templateUrl: 	'app/components/shared/navigation/navigation.php',
-			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress ) {
-
-				/** /
-				$scope.$on( '$routeChangeSuccess', function(event, current) {
-					$scope.currentLink = getCurrentLinkFromRoute(current);
-				});
-				/**/
-				$scope.toggleLeft 	= buildDelayedToggler('left');
-
-				$scope.goto = function ( page ) {
-
-					Utils._strict( [ String ], arguments );
+                    //console.log( 'Contact Form attributes:', attr, elem ); 
+					scope.isWidget          = attr.iswidget;
 					
-					console.log( 'open page:', page );
+                    var cleanUp = function () {
+                        
+                        //removEvent( element[0], 'click' );
+                        
+                    };
 
-					switch( page ) {
+                    domReady( function () {
 
-						case 'home':
+                        //var filterToolBarBtns = elem.querySelectorAll('.toolbar-filter button');
+                        
+                        //console.log('filterToolBarBtns:', filterToolBarBtns);
+
+                    });
+                        
+                    function addEvent( element, eventName, callback ) {
+                        
+                        if ( element.addEventListener ) {
+                        
+                            element.addEventListener(eventName, callback, false)
+                        
+                        } else {
+                        
+                            element.attachEvent( 'on' + eventName, callback, false);
+                        }
+                        
+                    }
+                        
+                    function removEvent( element, eventName, callback ) {
+                        
+                        if ( element.removeEventListener ) {
+                        
+                            element.removeEventListener(eventName, callback, false)
+                        
+                        } else {
+                        
+                            element.removeEvent( 'on' + eventName, callback, false);
+                        
+                        }
+                        
+                    }
+
+					scope.$on( '$destroy', cleanUp );
+					
+					scope.reset( elem );
+
+                },
+                controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'formValidation', 'ngProgress', 'insectsManager', 'productsManager', 'retailersManager', 'packagesManager', '$mdDialog', function ( $scope, $http, $q, $route, $location, $timeout, $log, $filter, transformRequestAsFormPost, Utils, formValidation, ngProgress, insectsManager, productsManager, retailersManager, packagesManager, $mdDialog ) {
+    
+                    
+                    //Gallery Parameters
+					$scope.isWidget;
+					
+					/** /
+					$scope.formInputs = {
+						'firstName':	'',
+						'emailAddress':	'',
+						'phone':		'',
+						'company':		'',
+						'message':		''
+					}
+					/**/
+
+                    var inputMsgTimeout,
+					inputValidationTimeout;
+
+					$scope.validating 	= false;
+					$scope.formError 	= false;
+					$scope.formErrorMsg = false;
+					$scope.formMsg 		= false;
+					$scope.formSaving 	= false;
+					
+					$scope.save = function () {
+
+						ngProgress.start();
+
+						try {
+
+							$q.all([
+								formValidation._validateName( $scope.formInputs.firstName ),
+								formValidation._validateEmail( $scope.formInputs.emailAddress ),
+								formValidation._validatePhone( $scope.formInputs.phone ),
+								formValidation._validateCompanyName( $scope.formInputs.company ),
+								formValidation._validateMessage( $scope.formInputs.message )
+							])
+							.then( function(results) {
+
+									$scope.formMsg 		= true;
+									$scope.formError 	= false;
+									$scope.formErrorMsg = "Sending Message...Please Be Patient.";
+
+									var form = document.getElementById('formContact');
+
+									$http({
+										method: 'POST', 
+										url: Application.Constants.constant.general.api,
+										transformRequest: transformRequestAsFormPost,
+										params: {
+												action: 'ajax_contact'
+										},
+										data: {
+											'firstName'			:	results[0],
+											'lastName' 			:	results[1],
+											'contact'			:	results[2],
+											'email'				:	results[3],
+											'msg'				:	results[4],
+											'veryNB'			: 	document.getElementById('contact-veryNB').value,
+											'security'			: 	document.getElementById('security').value, 
+											'_wp_http_referer'	: 	form.querySelector('input[name="_wp_http_referer"]').value
+										}
+									})
+									.success( function(data, status) {
+
+										if ( data.error === true ) {
+
+											_formFeedBack ( true, data.message );
+
+											Utils.fadeIn( form );
+
+										} else {
+
+											//console.log(data);
+
+											_formFeedBack ( false, data.message );
+
+											form.reset();
+										
+										}
+
+										ngProgress.complete();		
+										
+									})
+									.error( function(data, status) {
+
+										ngProgress.complete();	
+												
+										_formFeedBack ( true, data.message );
+
+										console.error("Request failed:", data);
+
+										Utils.fadeIn( form );
+												
+									});
+
+								}, function(e){
+
+									ngProgress.complete();
+
+									_formFeedBack ( true, e );
+
+								}
+							);
+							
+						} catch( e ) {
+
+							ngProgress.complete();
+
+							console.log( "validation error:", e );
+
+							_formFeedBack ( true, e );
 						
-							$location.path('/');
+						}
 						
-							break;
+					}
 
-						case 'about':
+					/**
+					 * @public
+					 * 
+					 * Reset form fields
+					 *
+					 * @param {Object.DOMElem}
+					 *
+					 * @return {null}
+					 * 
+					 **/
+					$scope.reset = function(form) {
 
-							$location.path('/about');
+						if (form) {
+							//form.$setPristine(); 
+							//form.$setUntouched();
+						}
 
-							break;
+						$scope.formInputs = {
+							'firstName':	'',
+							'emailAddress':	'',
+							'phone':		'',
+							'company':		'',
+							'message':		''
+						}
 
-						case 'legal':
+					};
 
-							$location.path('/legal');
+					/**
+					 * @private
+					 * 
+					 * 
+					 *
+					 * @param {String.err}
+					 * @param {String.msg}
+					 *
+					 * @return {null}
+					 * 
+					 **/
+					function _formFeedBack ( err, msg ) {
 
-							break;
+						Utils._strict( [ Boolean, String ], arguments );
 
-						case 'products':
+						if( err ) {
 
-							$location.path('/products');
+							if ( inputMsgTimeout ) $timeout.cancel( inputMsgTimeout );
 
-							break;
+							$scope.formError = true;
+							$scope.formMsg = true;
 
-						case 'faq':
+							$scope.formErrorMsg = msg;
 
-							$location.path('/faq');
+							inputMsgTimeout = $timeout( function() {
 
-							break;
+								$scope.formError = false;
+								$scope.formMsg = false;
+								$scope.formErrorMsg = '';
 
-						case 'contact':
+								$timeout.cancel( inputMsgTimeout );
 
-							$location.path('/contact');
+							}, 8000); // delay 8s
 
-							break;
+						} else {
 
-						default:
+							$scope.formError = false;
+							$scope.formMsg = true;
 
-							$location.path('/404');
+							$scope.formErrorMsg = msg;
 
-							throw 'Biaytch!';
-
-							break;
+						}
 
 					}
-			  
-				};
-
-				$scope.close = function () {
-					// Component lookup should always be available since we are not using `ng-if`
-					$mdSidenav('left').close()
-					  .then(function () {
-						$log.debug("close LEFT is done");
-					  });
-				};
-				
-				/**
-				 * Supplies a function that will continue to operate until the
-				 * time is up.
-				 */
-				function debounce(func, wait, context) {
-					var timer;
-					return function debounced() {
-						var context = $scope,
-							args = Array.prototype.slice.call(arguments);
-						$timeout.cancel(timer);
-						timer = $timeout(function() {
-							timer = undefined;
-							func.apply(context, args);
-						}, wait || 10);
-					};
-	  			}
-  
-				/**
-				 * Build handler to open/close a SideNav; when animation finishes
-				 * report completion in console
-				 */
-				function buildDelayedToggler(navID) {
-					return debounce(function() {
-						// Component lookup should always be available since we are not using `ng-if`
-						$mdSidenav(navID)
-							.toggle()
-							.then(function () {
-							$log.debug("toggle " + navID + " is done");
-							});
-					}, 200);
-				}
-
-				//console.log('waddup from navigation');
-
-			}]
-		};
-			
-	};
-
-	domReady( function () {
-
-		/*
-		 * APP MODULE
-		 */
-		appDirectiveNavigation = appDirectiveNavigation || angular.module( 'appDirectiveNavigation', [ 'appUtils', 'appXHR', 'ngMaterial', 'ngProgress' ] );
-
-		appDirectiveNavigation
-			.directive( Application.Directives );
-
-
-	});
-		
-	exports.appDirectiveNavigation = appDirectiveNavigation;
-});
+    
+                }]
+            };
+    
+        }; 
+    
+        domReady( function () {
+    
+            /*
+             * APP MODULE
+             */
+            appDirectiveFormContact = appDirectiveFormContact || angular.module( 'appDirectiveFormContact', [ 'appUtils', 'appXHR', 'appFilters', 'ngMaterial', 'ngProgress', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService' ] );
+    
+            appDirectiveFormContact
+                .directive( Application.Directives );
+    
+    
+        });
+    
+        exports.appDirectiveFormContact = appDirectiveFormContact;
+    });
+    

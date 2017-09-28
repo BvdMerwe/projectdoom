@@ -32,6 +32,7 @@
 		"app-directives-preloader": '../../app/components/shared/app.directive.preloader',
 		"app-directives-scrolltotop": '../../app/components/shared/app.directive.scrolltotop',
 		"app-directives-navigation": '../../app/components/shared/navigation/app.directive.navigation',
+		"app-directives-gallery": 	'../../app/components/shared/gallery/app.directive.gallery',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',

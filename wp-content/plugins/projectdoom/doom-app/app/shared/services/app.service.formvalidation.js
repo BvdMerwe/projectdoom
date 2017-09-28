@@ -51,7 +51,155 @@ define( function ( require, exports, module ) {
 
 			return deferred.promise;
 
-	    }
+		}
+		
+		/**
+	     * 
+	     *
+	     * @param String
+	     * 
+	     * @return String
+	     */
+	    this._validateName = function ( firstName ) {
+			
+			//Utils._strict( [ String ], arguments );
+			
+			var deferred = $q.defer();
+			
+			if( !angular.isDefined(firstName) || firstName == '' ) {
+			
+				deferred.reject( 'Please enter a first name.' );
+							
+			} else {
+			
+				firstName = Utils.trim(firstName);
+			
+				if( firstName.length < 3 || firstName.length > 30 ) {
+			
+					deferred.reject( 'Please enter a valid first name.' );
+			
+				} else {
+			
+					deferred.resolve( firstName );
+			
+				}
+			
+			}
+			
+			return deferred.promise;
+			
+		}
+
+		/**
+	     * 
+	     *
+	     * @param String
+	     * 
+	     * @return String
+	     */
+	    this._validateEmail = function ( emailaddress ) {
+			
+			//Utils._strict( [ String ], arguments );
+			
+			var deferred = $q.defer();
+			
+			if( !angular.isDefined(emailaddress) || emailaddress == '' ) {
+			
+				deferred.reject( 'Please enter an e-mail address.' );
+							
+			} else {
+			
+				emailaddress = Utils.trim(emailaddress);
+			
+				if( Utils.isEmail( emailaddress ) ) {
+
+					deferred.resolve( emailaddress );
+
+				} else {
+			
+					deferred.reject( 'Please enter a valid e-mail address.' );
+			
+				}
+			
+			}
+			
+			return deferred.promise;
+			
+		}
+
+		/**
+	     * 
+	     *
+	     * @param String
+	     * 
+	     * @return String
+	     */
+	    this._validatePhone = function ( phoneNumber ) {
+			
+			//Utils._strict( [ String ], arguments );
+			
+			var deferred = $q.defer();
+			
+			if( !angular.isDefined(phoneNumber) || phoneNumber == '' ) {
+			
+				deferred.reject( 'Please enter a contact number.' );
+							
+			} else {
+			
+				phoneNumber = Utils.trim(phoneNumber);
+			
+				if( Utils.isPhone( phoneNumber ) ) {
+
+					deferred.resolve( phoneNumber );
+
+				} else {
+			
+					deferred.reject( 'Please enter a valid contact number.' );
+			
+				}
+			
+			}
+			
+			return deferred.promise;
+			
+		}
+
+		/**
+	     * 
+	     *
+	     * @param String
+	     * 
+	     * @return String
+	     */
+	    this._validateCompanyName = function ( companyName ) {
+			
+			//Utils._strict( [ String ], arguments );
+			
+			var deferred = $q.defer();
+			
+			if( !angular.isDefined(companyName) || companyName == '' ) {
+			
+				deferred.reject( 'Please enter a company name.' );
+							
+			} else {
+			
+				companyName = Utils.trim(companyName);
+			
+				if( companyName.length < 3 || companyName.length > 100 ) {
+
+					deferred.reject( 'Please enter a valid company name.' );
+
+				} else {
+
+					deferred.resolve( companyName );
+			
+				}
+			
+			}
+			
+			return deferred.promise;
+			
+		}
 
 	    /**
 	     * 

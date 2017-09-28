@@ -1,9 +1,9 @@
 <?php
 /**
- * Displays for app navigation
+ * Display Contact Content
  *
  * @package WordPress
- * @subpackage Twenty_Seventeen
+ * @subpackage Doom
  * @since 1.0
  * @version 1.0
  */
@@ -11,80 +11,104 @@
 ?>
 	<div layout="column">
 		<div layout="row" layout-xs="column" >
-			<md-content class="md-padding" flex="50">
 
-                <div data-ng-transclude>
-                    <md-sidenav
-                        class="md-sidenav-left"
-                        md-component-id="left"
-                        md-is-locked-open="$mdMedia('gt-md')"
-                        md-whiteframe="4"
-                        style="position: fixed;width:100%;height:100%;top:0;left:0;">
+			<md-content class="md-padding" flex-xs="100" flex="60" flex-order-xs="2">
 
-                        <md-toolbar class="md-theme-indigo">
-                            <h1 class="md-toolbar-tools">SITEMAP</h1>
-                        </md-toolbar>
-                        <md-content layout-padding>
-                            <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                            Close
-                            </md-button>
-                            <p hide show-gt-md>
-                            This sidenav is locked open on your device. To go back to the default behavior,
-                            narrow your display.
-                            </p>
-                        </md-content>
+                <form id="formContact" name="userForm" novalidate>
 
-                    </md-sidenav>
-                    
-                    <md-button ng-click="toggleLeft()"
-                    class="md-primary md-icon-button md-theme-indigo" aria-label="Site Menu" hide-gt-md>
-                        <md-icon style="padding-top:5px;">
-                            <span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-                            <span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-                            <span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-                        </md-icon>
-                    </md-button>
-                    <h3 style="display:inline-block;" data-ng-click="goto('home')">
-                        DOOM PRESENTS...
-                    </h3>
-                </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label for="name">Your Name</label>
+                            <input
+                                name="name"
+                                required
+                                md-maxlength="30"
+                                data-ng-model="formInputs.firstName">
+                            <div ng-messages="formContact.firstName.$error">
+                                <div ng-message="required">Please provide us with a first name.</div>
+                                <div ng-message="md-maxlength">Your first name must be less than 30 characters long.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label for="email">Email Address</label>
+                            <input 
+                                type="email"
+                                name="email"
+                                required
+                                
+                                data-ng-model="formInputs.emailAddress"
+                                minlength="10"  data-ng-pattern="/^.+@.+\..+$/" >
+                            <div ng-messages="formContact.emailAddress.$error">
+                                <div ng-message="required">Please provide us with an email address.</div>
+                                <div ng-message="md-email">Please provide us with a valid email address.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container md-no-float class="md-block"></md-input-container>
+
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label for="phone">Phone</label>
+                            <input 
+                                name="phone"
+                                type="tel"
+                                required
+                                
+                                data-ng-model="formInputs.phone"
+                                minlength="10" maxlength="100">
+                            <div ng-messages="formContact.phone.$error">
+                                <div ng-message="required">Please provide us with a contact number.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label for="company">Company</label>
+                            <input 
+                                name="company"
+                                data-ng-model="formInputs.company">
+                            <div ng-messages="formContact.company.$error">
+                                <div ng-message="md-maxlength">Your company name must be less than 100 characters long.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container md-no-float class="md-block"></md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label for="message">Message</label>
+                        <textarea 
+                            name="message"
+                            required
+                            
+                            data-ng-model="formInputs.message" md-maxlength="150" 
+                            rows="5" md-select-on-focus>
+                        </textarea>
+                    </md-input-container>
+
+                    <md-input-container md-no-float class="md-block"></md-input-container>
+
+                    <md-input-container class="md-block" layout-align="end center">
+                        <md-button type="submit" data-ng-click="save()">Send</md-button>
+                    </md-input-container>
+
+                </form>
+
+                <div data-ng-transclude></div>
 
             </md-content>
-		
-			<md-content class="md-padding" flex="50">
+            <md-content class="md-padding" flex-xs="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
 
-                <div data-ng-transclude>
-                    <md-nav-bar
-                        md-selected-nav-item="currentNavItem"
-                        nav-bar-aria-label="navigation links">
+                <h3>CONTACT INFORMATION</h3>
 
-                        <md-nav-item md-nav-click="goto('about')" name="about">
-                            ABOUT
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('legal')" name="legal">
-                            LEGAL
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('products')" name="products">
-                            PRODUCTS
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('faq')" name="faq">
-                            FAQ
-                        </md-nav-item>
-                        <md-nav-item md-nav-click="goto('contact')" name="contact">
-                            CONTACT
-                        </md-nav-item>
-                        <!-- these require actual routing with ui-router or ng-route, so they
-                        won't work in the demo
-                        <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-                        <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-                        You can also add options for the <code>ui-sref-opts</code> attribute.
-                        <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-                            Page Six
-                        </md-nav-item>
-                        -->
-                    </md-nav-bar>
-                </div>
+                <p><md-icon svgIcon="thumbs-up"></md-icon>Lorem ipsum dolor sit amet, consectetur.</p>
+
+                <p><md-icon ng-style="{color: #fff;}">home</md-icon>&nbsp;011 900 2000</p>
+
+                <p><md-icon>home</md-icon>&nbsp;Lorem@ipsum.co.za.</p> 
 
             </md-content>
+
         </div>   
 	</div>

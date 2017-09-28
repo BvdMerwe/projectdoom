@@ -233,7 +233,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * APP MODULE
 		 */
-		appFilters = appFilters || angular.module( 'appFilters', [ 'appUtils' ] );
+		appFilters = appFilters || angular.module( 'appFilters', [ 'appUtils', 'angular.filter' ] );
 
         appFilters
             .filter( Application.Filters );

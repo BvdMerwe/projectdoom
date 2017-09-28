@@ -117,6 +117,8 @@ define( function ( require, exports, module ) {
 
 					}
 
+					this.close();
+
 				};
 
 				$scope.close = function () {
