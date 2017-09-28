@@ -51,11 +51,13 @@ require.config({
 		"app-directives-carousel": '../../app/components/shared/carousel/app.directive.carousel',
 		"app-directives-searchbar": '../../app/components/shared/searchbar/app.directive.searchbar',
 		"app-directives-search": '../../app/components/shared/search/app.directive.search',
+		"app-directives-footer": '../../app/components/shared/footer/app.directive.footer',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',
 		"localforage": 				'../libs/localforage.min',
 		"modernizr": 				'../libs/modernizr',
+		"sjcl": 				'../libs/sjcl',
 		"Utils": 					'../libs/Utils',
 		"domReady": 				'../libs/domready',
 		"classie": 					'../libs/classie',

@@ -39,13 +39,21 @@
 				</div>
 			</md-content>
 		</div>
-		
 
-		<div layout="column" class="md-padding" layout-fill>
-			<!-- carousel -->
-			<h2>Related retailers</h2>
 
-			<div layout="column" layout-fill>
-				<div data-ui-carousel contentType="retailer" maxAmount="10" maxHeight="100px" maxwidth="150px"></div>
+		<div layout="row" layout-wrap>
+			<div class="md-padding" flex="50">
+				<h2>retailers</h2>
+				<div layout="column" layout-fill>
+					<div data-ui-carousel contentType="retailer" maxAmount="10" maxHeight="100px" maxwidth="150px"></div>
+				</div>
+			</div>
+			<div class="md-padding" flex="50">
+				<h2>insects</h2>
+				<div layout="column" layout-fill>
+					<div data-ui-carousel contentType="insect" maxAmount="10" maxHeight="200px" maxwidth="150px"></div>
+				</div>
 			</div>
 		</div>
+
+<div data-ui-footer id="footer"></div>

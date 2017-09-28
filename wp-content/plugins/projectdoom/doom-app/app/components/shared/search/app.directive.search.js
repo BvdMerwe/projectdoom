@@ -64,7 +64,7 @@ define( function ( require, exports, module ) {
 	    },
 			link: function (scope, element, attrs, controller) {
 
-
+        scope.in = false;
         /************************************
         *	Search Button click event
         ************************************/
@@ -78,9 +78,14 @@ define( function ( require, exports, module ) {
         scope.$watch('isOpen', function(){
           if (scope.isOpen) {
             element.addClass('open');
+            scope.in = true;
           } else {
             element.removeClass('open');
+            scope.in = true;
           }
+          setTimeout(function(){
+            scope.in = false;
+          }, 1000)
         });
 			},
 			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'searchManager', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $filter, transformRequestAsFormPost, Utils, ngProgress, searchManager, retailersManager, productsManager, insectsManager, packagesManager ) {
