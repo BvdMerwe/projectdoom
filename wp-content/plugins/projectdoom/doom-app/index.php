@@ -7,47 +7,47 @@
 		<div data-ui-preloader></div>
 
         <div data-ui-navigation></div>
-
-        <div data-ui-gallery 
+<!-- 
+        <div data-ui-gallery
 								flex="100"
 								isWidget        = "true"
 								showTitle       = "true"
-								showSubheader   = "true" 
+								showSubheader   = "true"
 								showDescription = "true"
 								showButton      = "true"
-								contentType     = "product"  
-								sortBy="ASC" orderBy="post_title" 
-								gridItemsDesktopWide="6" gridItemsDesktop="4" gridItemsMobile="2"></div>
+								contentType     = "product"
+								sortBy="ASC" orderBy="post_title"
+								gridItemsDesktopWide="6" gridItemsDesktop="4" gridItemsMobile="2"></div> -->
 
-        
-        <!--
+
+
         <div data-ui-app-activity></div>
--->
+
 
         <!--
         <div data-ui-form-contact></div>
         <div data-ui-app-activity></div>
 
-		<div data-ui-gallery 
+		<div data-ui-gallery
             isWidget        = "true"
             showTitle       = "true"
             showSubheader   = "true"
             showDescription = "true"
             showButton      = "true"
-            contentType     = "insect"  
-            sortBy="ASC" orderBy="post_title" 
+            contentType     = "insect"
+            sortBy="ASC" orderBy="post_title"
             gridItemsDesktopWide="6" gridItemsDesktop="4" gridItemsMobile="2"></div>
-            
-        <div data-ui-gallery 
+
+        <div data-ui-gallery
             isWidget        = "false"
             showTitle       = "true"
             showSubheader   = "true"
             showDescription = "true"
             showButton      = "true"
-            contentType     = "product"  
-            sortBy="ASC" orderBy="post_title" 
+            contentType     = "product"
+            sortBy="ASC" orderBy="post_title"
             gridItemsDesktopWide="6" gridItemsDesktop="4" gridItemsMobile="2"></div>
-        
+
         -->
 
 		<!-- <script id="initialise" type="text/javascript" data-main="assets/js/init" src="assets/libs/require.min.js"></script> -->

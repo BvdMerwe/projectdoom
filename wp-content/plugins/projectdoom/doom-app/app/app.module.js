@@ -40,6 +40,11 @@ define( function ( require, exports, module ) {
 	require("app-directives-searchbar");
 	require("app-directives-search");
 	require("app-directives-footer");
+  require("app-directives-gallery");
+	require("app-directives-contactform");
+	require("app-directives-configurator");
+	require("app-directives-randomstat");
+
 
 	require("app-page-directives");
 	//require("app-directives-shared-footer");
@@ -54,7 +59,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * UI MODULE
 		 */
-		appDoom = appDoom || angular.module( 'appDoom', [ 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appSearchService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectiveCarousel', 'appDirectiveSearchBar', 'appDirectiveSearch', 'appDirectiveFooter', 'appDirectivePreloader', 'appDirectiveScrollToTop' ] );
+		appDoom = appDoom || angular.module( 'appDoom', [ 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appSearchService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectiveCarousel', 'appDirectiveSearchBar', 'appDirectiveSearch', 'appDirectiveFooter', 'appDirectivePreloader', 'appDirectiveScrollToTop', 'appDirectiveGallery', 'appDirectiveFormContact', 'appDirectiveConfigurator', 'appDirectiveRandomstat' ] );
 
 		// BootStrap App!
 		angular.bootstrap( window.document, ['appDoom'] );

@@ -32,6 +32,7 @@ function post_type_product() {
 #
 #-----------------------------------------------------------------
   register_taxonomy('product_categories', 'product', array('show_in_nav_menus' => true, 'hierarchical' => true, 'labels' => array('name' => __('Product Categories'), 'singular_label' => __('Category'), 'add_new_item' => __('Add New Product Category'), 'search_items' => __('Search Product Categories')), 'rewrite' => array('slug' => 'product-categories')));
+  register_taxonomy('product_types', 'product', array('show_in_nav_menus' => true, 'hierarchical' => true, 'labels' => array('name' => __('Product Type'), 'singular_label' => __('Type'), 'add_new_item' => __('Add New Product Type'), 'search_items' => __('Search Product Types')), 'rewrite' => array('slug' => 'product-categories')));
 
 #-----------------------------------------------------------------
 #
@@ -48,6 +49,7 @@ function post_type_product() {
         "title" => "Title",
         "product_desc" => "Description",
         "product_categories" => "Categories",
+        "product_types" => "Type",
         "product_image" => "thumbnail",
         "date" => "Date"
       );
@@ -66,6 +68,9 @@ function post_type_product() {
           break;
         case "product_categories":
           echo get_the_term_list( $post->ID, 'product_categories', '', ', ', '' );
+          break;
+        case "product_types":
+          echo get_the_term_list( $post->ID, 'product_types', '', ', ', '' );
           break;
         case "product_image":
           // SHOW THE FEATURED IMAGE

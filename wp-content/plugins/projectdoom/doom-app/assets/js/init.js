@@ -54,6 +54,8 @@ require.config({
 		"app-directives-searchbar": '../../app/components/shared/searchbar/app.directive.searchbar',
 		"app-directives-search": '../../app/components/shared/search/app.directive.search',
 		"app-directives-footer": '../../app/components/shared/footer/app.directive.footer',
+		"app-directives-configurator": '../../app/components/shared/configurator/app.directive.configurator',
+		"app-directives-randomstat": '../../app/components/shared/randomstat/app.directive.randomstat',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',

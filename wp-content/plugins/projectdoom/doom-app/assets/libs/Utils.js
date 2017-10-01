@@ -626,6 +626,70 @@ define( function ( require, exports, module ) {
 			}
 
 		},
+    numberWithCommas: function (x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    },
+    toHHMMSS: function (secs) {
+      var sec_num = parseInt(secs, 10); // don't forget the second param
+      var hours   = Math.floor(sec_num / 3600);
+      var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+      var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+      if (hours   < 10) {hours   = "0"+hours;}
+      if (minutes < 10) {minutes = "0"+minutes;}
+      if (seconds < 10) {seconds = "0"+seconds;}
+      return hours+':'+minutes+':'+seconds;
+    },
+    toDHMS: function (secs) {
+      var sec_num   = parseInt(secs, 10); // don't forget the second param
+      var days      = Math.floor( sec_num / 86400);
+      var hours     = Math.floor((sec_num - (days * 86400)) / 3600);
+      var minutes   = Math.floor((sec_num - (days * 86400) - (hours * 3600)) / 60);
+      var seconds   =             sec_num - (days * 86400) - (hours * 3600) - (minutes * 60);
+      var daysS     = "";
+      var hoursS    = "";
+      var minutesS  = "";
+      var secondsS  = "";
+
+      if (days    > 0) {daysS    = days   + (days     > 1 ? " days "    : " day ");}
+      if (hours   > 0) {hoursS   = hours  + (hours    > 1 ? " hours "   : " hour ");}
+      if (minutes > 0) {minutesS = minutes+ (minutes  > 1 ? " minutes " : " minute ");}
+      if (seconds > 0) {secondsS = seconds+ (seconds  > 1 ? " seconds " : " second");}
+      return daysS+hoursS+minutesS+secondsS;
+    },
+    timer: function()
+    {
+        var timer = {
+            running: false,
+            iv: 5000,
+            timeout: false,
+            cb : function(){},
+            start : function(cb,iv,sd){
+                var elm = this;
+                clearInterval(this.timeout);
+                this.running = true;
+                if(cb) this.cb = cb;
+                if(iv) this.iv = iv;
+                if(sd) elm.execute(elm);
+                this.timeout = setTimeout(function(){elm.execute(elm)}, this.iv);
+            },
+            execute : function(e){
+                if(!e.running) return false;
+                e.cb();
+                e.start();
+            },
+            stop : function(){
+                this.running = false;
+            },
+            set_interval : function(iv){
+                clearInterval(this.timeout);
+                this.start(false, iv);
+            }
+        };
+        return timer;
+    },
 
         /**
          * Iterates over all the properties in an object or elements in an array. If a callback returns a
