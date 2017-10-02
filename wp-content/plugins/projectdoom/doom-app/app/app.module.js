@@ -43,10 +43,15 @@ define( function ( require, exports, module ) {
 	require("app-directives-searchbar");
 	require("app-directives-search");
 
+	require("app-directives-configurator");
+	require("app-directives-randomstat");
+
 	require("app-directives-gallery");
 	require("app-directives-contactform");
 
 	require("app-page-directives");
+
+	require("app-directives-footer");
 	//require("app-directives-shared-footer");
 
 	// Load dependent modules
@@ -59,7 +64,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * UI MODULE
 		 */
-		appDoom = appDoom || angular.module( 'appDoom', [ 'ngMaterial', 'angAccordion', 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appSearchService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectiveCarousel', 'appDirectiveGallery', 'appDirectiveSearchBar', 'appDirectiveSearch', 'appDirectiveFormContact', 'appDirectivePreloader', 'appDirectiveScrollToTop' ] );
+		appDoom = appDoom || angular.module( 'appDoom', [ 'ngMaterial', 'angAccordion', 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appSearchService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectiveCarousel', 'appDirectiveGallery', 'appDirectiveSearchBar', 'appDirectiveSearch', 'appDirectiveFormContact', 'appDirectivePreloader', 'appDirectiveScrollToTop', 'appDirectiveConfigurator', 'appDirectiveRandomstat', 'appDirectiveFooter' ] );
 
 		appDoom.config( [ '$mdThemingProvider', function ( $mdThemingProvider ) {
 
