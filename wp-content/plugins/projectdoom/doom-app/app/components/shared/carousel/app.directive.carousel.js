@@ -70,6 +70,9 @@ define( function ( require, exports, module ) {
 				gutter:'@gutter',
 	    },
 			link: function (scope, element, attrs, controller) {
+        if (scope.contentType === "retailer"){
+          angular.element(element).addClass("retailer-carousel");
+        }
 					// scope.contentType = attrs.contenttype;
 					// scope.maxAmount = attrs.maxamount;
 					// scope.maxHeight = scope.maxWidth = "100px";
@@ -150,7 +153,7 @@ define( function ( require, exports, module ) {
 				    var difference = to - element.scrollLeft;
 				    var perTick = difference / duration * 10;
 
-				    $timeout(function () {
+				    setTimeout(function () {
 				        element.scrollLeft = element.scrollLeft + perTick;
 				        if (element.scrollLeft == to) return;
 				        horizontalScrollTo(element, to, duration - 10);
@@ -247,7 +250,7 @@ define( function ( require, exports, module ) {
 									retailersManager.getRetailers(requestObj).then($scope.success, $scope.error);
 									break;
 								default:
-									throw("Sheeeeeeit");
+									throw("Please provide a content type.");
 							}
 						}
 

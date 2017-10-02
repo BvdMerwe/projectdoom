@@ -8,17 +8,17 @@
 * @version 1.0
 */
 ?>
-		
-			
-        
+
+
+
     <div layout="column" layout-fill class="animate-page-switch-container" flex="100" data-ng-switch="renderPath[1]">
-        
+
         <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
             <!-- -->
             <div layout="row" layout-md="column" >
                 <div flex="grow" flex-md="100" class="md-padding">
                     <img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption" />
-                    
+
                     <div class="tag-group">
                         <md-button class="md-primary primary-tag">Outdoor</md-button>
                         <md-button class="md-primary primary-tag">Infestation</md-button>
@@ -66,7 +66,7 @@
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
 							</div>
 						</collapsible-item>
-											
+
 					</ang-accordion>
 					<?php /** /?>
                     <div class="panel-group custom-accordion" id="accordionProductSingle" role="tablist" aria-multiselectable="true" data-one-at-a-time="true">
@@ -76,12 +76,12 @@
 
                             <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
                                 <h4 class="panel-title uppercase tl">
-                                    <a 	
+                                    <a
                                         data-ui-collapser
-                                        role="button" 
-                                        data-toggle="collapse" 
-                                        data-parent="#accordionProductSingle" 
-                                        data-target="#collapsePanelBenefits" 
+                                        role="button"
+                                        data-toggle="collapse"
+                                        data-parent="#accordionProductSingle"
+                                        data-target="#collapsePanelBenefits"
                                         aria-expanded="false">
                                             01 Benefits<span class="icon-chevron-down fr"></span>
                                     </a>
@@ -91,9 +91,9 @@
                             <div id="collapsePanelBenefits" class="panel-collapse collapse" role="tabpanel">
 
                                 <div class="panel-body">
-                                                
+
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-                                                
+
                                 </div>
 
                             </div>
@@ -105,12 +105,12 @@
 
                             <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
                                 <h4 class="panel-title uppercase tl">
-                                    <a 	
+                                    <a
                                         data-ui-collapser
-                                        role="button" 
-                                        data-toggle="collapse" 
-                                        data-parent="#accordionProductSingle" 
-                                        data-target="#collapseDirectionForUse" 
+                                        role="button"
+                                        data-toggle="collapse"
+                                        data-parent="#accordionProductSingle"
+                                        data-target="#collapseDirectionForUse"
                                         aria-expanded="false">
                                             02 Direction for use<span class="icon-chevron-down fr"></span>
                                     </a>
@@ -120,9 +120,9 @@
                             <div id="collapseDirectionForUse" class="panel-collapse collapse" role="tabpanel">
 
                                 <div class="panel-body">
-                                                
+
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-                                                
+
                                 </div>
 
                             </div>
@@ -130,16 +130,16 @@
                         </div>
 
                         <!-- STORAGE & DISPOSAL -->
-                        <div class="panel panel-default"> 
+                        <div class="panel panel-default">
 
                             <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
                                 <h4 class="panel-title uppercase tl">
-                                    <a 	
+                                    <a
                                         data-ui-collapser
-                                        role="button" 
-                                        data-toggle="collapse" 
-                                        data-parent="#accordionProductSingle" 
-                                        data-target="#collapseStorageDisposal" 
+                                        role="button"
+                                        data-toggle="collapse"
+                                        data-parent="#accordionProductSingle"
+                                        data-target="#collapseStorageDisposal"
                                         aria-expanded="false">
                                             03 Storage &amp; Disposal<span class="icon-chevron-down fr"></span>
                                     </a>
@@ -149,26 +149,26 @@
                             <div id="collapseStorageDisposal" class="panel-collapse collapse" role="tabpanel">
 
                                 <div class="panel-body">
-                                                
+
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-                                                
+
                                 </div>
 
                             </div>
 
 						</div>
-						
+
 						<!-- PRECAUTIONS -->
-                        <div class="panel panel-default"> 
+                        <div class="panel panel-default">
 
                             <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
                                 <h4 class="panel-title uppercase tl">
-                                    <a 	
+                                    <a
                                         data-ui-collapser
-                                        role="button" 
-                                        data-toggle="collapse" 
-                                        data-parent="#accordionProductSingle" 
-                                        data-target="#collapsePrecautions" 
+                                        role="button"
+                                        data-toggle="collapse"
+                                        data-parent="#accordionProductSingle"
+                                        data-target="#collapsePrecautions"
                                         aria-expanded="false">
                                             04 Precautions<span class="icon-chevron-down fr"></span>
                                     </a>
@@ -178,9 +178,9 @@
                             <div id="collapsePrecautions" class="panel-collapse collapse" role="tabpanel">
 
                                 <div class="panel-body">
-                                                
+
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-                                                
+
                                 </div>
 
                             </div>
@@ -192,30 +192,30 @@
                     <h3 class="carousel-title">Similar Products</h3>
                     <br /><br />
                     <!--
-                    <div data-ui-gallery 
+                    <div data-ui-gallery
                         flex="100"
                         isWidget        = "true"
                         showTitle       = "false"
-                        showSubheader   = "false" 
+                        showSubheader   = "false"
                         showDescription = "false"
                         showButton      = "true"
-                        contentType     = "product"  
-                        sortBy="ASC" orderBy="post_title" 
+                        contentType     = "product"
+                        sortBy="ASC" orderBy="post_title"
                         gridItemsDesktopWide="1" gridItemsDesktop="1" gridItemsMobile="1"></div>
                     -->
                 </div>
                 <!--
                 <div flex="grow">
 
-                    <div data-ui-carousel 
+                    <div data-ui-carousel
                                 flex="100"
                                 isWidget        = "true"
                                 showTitle       = "true"
-                                showSubheader   = "true" 
+                                showSubheader   = "true"
                                 showDescription = "true"
                                 showButton      = "true"
-                                contentType     = "retailer"  
-                                sortBy="ASC" orderBy="post_title" 
+                                contentType     = "retailer"
+                                sortBy="ASC" orderBy="post_title"
                                 maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>
 
                 </div>
@@ -223,15 +223,15 @@
             </div>
             <div layout="column" class="md-padding">
                 <h3 class="carousel-title">Where to buy</h3>
-                <div data-ui-carousel 
+                <div data-ui-carousel
                     flex="100"
                     isWidget        = "true"
                     showTitle       = "true"
-                    showSubheader   = "true" 
+                    showSubheader   = "true"
                     showDescription = "true"
                     showButton      = "true"
-                    contentType     = "retailer"  
-                    sortBy="ASC" orderBy="post_title" 
+                    contentType     = "retailer"
+                    sortBy="ASC" orderBy="post_title"
                     maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>
             </div>
             <!-- -->
@@ -256,96 +256,96 @@
             <!-- [BODY SECTION] -->
 
             <div flex="grow">
-				
-                <div data-ui-gallery 
+
+                <div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
 					showFilter      = "true"
 					globalFilter    = "true"
-					showSubheader   = "true" 
+					showSubheader   = "true"
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "coackroach"  
-					sortBy="ASC" orderBy="post_title" 
+					insectType     	= "coackroach"
+					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Cockroaches</h3>
 				</div>
-				
-				<div data-ui-gallery 
+
+				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
 					showFilter      = "false"
 					globalFilter    = "true"
-					showSubheader   = "true" 
+					showSubheader   = "true"
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
 					insectType     	= "mosquitoes"
-					sortBy="ASC" orderBy="post_title" 
+					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Mosquitoes</h3>
 				</div>
 				<!--
-				<div data-ui-gallery 
+				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
 					showFilter      = "false"
 					globalFilter    = "true"
-					showSubheader   = "true" 
+					showSubheader   = "true"
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "flea" 
-					sortBy="ASC" orderBy="post_title" 
+					insectType     	= "flea"
+					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Fleas</h3>
 				</div>
-				<div data-ui-gallery 
+				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
 					showFilter      = "false"
 					globalFilter    = "true"
-					showSubheader   = "true" 
+					showSubheader   = "true"
 					showDescription = "true"
 					showButton      = "true"
-					contentType     = "product" 
-					insectType     	= "fishmoths"  
-					sortBy="ASC" orderBy="post_title" 
+					contentType     = "product"
+					insectType     	= "fishmoths"
+					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Fishmoths</h3>
 				</div>
-				<div data-ui-gallery 
+				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
 					showFilter      = "false"
 					globalFilter    = "true"
-					showSubheader   = "true" 
+					showSubheader   = "true"
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "ant" 
-					sortBy="ASC" orderBy="post_title" 
+					insectType     	= "ant"
+					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Ants</h3>
 				</div>
-				<div data-ui-gallery 
+				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
 					showFilter      = "false"
 					globalFilter    = "true"
-					showSubheader   = "true" 
+					showSubheader   = "true"
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "cockroach" 
-					sortBy="ASC" orderBy="post_title" 
+					insectType     	= "cockroach"
+					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Cockroaches</h3>
 				</div>
@@ -355,16 +355,16 @@
 
             <div flex="grow">
 				<h3 class="carousel-title">Where to buy</h3>
-                <div data-ui-carousel 
+                <div data-ui-carousel
                             flex="100"
-                            isWidget        = "true"
-                            showTitle       = "true"
-                            showSubheader   = "true" 
-                            showDescription = "true"
-                            showButton      = "true"
-                            contentType     = "retailer" 
-                            sortBy="ASC" orderBy="post_title" 
-                            maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>
+                            isSingle = "true"
+														needsCta = "false"
+														maxHeight = "250px"
+														maxWidth = "250px"
+														gutter = "10px"
+														displayName ="false"
+														contentType="retailer"
+														></div>
 
             </div>
 
@@ -375,5 +375,3 @@
         </div>
 
     </div>
-			
-		

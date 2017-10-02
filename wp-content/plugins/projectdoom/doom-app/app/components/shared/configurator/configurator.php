@@ -23,7 +23,7 @@
       <div class="content" layout="row" layout-align="space-around center">
         <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
           <div class="thumbnail">
-            <i class="lnr lnr-bug"></i>
+            <i class="icon-{{insect.post_name}}"></i>
           </div>
           <div class="name">
             <h3>{{insect.post_title}}</h3>

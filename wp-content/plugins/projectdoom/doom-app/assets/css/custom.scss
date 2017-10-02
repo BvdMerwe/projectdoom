@@ -29,7 +29,7 @@ md-sidenav {
 .close {
   min-width: 0;
   width: 33px;
-
+  display: none;
   &::before, &::after {
     position: absolute;
     left: 15px;
@@ -53,6 +53,11 @@ md-sidenav {
 /***********************************************
 * Carousel STYLE
 ***********************************************/
+.retailer-carousel {
+  .item .bg-box::before{
+    content: initial !important;
+  }
+}
 
 .carousel-container {
   position: relative;
@@ -125,6 +130,7 @@ md-sidenav {
       }
       .image {
         max-height: 150px;
+        max-width: 100%;
         position: relative;
         z-index: 1;
       }
@@ -255,7 +261,7 @@ md-sidenav {
   }
   .footer-nav {
     z-index: 11;
-    position: fixed;
+    // position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -388,6 +394,28 @@ md-sidenav {
     .desc {
       display: block;
       height: 150px;
+    }
+    .thumbnail {
+      i[class*='icon-'] {
+        width: 1.5em;
+        height: 1.5em;
+        display: inline-block;
+        font-size: 1em;
+        border: 0.1em solid inherit;
+        border-radius: 100%;
+        padding: 0.2em 0;
+        /* box-sizing: border-box; */
+
+        &.thin-border {
+          border-width: 1px;
+        }
+        &.thick-border {
+          border-width: 3px;
+        }
+        &.no-border {
+          border-color: transparent;
+        }
+      }
     }
   }
   .step-1 {
