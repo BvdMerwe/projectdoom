@@ -17,6 +17,16 @@ class DataGetter
   {
     # code...
   }
+  //get "static" pages
+  static function getPages() {
+    global $wpdb;
+    $gets = DataGetter::POST_GETS;
+    $sql = "SELECT $gets FROM $wpdb->posts WHERE post_type LIKE 'page' AND post_status LIKE 'publish'";
+    $posts = $wpdb->get_results($sql);
+    $posts = json_decode(json_encode($posts), true);
+    return DataGetter::buildObject($posts);
+
+  }
   //get "static" page by slug
   static function getPage($slug) {
     global $wpdb;
@@ -269,6 +279,10 @@ class DataGetter
           AND pm.meta_key LIKE 'doom_%'");
         foreach ($keys as $i => $key) {
           $post->{$key->meta_key} = $key->meta_value;
+          if ($key->meta_key == '_thumbnail_id') {
+            $post["image"] = $wpdb->get_results($wpdb->prepare("
+              SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+          }
         }
         //--
       }

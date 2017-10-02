@@ -85,17 +85,26 @@ function insect_custom_columns($column){
   	$meta_boxes = array(
   	'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Insect Details', 'doom')),
 
-  		'doom_insect_egg' => array( 'name' => 'doom_insect_egg', 'title' => __('Egg', 'doom'), 'desc' => '(how many eggs are??)', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_egg' => array( 'name' => 'doom_insect_egg', 'title' => __('Eggs per day', 'doom'), 'desc' => 'Amount of eggs layed per day', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_egg_copy' => array( 'name' => 'doom_insect_egg_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
 
-  		'doom_insect_molt' => array( 'name' => 'doom_insect_molt', 'title' => __('Molt', 'doom'), 'desc' => '(Description here)', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_molt' => array( 'name' => 'doom_insect_molt', 'title' => __('Molts per day', 'doom'), 'desc' => 'Times the pest molts per day', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_molt_copy' => array( 'name' => 'doom_insect_molt_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
 
-  		'doom_insect_mate' => array( 'name' => 'doom_insect_mate', 'title' => __('Mate', 'doom'), 'desc' => '(Description here)', 'type' => 'text_small'),
+  		'doom_insect_mate' => array( 'name' => 'doom_insect_mate', 'title' => __('Mate per day', 'doom'), 'desc' => 'Times the pest mates per day', 'type' => 'text_small'),
+  		'doom_insect_mate_copy' => array( 'name' => 'doom_insect_mate_copy', 'title' => __('Copy to accompany stat', 'doom'), 'desc' => 'Copy to accompany stat', 'type' => 'text_small'),
 
-  		'doom_insect_life' => array( 'name' => 'doom_insect_life', 'title' => __('Life', 'doom'), 'desc' => '(how many eggs are??)', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_life' => array( 'name' => 'doom_insect_life', 'title' => __('Life span', 'doom'), 'desc' => 'How long the pest lives', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_life_copy' => array( 'name' => 'doom_insect_life_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
 
-  		'doom_insect_poop' => array( 'name' => 'doom_insect_poop', 'title' => __('Poop', 'doom'), 'desc' => '(Description here)', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_poop' => array( 'name' => 'doom_insect_poop', 'title' => __('Poops per day', 'doom'), 'desc' => 'Times the pest poops per day', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_poop_copy' => array( 'name' => 'doom_insect_poop_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
 
-  		'doom_insect_height' => array( 'name' => 'doom_insect_height', 'title' => __('Height', 'doom'), 'desc' => '(Description here)', 'type' => 'text_small'),
+  		'doom_insect_vomit' => array( 'name' => 'doom_insect_vomit', 'title' => __('Vomits per day', 'doom'), 'desc' => 'Times the pest vomits per day', 'type' => 'text_small'),
+  		'doom_insect_vomit_copy' => array( 'name' => 'doom_insect_vomit_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'type' => 'text_small'),
+
+      'doom_insect_sucks' => array( 'name' => 'doom_insect_sucks', 'title' => __('Blood sucks per day', 'doom'), 'desc' => 'Times the pest sucks blood per day', 'type' => 'text_small'),
+      'doom_insect_sucks_copy' => array( 'name' => 'doom_insect_sucks_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'type' => 'text_small'),
 
 
   		//'doom_thumbnail_align' => array( 'name' => 'doom_thumbnail_align', 'title' => __('Featured Image alignment', 'doom'), 'desc' => 'Choose your Featured Image alignment.', 'options' => array('center top', 'center bottom', 'center center'), 'type' => 'select'),

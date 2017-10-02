@@ -9,6 +9,19 @@ global $wpdb;
 #-----------------------------------------------------------------------------------*/
 
 /**
+ * Get a pages
+ *.
+ * @return Page Object,  * or null if none.
+ */
+function getPages(  ) {
+  $result = DataGetter::getPages();
+  if ( empty( $result ) ) {
+    return Errors::getError("no_result");
+  }
+  return new WP_REST_Response($result);
+}
+
+/**
  * Get a page from a slug
  *.
  * @return Page Object,  * or null if none.
@@ -305,6 +318,10 @@ add_action( 'rest_api_init', function () {
       ))
   ) );
   //Page
+  register_rest_route( "$namespace", '/page', array(
+    'methods' => 'GET',
+    'callback' => 'getPages'
+  ) );
   register_rest_route( "$namespace", '/page/(?P<slug>[\w-]+)', array(
     'methods' => 'GET',
     'callback' => 'getPage',

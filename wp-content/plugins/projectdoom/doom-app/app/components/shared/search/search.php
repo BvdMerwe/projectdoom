@@ -10,6 +10,7 @@
 
 ?>
 <button class="lnr lnr-magnifier search-button"></button>
+<div class="overlay"></div>
 <div class="search-container" layout-fill>
   
   <div layout="column" data-ui-search-bar placeholder="How To Kill..."></div>

@@ -1,9 +1,17 @@
 
-@import "mixin.scss";
+@import "general.mixin.scss";
+@import "flex.mixin.scss";
+
+$green: #14A774;
+$orange: #FF510B;
+
 * {
   outline: none !important;
 }
 
+.inline {
+  display: inline-block !important;
+}
 /***********************************************
 * Navigation STYLE
 ***********************************************/
@@ -48,7 +56,7 @@ md-sidenav {
 
 .carousel-container {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   .controls {
     z-index: 10;
     font-size: 20px;
@@ -62,31 +70,75 @@ md-sidenav {
       cursor: pointer;
       transition: 0.3s cubic-bezier(0.42,-0.37, 0.55, 1.43);
       outline: none;
-      opacity: 0.5;
+      // opacity: 0.5;
       // border-radius: 100%;
       // background: rgba(#fff, 0.5);
       // padding: 5px;
-      // border: 1px solid #000;
+      border: 3px solid $green;
 
       &.left {
-        left: 10px;
+        right: calc(100% - 3px);
+        // left: 10px;
+        padding: 5px 4px 5px 6px !important;
       }
       &.right {
-        right: 10px;
+        left: calc(100% - 3px);
+        // right: 10px;
         //fix for skew font
-        padding: 5px 4px 5px 6px !important;
+        padding: 5px 4px 5px 4px !important;
       }
       &.hide {
         display: none;
       }
       &:hover {
-        transform:  scale(1.5);
+        // transform:  scale(1.5);
+        color: #fff;
+        background-color: $green;
       }
     }
   }
   .carousel {
     overflow-x: scroll !important;
-    margin: 0 40px;
+    .list {
+      @include flexbox();
+      @include align-items(flex-end);
+      @include justify-content(space-between);
+
+      &.no-cta {
+        @include align-items(center);
+      }
+    }
+    .item {
+      position: relative;
+      text-align: center;
+      // margin: 0 10px;
+      .bg-box {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 35px; left: 0; right: 0; bottom: 0;
+          border: 3px solid $green;
+          z-index: 0;
+        }
+      }
+      .image {
+        max-height: 150px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+    .carousel-item-name, .cta {
+      text-align: center;
+      width: 100%;
+      margin: 10px 0;
+      min-height: 30px;
+    }
+    .carousel-item-name {
+      font-size: 10px;
+      text-transform: capitalize;
+    }
   }
 
 }
@@ -94,11 +146,6 @@ md-sidenav {
 * Search STYLE
 ***********************************************/
 #search-takeover {
-  .search-button {
-    outline: none !important;
-    border: 0;
-    background: transparent;
-  }
 
   &.open {
     .search-container.layout-fill {
@@ -111,15 +158,39 @@ md-sidenav {
         content: '\e879' !important;
       }
     }
+    .overlay {
+      @include transition(background-color 0.4s);
+      background-color: rgba(0,0,0,0.5);
+    }
   }
 
   .search-button {
-    transition: 0.8s;
+    @include transition(0.8s);
     position: relative;
     z-index: 12;
+    outline: none !important;
+    border: 0;
+    background: transparent;
     &:hover {
       transform: scale(1.5);
     }
+  }
+
+  .overlay {
+    @include transition(background-color 0.4s);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // display: none;
+    pointer-events: none;
+    background-color: rgba(0,0,0,0);
+    z-index: 10;
+
+    // &.ng-enter-active {
+    //   background-color: rgba(0,0,0,0.5);
+    // }
   }
 }
 
@@ -154,7 +225,7 @@ md-sidenav {
 
 .search-container.layout-fill {
   box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-  transition: 0.8s ease-in-out;
+  @include transition(0.4s cubic-bezier(.25,.8,.25,1));
   position: fixed;
   top: 0;
   right: -100%;
@@ -169,5 +240,320 @@ md-sidenav {
   }
   100% {
     transform: rotate(-360deg) scale(1.5);
+  }
+}
+
+/***********************************************
+* footer STYLE
+***********************************************/
+#footer {
+  // background-color: #14A774;
+  &.open {
+    .footer-content{
+      top: 100px;
+    }
+  }
+  .footer-nav {
+    z-index: 11;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #14A774;
+  }
+  .footer-content {
+      @include transition(0.4s cubic-bezier(.25,.8,.25,1));
+      position: fixed;
+      top: 100%;
+      height: 100%;
+      background-color: #14A774;
+      z-index: 10;
+      overflow: auto;
+      padding-bottom: 150px;
+  }
+}
+
+/***********************************************
+* configurator STYLE
+***********************************************/
+#configurator {
+  width: 100%;
+
+  .md-sign {
+    display: none;;
+  }
+  .md-ring {
+    opacity: 1;
+  }
+  .md-ring {
+    @include transform(scale(0.7));
+  }
+  .md-thumb {
+    @include transform(scale(0.7));
+  }
+  .breadcrumbs {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .configurator-steps {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    // height: 100vh;
+    min-height: 550px;
+
+    md-select {
+      max-width: 250px;
+    }
+  }
+  .step-1, .step-2, .step-3 {
+    @include  transition(0.4s cubic-bezier(.25,.8,.25,1), opacity 0.1s);
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    text-align: center;
+    opacity: 0;
+    @include transform(translateX(250px));
+    background-color: #fff;
+    border: 3px solid $green;
+    margin: 0 15%;
+    width: 70%;
+    position: absolute;
+    min-height: 350px;
+    pointer-events: none;
+    max-width: 870px;
+    .content {
+      @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
+
+      // & > * {
+      //   vertical-align: middle;
+      // }
+    }
+    .revert {
+      @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
+      vertical-align: middle;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      padding: 90px 30px;
+      text-align: center;
+      cursor: pointer;
+
+      .number {
+        border: 3px solid #000;
+        display: block;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        font-size: 47px;
+        margin: 0 auto 15px;
+      }
+    }
+    &.active {
+      pointer-events: all;
+      opacity: 1;
+      left: auto;
+      pointer-events: all;
+      @include transform(translateX(0));
+    }
+    &.inactive {
+      pointer-events: all;
+      opacity: 1;
+      border: 3px solid #000;
+      // width: 150px;
+      pointer-events: all;
+      min-height: 300px;
+      max-width: 750px;
+      margin: 25px 10%;
+      .content {
+        opacity: 0;
+      }
+      .revert {
+        display: block;
+      }
+    }
+  }
+  .insect-selector {
+    @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
+    box-sizing: border-box;
+    text-align: center !important;
+    padding: 20px;
+    vertical-align: top;
+    border: 5px solid transparent;
+    &.selected {
+      border: 5px solid $green;
+    }
+    .desc {
+      display: block;
+      height: 150px;
+    }
+  }
+  .step-1 {
+    height: 420px;
+    max-width: 100%;
+    &.active.inactive {
+      // margin: 45px 10%;
+      border-color: #000;
+      width: 70%;
+      // min-height: 250px;
+      // height: 250px;
+      @include transform(translateX(-12%) translateY(7%) scale(0.7));
+
+      .revert {
+        // padding: 65px 5%;
+      }
+    }
+    &.active {
+      border-color: transparent;
+      padding: 40px 10%;
+      width: 100%;
+      margin: 0;
+    }
+    &.inactive {
+      @include transform(translateX(-8%));
+      height: 300px;
+    }
+
+    .content:hover {
+      .insect-selector {
+        border-color: transparent;
+
+        &:hover {
+          border-color: $green;
+        }
+      }
+    }
+  }
+  .step-2  {
+    &.inactive {
+      @include transform(translateX(0));
+      height: 300px;
+    }
+    &.active {
+      @include transform(translateX(8%));
+    }
+  }
+  .step-3 {
+    padding: 0;
+    &.active {
+      @include transform(translateX(12%));
+      // height: 150px;
+    }
+    .text {
+      text-align: left;
+    }
+    .content {
+      height: 100%;
+    }
+    .map-container {
+      position: relative;
+      .map {
+        width: 100%;
+        // height: 70%;
+        max-height: 260px;
+      }
+      button {
+        background-color: rgba(0, 0, 0, 0.07);
+        border: none;
+        border-radius: 0;
+        width: 100px;
+        &.true {
+          border: 1px solid $green;
+          background-color: rgba($green, 0.5)
+        }
+        &.false {
+          border: 1px solid grey;
+        }
+      }
+      svg{
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 100%;
+        max-width: 100%;
+
+        rect, polygon, path {
+          @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
+        }
+        .pin {
+          fill: rgba(#fff, 0)
+        }
+        .area {
+          cursor: pointer;
+          rect, polygon {
+            fill: rgba($green, 0);
+          }
+          &.true {
+            .pin {
+              fill: rgba(#14a774, 1);
+            }
+            rect, polygon {
+              border: 1px solid $green;
+              // fill: rgba($orange, 0.1);
+            }
+          }
+          &.false {
+            border: 1px solid grey;
+          }
+        }
+      }
+    }
+    .text {
+      padding: 20px;
+    }
+  }
+  .final {
+    @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
+    @include transform(scale(0.7));
+    pointer-events: none;
+    opacity: 0;
+
+    &.active {
+      @include transform(scale(1));
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .final-container {
+      border: 3px solid $green;
+      margin-top: 100px;
+      .product {
+        max-height: 500px;
+
+        img {
+          vertical-align: baseline;
+          max-height: 550px;
+        }
+      }
+    }
+    .stats-container, .solution-container {
+      padding: 25px;
+    }
+    .stat {
+      line-height: 1;
+      font-size: 70pt;
+      font-weight: bolder;
+      text-transform: uppercase;
+    }
+    .stat-selector {
+      display: inline-block;
+      text-align: center;
+      margin: 10px;
+      cursor: pointer;
+      .icon {
+        display: block;
+        // border: 3px solid;
+        width: 100%;
+        border-radius: 100%;
+        font-size: 30px;
+        line-height: 1;
+      }
+      span {
+        display: inline-block;
+        margin-top: 0.625em;
+      }
+    }
   }
 }
