@@ -134,8 +134,12 @@ define( function ( require, exports, module ) {
 		
 				var _self 		= this;
 				var deferred 	= $q.defer();
+
+				console.info('saving insect data');
 		
-				MemCache.dataStore( 'dmapp-insects', _self._collection_insects, 'localforage' ).then( function() {
+				MemCache.dataStore( 'dmapp-insects', _self._collection_insects, 'localstorage' ).then( function() {
+
+						console.log('insect data stored');
 		
 						deferred.resolve( _self._collection_insects );
 		
@@ -157,7 +161,69 @@ define( function ( require, exports, module ) {
 					deferred 	= $q.defer();
 		
 				if( Utils._isObjEmpty(_self._collection_insects) || _self._collection_insects.length == 0 ) {
+
+					/**/
+					MemCache.dataGet( 'dmapp-insects', 'localstorage' ).then( function( results ) {
+
+							console.log('[INSECTS]from localstorage:');
+
+							_self._collection_insects.length = 0;
+						
+							_self._collection_insects = results;
+						
+							deferred.resolve( results );
+						
+						}, function(e){
+							
+							_self._loadAllInsects( obj ).then( function(data) {
+
+								//console.warn('insects fecthed');
 		
+								if( !angular.isDefined(data) ) {
+				
+									//deferred.reject( 'ADs data undefined from _loadAllInsects()' );
+									deferred.resolve([]);
+				
+								} else {
+				
+									_self._collection_insects.length = 0;
+				
+									//var dataLen = data.length;
+				
+									_self._collection_insects = data;
+
+									deferred.resolve( data );
+
+									/** /
+									_self.saveCollection().then( function(saveddb) {
+										
+											deferred.resolve( saveddb );
+										
+										}, function(erroer) {
+										
+											deferred.reject( erroer );
+
+										}
+									);
+									/**/
+				
+									//deferred.resolve( _self._collection_insects );
+				
+								}
+				
+								}, function(err) {
+					
+									deferred.reject( err );
+					
+								}
+							);
+						
+							//deferred.reject( e );
+						
+						}
+					);
+					
+					/** /
 					_self._loadAllInsects( obj ).then( function(data) {
 		
 						if( !angular.isDefined(data) ) {
@@ -183,10 +249,11 @@ define( function ( require, exports, module ) {
 			
 						}
 					);
+					/**/
 		
 				} else {
 		
-					//console.info('card holders object cache');
+					console.info('insects object cache');
 					deferred.resolve( _self._collection_insects );
 		
 				}
@@ -238,6 +305,8 @@ define( function ( require, exports, module ) {
 					transformRequest: transformRequestAsFormPost
 				})
 				.success( function(data, status) {
+
+					console.log("Request insect:", data);
 				
 					deferred.resolve( data );
 				

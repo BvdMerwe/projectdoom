@@ -45,7 +45,6 @@ define( function ( require, exports, module ) {
 		var defaultProperties = {
 			'ID'			: '',
 			'uID'			: '',
-			'Name'			: '',
 			'dateCreated'	: '',
 			'lastUpdated'	: ''
 		};
@@ -131,7 +130,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this;
 				var deferred 	= $q.defer();
 		
-				MemCache.dataStore( 'dmapp-retailers', _self._collection_retailers, 'localforage' ).then( function() {
+				MemCache.dataStore( 'dmapp-retailers', _self._collection_retailers, 'localstorage' ).then( function() {
 		
 						deferred.resolve( _self._collection_retailers );
 		
@@ -153,19 +152,77 @@ define( function ( require, exports, module ) {
 					deferred 	= $q.defer();
 		
 				if( Utils._isObjEmpty(_self._collection_retailers) || _self._collection_retailers.length == 0 ) {
+
+					/***/
+					MemCache.dataGet( 'dmapp-retailers', 'localstorage' ).then( function( results ) {
+
+							console.log('[RETAILERS]from localstorage:');
 		
+							_self._collection_retailers.length = 0;
+
+							_self._collection_retailers = results;
+				
+							deferred.resolve( results );
+			
+						}, function(e){
+
+							_self._loadAllRetailers( obj ).then( function(data) {
+
+									if( !angular.isDefined(data) ) {
+					
+										deferred.resolve([]);
+					
+									} else {
+
+										_self._collection_retailers.length = 0;
+					
+										//var dataLen = data.length;
+					
+										_self._collection_retailers = data; 
+
+										deferred.resolve( data );
+
+										/** /
+										_self.saveCollection().then( function(saveddb) {
+
+												console.warn('retailers saved', saveddb);
+
+												deferred.resolve( saveddb );
+
+											}, function(erroer) {
+
+												console.error('retailers save erroer', erroer);
+
+												deferred.reject( erroer );
+												
+											}
+										);
+										/**/
+										
+					
+									}
+									
+								}, function(err) {
+					
+									deferred.reject( err );
+					
+								}
+							);
+			
+						}
+					);
+					/**/
+					
+					/*** /
 					_self._loadAllRetailers( obj ).then( function(data) {
 		
 						if( !angular.isDefined(data) ) {
 		
-							//deferred.reject( 'ADs data undefined from _loadAllRetailers()' );
 							deferred.resolve([]);
 		
 						} else {
 		
 							_self._collection_retailers.length = 0;
-		
-							//var dataLen = data.length;
 		
 							_self._collection_retailers = data;
 		
@@ -179,10 +236,11 @@ define( function ( require, exports, module ) {
 			
 						}
 					);
+					/***/
 		
 				} else {
 		
-					//console.info('card holders object cache');
+					console.info('retailers object cache');
 					deferred.resolve( _self._collection_retailers );
 		
 				}
@@ -195,7 +253,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this,
 					deferred	= $q.defer();
 		
-				MemCache.dataRemove( 'dmapp-retailers', 'localforage' ).then( function(){
+				MemCache.dataRemove( 'dmapp-retailers', 'localstorage' ).then( function(){
 		
 							_self._collection_insects.length = 0;
 		

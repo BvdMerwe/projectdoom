@@ -77,6 +77,28 @@ define( function ( require, exports, module ) {
 
 							break;
 
+						case 'insects':
+
+							$location.path('/insects/flea');
+
+							break;
+
+						case 'ant':
+						case 'fly':
+						case 'fleas':
+						case 'fishmoths':
+						case 'mosquitoes':
+						case 'cockroach':
+
+							$location.path('/insects/' + page );
+							$location.path('/insects/' + page );
+							$location.path('/insects/' + page );
+							$location.path('/insects/' + page );
+							$location.path('/insects/' + page );
+							$location.path('/insects/' + page );
+
+							break;
+
 						case 'about':
 
 							$location.path('/about');
@@ -123,6 +145,8 @@ define( function ( require, exports, module ) {
 
 				$scope.close = function () {
 					// Component lookup should always be available since we are not using `ng-if`
+
+					document.body.classList.remove('super-menu-open');
 					$mdSidenav('left').close()
 					  .then(function () {
 						$log.debug("close LEFT is done");
@@ -152,6 +176,8 @@ define( function ( require, exports, module ) {
 				 */
 				function buildDelayedToggler(navID) {
 					return debounce(function() {
+
+						document.body.classList.add('super-menu-open');
 						// Component lookup should always be available since we are not using `ng-if`
 						$mdSidenav(navID)
 							.toggle()

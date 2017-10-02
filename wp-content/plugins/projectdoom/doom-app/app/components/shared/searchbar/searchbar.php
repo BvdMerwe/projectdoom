@@ -12,7 +12,10 @@
 
 <div layout="column" class="searchbar-container">
   <div layout="column" class="search-bar">
+    <h1 flex="100" class="page-title" style="color:#ffffff;font-size:50px;">What's Buggin you?</h1>
+    <br /><br />
     <md-autocomplete
+          flex="100"
           md-selected-item="selectedItem"
           md-search-text-change="searchTextChange(searchText)"
           md-search-text="searchText"

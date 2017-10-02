@@ -52,51 +52,27 @@ define( function ( require, exports, module ) {
                     .when(
                         '/',
                         {
-                            action: 	'home',
+                            action: 	'pests',
                             resolve: {
-                                app_data: [ '$q', 'insectsManager', 'productsManager', 'retailersManager', 'packagesManager', function( $q, insectsManager, productsManager, retailersManager, packagesManager ) {
+                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
 
-                                    //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                    return $q.all([
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'home',
                                             'method': 'GET'
                                         })
-                                        /** /
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        /** /
-                                        packagesManager.getPackages({
-                                            'type': 'package',
-                                            'method': 'GET'
-                                        })
-                                        /**/
                                     ])
                                     .then( function(results){
 
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            //console.log('dashboard bootUp: ', results);
-
                                             return {
-                                                insects 		: results[0],
-                                                products 		: results[1]
-                                                //retailers 		: results[2],
-                                                //packages		: results[3]
+                                                pagecontent 	: results[0]
                                             };
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(dashboard): ', e);
+                                            console.log('No bootUp(home): ', e);
 
                                             return e;
 
@@ -115,6 +91,29 @@ define( function ( require, exports, module ) {
                             resolve: {
                                 app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
 
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'about',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(about): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
+
                                 }]
                             }
 
@@ -127,6 +126,29 @@ define( function ( require, exports, module ) {
                             resolve: {
                                 app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
 
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'legal',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(legal): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
+
                                 }]
                             }
 
@@ -137,7 +159,174 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager ) {
+
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'products',
+                                            'method': 'GET'
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        /***/
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        })
+                                        /***/
+                                    ])
+                                    .then( function(results){
+
+                                            //console.log('route data-products:', results);   
+ 
+                                            return {
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4]
+                                            }; 
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.error('No bootUp(products): ', e); 
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }] 
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/products/:ID',
+                        {
+                            action: 	'products.single',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', function( $q, pagesManager, productsManager ) {
+
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'products',
+                                            'method': 'GET'
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                products 	: results[1],
+                                                pagecontent 	: results[0]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(products single): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }]
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/insects',
+                        {
+                            action: 	'insects',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', 'insectsManager', function( $q, pagesManager, insectsManager ) {
+
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'insects',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0],
+                                                insects 	    : results[1]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(insects): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }]
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/insects/:ID',
+                        {
+                            action: 	'insects.single',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', 'insectsManager', function( $q, pagesManager, insectsManager ) {
+
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'insects',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0],
+                                                insects 	    : results[1]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(insect single): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
 
                                 }]
                             }
@@ -151,6 +340,64 @@ define( function ( require, exports, module ) {
                             resolve: {
                                 app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
 
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(faq): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }]
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/faq/:ID',
+                        {
+                            action: 	'faq.single',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
+
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(faq single): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
+
                                 }]
                             }
 
@@ -162,6 +409,29 @@ define( function ( require, exports, module ) {
                             action: 	'contact',
                             resolve: {
                                 app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
+
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'contact',
+                                            'method': 'GET'
+                                        })
+                                    ])
+                                    .then( function(results){
+
+                                            return {
+                                                pagecontent 	: results[0]
+                                            };
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.log('No bootUp(contact): ', e);
+
+                                            return e;
+
+                                        }
+                                    );
 
                                 }]
                             }
@@ -214,11 +484,12 @@ define( function ( require, exports, module ) {
 					isContact 				= ( renderPath[ 0 ] == "contact" ),
 					isProducts				= ( renderPath[ 0 ] == "products" ),
 					isInsects				= ( renderPath[ 0 ] == "insects" ),
-					isConfigurator			= ( renderPath[ 0 ] == "configurator" );
+                    isConfigurator			= ( renderPath[ 0 ] == "configurator" ),
+                    is404                   = ( renderPath[ 0 ] == "404" );
 	
 					if( isProducts ) {
 				
-						var isProductPage		= ( renderPath[ 1 ] == "product-page" );
+						var isProductPage		= ( renderPath[ 1 ] == "single" );
 				
 						$rootScope.isProductPage 	= isProductPage;
 				
@@ -226,7 +497,7 @@ define( function ( require, exports, module ) {
 
 					if( isInsects ) {
 						
-						var isInsectPage		= ( renderPath[ 1 ] == "insect-page" );
+						var isInsectPage		= ( renderPath[ 1 ] == "single" );
 						
 						$rootScope.isInsectPage 	= isInsectPage;
 						
@@ -239,7 +510,8 @@ define( function ( require, exports, module ) {
 					$rootScope.isHome 			= isHome;
 					$rootScope.isAbout 			= isAbout;
 					$rootScope.isLegal 			= isLegal;
-					$rootScope.isFAQ 			= isFAQ;
+                    $rootScope.isFAQ 			= isFAQ;
+                    $rootScope.is404		    = is404;
 					$rootScope.isContact 		= isContact;
 					$rootScope.isProducts 		= isProducts;
 					$rootScope.isInsects		= isInsects;
@@ -261,7 +533,7 @@ define( function ( require, exports, module ) {
 				var _updateBodyClass = function() 
 				{
 				
-					var MainWindowTitle = "DOOM Presents...What's your Pest Problem?";
+					var MainWindowTitle = "DOOM Presents...What's your Pest Problem? Make it stop.";
 				
 					_resetBodyClass();
 				
@@ -271,7 +543,7 @@ define( function ( require, exports, module ) {
 				
 							window.document.title = 'Product Info - ' + MainWindowTitle;
 				
-							window.document.body.classList.add('page-product-single');
+							window.document.body.classList.add('page-products-single');
 				
 						} else {
 				
@@ -287,7 +559,7 @@ define( function ( require, exports, module ) {
 							
 							window.document.title = 'Insect Info - ' + MainWindowTitle;
 							
-							window.document.body.classList.add('page-insect-single');
+							window.document.body.classList.add('page-insects-single');
 							
 						} else {
 							
@@ -319,7 +591,7 @@ define( function ( require, exports, module ) {
 						
 						window.document.title = 'Contact us - ' + MainWindowTitle;;
 						
-						window.document.body.classList.add('page-contact-us');
+						window.document.body.classList.add('page-contact');
 
 					} else if( $rootScope.isHome === true ) {
 				
@@ -333,7 +605,13 @@ define( function ( require, exports, module ) {
 				
 						window.document.body.classList.add('page-configurator');
 				
-					}
+					} else if( $rootScope.is404 === true ) {
+                        
+                        window.document.title = '404 - ' + MainWindowTitle;
+                        
+                        window.document.body.classList.add('page-404');
+                        
+                    }
 					
 				};
 				
@@ -352,7 +630,9 @@ define( function ( require, exports, module ) {
 				
 				$rootScope.$on( "$routeChangeStart", function( ev, to, toParams, from, fromParams ){
 				
-					ngProgress.start();
+                    ngProgress.start();
+                    
+                    //$route.current.locals.app_data = {};
 				
 					//console.log('leaving route: ', from, to );
 				
@@ -362,7 +642,7 @@ define( function ( require, exports, module ) {
 								
 				$rootScope.$on( '$routeChangeSuccess', function ( ev, to, toParams, from, fromParams ) {
 				
-					//console.log('success route: ', to );
+					//console.log('success route: ', to , toParams);
 				
 					//_authorization();
 
@@ -385,7 +665,6 @@ define( function ( require, exports, module ) {
 				});
 				
 			}]);
-
 
 	});
 		

@@ -27,6 +27,7 @@ require.config({
 		"angular-filter":			'../libs/plugins/angular/angular-filter.min',
 		"angular-progress": 		'../libs/plugins/angular/ngProgress.min',
 		"bindonce": 				'../libs/plugins/angular/bindonce.min',
+		"angular-accordion": 		'../libs/plugins/angular/ang-accordion',
 		//APP FILES
 		"app": 						'../../app/app.module',
 		"app-routes": 				'../../app/shared/app.routes',
@@ -77,6 +78,9 @@ require.config({
 		'imagesloaded': {
 			exports: 'imagesLoaded'
 		},
+		'localforage': {
+			exports: 'localforage'
+		},
         // angular
 		'angular': {
 			exports: 'angular'
@@ -91,6 +95,9 @@ require.config({
 			deps: ["angular"]
 		},
 		'angular-progress': {
+			deps: ["angular"]
+		},
+		'angular-accordion': {
 			deps: ["angular"]
 		},
 		'angular-route': {

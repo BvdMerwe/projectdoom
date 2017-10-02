@@ -40,11 +40,18 @@ function register_plugin_styles() {
 	wp_register_style( 'material', "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" );
 	wp_register_style( 'app', plugins_url( '../doom-app/assets/css/app.css', __FILE__ ) );
 	wp_register_style( 'customStyle', plugins_url( '../doom-app/assets/css/custom.min.css', __FILE__ ) );
-	wp_register_style( 'icons', plugins_url( '../doom-app/assets/libs/LinearIcons/style.css', __FILE__ ) );
+  wp_register_style( 'icons', plugins_url( '../doom-app/assets/libs/LinearIcons/style.css', __FILE__ ) );
+  wp_register_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons' );
+  wp_register_style( 'montserrat-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:300,700' );
+  
+
 	wp_enqueue_style( 'material' );
 	wp_enqueue_style( 'app' );
 	wp_enqueue_style( 'customStyle' );
-	wp_enqueue_style( 'icons' );
+  wp_enqueue_style( 'icons' );
+  wp_enqueue_style( 'material-icons' );
+  wp_enqueue_style( 'montserrat-fonts' );
+  
 }
 #------------------------------------------------
 # Remove emojis

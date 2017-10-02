@@ -11,5 +11,6 @@
 ?>
 <button class="lnr lnr-magnifier search-button"></button>
 <div class="search-container" layout-fill>
-  <div layout="column" data-ui-search-bar placeholder="How to kill..."></div>
+  
+  <div layout="column" data-ui-search-bar placeholder="How To Kill..."></div>
 </div>

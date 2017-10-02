@@ -117,7 +117,7 @@ add_action( 'widgets_init', 'doom_widgets_init' );
  * Enqueue scripts and styles.
  */
 function doom_scripts() {
-	wp_enqueue_style( 'doom-style', get_stylesheet_uri() );
+	//wp_enqueue_style( 'doom-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'doom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 

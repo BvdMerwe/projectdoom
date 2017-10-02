@@ -14,95 +14,97 @@
 	<!-- md-is-locked-open="$mdMedia('gt-md')" -->
 		<md-sidenav
 				layout-fill
-				class="md-sidenav-left"
-				hide-gt-md
+				class="md-sidenav-left super-menu"
 				md-component-id="left"
 				md-whiteframe="4"
 				style="position: fixed;width:100%;height:100%;top:0;left:0;">
 
-				<!-- <md-toolbar class="md-theme-indigo">
-						<h1 class="md-toolbar-tools">SITEMAP</h1>
-
-				</md-toolbar> -->
-				<md-content layout-padding>
-					<md-button ng-click="close()" class="md-primary close">
+				<md-content layout-padding layout="column" style="z-index:999;">
+					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">
 					</md-button>
-					<ul class="sm-padding">
-						<li ng-click="goto('about')" name="about">
-								ABOUT
-						</li>
-						<li ng-click="goto('legal')" name="legal">
-								LEGAL
-						</li>
-						<li ng-click="goto('products')" name="products">
-								PRODUCTS
-						</li>
-						<li ng-click="goto('faq')" name="faq">
-								FAQ
-						</li>
-						<li ng-click="goto('contact')" name="contact">
-								CONTACT
-						</md-nav-item>
-					</ul>
-						<!-- <p hide show-gt-md>
-						This sidenav is locked open on your device. To go back to the default behavior,
-						narrow your display.
-						</p> -->
+				</md-content>
+				<md-content layout-padding layout-fill layout="row" layout-align="center center" style="padding:50px 100px">
+
+					<div flex="70" layout-fill>
+						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
+					</div>
+					<div flex="30" layout-fill>
+						<ul class="sm-padding">
+							<li>
+								<a href="javascript:;" title="" data-ng-click="goto('about')" name="about">About</a>
+							</li>
+							<li>
+								<a href="javascript:;" title="" data-ng-click="goto('legal')" name="legal">Legal</a>
+							</li>
+							<li>
+								<a href="javascript:;" title="" data-ng-click="goto('products')" name="products">Products</a>
+								<ul>
+									<li><a href="javascript:;" title="" data-ng-click="goto('products')" name="products">Flying Insects</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('products')" name="products">Crawling Insects</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:;" title="" data-ng-click="goto('insects')" name="insects">Pests</a>
+								<ul>
+									<li><a href="javascript:;" title="" data-ng-click="goto('ant')" name="insects-ants">Ants</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('cockroach')" name="insects-cockroaches">Cockroaches</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('fly')" name="insects-flies">Flies</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('mosquitoes')" name="insects-mosquitoes">Mosquitoes</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('flea')" name="insects-fleas">Fleas</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('fishmoths')" name="insects-fishmoths">Fishmoths</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:;" title="" data-ng-click="goto('faq')" name="faq">FAQ</a>
+							</li>
+							<li>
+								<a href="javascript:;" title="" data-ng-click="goto('contact')" name="contact">Contact</a>
+							</li>
+						</ul>
+
+					</div>
 				</md-content>
 
 		</md-sidenav>
 	</div>
-	<div layout="column">
-		<div layout="row" layout-xs="column" >
-			<md-content class="md-padding" flex="40">
+	<div layout="column" class="md-primary">
+		<div layout="row" layout-xs="column" flex-xs="100" style="border-bottom: 1px solid #14A774;">
+
+			<md-content class="md-padding" flex="10" style="text-align:center;background-color:#14A774;z-index:99;max-width: 86px !important;">
 				<md-button ng-click="toggleLeft()"
-					class="md-primary md-icon-button md-theme-indigo" aria-label="Site Menu" hide-gt-md>
+					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:5px;">
-							<span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-							<span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
-							<span style="position:relative;height:2px;display: block;width:20px;background-color:#444;margin-bottom:2px;"></span>
+							<span style=""></span>
+							<span style=""></span>
+							<span style=""></span>
 					</md-icon>
 				</md-button>
-				<h3 style="display:inline-block;" data-ng-click="goto('home')">
-						DOOM PRESENTS...
-				</h3>
-      </md-content>
+				<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
+      		</md-content>
 
-			<md-content class="md-padding" flex="50" layout="row" layout-align="end center">
-              <div data-ng-transclude>
-                  <md-nav-bar hide-xs hide-gt-xs show-gt-md
-                      md-selected-nav-item="currentNavItem"
-                      nav-bar-aria-label="navigation links">
+			<md-content class="md-padding" flex="80" layout="row" layout-align="center center" style="z-index:99;">
+				<md-nav-bar 
+					class="primary-navigation"
+					md-selected-nav-item="currentNavItem"
+					nav-bar-aria-label="navigation links">
 
-                      <md-nav-item md-nav-click="goto('about')" name="about">
-                          ABOUT
-                      </md-nav-item>
-                      <md-nav-item md-nav-click="goto('legal')" name="legal">
-                          LEGAL
-                      </md-nav-item>
-                      <md-nav-item md-nav-click="goto('products')" name="products">
-                          PRODUCTS
-                      </md-nav-item>
-                      <md-nav-item md-nav-click="goto('faq')" name="faq">
-                          FAQ
-                      </md-nav-item>
-                      <md-nav-item md-nav-click="goto('contact')" name="contact">
-                          CONTACT
-                      </md-nav-item>
-                      <!-- these require actual routing with ui-router or ng-route, so they
-                      won't work in the demo
-                      <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
-                      <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
-                      You can also add options for the <code>ui-sref-opts</code> attribute.
-                      <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
-                          Page Six
-                      </md-nav-item>
-                      -->
-                  </md-nav-bar>
-              </div>
+						<md-nav-item hide-xs md-nav-click="goto('insects')" name="insects">
+							PESTS
+						</md-nav-item>
+						<md-nav-item md-nav-click="goto('home')" name="home" style="z-index:9;">
+							<img data-ng-src="https://www.tbwa-cdn.co.za/projectdoom/logo.png" class="" style="width:80px;" alt="DOOM" />
+						</md-nav-item>
+						<md-nav-item hide-xs md-nav-click="goto('products')" name="products">
+							PRODUCTS
+						</md-nav-item>
+
+				</md-nav-bar>
+				<div data-ng-transclude>
+					
+				</div>
             </md-content>
-            <md-content class="md-padding" flex="10" layout="row" layout-align="start center">
-							<div data-ui-search id="search-takeover"></div>
+            <md-content class="md-padding" flex="10" layout="row" layout-align="end center">
+				<div data-ui-search id="search-takeover"></div>
             </md-content>
         </div>
 	</div>

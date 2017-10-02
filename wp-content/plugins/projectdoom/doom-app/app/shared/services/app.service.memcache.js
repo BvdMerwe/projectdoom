@@ -29,6 +29,7 @@ define( function ( require, exports, module ) {
 	// Load dependent modules
 	var appMemCache,
 		domReady 		= require("domReady"),
+		localforage		= require("localforage"),
 		angular 		= require("angular");
 
 	// 
@@ -120,8 +121,10 @@ define( function ( require, exports, module ) {
 				switch( type ) {
 		
 					case 'localstorage':
+
+						window.localStorage.setItem( key, jsoniData );
 		
-						window.localStorage.setItem( key, sjcl.encrypt('', jsoniData) );
+						//window.localStorage.setItem( key, sjcl.encrypt('', jsoniData) );
 		
 						//console.log('localStorage saved:', key, sjcl.decrypt( '', window.localStorage.getItem( key ) ) );
 		
@@ -130,8 +133,10 @@ define( function ( require, exports, module ) {
 					break;
 		
 					case 'sessionstorage':
+
+						window.sessionStorage.setItem( key, jsoniData );
 		
-						window.sessionStorage.setItem( key, sjcl.encrypt('', jsoniData) );
+						//window.sessionStorage.setItem( key, sjcl.encrypt('', jsoniData) );
 		
 						//console.log('sessionStorage saved:', key, sjcl.decrypt( '', window.sessionStorage.getItem( key ) ) );
 		
@@ -142,14 +147,16 @@ define( function ( require, exports, module ) {
 					case 'localforage':
 		
 						//console.log('foraging', jsoniData);
+
+						console.log('localforgae:', localforage, jsoniData);
 		
 						localforage
-							.setItem( key, sjcl.encrypt('', jsoniData) )
-							//.setItem( key, jsoniData )
+							//.setItem( key, sjcl.encrypt('', jsoniData) )
+							.setItem( key, jsoniData )
 							.then( function(){
 		
 									//console.log('foraged', key, sjcl.encrypt('', jsoniData));
-									//	console.log('foraged', key, jsoniData);
+									console.log('foraged', key, jsoniData);
 		
 									deferred.resolve();
 		
@@ -294,8 +301,13 @@ define( function ( require, exports, module ) {
 									deferred.reject( type + " " + key + " Storage null." );
 		
 								} else {
+
+									var answ = JSON.parse( window.localStorage.getItem( key ) ) ;
+
+									//console.error('getting:', key, answ );
 		
-									deferred.resolve( JSON.parse( sjcl.decrypt( '', window.localStorage.getItem( key ) ) ) );
+									//deferred.resolve( JSON.parse( sjcl.dJSON.parse( window.localStorage.getItem( key ) ) ecrypt( '', window.localStorage.getItem( key ) ) ) );
+									deferred.resolve( answ );
 		
 								}
 		
@@ -305,26 +317,22 @@ define( function ( require, exports, module ) {
 		
 								//data = sessionStorage.getItem( key );
 		
-								data = sjcl.decrypt( '', window.sessionStorage.getItem( key ) );
+								//data = sjcl.decrypt( '', window.sessionStorage.getItem( key ) );
 		
-								deferred.resolve( JSON.parse( data ) );
+								deferred.resolve( JSON.parse( window.sessionStorage.getItem( key ) ) );
 		
 								break;
 		
 							case 'localforage':
-		
+								
+								console.log('localforgae:', localforage, key, type);
+
 								localforage.getItem( key, function(e, db){
+
+									console.log('localforgae:', e, db);
 		
 									//if( e === null && (db !== null) ) {
 									if( e === null ) {
-		
-										//data = sjcl.decrypt( '', db );
-		
-										//console.log('localforage results['+key+']: ', e, JSON.parse( db ));
-		
-										//console.error(type + " " + key + " Storage null.", e, db); 
-		
-										//deferred.reject( type + " " + key + " Storage null." );
 		
 										if( db === null ) {
 		
@@ -332,17 +340,14 @@ define( function ( require, exports, module ) {
 		
 										} else {
 		
-											deferred.resolve( JSON.parse( sjcl.decrypt( '', db ) ) );
+											//deferred.resolve( JSON.parse( sjcl.decrypt( '', db ) ) );
+											deferred.resolve( JSON.parse( db ) );
 		
 										}
 		
 									} else {
-		
-										//data = sjcl.decrypt( '', e );
-		
-										//console.log( 'jus got ' + key + ' from ' + type, JSON.parse( data ) );
-										
-										//deferred.resolve( JSON.parse( data ) );
+
+										throw e;
 		
 										console.error(type + " " + key + " Storage null.", e, db); 
 		

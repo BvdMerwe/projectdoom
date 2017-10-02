@@ -131,7 +131,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this;
 				var deferred 	= $q.defer();
 		
-				MemCache.dataStore( 'dmapp-pages', _self._collection_pages, 'localforage' ).then( function() {
+				MemCache.dataStore( 'dmapp-pages', _self._collection_pages, 'localstorage' ).then( function() {
 		
 						deferred.resolve( _self._collection_pages );
 		
@@ -150,10 +150,68 @@ define( function ( require, exports, module ) {
 				Utils._strict( [ Object ], arguments );
 		
 				var _self 		= this,
-					deferred 	= $q.defer();
+					deferred 	= $q.defer(); 
 		
 				if( Utils._isObjEmpty(_self._collection_pages) || _self._collection_pages.length == 0 ) {
+					
+					/***/
+					MemCache.dataGet( 'dmapp-pages', 'localstorage' ).then( function( results ) { 
+
+							console.log('[PAGES]from localstorage:', results);
+
+							//_self._collection_pages.length = 0;
+						
+							_self._collection_pages = results;
+						
+							deferred.resolve( results );
+						
+						}, function(e){
+						
+							_self._loadAllPages( obj ).then( function(data) {
+
+								console.warn('pages fetched');
 		
+								if( !angular.isDefined(data) ) {
+				
+									deferred.resolve([]);
+				
+								} else {
+				
+									_self._collection_pages.length = 0;
+				
+									//var dataLen = data.length;
+				
+									_self._collection_pages = data;
+
+									deferred.resolve( data );
+
+									/** /
+									_self.saveCollection().then( function(saveddb) {
+										
+											deferred.resolve( saveddb );
+										
+										}, function(erroer) {
+										
+											deferred.reject( erroer );
+
+										}
+									);
+									/**/
+				
+								}
+				
+								}, function(err) {
+					
+									deferred.reject( err );
+					
+								}
+							);
+
+						}
+					);
+					/***/
+
+					/** /
 					_self._loadAllPages( obj ).then( function(data) {
 		
 						if( !angular.isDefined(data) ) {
@@ -179,10 +237,11 @@ define( function ( require, exports, module ) {
 			
 						}
 					);
+					/**/
 		
 				} else {
 		
-					//console.info('card holders object cache');
+					console.info('pages object cache');
 					deferred.resolve( _self._collection_pages );
 		
 				}
@@ -195,7 +254,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this,
 					deferred	= $q.defer();
 		
-				MemCache.dataRemove( 'dmapp-pages', 'localforage' ).then( function(){
+				MemCache.dataRemove( 'dmapp-pages', 'localstorage' ).then( function(){
 		
 							_self._collection_packages.length = 0;
 		
@@ -230,7 +289,7 @@ define( function ( require, exports, module ) {
 				
 				$http({
 					method: obj.method, 
-					url: appConfig.general.api + obj.type,
+					url: appConfig.general.api + 'page?p=' + obj.type,
 					transformRequest: transformRequestAsFormPost
 				})
 				.success( function(data, status) {

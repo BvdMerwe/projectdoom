@@ -45,7 +45,6 @@ define( function ( require, exports, module ) {
 		var defaultProperties = {
 			'ID'			: '',
 			'uID'			: '',
-			'Name'			: '',
 			'dateCreated'	: '',
 			'lastUpdated'	: ''
 		};
@@ -131,7 +130,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this;
 				var deferred 	= $q.defer();
 		
-				MemCache.dataStore( 'dmapp-faqs', _self._collection_faqs, 'localforage' ).then( function() {
+				MemCache.dataStore( 'dmapp-faqs', _self._collection_faqs, 'localstorage' ).then( function() {
 		
 						deferred.resolve( _self._collection_faqs );
 		
@@ -153,7 +152,65 @@ define( function ( require, exports, module ) {
 					deferred 	= $q.defer();
 		
 				if( Utils._isObjEmpty(_self._collection_faqs) || _self._collection_faqs.length == 0 ) {
+					
+					MemCache.dataGet( 'dmapp-faqs', 'localstorage' ).then( function( results ) {
+
+							console.log('[FAQS]from localstorage:');
 		
+							_self._collection_faqs.length = 0;
+
+							_self._collection_faqs = results;
+				
+							deferred.resolve( results );
+			
+						}, function(e){
+
+							_self._loadAllFAQs( obj ).then( function(data) {
+
+									if( !angular.isDefined(data) ) {
+					
+										deferred.resolve([]);
+					
+									} else {
+
+										_self._collection_faqs.length = 0;
+					
+										//var dataLen = data.length;
+					
+										_self._collection_faqs = data;
+
+										deferred.resolve( data );
+
+										/** /
+										_self.saveCollection().then( function(saveddb) {
+
+												//console.warn('faqs saved', saveddb);
+
+												deferred.resolve( saveddb );
+
+											}, function(erroer) {
+
+												console.error('faqs save erroer', erroer);
+
+												deferred.reject( erroer );
+												
+											}
+										);
+										/**/
+					
+									}
+									
+								}, function(err) {
+					
+									deferred.reject( err );
+					
+								}
+							);
+			
+						}
+					);
+
+					/** /
 					_self._loadAllFAQs( obj ).then( function(data) {
 		
 						if( !angular.isDefined(data) ) {
@@ -179,10 +236,11 @@ define( function ( require, exports, module ) {
 			
 						}
 					);
+					/**/
 		
 				} else {
 		
-					//console.info('card holders object cache');
+					console.info('FAQs object cache');
 					deferred.resolve( _self._collection_faqs );
 		
 				}
@@ -195,7 +253,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this,
 					deferred	= $q.defer();
 		
-				MemCache.dataRemove( 'dmapp-faqs', 'localforage' ).then( function(){
+				MemCache.dataRemove( 'dmapp-faqs', 'localstorage' ).then( function(){
 		
 							_self._collection_faqs.length = 0;
 		

@@ -50,6 +50,430 @@ define( function ( require, exports, module ) {
 	//
 	var Application = Application || {};
 	Application.Directives = {};
+	Application.Controllers = {};
+
+	Application.Controllers.pagesController =  [ '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout', 'transformRequestAsFormPost', 'Utils', 'MemCache', function ( $rootScope, $scope, $http, $q, $route, $location, $timeout, transformRequestAsFormPost, Utils, MemCache ) {
+
+		var inputMsgTimeout,
+		inputValidationTimeout;
+
+		$scope.currentInsect;
+
+		$scope.pageContent = {};
+
+		$scope.$on( '$destroy', function(evt, data) {
+
+			inputMsgTimeout  = null;
+			inputValidationTimeout  = null;
+
+		});
+
+		$scope.$on( "$routeChangeStart", function( ev, to, toParams, from, fromParams ){
+			
+			$scope.pageContent = {};
+			
+		});
+
+		/***/
+		$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
+
+			//console.log(ev, to, toParams, from, fromParams);
+
+			//$scope.currentInsect = {};
+
+			_ini();
+
+			//console.log( 'App interface ready...', $scope );
+
+			//$scope.renderPath = $rootScope.renderPath;
+
+			//console.log('App interface ready...', $route.current.locals.app_data );
+			/*** /
+			if( angular.isDefined($route.current.locals.app_data) ) {
+
+				dataInitialise('taxonomy').then( function(results){
+
+						console.log('Activity Data: ', $route.current.locals.app_data, results );
+
+						$scope.pageContent = results[0];
+
+					}, function(error) {
+
+						console.error(error);
+					}
+				);
+			}/**/
+
+		});
+		/***/
+
+		$scope.nextInsect = function () {
+
+			//var currentSect = getCurrentNextInsect();
+
+			getCurrentNextInsect();
+
+			console.log( 'open next insect page:', $scope.currentInsect );
+
+			$location.path( '/insects/' + $scope.pageContent.post_name );
+			
+		};
+
+		$scope.prevInsect = function () {
+
+			getCurrentPrevInsect();
+
+			console.log( 'open prev insect page:', $scope.currentInsect );
+
+			$location.path( '/insects/' + $scope.pageContent.post_name );
+
+			//$location.path( '/insects/' + page );
+
+		};
+
+		function getCurrentNextInsect() {
+
+			if( angular.isDefined( $route.current.locals.app_data.insects ) ) {
+
+				var array = $route.current.locals.app_data.insects;
+				
+				for (var index = 0; index < array.length; index++) {
+					var element = array[index];
+
+					if( element.post_name == $route.current.pathParams.ID  ) {
+
+						if( angular.isDefined( array[index + 1]) ) {
+
+							$scope.pageContent = array[index + 1];
+
+							console.log('next insect:', $scope.pageContent);
+
+						} else if( angular.isDefined( array[0]) ) {
+
+							$scope.pageContent = array[0];
+
+							console.log('reset insect:', $scope.pageContent);
+
+						}
+
+						break;
+
+					}
+					
+				}
+
+			}
+
+		}
+
+		function getCurrentPrevInsect() {
+
+			if( angular.isDefined( $route.current.locals.app_data.insects ) ) {
+
+				var array = $route.current.locals.app_data.insects;
+				
+				for (var index = 0; index < array.length; index++) {
+					var element = array[index];
+
+					if( element.post_name == $route.current.pathParams.ID  ) {
+
+						if( angular.isDefined( array[index - 1]) ) {
+
+							$scope.pageContent = array[index - 1];
+
+							console.log('prev insect:', $scope.pageContent);
+
+						} else if( angular.isDefined( array[(index.length) - 1]) ) {
+
+							$scope.pageContent = array[(index.length) - 1];
+
+							console.log('last insect:', $scope.pageContent);
+
+						}
+
+						break;
+
+					}
+					
+				}
+
+			}
+
+		}
+
+		function dataInitialise( type ) {
+
+			Utils._strict( [ String ], arguments );
+
+			var request 	= '',
+				deferred 	= $q.defer();
+
+			switch( type ) {
+
+				case 'faq':
+				case 'taxonomy':
+
+					request = type;
+
+					break;
+
+				default:
+
+					throw '!?!#$';
+
+					break;
+			}
+
+			$http({
+				method: 'GET',
+				url: appConfig.general.api + request,
+				transformRequest: transformRequestAsFormPost
+			})
+			.success( function(data, status) {
+
+				deferred.resolve( data );
+
+			})
+			.error( function(data, status) {
+
+				console.error("dataInitialise Request failed:", data);
+
+				deferred.reject( data );
+
+			});
+
+			return deferred.promise;
+
+		}
+
+		function getPageContent( cola ) {
+
+			Utils._strict( [ Array ], arguments );
+
+			for (var index = 0; index < cola.length; index++) {
+				
+				if( $rootScope.isProductPage || $rootScope.isInsectPage ) {
+
+					if( cola[index].post_name == $route.current.pathParams.ID ) {
+						
+						return cola[index];
+
+					}
+
+				} else {
+
+					if( cola[index].post_name == $route.current.$$route.action ) {
+						
+						return cola[index];
+						//$scope.pageContent =cola[index];
+						//console.log('Activity Data: ', $scope.pageContent );
+						//break;
+					}
+
+				}
+				
+			}
+
+		}
+
+		function _ini() {
+
+			if( angular.isDefined($route.current.locals.app_data) ) {
+
+				dataInitialise('taxonomy').then( function(results){
+
+						if( $rootScope.isProductPage ) {
+
+							$scope.pageContent = getPageContent( $route.current.locals.app_data.products ); //$route.current.locals.app_data.pagecontent[0];
+
+						} else if( $rootScope.isInsectPage ) {
+
+							$scope.currentInsect = $route.current.pathParams.ID;
+
+							$scope.pageContent = getPageContent( $route.current.locals.app_data.insects ); //$route.current.locals.app_data.pagecontent[0];
+
+						} else {
+
+							$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
+
+						}
+
+						//$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
+
+						//console.log('Activity Data: ', $scope.pageContent );
+
+						console.log('Activity Data: ', results, $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
+
+					}, function(error) {
+
+						console.error(error);
+					}
+				);
+			}
+
+		}
+
+		_ini();
+
+		console.info('Page Controller Ready.');
+
+	}];
+
+	Application.Directives.uiCollapser = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			template: 		'<div data-ng-transclude></div>',
+			link: 			function( scope, element, attrs ) {
+
+				var link = element[0];
+
+				var targetCollapse,
+					parentRef,
+					parentElem;
+				
+
+				function toggleClasses() {
+
+					targetCollapse 	= link.getAttribute('data-target');
+					parentRef 		= link.getAttribute('data-parent');
+					parentElem 		= document.querySelector(parentRef);
+
+					var currentOpenTab 	= parentElem.querySelector('.collapse.in');
+
+					if( currentOpenTab == null ) {
+
+						var tobeOpenedTab = parentElem.querySelector(targetCollapse);
+
+						if( currentOpenTab === tobeOpenedTab ) {} else {
+
+							tobeOpenedTab.classList.add('in');
+
+						}
+
+					} else {
+
+						currentOpenTab.classList.remove('in');
+
+						// ADD IN TO THE RIGHT ONE
+
+						var tobeOpenedTab = parentElem.querySelector(targetCollapse);
+
+						if( currentOpenTab === tobeOpenedTab ) {} else {
+
+							tobeOpenedTab.classList.add('in');
+
+						}
+
+					}
+
+				};
+
+				/** /
+				function _theRightOne() {
+
+					targetCollapse 	= link.getAttribute('data-target');
+					parentRef 		= link.getAttribute('data-parent');
+					parentElem 		= document.querySelector(parentRef);
+
+					var currentOpenTab 	= parentElem.querySelector('.collapse.in');
+
+					var tobeOpenedTab = parentElem.querySelector(targetCollapse);
+
+					if( currentOpenTab === tobeOpenedTab ) {} else {
+
+						tobeOpenedTab.classList.add('in');
+
+					}
+
+				};/**/
+
+				domReady( function () {
+
+					link.addEventListener( 'click', function(evt) {
+
+						toggleClasses();
+
+					})
+
+				});
+
+			}
+		}
+
+	};
+
+	Application.Directives.uiHeroInsect = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			template: 		'<div data-ng-transclude></div>',
+			controller:		Application.Controllers.pagesController,
+			link: 			function( scope, element, attrs ) {
+
+				var link = element[0];
+
+				var targetCollapse,
+					parentRef,
+					parentElem;
+				
+
+				function toggleClasses() {
+
+					targetCollapse 	= link.getAttribute('data-target');
+					parentRef 		= link.getAttribute('data-parent');
+					parentElem 		= document.querySelector(parentRef);
+
+					var currentOpenTab 	= parentElem.querySelector('.collapse.in');
+
+					if( currentOpenTab == null ) {
+
+						var tobeOpenedTab = parentElem.querySelector(targetCollapse);
+
+						if( currentOpenTab === tobeOpenedTab ) {} else {
+
+							tobeOpenedTab.classList.add('in');
+
+						}
+
+					} else {
+
+						currentOpenTab.classList.remove('in');
+
+						// ADD IN TO THE RIGHT ONE
+
+						var tobeOpenedTab = parentElem.querySelector(targetCollapse);
+
+						if( currentOpenTab === tobeOpenedTab ) {} else {
+
+							tobeOpenedTab.classList.add('in');
+
+						}
+
+					}
+
+				};
+
+				
+
+				domReady( function () {
+
+					link.addEventListener( 'click', function(evt) {
+
+						//toggleClasses();
+
+					})
+
+				});
+
+			}
+		}
+
+	};
 
 	Application.Directives.uiAppActivity = function () {
 
@@ -64,6 +488,8 @@ define( function ( require, exports, module ) {
 				var inputMsgTimeout,
 					inputValidationTimeout;
 
+				//$scope.pageContent = {};
+
 				$scope.$on( '$destroy', function(evt, data) {
 
 					inputMsgTimeout  = null;
@@ -104,20 +530,21 @@ define( function ( require, exports, module ) {
 					$scope.renderPath = $rootScope.renderPath;
 
 					//console.log('App interface ready...', $route.current.locals.app_data );
-
+					/** * /
 					if( angular.isDefined($route.current.locals.app_data) ) {
 
 						dataInitialise('taxonomy').then( function(results){
 
-								console.log('Acivity Data: ', $route.current.locals.app_data, results );
+								console.log('Activity Data: ', $route.current.locals.app_data, results );
+
+								$scope.pageContent = results[0];
 
 							}, function(error) {
 
 								console.error(error);
 							}
 						);
-
-					}
+					}/**/
 
 				});
 
@@ -381,13 +808,101 @@ define( function ( require, exports, module ) {
 
 				}
 
-				console.info('Acivity Directive loaded.');
+				console.info('Activity Directive loaded.');
 
 			}]
 			/**/
 		}
 
-	}
+	};
+
+	Application.Directives.uiAppPageProducts = function () {
+
+		return {
+			restrict: 		'AE',
+			//scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.products.php'
+		}
+	};
+
+	Application.Directives.uiAppPageProductsSingle = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.products.single.php'
+		}
+	};
+
+	Application.Directives.uiAppPageInsects = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.insects.php'
+		}
+	};
+
+	Application.Directives.uiAppPageInsectsSingle = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.insects.single.php'
+		}
+	};
+
+	Application.Directives.uiAppPageAbout = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.about.php'
+		}
+	};
+
+	Application.Directives.uiAppPageLegal = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.legal.php'
+		}
+	};
+
+	Application.Directives.uiAppPageContact = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.contact.php'
+		}
+	};
+
+	Application.Directives.uiAppPage404 = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.404.php'
+		}
+	};
 
 	Application.Directives.uiAppPageContent = function () {
 
@@ -396,10 +911,12 @@ define( function ( require, exports, module ) {
 			scope: 			{},
 			transclude: 	true,
 			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.content.php',
-			controller:  	[ '$rootScope', '$scope', '$http', '$q', '$route', '$timeout', 'transformRequestAsFormPost', 'Utils', function ( $rootScope, $scope, $http, $q, $route, $timeout, transformRequestAsFormPost, Utils ) {
+			controller:  	[ '$rootScope', '$scope', '$http', '$q', '$route', '$timeout', 'transformRequestAsFormPost', 'Utils', 'pagesManager', function ( $rootScope, $scope, $http, $q, $route, $timeout, transformRequestAsFormPost, Utils, pagesManager ) {
 
 				var inputMsgTimeout,
 					inputValidationTimeout;
+
+				$scope.pageContent = {};
 
 				$scope.$on( '$destroy', function(evt, data) {
 
@@ -431,32 +948,6 @@ define( function ( require, exports, module ) {
 
 				});
 				/***/
-
-				$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
-
-					//console.log(ev, to, toParams, from, fromParams);
-
-					//console.log( 'App interface ready...', $scope );
-
-					$scope.renderPath = $rootScope.renderPath;
-
-					//console.log('App interface ready...', $route.current.locals.app_data );
-
-					if( angular.isDefined($route.current.locals.app_data) ) {
-
-						dataInitialise('taxonomy').then( function(results){
-
-								console.log('Acivity Data: ', $route.current.locals.app_data, results );
-
-							}, function(error) {
-
-								console.error(error);
-							}
-						);
-
-					}
-
-				});
 
 				$scope.$on( 'data-filter', function(evt, data) {
 
@@ -718,11 +1209,28 @@ define( function ( require, exports, module ) {
 
 				}
 
-				console.info('Acivity Directive loaded.');
+				if( angular.isDefined($route.current.locals.app_data) ) {
+
+						dataInitialise('taxonomy').then( function(results){
+
+								$scope.pageContent = $route.current.locals.app_data.pagecontent[0];
+
+								console.log('Activity Data: ', $scope.pageContent );
+
+								//console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent );
+
+							}, function(error) {
+
+								console.error(error);
+							}
+						);
+				}
+
+				console.info('PageContent Directive loaded.');
 
 			}]
 		}
-	}
+	};
 
 	domReady( function () {
 
@@ -732,6 +1240,7 @@ define( function ( require, exports, module ) {
 		appDirectivePageHome = appDirectivePageHome || angular.module( 'appDirectivePageHome', [ 'appUtils', 'appFilters', 'appXHR', 'appMemCache', 'appSessionService', 'ngRoute', 'ngMaterial' ] );
 
 		appDirectivePageHome
+			.controller( Application.Controllers )
 			.directive( Application.Directives );
 
 

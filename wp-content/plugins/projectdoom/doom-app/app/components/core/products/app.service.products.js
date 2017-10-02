@@ -131,7 +131,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this;
 				var deferred 	= $q.defer();
 		
-				MemCache.dataStore( 'dmapp-products', _self._collection_products, 'localforage' ).then( function() {
+				MemCache.dataStore( 'dmapp-products', _self._collection_products, 'localstorage' ).then( function() {
 		
 						deferred.resolve( _self._collection_products );
 		
@@ -153,7 +153,69 @@ define( function ( require, exports, module ) {
 					deferred 	= $q.defer();
 		
 				if( Utils._isObjEmpty(_self._collection_products) || _self._collection_products.length == 0 ) {
+
+					/***/
+					MemCache.dataGet( 'dmapp-products', 'localstorage' ).then( function( results ) {
+
+							console.log('[PRODUCTS]from localstorage:');
 		
+							_self._collection_products.length = 0;
+
+							_self._collection_products = results;
+				
+							deferred.resolve( results );
+			
+						}, function(e){
+
+
+							_self._loadAllProducts( obj ).then( function(data) {
+
+									if( !angular.isDefined(data) ) {
+					
+										//deferred.reject( 'ADs data undefined from _loadAllProducts()' );
+										deferred.resolve([]);
+					
+									} else {
+
+										_self._collection_products.length = 0;
+					
+										//var dataLen = data.length;
+					
+										_self._collection_products = data;
+
+										deferred.resolve( data );
+
+										/*** /
+										_self.saveCollection().then( function(saveddb) {
+
+												//console.warn('products saved', saveddb);
+
+												deferred.resolve( saveddb );
+
+											}, function(erroer) {
+
+												deferred.reject( erroer );
+												
+											}
+										);/***/
+										
+					
+										//deferred.resolve( _self._collection_products );
+					
+									}
+									
+								}, function(err) {
+					
+									deferred.reject( err );
+					
+								}
+							);
+							//deferred.reject( e );
+			
+						}
+					);
+					
+					/** /
 					_self._loadAllProducts( obj ).then( function(data) {
 		
 						if( !angular.isDefined(data) ) {
@@ -179,10 +241,11 @@ define( function ( require, exports, module ) {
 			
 						}
 					);
+					/**/
 		
 				} else {
 		
-					//console.info('card holders object cache');
+					console.info('products object cache');
 					deferred.resolve( _self._collection_products );
 		
 				}
@@ -195,7 +258,7 @@ define( function ( require, exports, module ) {
 				var _self 		= this,
 					deferred	= $q.defer();
 		
-				MemCache.dataRemove( 'dmapp-products', 'localforage' ).then( function(){
+				MemCache.dataRemove( 'dmapp-products', 'localstorage' ).then( function(){
 		
 							_self._collection_projects.length = 0;
 		
@@ -205,7 +268,7 @@ define( function ( require, exports, module ) {
 		
 							_self._collection_projects.length = 0;
 		
-							deferred.reject( 'An Error Occurred Removing Projects from memory. Please Contact Administrator.' );
+							deferred.reject( 'An Error Occurred Removing Products from memory. Please Contact Administrator.' );
 		
 					}
 		

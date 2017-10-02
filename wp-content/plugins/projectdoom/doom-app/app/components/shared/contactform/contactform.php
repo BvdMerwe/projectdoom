@@ -12,7 +12,7 @@
 	<div layout="column">
 		<div layout="row" layout-xs="column" >
 
-			<md-content class="md-padding" flex-xs="100" flex="60" flex-order-xs="2">
+			<md-content class="md-padding" flex-xs="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
 
                 <form id="formContact" name="userForm" novalidate>
 
@@ -98,15 +98,15 @@
                 <div data-ng-transclude></div>
 
             </md-content>
-            <md-content class="md-padding" flex-xs="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
+            <md-content class="md-padding layout-padding" flex-xs="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
 
                 <h3>CONTACT INFORMATION</h3>
 
-                <p><md-icon svgIcon="thumbs-up"></md-icon>Lorem ipsum dolor sit amet, consectetur.</p>
+                <p><md-icon svgIcon="thumbs-up"></md-icon>P.O. BOX 200, ISANDO, 1600.</p>
 
-                <p><md-icon ng-style="{color: #fff;}">home</md-icon>&nbsp;011 900 2000</p>
+                <p><md-icon>home</md-icon>&nbsp;011 921 1690</p>
 
-                <p><md-icon>home</md-icon>&nbsp;Lorem@ipsum.co.za.</p> 
+                <p><md-icon>home</md-icon>&nbsp;Lorem@tigerbrands.co.za.</p> 
 
             </md-content>
 

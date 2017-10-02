@@ -75,7 +75,9 @@ define( function ( require, exports, module ) {
                     scope.sortBy            = attr.sortby;
                     scope.orderBy           = attr.orderby;
                     scope.contentType       = attr.contenttype;
+                    scope.insectType        = attr.insecttype;
                     scope.isWidget          = attr.iswidget;
+                    scope.showFilter         = attr.showfilter;
                     //scope.gridItems         = parseInt(attr.griditems);
 
                     //if( scope.isWidget == 'false' ) {
@@ -162,8 +164,11 @@ define( function ( require, exports, module ) {
                     $scope.sortBy;
                     $scope.orderBy;
                     $scope.contentType;
+                    $scope.insectType;
                     $scope.gridItems;
                     $scope.isWidget;
+                    $scope.showFilter;
+
                     $scope.gridItemsMobile;
                     $scope.gridItemsDesktop;
                     $scope.gridItemsDesktopWide;
@@ -171,6 +176,12 @@ define( function ( require, exports, module ) {
                     $scope.filterCategories = [];
 
                     $scope.customFullscreen = false;
+
+                    
+                    var productTypes = [];
+
+                    var datad =[];
+                    var products =[];
                     
                     /** /
                     $scope.showImage = function( ev, actObj ) {
@@ -201,13 +212,13 @@ define( function ( require, exports, module ) {
                             
                             case 'insect':
 
-                                $location.path( '/insect/' + path );
+                                $location.path( '/insects/' + path );
 
                                 break;
                             
                             case 'product':
 
-                                $location.path( '/product/' + path );
+                                $location.path( '/products/' + path );
 
                                 break;
 
@@ -319,6 +330,8 @@ define( function ( require, exports, module ) {
 
                                     }, function(error) {
 
+                                        throw error;
+
                                     }
                                 );
 
@@ -326,12 +339,85 @@ define( function ( require, exports, module ) {
 
                             case 'product':
 
+                                $q.all([
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        })
+                                ])
+                                .then( function(results){
+
+                                        console.log('Product Grid Data:',results, $scope.insectType);
+
+                                        // GROUP PRODUCTS BY FLYING & CRAWLING
+                                        _getUniqueCategories( results[0] );
+                                        
+                                        //get insect categories of insectType
+                                        for (var index = 0; index < results[1].length; index++) {
+                                            if( results[1][index].post_name == $scope.insectType ) {
+                                                datad = results[1][index].insect_categories;
+                                                break;
+                                           }
+                                            
+                                        }
+
+                                        // Go through Products
+                                        loop1:
+                                        for (var index = 0; index < results[0].length; index++) {
+                                            // go through Product Categories
+                                            loop2:
+                                            for (var y = 0; y < results[0][index].insect_categories.length; y++) {
+                                                
+                                                var element = results[0][index].insect_categories[y];
+                                                loop3:
+                                                //compare product categories with insect categories
+                                                for (var x = 0; x < datad.length; x++) {
+                                                    var element2 = datad[x];
+                                                    if( element.slug == element2.slug )  {
+                                                        products.push(results[0][index]);
+                                                        break loop2;
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                        //products = $filter('groupBy')( products, 'product_types' ); //$filter('pick')( adsManager._collection_ads, 'ID == ' + adID + '' )[0];
+
+                                        //console.log('datad', datad, $filter('groupBy')( products, 'product_types' ));
+
+                                        console.log('datad', datad, products );
+                
+                                        //_initiateLayout(results[0]);
+                                        _initiateLayout(products);
+
+                                    }, function(e){
+
+                                        //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                        console.error('No bootUp(Gallery): ', e); 
+
+                                        return e;
+
+                                    }
+                                );
+                                /*** /
                                 productsManager.getProducts({
                                         'method': 'GET',
                                         'type': type
                                     }).then( function(results){
 
                                         console.log('Product Grid Data:',results);
+
+                                        // GROUP PRODUCTS BY FLYING & CRAWLING
+
+                                        // GROUP PRODUCTS WITHIN EACH GROUP BY INSECT KILLING (insect categories match)
 
                                         _getUniqueCategories( results );
 
@@ -340,7 +426,7 @@ define( function ( require, exports, module ) {
                                     }, function(error) {
 
                                     }
-                                );
+                                );/***/
 
                                 break;
 
@@ -359,6 +445,8 @@ define( function ( require, exports, module ) {
                         $scope.filterCategories = [];
 
                         var cats = [];
+                        var insects = [];
+                        var insectCats = [];
 
                         switch( $scope.contentType.toLowerCase() ) {
 
@@ -367,6 +455,7 @@ define( function ( require, exports, module ) {
                                 for (var index = 0; index < results.length; index++) {
 
                                   cats.push(results[index].product_categories);
+                                  insectCats.push(results[index].insect_categories);
                                 
                                 }
 
@@ -399,9 +488,11 @@ define( function ( require, exports, module ) {
                         }/**/
 
                         $scope.filterCategories =  $filter('flatten')(  cats );
+                        $scope.insectFilterCategories =  $filter('flatten')(  insectCats );
                         $scope.filterCategories =  $filter('unique')( $scope.filterCategories, 'term_id' );
+                        $scope.insectFilterCategories =  $filter('unique')( $scope.insectFilterCategories, 'term_id' );
                     
-                        console.log('categories:', $scope.filterCategories);
+                        //console.log( 'categories:', $scope.filterCategories, $scope.insectFilterCategories );
 
                     }
 
@@ -439,7 +530,7 @@ define( function ( require, exports, module ) {
 
                         for (var index = 0; index < filterToolBarBtns.length; index++) {
                            // var element = filterToolBarBtns[index];
-                            Utils.removeClass( filterToolBarBtns[index], 'md-raised');
+                            Utils.removeClass( filterToolBarBtns[index], 'active-filter');
                             
                         }
 
@@ -447,7 +538,7 @@ define( function ( require, exports, module ) {
 
                         console.log('activeFilter:', activeFilter);
 
-                        Utils.addClass( activeFilter, 'md-raised');
+                        Utils.addClass( activeFilter, 'active-filter');
 
                     }
 

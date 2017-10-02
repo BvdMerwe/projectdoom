@@ -8,101 +8,91 @@
 * @version 1.0
 */
 ?>
-		<div layout="row" layout-fill layout-xs="column" flex="100">
-			<md-content class="md-padding" flex="100">
+		<div layout="column" layout-fill layout-xs="column" flex="100">
+
+			<div data-ui-navigation flex="100"></div>
+
+			<?php /**/?>
+			
+			<md-content flex="100" layout-fill>
+
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]" flex="100">
+	
+					<!-- HOME PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="home">
 
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="home">
-						
-						<!-- HOMR PAGE TEMPLATE HERE -->
-						<div flex="100"><h1>Home</h1></div>
-						
+						<div data-ui-app-page-home page-name="home" class="page-content" flex-xs="100" flex="100"></div>
+
 					</div>
 
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="about">
-						
-						<!-- ABOUT PAGE TEMPLATE HERE -->
-						<div flex="100"><h1>About</h1></div>
+					<!-- /HOME PAGE TEMPLATE HERE -->
 
-						<div data-ui-navigation></div>
+					<!-- ABOUT PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="about">
 
-						<div data-ui-app-page-content page-name="about" page-columns="2" ></div>
+						<div data-ui-app-page-about page-name="about" class="page-content" flex-xs="100" flex="100"></div>
 
-						<div data-ui-footer></div>
-						
 					</div>
+					<!-- /ABOUT PAGE TEMPLATE HERE -->
 
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="legal">
-						
-						<!-- LEGAL TEMPLATE HERE -->	
-						<div flex="100"><h1>Legal</h1></div>
+					<!-- LEGAL PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="legal">
 
-						<div data-ui-navigation></div>
+						<div data-ui-app-page-legal page-name="legal" class="page-content" flex-xs="100" flex="100"></div>
 
-						<div data-ui-app-page-content page-name="legal" page-columns="1" ></div>
-
-						<div data-ui-footer></div>
-						
 					</div>
+					<!-- /LEGAL PAGE TEMPLATE HERE -->
 
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="products">
-						
-						<!-- GALLERY PAGE TEMPLATE HERE -->
-						<div data-ui-app-page-content page-name="products" page-columns="1" >
+					<!-- PRODUCTS PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="products">
 
-							<div data-ui-gallery 
-								flex="100"
-								isWidget        = "true"
-								showTitle       = "true"
-								showSubheader   = "true" 
-								showDescription = "true"
-								showButton      = "true"
-								contentType     = "product"  
-								sortBy="ASC" orderBy="post_title" 
-								gridItemsDesktopWide="6" gridItemsDesktop="4" gridItemsMobile="2"></div>
+						<div data-ui-app-page-products page-name="products" class="page-content" flex-xs="100" flex="100"></div>	
 
-						</div>
-						
-					</div> 
-
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="faq">
-						
-						<!-- FAQ PAGE TEMPLATE HERE -->
-						<div flex="100"><h1>FAQ</h1></div>
-
-						<div data-ui-app-page-content page-name="faq" page-columns="1" ></div>
-						
 					</div>
+					<!-- /PRODUCTS PAGE TEMPLATE HERE -->
 
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="contact">
-						<h1 flex="100">Contact</h1>
-						<br /><br />
+					<!-- INSECTS PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="insects">
+
+						<div data-ui-app-page-insects page-name="insects" class="page-content" flex-xs="100" flex="100"></div>	
+
 					</div>
+					<!-- /INSECTS PAGE TEMPLATE HERE -->
 
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-when="contact">
-						
-						
-						<!-- CONTACT PAGE TEMPLATE HERE -->
+					<!-- FAQ PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
 
-						<div data-ui-navigation></div>
+						<!--<div data-ui-app-page-content page-name="faq" class="page-content" flex="100" class="md-padding"></div>-->
 
-						<div data-ui-app-page-content page-name="contact" page-columns="1" >
-							<div data-ui-form-contact flex="100"></div>
+					</div>
+					<!-- /FAQ PAGE TEMPLATE HERE -->
+
+					<!-- CONTACT PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="contact">
+
+						<div data-ui-app-page-contact page-name="contact" class="page-content" flex-xs="100" flex="100"></div>
+
+					</div>
+					<!-- /CONTACT PAGE TEMPLATE HERE -->
+
+					<!-- DEFAULT PAGE TEMPLATE HERE -->
+					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
+
+						<div data-ui-404 flex="100" class="md-padding" style="text-align:center;">
+							<br /><br /><br /><br />
+							<h1 flex="100" class="page-title" style="font-size:200px;">OOPS!</h1> 
+							<br /><br /><br /><br />
+							<p class="page-title" style="font-size:50px;">IT LOOKS LIKE YOU FOUND A DEAD LINK</p>
 						</div>
 
-						<div data-ui-footer></div>
-						
 					</div>
-					
-					<div layout="row" class="animate-page-switch" layout-xs="column" flex="100" data-ng-switch-default>
-						<!-- 404 PAGE TEMPLATE HERE -->
-						<div data-ui-404 flex="100">
-							<h1 flex="100">404</h1>
-							<h2>OOPS!</h2>
-							<h3>IT LOOKS LIKE YOU FOUND A DEAD LINK</h3>
-						</div>		
-					</div>
+					<!-- /DEFAULT PAGE TEMPLATE HERE -->
 
 				</div>
 			</md-content>
+
+			<?php /**/?>
+
+			<div data-ui-footer flex="100"></div>
+
 		</div>

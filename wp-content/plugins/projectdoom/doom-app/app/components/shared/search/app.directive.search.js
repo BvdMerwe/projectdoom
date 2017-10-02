@@ -77,8 +77,10 @@ define( function ( require, exports, module ) {
         });
         scope.$watch('isOpen', function(){
           if (scope.isOpen) {
+						document.body.classList.add('super-search-open');
             element.addClass('open');
           } else {
+						document.body.classList.remove('super-search-open');
             element.removeClass('open');
           }
         });
