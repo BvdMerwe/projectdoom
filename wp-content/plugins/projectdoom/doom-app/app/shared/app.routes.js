@@ -338,10 +338,10 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
+                                app_data: [ '$q', 'faqsManager', function( $q, faqsManager ) {
 
 									return $q.all([
-                                        pagesManager.getPages({
+                                        faqsManager.getFAQs({
                                             'type': 'faq',
                                             'method': 'GET'
                                         })

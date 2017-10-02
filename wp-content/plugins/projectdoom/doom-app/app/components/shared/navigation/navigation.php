@@ -25,9 +25,13 @@
 				</md-content>
 				<md-content layout-padding layout-fill layout="row" layout-align="center center" style="padding:50px 100px">
 
-					<div flex="70" layout-fill>
+					<!-- <div flex="70" layout-fill>
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
-					</div>
+					</div> -->
+					<!-- <div data-ui-randomstat ></div> -->
+					<div data-ui-randomstat timer="true" ></div>
+					
+					
 					<div flex="30" layout-fill>
 						<ul class="sm-padding">
 							<li>
@@ -68,7 +72,7 @@
 		</md-sidenav>
 	</div>
 	<div layout="column" class="md-primary">
-		<div layout="row" layout-xs="column" flex-xs="100" style="border-bottom: 1px solid #14A774;">
+		<div layout="row" layout-xs="column" flex-xs="100">
 
 			<md-content class="md-padding" flex="10" style="text-align:center;background-color:#14A774;z-index:99;max-width: 86px !important;">
 				<md-button ng-click="toggleLeft()"

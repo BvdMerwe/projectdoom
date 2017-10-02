@@ -5,17 +5,57 @@
 $green: #14A774;
 $orange: #FF510B;
 
+/***********************************************
+* General STYLE
+***********************************************/
+
 * {
   outline: none !important;
+  box-shadow: none !important;
 }
 
 .inline {
   display: inline-block !important;
 }
+
+/***********************************************
+* Body container STYLE
+***********************************************/
+
+#main-container {
+  padding-top: 90px;
+}
+
+.app-dashboard {
+  padding-bottom: 90px;
+}
 /***********************************************
 * Navigation STYLE
 ***********************************************/
+//green pages open
+.super-menu-open,
+.page-about,
+.page-legal,
+.page-faq,
+.page-contact {
+  div[data-ui-navigation] {
+    background-color: $green;
+    color: #fff !important;
+    // border-bottom: 1px solid #fff;
 
+    li {
+      color: #fff !important;
+    }
+  }
+}
+
+div[data-ui-navigation] {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid $green;
+  z-index: 1;
+}
 md-sidenav {
   margin: 0;
   max-width: 100% !important;
@@ -40,10 +80,10 @@ md-sidenav {
     background-color: #333;
   }
   &::before {
-    transform: rotate(45deg);
+    @include transform(rotate(45deg));
   }
   &::after {
-    transform: rotate(-45deg);
+    @include transform(rotate(-45deg));
   }
 
 }
@@ -73,7 +113,7 @@ md-sidenav {
       position: absolute;
       top: calc(50% - 0.5em - 5px);
       cursor: pointer;
-      transition: 0.3s cubic-bezier(0.42,-0.37, 0.55, 1.43);
+      @include transition(0.3s cubic-bezier(0.42,-0.37, 0.55, 1.43));
       outline: none;
       // opacity: 0.5;
       // border-radius: 100%;
@@ -151,8 +191,18 @@ md-sidenav {
 /***********************************************
 * Search STYLE
 ***********************************************/
-#search-takeover {
+.super-menu-open,
+.page-about,
+.page-legal,
+.page-faq,
+.page-contact {
+  md-autocomplete-wrap {
+    background: #fff;
+  }
+}
+ 
 
+#search-takeover {
   &.open {
     .search-container.layout-fill {
       right: 0%;
@@ -169,7 +219,10 @@ md-sidenav {
       background-color: rgba(0,0,0,0.5);
     }
   }
-
+  md-content {
+    margin: 50px;
+    margin-top: 97px;
+  }
   .search-button {
     @include transition(0.8s);
     position: relative;
@@ -178,7 +231,7 @@ md-sidenav {
     border: 0;
     background: transparent;
     &:hover {
-      transform: scale(1.5);
+      @include transform(scale(1.5));
     }
   }
 
@@ -201,8 +254,6 @@ md-sidenav {
 }
 
 .searchbar-container {
-  margin: 50px;
-  margin-top: 97px;
   // width: 100%;
   .search-bar {
     position: relative;
@@ -242,10 +293,10 @@ md-sidenav {
 
 @include keyframes(spin) {
   0% {
-    transform: rotate(0deg) scale(1.5);
+    @include transform(rotate(0deg) scale(1.5));
   }
   100% {
-    transform: rotate(-360deg) scale(1.5);
+    @include transform(rotate(-360deg) scale(1.5));
   }
 }
 
@@ -253,29 +304,57 @@ md-sidenav {
 * footer STYLE
 ***********************************************/
 #footer {
-  // background-color: #14A774;
   &.open {
     .footer-content{
-      top: 100px;
+      top: 0px;
     }
   }
   .footer-nav {
     z-index: 11;
-    // position: fixed;
+    // position: fixed;    
+    position: absolute;
+    // top: 100%;
+    width: 100%;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #14A774;
+    background-color: $green;
+  }
+  .md-nav-bar {
+
+    background-color: $green;
   }
   .footer-content {
       @include transition(0.4s cubic-bezier(.25,.8,.25,1));
       position: fixed;
       top: 100%;
-      height: 100%;
-      background-color: #14A774;
-      z-index: 10;
+      min-height: 100%;
+      background-color: $green;
+      // z-index: 9;
       overflow: auto;
-      padding-bottom: 150px;
+      padding-top: 81px;
+
+      .animate-page-switch{
+        margin-bottom: 200px;
+        .ng-animate {
+          @include transition(0.4s cubic-bezier(.25,.8,.25,1));
+        
+          position:absolute;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+        }
+      }
+      
+      .animate-page-switch.ng-leave.ng-leave-active,
+      .animate-page-switch.ng-enter {
+        top:100%;
+      }
+      .animate-page-switch.ng-leave,
+      .animate-page-switch.ng-enter.ng-enter-active {
+        top:0;
+      }
   }
 }
 

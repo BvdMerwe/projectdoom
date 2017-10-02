@@ -61,12 +61,16 @@ define( function ( require, exports, module ) {
 			transclude: 	false, // pass entire template?
 			templateUrl: 	appConfig.general.path+'/app/components/shared/searchbar/searchbar.php',
 			scope: {
-
+        placeholderOnly: "@placeholderonly",
+        contentType: "@contenttype"
 	    },
 			link: function (scope, element, attrs, controller) {
 					scope.placeholder = attrs.placeholder;
-					scope.contentType = attrs.contenttype;
-          scope.searchText = scope.placeholder.replace("...", " ");
+					scope.placeholderOnly = attrs.placeholderonly;
+          // scope.contentType = attrs.contenttype;
+          if (!scope.placeholderOnly) {
+            scope.searchText = scope.placeholder.replace("...", " ");
+          }
           scope.states  = scope.getData;
 					var thisElem = element;
 					/************************************
@@ -83,7 +87,7 @@ define( function ( require, exports, module ) {
           });
 
 			},
-			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'searchManager', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $filter, transformRequestAsFormPost, Utils, ngProgress, searchManager, retailersManager, productsManager, insectsManager, packagesManager ) {
+			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'faqsManager', 'searchManager', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $filter, transformRequestAsFormPost, Utils, ngProgress, searchManager, retailersManager, productsManager, insectsManager, packagesManager ) {
 					//init data
           // $scope.searchText = "";
           // $scope.$watch('searchText', function(){
@@ -91,11 +95,15 @@ define( function ( require, exports, module ) {
           //     console.log($route.current.locals.app_data);
           //   }
           // });
+          if ($scope.contentType == 'faq') {
+            $scope.results = $route.current.locals.app_data.pagecontent;
+          }
           $scope.selectedItemChange = function(item) {
             // scope.searchText += item.post_title;
           }
           $scope.searchTextChange = function(searchText) {
-            // scope.getData(searchText);
+            var results = $filter('filter')($route.current.locals.app_data.pagecontent, searchText);
+            $scope.results = results;
           }
           $scope.querySearch = function(searchText, search) {
             var deferred = $q.defer();
@@ -118,13 +126,14 @@ define( function ( require, exports, module ) {
             if (query.indexOf($scope.placeholder.replace("...", " ")) == 0 && !search) {
               query = query.replace($scope.placeholder.replace("...", " "), "").toLowerCase()
               var cache = $route.current.locals.app_data;
-              for (var i = 0; i < cache.insects.length; i++) {
+              for (var i = 0; i < cache.pagecontent.length; i++) {
                 // Utils.forEach(cache.insects, function (obj) {
                 //   if (query.indexOf(obj) < 0) {
                 //     results.push(obj);
                 //   }
                 // })
-                var insect = cache.insects[i];
+                var insect = cache.pagecontent[i];
+                var faq = cache.faq[i];
                 if (insect.post_title.toLowerCase().indexOf(query) == 0) {
                   results.push(insect);
                 // } else if (insect.post_content.toLowerCase().indexOf(query) == 0) {
@@ -150,7 +159,10 @@ define( function ( require, exports, module ) {
                 var requestObj = {
     							method: "GET",
     							type: "search?q="+query
-    						};
+                };
+                if ($scope.contentType == "faq") {
+                  requestObj.type = "faq/search/?q="+query;
+                }
                 searchManager.getSearch(requestObj).then(function(data){
                   $scope.results = data.results;
                   // $scope.$digest();
@@ -166,7 +178,7 @@ define( function ( require, exports, module ) {
             } else {
               cache = $route.current.locals.app_data;
               //restructure cache to an array
-              var rebuildCache = cache.insects.concat(cache.products);
+              var rebuildCache = cache.pagecontent/*.concat(cache.products)*/;
 
               results = $filter('filter')(rebuildCache, query);
               $scope.results = results;

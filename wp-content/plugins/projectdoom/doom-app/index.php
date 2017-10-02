@@ -6,6 +6,6 @@
 
 		<div data-ui-preloader></div>
 
-        <div flex data-ui-app-activity class="app-dashboard" layout="row"></div>
+        <div flex data-ui-app-activity class="app-dashboard" layout="row" id=""></div>
 
 <?php get_footer(); ?>

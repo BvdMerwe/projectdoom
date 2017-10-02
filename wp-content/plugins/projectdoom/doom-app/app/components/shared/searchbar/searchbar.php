@@ -11,16 +11,14 @@
 ?>
 
 <div layout="column" class="searchbar-container">
-  <div layout="column" class="search-bar">
-    <h1 flex="100" class="page-title" style="color:#ffffff;font-size:50px;">What's Buggin you?</h1>
-    <br /><br />
+  <div class="search-bar">
     <md-autocomplete
           flex="100"
           md-selected-item="selectedItem"
           md-search-text-change="searchTextChange(searchText)"
           md-search-text="searchText"
           md-selected-item-change="selectedItemChange(item)"
-          md-items="item in querySearch(searchText)"
+          md-items="item in results"
           md-item-text="item.post_title"
           md-min-length="3"
           md-delay="200"
@@ -34,13 +32,15 @@
       </md-autocomplete>
     <!-- <span class="icon lnr lnr-magnifier"></span> -->
   </div>
-  <div class="search-results">
+  <md-content class="search-results">
     <!-- <div layout="column" class="result" data-ng-repeat="result in results">
       <span>{{result.post_title}}</span>
       <span>{{result.post_content}}</span>
     </div> -->
     <md-list layout-padding class="search-results">
         <md-list-item class="md-3-line result" ng-repeat="result in results">
+        <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">  
+          <div class="" ng-if="result.post_type != 'faq'">
             <img ng-src="{{result.image}}" class="md-avatar" >
             <div class="md-list-item-text">
               <h3>{{result.post_title}}</h3>
@@ -48,7 +48,14 @@
                 {{result.post_content | limitTo:130}}...
               </p>
             </div>
-        </md-list-item>
-      </md-list>
-  </div>
+          </div>
+          <collapsible-item title="{{result.post_title}}" ng-if="result.post_type == 'faq'">
+            <div>
+              <p>{{result.post_content}}</p>
+            </div>
+          </collapsible-item>
+        </ang-accordion>
+      </md-list-item>
+    </md-list>
+</md-content>
 </div>

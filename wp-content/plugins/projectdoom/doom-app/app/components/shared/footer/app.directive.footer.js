@@ -61,35 +61,46 @@ define( function ( require, exports, module ) {
 	    },
 			link: function (scope, element, attrs, controller) {
         scope.open = function(page){
-          scope.static = '';
-          scope.current = '';
-          console.log("Showing footer page", page.post_name);
-          scope.current = page;
-          element.addClass('open');
-        };
-        scope.openStatic = function(page){
-
-          scope.static = '';
-          scope.current = '';
+          // scope.static = '';
+          // scope.current = '';
+          // console.log("Showing footer page", page.post_name);
+          // scope.current = page;
+          
           switch (page) {
             case 'faq':
-              scope.static = 'faq';
-              break;
             case 'contact':
-              scope.static = 'contact';
+            case 'about':
+            case 'legal':
+              angular.element(element[0].querySelector("#footer")).addClass('open');
               break;
             default:
+            angular.element(element[0].querySelector("#footer")).removeClass('open');
               return;
           }
-          element.addClass('open');
-        }
+        };
+        // scope.openStatic = function(page){
+
+        //   scope.static = '';
+        //   scope.current = '';
+        //   switch (page) {
+        //     case 'faq':
+        //       scope.static = 'faq';
+        //       break;
+        //     case 'contact':
+        //       scope.static = 'contact';
+        //       break;
+        //     default:
+        //       return;
+        //   }
+        //   element.addClass('open');
+        // }
         scope.close = function() {
           console.log("Hiding footer page");
           element.removeClass('open');
         }
 
 			},
-			controller:  	[ '$scope', '$sce', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'pagesManager', function ( $scope, $sce, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, pagesManager ) {
+			controller:  	[ '$rootScope', '$scope', '$sce', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'pagesManager', function ( $rootScope, $scope, $sce, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, pagesManager ) {
         var requestObj = {
           method: "GET",
           type: 'page'
@@ -99,43 +110,49 @@ define( function ( require, exports, module ) {
         // $scope.items = $route.current.locals.app_data[$scope.contentType];
         //if no cache check request type
         //get curent action
-        $scope.currRoute = $route.current.$$route.action;
-        pagesManager.getPages(requestObj).then(function(data){
-          $scope.pages = data;
-          for (var i = 0; i < $scope.pages.length; i++) {
-            $scope.pages[i].post_content = $sce.trustAsHtml($scope.pages[i].post_content);
-          }
-          if ($scope.currRoute) {
-            $scope.goPage($scope.currRoute);
-          }
-        }, function(err){
-          console.log("Fek", err);
-        });
+        // $scope.currRoute = $route.current.$$route.action;
+        // pagesManager.getPages(requestObj).then(function(data){
+        //   $scope.pages = data;
+        //   for (var i = 0; i < $scope.pages.length; i++) {
+        //     $scope.pages[i].post_content = $sce.trustAsHtml($scope.pages[i].post_content);
+        //   }
+        //   if ($scope.currRoute) {
+        //     $scope.goPage($scope.currRoute);
+        //   }
+        // }, function(err){
+        //   console.log("Fek", err);
+        // });
         $scope.setPage = function(page){
           $location.path("/"+page);
           // console.log("navigate to ",page);
         }
 
-        $scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
-          $scope.goPage(to.$$route.action);
+        $scope.$on( "$routeChangeStart", function(){
+          $scope.close();
 				});
-        $scope.goPage = function (pageName) {
-          $scope.close();
-          switch (pageName) {
-            case 'faq':
-              return;
-            case 'contact':
-              $scope.openStatic(pageName);
-              return;
-          }
-          for (var i = 0; i < $scope.pages.length; i++) {
-            if ($scope.pages[i].post_name == pageName) {
-              $scope.open($scope.pages[i]);
-              return;
-            }
-          }
-          $scope.close();
-        }
+
+        $scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
+          $scope.renderPath = $rootScope.renderPath;
+          $scope.open(to.$$route.action);
+				});
+        // $scope.goPage = function (pageName) {
+        //   $scope.close();
+        //   switch (pageName) {
+        //     case 'faq':
+        //       $scope.openStatic(pageName);
+        //       return;
+        //     case 'contact':
+        //       $scope.openStatic(pageName);
+        //       return;
+        //   }
+        //   for (var i = 0; i < $scope.pages.length; i++) {
+        //     if ($scope.pages[i].post_name == pageName) {
+        //       $scope.open($scope.pages[i]);
+        //       return;
+        //     }
+        //   }
+        //   $scope.close();
+        // }
 			}],
       // controllerAs: 'vm',
 		};

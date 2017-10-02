@@ -30,11 +30,11 @@
       </md-nav-item>
     </md-nav-bar>
   </div>
-  <div layout="column" class="footer-content" layout-fill>
+  <md-content class="footer-content" layout-fill data-ng-switch="renderPath[0]" >
     <!-- <div class="footer-control">
       <i class="lnr lnr-cross close-footer" ng-click="close()"></i>
     </div> -->
-    <div ng-if="current">
+    <!-- <div ng-if="current">
       <div layout="row">
         <h1>{{current.post_title}}</h1>
       </div>
@@ -42,12 +42,38 @@
         <p ng-bind-html="current.post_content">
         </p>
       </div>
+    </div> -->
+
+    <!-- ABOUT PAGE TEMPLATE HERE -->
+    <div class="animate-page-switch md-accent" flex="100" data-ng-switch-when="about">
+
+      <div data-ui-app-page-about page-name="about" class="page-content" flex-xs="100" flex="100"></div>
+
     </div>
-    <div ng-if="static === 'faq'">
-      <div data-ui-faq flex="100"></div>
+    <!-- /ABOUT PAGE TEMPLATE HERE -->
+
+    <!-- LEGAL PAGE TEMPLATE HERE -->
+    <div class="animate-page-switch md-accent" flex="100" data-ng-switch-when="legal">
+
+      <div data-ui-app-page-legal page-name="legal" class="page-content" flex-xs="100" flex="100"></div>
+
     </div>
-    <div ng-if="static === 'contact'">
-      <div data-ui-form-contact flex="100"></div>
+    <!-- /LEGAL PAGE TEMPLATE HERE -->
+    
+    <!-- FAQ PAGE TEMPLATE HERE -->
+    <div class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
+
+      <div data-ui-app-page-faq page-name="faq" class="page-faq" flex="100" class="md-padding"></div>
+
     </div>
-  </div>
+    <!-- /FAQ PAGE TEMPLATE HERE -->
+
+    <!-- CONTACT PAGE TEMPLATE HERE -->
+    <div class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="contact">
+
+      <div data-ui-app-page-contact page-name="contact" class="page-content" flex-xs="100" flex="100"></div>
+
+    </div>
+    <!-- /CONTACT PAGE TEMPLATE HERE -->
+  </md-content>
 </div>

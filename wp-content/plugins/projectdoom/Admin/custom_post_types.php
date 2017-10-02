@@ -24,7 +24,7 @@ function post_type_doom() {
 	function fids_get_featured_image($postID) {
 		$post_thumbnail_id = get_post_thumbnail_id($postID);
 		if ($post_thumbnail_id) {
-			$post_thumbnail_img = wp_get_attachment_image_src($post_thumbnail_id, 'small-square-thumb');
+			$post_thumbnail_img = wp_get_attachment_image_src($post_thumbnail_id, 'small-square-thumb', true);
 			return $post_thumbnail_img[0];
 		}
 	}
