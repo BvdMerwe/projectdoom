@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'doom-icons';
-  src:  url('fonts/doom-icons.eot?upobt6');
-  src:  url('fonts/doom-icons.eot?upobt6#iefix') format('embedded-opentype'),
-    url('fonts/doom-icons.ttf?upobt6') format('truetype'),
-    url('fonts/doom-icons.woff?upobt6') format('woff'),
-    url('fonts/doom-icons.svg?upobt6#doom-icons') format('svg');
+  src:  url('fonts/doom-icons.eot?7uh3ff');
+  src:  url('fonts/doom-icons.eot?7uh3ff#iefix') format('embedded-opentype'),
+    url('fonts/doom-icons.ttf?7uh3ff') format('truetype'),
+    url('fonts/doom-icons.woff?7uh3ff') format('woff'),
+    url('fonts/doom-icons.svg?7uh3ff#doom-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-zap:before {
+  content: "\e912";
+}
 .icon-chevron-left:before {
   content: "\e910";
 }
