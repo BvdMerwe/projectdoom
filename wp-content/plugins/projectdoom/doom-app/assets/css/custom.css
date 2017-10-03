@@ -24,6 +24,14 @@
 /***********************************************
 * Navigation STYLE
 ***********************************************/
+.super-menu-open .site-content, .super-menu-open .app-dashboard {
+  height: 100%;
+}
+
+.super-menu {
+  z-index: 1000;
+}
+
 .super-menu-open div[data-ui-navigation],
 .page-about div[data-ui-navigation],
 .page-legal div[data-ui-navigation],
@@ -213,11 +221,19 @@ md-sidenav ul li {
 /***********************************************
 * Search STYLE
 ***********************************************/
-.super-menu-open md-autocomplete-wrap,
-.page-about md-autocomplete-wrap,
-.page-legal md-autocomplete-wrap,
-.page-faq md-autocomplete-wrap,
-.page-contact md-autocomplete-wrap {
+.super-search-open .site-content, .super-search-open .app-dashboard {
+  height: 100%;
+}
+
+md-autocomplete-wrap {
+  background: #fff;
+}
+
+md-autocomplete-wrap input {
+  background: #fff;
+}
+
+.md-autocomplete-suggestions-container {
   background: #fff;
 }
 
@@ -245,7 +261,7 @@ md-sidenav ul li {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-#search-takeover md-content {
+#search-takeover .search-container > md-content {
   margin: 50px;
   margin-top: 97px;
 }
@@ -306,6 +322,14 @@ md-sidenav ul li {
   position: absolute;
   cursor: pointer;
   outline: none;
+}
+
+.searchbar-container .search-results .search-result {
+  cursor: pointer;
+}
+
+.searchbar-container .search-results .search-result:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .search-container.layout-fill {

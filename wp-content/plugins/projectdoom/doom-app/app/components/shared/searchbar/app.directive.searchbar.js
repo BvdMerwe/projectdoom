@@ -87,7 +87,7 @@ define( function ( require, exports, module ) {
           });
 
 			},
-			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'faqsManager', 'searchManager', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $filter, transformRequestAsFormPost, Utils, ngProgress, searchManager, retailersManager, productsManager, insectsManager, packagesManager ) {
+			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'faqsManager', 'searchManager', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $filter, transformRequestAsFormPost, Utils, ngProgress, faqsManager, searchManager, retailersManager, productsManager, insectsManager, packagesManager ) {
 					//init data
           // $scope.searchText = "";
           // $scope.$watch('searchText', function(){
@@ -185,6 +185,19 @@ define( function ( require, exports, module ) {
               deferred.resolve( results );
             }
             return deferred;
+          }
+
+          $scope.navigate = function (type, name) {
+            switch (type) {
+              case 'insect':
+              case 'product':
+                type += 's';
+                $location.path('/'+type+'/'+name);
+                break;
+              case 'page':
+                $location.path('/'+name);
+                break;
+            }
           }
 			}],
       // controllerAs: 'vm',

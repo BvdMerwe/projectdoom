@@ -32,6 +32,17 @@ $orange: #FF510B;
 /***********************************************
 * Navigation STYLE
 ***********************************************/
+//override body height when takeover open
+.super-menu-open {
+  // height: 100%;
+  .site-content, .app-dashboard {
+    height: 100%;
+  }
+}
+
+.super-menu {
+  z-index: 1000;
+}
 //green pages open
 .super-menu-open,
 .page-about,
@@ -191,15 +202,29 @@ md-sidenav {
 /***********************************************
 * Search STYLE
 ***********************************************/
-.super-menu-open,
-.page-about,
-.page-legal,
-.page-faq,
-.page-contact {
-  md-autocomplete-wrap {
-    background: #fff;
+//override body height when takeover open
+.super-search-open {
+  // height: 100%;
+  .site-content, .app-dashboard {
+    height: 100%;
   }
 }
+// .super-search-open,
+// .super-menu-open,
+// .page-about,
+// .page-legal,
+// .page-faq,
+// .page-contact {
+  md-autocomplete-wrap {
+    background: #fff;
+    input {
+      background: #fff;
+    }
+  }
+  .md-autocomplete-suggestions-container {
+    background: #fff;
+  }
+// }
  
 
 #search-takeover {
@@ -219,7 +244,7 @@ md-sidenav {
       background-color: rgba(0,0,0,0.5);
     }
   }
-  md-content {
+  .search-container>md-content {
     margin: 50px;
     margin-top: 97px;
   }
@@ -274,8 +299,13 @@ md-sidenav {
       cursor: pointer;
       outline: none;
     }
-
-    .search-results {
+  }
+  .search-results {
+    .search-result {
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(#000, 0.1);
+      }
     }
   }
 }

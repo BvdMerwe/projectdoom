@@ -92,7 +92,9 @@ define( function ( require, exports, module ) {
 			},
 			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', '$filter', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'searchManager', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $filter, transformRequestAsFormPost, Utils, ngProgress, searchManager, retailersManager, productsManager, insectsManager, packagesManager ) {
         $scope.isOpen = false;
-
+				$scope.$on( "$routeChangeStart", function(){
+          $scope.isOpen = false;
+				});
 			}],
       // controllerAs: 'vm',
 		};
