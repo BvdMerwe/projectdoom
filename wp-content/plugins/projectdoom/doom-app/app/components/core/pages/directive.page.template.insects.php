@@ -2,6 +2,7 @@
         
         <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
             <!-- <img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption" /> -->
+            <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
             <div layout="row" layout-md="column" layout-align="end center">
 
                 <div flex="40" flex-md="100" class="md-padding">
@@ -12,32 +13,32 @@
                     -->
                     <div data-ng-switch="pageContent.post_name">
                         <div data-ng-switch-when="flea">
-                            <p flex="100" class="page-description">{{pageContent.post_title}}s can suck</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can suck</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}</h1>
                             <p flex="100" class="page-description">their bodyweight in blood a day. Their fav drinking spot is covered in fur and answers to the name Ruffus..</p>
                         </div>
                         <div data-ng-switch-when="cockroach">
-                            <p flex="100" class="page-description">{{pageContent.post_title}}es can go 4 weeks without food</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go 4 weeks without food</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />one week</h1>
                             <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your pj’s while you sleep tonight.</p>
                         </div>
                         <div data-ng-switch-when="ant">
-                            <p flex="100" class="page-description">{{pageContent.post_title}}s can go 4 weeks without food</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can go 4 weeks without food</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
                             <p flex="100" class="page-description">a day in your home.</p>
                         </div>
                         <div data-ng-switch-when="fly">
-                            <p flex="100" class="page-description">{{pageContent.post_title}} can go 4 weeks without food</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can go 4 weeks without food</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
                             <p flex="100" class="page-description">a day in your home.</p>
                         </div>
-                        <div data-ng-switch-when="mosquitoes">
-                            <p flex="100" class="page-description">{{pageContent.post_title}} can go 4 weeks without food</p>
+                        <div data-ng-switch-when="mosquito">
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}</strong> can go 4 weeks without food</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
                             <p flex="100" class="page-description">a day in your home.</p>
                         </div> 
-                        <div data-ng-switch-when="fishmoths">
-                            <p flex="100" class="page-description">The {{pageContent.post_title}} eating holes<br />through the private bits of<br />your underwear are laying  can go 4 weeks without food</p>
+                        <div data-ng-switch-when="fishmoth">
+                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}</strong> eating holes<br />through the private bits of<br />your underwear are laying  can go 4 weeks without food</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
                             <p flex="100" class="page-description">a day in your home.</p>
                         </div>
@@ -63,7 +64,7 @@
                     <button class="lnr lnr-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
                 </div>
             </div>
-            <div layout="row" layout-md="column" layout-align="start start">
+            <div layout="row" layout-md="column" layout-align="center start">
                 <div layout="column" flex="60" layout-padding>
                     <br /><br />
                     <h3 flex="100" class="page-title" style="font-size:40px;">{{pageContent.post_title}}</h3>
@@ -71,14 +72,18 @@
                     <br /><br />
                     <div class="tag-group insect-buttons-cta" layout="row" layout-align="space-between stretch">
                         <div class="flex">
-                            
+                            <!--<div class="thumbnail" style="border:none;">
+                                <i class="icon-{{pageContent.post_name}}"></i>
+                            </div>-->
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/insects/pageContent.post_title')">
                                 <span class="icon icon-insect-{{pageContent.post_title}}"></span>
                                 {{pageContent.post_title}}<br />Profile
                             </md-button>
                         </div>
                         <div class="flex">
-                            
+                            <!--<div class="thumbnail" style="border:none;">
+                                <i class="icon-{{pageContent.post_name}}"></i>
+                            </div>-->
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/products/pageContent.post_title')">
                                 <span class="icon icon-solution"></span>
                                 {{pageContent.post_title}}<br />Killers
@@ -86,6 +91,9 @@
 
                         </div>
                         <div class="flex">
+                            <!--<div class="thumbnail" style="border:none;">
+                                <i class="icon-{{pageContent.post_name}}"></i>
+                            </div>-->
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/insects/pageContent.post_title')">
                                 <span class="icon icon-hand"></span>
                                 {{pageContent.post_title}}<br />Prevention
@@ -94,8 +102,17 @@
                     </div>
                     
                 </div>
-                <div layout="column" flex="40">
+                <div layout="column" flex="40" layout-align="center center">
                     <h3 flex="100" class="carousel-title">Products</h3>
+                     <div data-ui-carousel
+                            
+                            single = "true"
+                            needsCta = "true"
+                            maxHeight = "350px"
+                            maxWidth = "200px"
+                            gutter = "10px"
+                            displayName ="true"
+                            contentType="product"></div>
                 </div>
             </div>
 
@@ -103,6 +120,12 @@
                 <br /><br />
                 <h3 id="makethemstop" flex="100" class="page-title" style="font-size:40px;">Make Them Stop</h3>
                 <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you</p>
+                <br /><br />
+            </div>
+            <div layout="row" layout-md="column" layout-align="center center">
+                
+                <div data-ui-configurator style="" pest="{{pageContent.post_name}}" flex="100"></div>
+                
             </div>
         </div>
 

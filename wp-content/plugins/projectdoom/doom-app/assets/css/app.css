@@ -241,6 +241,11 @@ button, html, input, select, textarea {
 	border:none;
 }
 
+body.super-menu-open,
+body.super-search-open {
+	overflow:hidden;
+}
+
 .super-menu,
 .super-menu ul li a {	
 	color:#ffffff;
@@ -257,6 +262,10 @@ button, html, input, select, textarea {
 	position: relative;
 	padding: 20px 0;
 	border-bottom:1px solid #ffffff;
+}
+
+.super-menu ul li:first-child {
+	padding-top:0;
 }
 
 .super-menu ul li:last-child {
@@ -276,6 +285,12 @@ button, html, input, select, textarea {
 .super-menu ul li ul li {
 	position: relative;
 	padding-left:20px;
+	border-bottom: none;
+	padding-bottom:0;
+}
+
+.super-menu ul li ul li a {	
+	font-weight: normal;
 }
 
 .app-dashboard {
@@ -310,7 +325,31 @@ button, html, input, select, textarea {
 	color:#ffffff;
 }
 
+.page-products div[data-ui-gallery] {
+	position: relative;
+}
+.page-products div[data-ui-gallery]:before {
+	position: absolute;
+	content: attr(producttype);
+	display: block;
+	top: 10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 25em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+	color: #ddd;
+	color: rgba(221, 221, 221,0.3);
+}
 
+.super-bug-image {
+	position: absolute;
+    width: 50%;
+    top: 0;
+    left: 10%;
+}
 /**
 * 
 * Page Structure
@@ -333,9 +372,9 @@ button, html, input, select, textarea {
 
 
 .page-title {
-	font-size: 84px;
+	font-size: 60px;
     margin: 0;
-	line-height: 80px;
+	line-height: 60px;
 	text-transform: uppercase;
 	color:#14A774;
 }
@@ -452,6 +491,10 @@ button, html, input, select, textarea {
 .page-products-single .primary-cta {
 	margin:2em 0;
 	margin-top:0;
+}
+
+.solution-container .primary-cta {
+	min-width: 200px;
 }
 
 

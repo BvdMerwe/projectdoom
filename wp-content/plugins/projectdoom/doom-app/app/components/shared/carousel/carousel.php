@@ -25,7 +25,7 @@
 					</div>
 					<div class="carousel-item-name" ng-if="displayName">{{item.post_title}}</div>
 					<div class="cta" ng-if="needsCta">
-						<button ng-click="goto(contentType, item.post_name)">View&nbsp;More</button>
+						<md-button class="primary-cta" ng-click="goto(contentType, item.post_name)">View&nbsp;More</md-button class="primary-cta">
 					</div>
 				</div>
 			</div>

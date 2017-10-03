@@ -96,8 +96,10 @@
                                 </md-card-header-text>
                             </md-card-header>
                             <!-- -->
-                            <?php /**/?>
                             <img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption" />
+                            <?php /**/?>
+                            <img data-ng-click="showImage()" data-ng-if="!value.image" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption" />
+                            <img data-ng-click="showImage()" data-ng-if="value.image" data-ng-src="value.image" class="md-card-image" alt="image caption" />
                             <?php /** /?>
                             <!-- -->
                             <md-card-title data-ng-if="isWidget == 'false'">

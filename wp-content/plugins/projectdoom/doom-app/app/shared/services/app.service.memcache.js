@@ -22,7 +22,8 @@
 define( function ( require, exports, module ) {
 	
     'use strict';
-    
+	
+	require("app-xhr");
     require("app-utils");
     require("angular-filter");
 
@@ -30,16 +31,18 @@ define( function ( require, exports, module ) {
 	var appMemCache,
 		domReady 		= require("domReady"),
 		localforage		= require("localforage"),
-		angular 		= require("angular");
+		angular 		= require("angular"),
+		appConfig		= require("text!../../app/app.config.json");
 
-	// 
+	appConfig = JSON.parse(appConfig);
+	
 	var Application = Application || {};
 	Application.Services = {};
 	
 	/*
 	 * 
 	 * ------------------------------------------------*/
-	Application.Services.MemCache = [ '$http', '$q', '$filter', 'Utils', function ( $http, $q, $filter, Utils ) {
+	Application.Services.MemCache = [ '$http', '$q', '$filter', 'Utils', 'transformRequestAsFormPost', function ( $http, $q, $filter, Utils, transformRequestAsFormPost ) {
 		
 		var factory = this;
 
@@ -128,7 +131,7 @@ define( function ( require, exports, module ) {
 		
 						//console.log('localStorage saved:', key, sjcl.decrypt( '', window.localStorage.getItem( key ) ) );
 		
-						deferred.resolve();
+						deferred.resolve( data );
 		
 					break;
 		
@@ -140,7 +143,7 @@ define( function ( require, exports, module ) {
 		
 						//console.log('sessionStorage saved:', key, sjcl.decrypt( '', window.sessionStorage.getItem( key ) ) );
 		
-						deferred.resolve();
+						deferred.resolve( data );
 		
 						break;
 		
@@ -158,7 +161,7 @@ define( function ( require, exports, module ) {
 									//console.log('foraged', key, sjcl.encrypt('', jsoniData));
 									console.log('foraged', key, jsoniData);
 		
-									deferred.resolve();
+									deferred.resolve( data );
 		
 								}, function(error){
 		
@@ -272,6 +275,79 @@ define( function ( require, exports, module ) {
 			return deferred.promise;
 		
 		}
+
+		/**
+		 * @private
+		 * 
+		 * RETURN LOCALSTORAGE DATA
+		 * 
+		 * @param {String.key}
+		 * @param {String.type}
+		 * @param {Function.callback}
+		 *
+		 **/
+		this.dataTaxonomy = function () {
+		
+			//Utils._strict( [ String, String ], arguments );
+		
+			var _self = this,
+				data = null,
+				deferred = $q.defer();
+		
+			try {
+
+				_self.dataGet( 'dmapp-taxonomy', 'sessionstorage' ).then( function(dbbb) {
+
+						deferred.resolve( dbbb );
+
+					}, function(errmty){
+
+						$http({
+							method: 'GET', 
+							url: appConfig.general.api + 'taxonomy',
+							transformRequest: transformRequestAsFormPost
+						})
+						.success( function(data, status) {
+
+							console.log("Request Fetched:", data);
+
+							_self.dataStore( 'dmapp-taxonomy', data, 'sessionstorage' ).then( function(results) {
+
+										console.log("Request Stored:", results);
+
+										deferred.resolve( results );
+
+									}, function(error) {
+
+										console.error("Sessionsotarge Request failed:", error);
+
+										deferred.reject( error );
+
+									}
+							);
+						
+						})
+						.error( function(data, status) {
+						
+							console.error("Request failed:", data);
+						
+							deferred.reject( data );
+												
+						});
+
+					}
+				);
+								
+			} catch( e ) {
+		
+				// some other error ?? perhaps  localStorage not supported...FallBack?
+				deferred.reject( e );
+					
+			};
+		
+			return deferred.promise;
+		
+		}
 		
 		/**
 		 * @private
@@ -314,12 +390,24 @@ define( function ( require, exports, module ) {
 								break;
 		
 							case 'sessionstorage':
+
+								//console.log('getting:', type, key, JSON.parse( window.sessionStorage.getItem( key )) );
 		
 								//data = sessionStorage.getItem( key );
 		
 								//data = sjcl.decrypt( '', window.sessionStorage.getItem( key ) );
+
+								if( window.sessionStorage.getItem( key ) == null ) {
+
+									deferred.reject( e );
+
+								} else {
+
+									deferred.resolve( JSON.parse( window.sessionStorage.getItem( key ) ) );
+
+								}
 		
-								deferred.resolve( JSON.parse( window.sessionStorage.getItem( key ) ) );
+								//deferred.resolve( JSON.parse( window.sessionStorage.getItem( key ) ) );
 		
 								break;
 		

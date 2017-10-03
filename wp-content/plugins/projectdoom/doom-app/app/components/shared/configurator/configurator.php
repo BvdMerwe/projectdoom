@@ -12,8 +12,10 @@
 
 <div layout="column" class="config-container" layout id="configurator" flex='100'>
   <div class="config-head" ng-if="!finalPage">
+    <!--
   	<h2>Make them stop</h2>
     <p>Get the right {{config.pest.post_title}} killer for you</p>
+    -->
     <div class="breadcrumbs">
       <md-slider flex class="md-primary" md-discrete data-ng-model="breadcrumbState" step="1" min="1" max="4" aria-label="state-slider" ng-change="setState(breadcrumbState)"></md-slider>
     </div>
@@ -32,7 +34,7 @@
             <p>{{insect.post_content | limitTo:50}}</p>
           </div>
           <div class="start-button">
-            <button data-ng-click="next(insect)">NEXT STEP</button>
+            <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
           </div>
         </div>
       </div>
@@ -65,7 +67,7 @@
             <md-slider flex="70" class="md-primary" md-discrete data-ng-model="config.amount" step="1" min="1" max="2" aria-label="amount"></md-slider>
             <span flex="15">Many</span>
           </md-slider-container>
-          <button data-ng-click="next()">NEXT STEP</button>
+          <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
         </div>
       </div>
       <div class="revert" data-ng-click="setState(2)">
@@ -78,7 +80,7 @@
     <div class="step-3 {{step3State}}" layout-fill layout="column" layout-align="center center">
       <div class="content" layout-fill layout="column" layout-gt-sm="row" layout-align="space-between center">
         <div class="map-container" flex>
-          <img class="map" src="/wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
+          <img class="map" src="/projectdoom/wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475">
             <!-- <defs><style>.cls-1{fill:#fff;stroke:#231f20;stroke-width:5px;}.cls-10,.cls-2{font-size:12px;font-family:MyriadPro-Regular, Myriad Pro;}.cls-3{letter-spacing:0em;}.cls-4{letter-spacing:0em;}.cls-5{letter-spacing:-0.01em;}.cls-6{letter-spacing:0em;}.cls-7{letter-spacing:-0.01em;}.cls-8{letter-spacing:0.01em;}.cls-9{letter-spacing:-0.01em;}.cls-10{letter-spacing:-0.03em;}.cls-11{letter-spacing:0em;}</style></defs> -->
           	<g id="bedroom" ng-click="setLocation('bedroom')" class="area {{config.location.indexOf('bedroom') > -1}}">
@@ -123,7 +125,7 @@
               <md-option ng-value="'living'">Living Room</md-option>
               <md-option ng-value="'outside'">Outside</md-option>
           </md-select>
-          <button data-ng-click="next()">Continue</button>
+          <md-button data-ng-click="next()" class="primary-cta">Continue</md-button>
         </div>
       </div>
     </div>
@@ -149,15 +151,17 @@
           <h2>Your solution</h2>
           <p>{{result.product.post_content}}</p>
           <div class="">
-            <button>View Product</button>
-            <button>View Consequences</button>
+            <md-button class="primary-cta" data-ng-click="goTo('/products')">View Product</md-button>
+            <md-button class="primary-cta">Where can I get it?</md-button>
           </div>
         </div>
       </div>
+      <!--
       <div class="retailers" flex="100">
         <h2>Where to buy</h2>
         <div data-ui-carousel retailers="result.product.retailers" contentType="retailer" maxAmount="10" maxHeight="100px" maxwidth="150px"></div>
       </div>
+      -->
     </div>
   </div>
 </div>

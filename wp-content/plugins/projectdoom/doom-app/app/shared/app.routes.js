@@ -52,34 +52,58 @@ define( function ( require, exports, module ) {
                     .when(
                         '/',
                         {
-                            action: 	'pests',
+                            action: 	'home',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'home',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(home): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -89,32 +113,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'about',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'about',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(about): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -124,32 +172,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'legal',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'legal',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(legal): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -159,8 +231,8 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'products',
@@ -174,7 +246,6 @@ define( function ( require, exports, module ) {
                                             'type': 'insect',
                                             'method': 'GET'
                                         }),
-                                        /***/
                                         faqsManager.getFAQs({
                                             'type': 'faq',
                                             'method': 'GET'
@@ -182,8 +253,8 @@ define( function ( require, exports, module ) {
                                         retailersManager.getRetailers({
                                             'type': 'retailer',
                                             'method': 'GET'
-                                        })
-                                        /***/
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
@@ -194,7 +265,8 @@ define( function ( require, exports, module ) {
                                                 insects 	: results[2],
                                                 products 	: results[1],
                                                 pagecontent : results[0],
-                                                retailers   : results[4]
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
                                             }; 
 
                                         }, function(e){
@@ -218,8 +290,8 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', function( $q, pagesManager, productsManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'products',
@@ -228,27 +300,46 @@ define( function ( require, exports, module ) {
                                         productsManager.getProducts({
                                             'type': 'product',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
                                                 products 	: results[1],
-                                                pagecontent 	: results[0]
-                                            };
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(products single): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -258,37 +349,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'insects',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'insectsManager', function( $q, pagesManager, insectsManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'insects',
                                             'method': 'GET'
                                         }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
                                         insectsManager.getInsects({
                                             'type': 'insect',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0],
-                                                insects 	    : results[1]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(insects): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -298,37 +408,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'insects.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'insectsManager', function( $q, pagesManager, insectsManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'insects',
                                             'method': 'GET'
                                         }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
                                         insectsManager.getInsects({
                                             'type': 'insect',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            console.log('route insects.single:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0],
-                                                insects 	    : results[1]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(insect single): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -338,32 +467,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'faq',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(faq): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -373,32 +526,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'faq',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(faq single): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }
@@ -408,32 +585,56 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'contact',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', function( $q, pagesManager ) {
-
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                    
 									return $q.all([
                                         pagesManager.getPages({
                                             'type': 'contact',
                                             'method': 'GET'
-                                        })
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy()
                                     ])
                                     .then( function(results){
 
+                                            //console.log('route data-products:', results);   
+ 
                                             return {
-                                                pagecontent 	: results[0]
-                                            };
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5]
+                                            }; 
 
                                         }, function(e){
 
                                             //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
 
-                                            console.log('No bootUp(contact): ', e);
+                                            console.error('No bootUp(products): ', e); 
 
                                             return e;
 
                                         }
                                     );
 
-                                }]
+                                }] 
                             }
 
                         }

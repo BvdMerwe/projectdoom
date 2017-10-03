@@ -192,9 +192,9 @@ define( function ( require, exports, module ) {
 				
 									_self._collection_insects = data;
 
-									deferred.resolve( data );
+									//deferred.resolve( data );
 
-									/** /
+									/**/
 									_self.saveCollection().then( function(saveddb) {
 										
 											deferred.resolve( saveddb );
@@ -306,7 +306,7 @@ define( function ( require, exports, module ) {
 				})
 				.success( function(data, status) {
 
-					console.log("Request insect:", data);
+					//console.log("Request insect:", data);
 				
 					deferred.resolve( data );
 				

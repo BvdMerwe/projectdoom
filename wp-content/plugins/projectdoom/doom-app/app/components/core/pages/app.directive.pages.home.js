@@ -280,7 +280,10 @@ define( function ( require, exports, module ) {
 
 			if( angular.isDefined($route.current.locals.app_data) ) {
 
-				dataInitialise('taxonomy').then( function(results){
+				
+				//MemCache.dataTaxonomy().then( function(results){
+
+					console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
 
 						if( $rootScope.isProductPage ) {
 
@@ -302,13 +305,17 @@ define( function ( require, exports, module ) {
 
 						//console.log('Activity Data: ', $scope.pageContent );
 
-						console.log('Activity Data: ', results, $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
-
+						//console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
+					
+					/** * /
 					}, function(error) {
 
 						console.error(error);
 					}
+					
+
 				);
+				/***/
 			}
 
 		}
@@ -479,7 +486,7 @@ define( function ( require, exports, module ) {
 
 		return {
 			restrict: 		'AE',
-			scope: 			{},
+			//scope: 			{},
 			transclude: 	true,
 			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.home.php',
 			/**/
@@ -827,6 +834,7 @@ define( function ( require, exports, module ) {
 		}
 	};
 
+	/** /
 	Application.Directives.uiAppPageProductsSingle = function () {
 
 		return {
@@ -837,6 +845,7 @@ define( function ( require, exports, module ) {
 			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.products.single.php'
 		}
 	};
+	/**/
 
 	Application.Directives.uiAppPageInsects = function () {
 
@@ -849,6 +858,7 @@ define( function ( require, exports, module ) {
 		}
 	};
 
+	/** /
 	Application.Directives.uiAppPageInsectsSingle = function () {
 
 		return {
@@ -859,6 +869,7 @@ define( function ( require, exports, module ) {
 			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.insects.single.php'
 		}
 	};
+	/**/
 
 	Application.Directives.uiAppPageAbout = function () {
 

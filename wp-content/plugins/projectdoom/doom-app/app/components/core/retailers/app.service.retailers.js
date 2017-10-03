@@ -180,9 +180,9 @@ define( function ( require, exports, module ) {
 					
 										_self._collection_retailers = data; 
 
-										deferred.resolve( data );
+										//deferred.resolve( data );
 
-										/** /
+										/**/
 										_self.saveCollection().then( function(saveddb) {
 
 												console.warn('retailers saved', saveddb);

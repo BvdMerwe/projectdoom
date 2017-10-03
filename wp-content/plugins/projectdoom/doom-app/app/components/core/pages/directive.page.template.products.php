@@ -241,11 +241,14 @@
         <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
 
             <!-- [HERO SECTION] -->
-            <div layout="row" layout-md="column" >
-                <div flex="grow" flex-md="100" class="md-padding">
-                    <img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption">
+            <div layout="row" layout-md="column" layout-align="center center">
+                <div flex="60" flex-md="100" class="md-padding">
+                    <div class="bg-box">
+                        <!--<img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption">-->
+                        <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image" alt="" style="width:100%;" />
+                    </div>
                 </div>
-                <div flex="grow" flex-md="100" class="md-padding">
+                <div flex="40" flex-md="100" class="md-padding">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
@@ -267,11 +270,88 @@
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "coackroach"
+                    insectType     	= "ant"
+                    productType     = "spray"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
+                        <h3 flex="100" class="carousel-title">Ants</h3>
+                        
+                </div>
+                
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "ant"
+                    productType     = "powder"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "ant"
+                    productType     = "electric"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+                
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "cockroach"
+                    productType     = "electric"
 					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Cockroaches</h3>
-				</div>
+                </div>
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "cockroach"
+                    productType     = "spray"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "cockroach"
+                    productType     = "powder"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
 
 				<div data-ui-gallery
 					flex="100"
@@ -283,12 +363,41 @@
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "mosquitoes"
+                    insectType     	= "mosquitoes"
+                    productType     = "electric"
 					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Mosquitoes</h3>
-				</div>
-				<!--
+                </div>
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "mosquitoes"
+                    productType     = "powder"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "mosquitoes"
+                    productType     = "spray"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+				
 				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
@@ -299,11 +408,41 @@
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "flea"
+                    insectType     	= "flea"
+                    productType     = "spray"
 					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Fleas</h3>
-				</div>
+                </div>
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "flea"
+                    productType     = "powder"
+					sortBy="ASC" orderBy="post_title"
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+                <div data-ui-gallery
+					flex="100"
+					isWidget        = "false"
+					showTitle       = "true"
+					showFilter      = "false"
+					globalFilter    = "true"
+					showSubheader   = "true"
+					showDescription = "true"
+					showButton      = "true"
+					contentType     = "product"
+                    insectType     	= "flea"
+                    productType     = "electric"
+					sortBy="ASC" orderBy="post_title"
+                    gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+
 				<div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
@@ -314,12 +453,13 @@
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "fishmoths"
+                    insectType     	= "fishmoths"
+                    productType     = "spray"
 					sortBy="ASC" orderBy="post_title"
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
 						<h3 flex="100" class="carousel-title">Fishmoths</h3>
-				</div>
-				<div data-ui-gallery
+                </div>
+                <div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
@@ -329,12 +469,11 @@
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "ant"
+                    insectType     	= "fishmoths"
+                    productType     = "powder"
 					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
-						<h3 flex="100" class="carousel-title">Ants</h3>
-				</div>
-				<div data-ui-gallery
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+                <div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
 					showTitle       = "true"
@@ -344,27 +483,24 @@
 					showDescription = "true"
 					showButton      = "true"
 					contentType     = "product"
-					insectType     	= "cockroach"
+                    insectType     	= "fishmoths"
+                    productType     = "electric"
 					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
-						<h3 flex="100" class="carousel-title">Cockroaches</h3>
-				</div>
-				-->
-
+					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
+				
             </div>
 
             <div flex="grow">
 				<h3 class="carousel-title">Where to buy</h3>
                 <div data-ui-carousel
-                            flex="100"
-                            isSingle = "true"
-														needsCta = "false"
-														maxHeight = "250px"
-														maxWidth = "250px"
-														gutter = "10px"
-														displayName ="false"
-														contentType="retailer"
-														></div>
+                    flex="100"
+                    isSingle = "false"
+                    needsCta = "false"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="false"
+                    contentType="retailer"></div>
 
             </div>
 

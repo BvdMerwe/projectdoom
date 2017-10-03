@@ -183,9 +183,9 @@ define( function ( require, exports, module ) {
 				
 									_self._collection_pages = data;
 
-									deferred.resolve( data );
+									//deferred.resolve( data );
 
-									/** /
+									/**/
 									_self.saveCollection().then( function(saveddb) {
 										
 											deferred.resolve( saveddb );

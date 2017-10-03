@@ -71,11 +71,12 @@ define( function ( require, exports, module ) {
                     //element
                     var elem = element[0];
 
-                    console.log( 'Grid attributes:', attr, elem );
+                    //console.log( 'Grid attributes:', attr, elem );
                     scope.sortBy            = attr.sortby;
                     scope.orderBy           = attr.orderby;
                     scope.contentType       = attr.contenttype;
                     scope.insectType        = attr.insecttype;
+                    scope.productType        = attr.producttype;
                     scope.isWidget          = attr.iswidget;
                     scope.showFilter         = attr.showfilter;
                     //scope.gridItems         = parseInt(attr.griditems);
@@ -165,7 +166,8 @@ define( function ( require, exports, module ) {
                     $scope.orderBy;
                     $scope.contentType;
                     $scope.insectType;
-                    $scope.gridItems;
+                    $scope.productType;
+                    $scope.gridItems = [];
                     $scope.isWidget;
                     $scope.showFilter;
 
@@ -301,17 +303,97 @@ define( function ( require, exports, module ) {
 
                     $scope.layout = function() {
 
+                        //console.log('layout data', $scope.contentType);
+
                         _initialiseData($scope.contentType);
 
                     }
 
                     function _initiateLayout(results) {
 
-                        $scope.gridItems = results;
+                        //console.log('layout data', results);
+
+                        if( angular.isDefined($route.current.locals.app_data) && angular.isDefined($scope.productType) ) {
+
+                            loop1:
+                            for (var index = 0; index < results.length; index++) {
+
+                                var taxi = $route.current.locals.app_data.taxonomy.product_types;
+                            
+                                //angular.forEach( $route.current.locals.app_data.taxonomy.product_types, function(val, key) {
+                                loop2:
+                                for (var indie = 0; indie < taxi.length; indie++) {
+                                   
+                                    if( angular.isDefined(taxi[indie].product) ) {
+
+                                        // go through the product_type products
+                                        loop3:
+                                        for (var indey = 0; indey < taxi[indie].product.length; indey++) {
+                                            //break;
+                                            // if product is 
+                                            if( taxi[indie].product[indey].ID == results[index].ID ) {
+
+                                        
+                                                if( taxi[indie].name.toLowerCase() == $scope.productType.toLowerCase() ){
+                                                    results[index].product_type = taxi[indie].name;
+                                                    $scope.gridItems.push( results[index] );
+                                                }
+
+                                                //console.log('Got Em!', taxi[indie].name, $scope.productType);
+
+                                                break loop2;
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                                //});
+                
+                            }
+
+                            //$scope.gridItems = results;
+
+                            console.log('layout data', $scope.gridItems);
+
+                            //console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
+                        }
+
+                        /** * /
+                        // group by product types;
+                        if( angular.isDefined($route.current.locals.app_data) ) {
+
+                            //go through each product type
+                            angular.forEach( $route.current.locals.app_data.taxonomy.product_types, function(val, key) {
+
+                                if( angular.isDefined(val.product) ) {
+
+                                    // go through the product_type products
+                                    for (var index = 0; index < val.product.length; index++) {
+                                        break;
+                                        // if product is 
+                                       //if( val.product[index].ID == ) {
+
+                                       //}
+                                    }
+
+                                }
+
+                            });
+
+                        }
+                        /** */
+                        //
+
+                        //$scope.gridItems = results;
 
                     }
 
                     function _initialiseData( type ) {
+
+                        var gellaryProducts = [];
+
+                        //console.info('initialising data', type );
 
                         switch( type.toLowerCase() ) {
 
@@ -338,7 +420,74 @@ define( function ( require, exports, module ) {
                                 break;
 
                             case 'product':
+                                
+                                
+                                if( angular.isDefined($route.current.locals.app_data) ) {
 
+                                    var taxes = $route.current.locals.app_data.taxonomy;
+
+                                    //console.log('GARR[]:', $scope.insectType, $route.current.locals.app_data);
+
+                                    for (var index = 0; index < taxes.product_categories.length; index++) {
+                                        var element = taxes.product_categories[index];
+                                        
+                                    }
+
+                                    // go through all insect categories (Flying / Crawling)
+                                    //loop1:
+                                    //for (var index = 0; index < taxes.length; index++) {
+                                    
+                                    angular.forEach( taxes.insect_categories, function(val, key) {
+                                        
+                                        
+                                        //var insectArray = val.insect;
+
+                                        //console.log('trying['+key+']:', val );
+
+                                        switch( val.name.toLowerCase() ){
+
+                                            case 'flying':
+                                            case 'crawling':
+
+                                                //console.log('trying:', taxes[index].toLowerCase(), $scope.insectType );
+
+                                                loop2:
+                                                for (var indey = 0; indey < val.insect.length; indey++) {
+                                                    var element = val.insect[indey];
+
+                                                    if( val.insect[indey].post_name == $scope.insectType ) {
+
+                                                        //gallaryProducts.push( array[index.product] );
+
+                                                        //console.log('Got Em!');
+
+                                                        _initiateLayout(val.product);
+                                                        
+                                                        break loop2;
+
+                                                    }
+
+                                                }
+
+                                                break;
+                                            
+                                            default:
+
+                                                //continue;
+
+                                                break;
+                                        }
+                                        
+                                    
+                                    });
+                                    //}
+                                    // if insect (gallery.attr) is within that category; get the products
+                                    // group products by prodcuct type (after association)
+                                } else {
+                                    throw 'WTF:';
+                                }
+
+                                /*** /
                                 $q.all([
                                         productsManager.getProducts({
                                             'type': 'product',
@@ -392,7 +541,7 @@ define( function ( require, exports, module ) {
 
                                         //console.log('datad', datad, $filter('groupBy')( products, 'product_types' ));
 
-                                        console.log('datad', datad, products );
+                                        //console.log('datad', datad, products );
                 
                                         //_initiateLayout(results[0]);
                                         _initiateLayout(products);
@@ -407,6 +556,8 @@ define( function ( require, exports, module ) {
 
                                     }
                                 );
+                                /***/
+
                                 /*** /
                                 productsManager.getProducts({
                                         'method': 'GET',
