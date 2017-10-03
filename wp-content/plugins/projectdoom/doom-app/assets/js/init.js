@@ -62,11 +62,12 @@ require.config({
 		'classie': 					'../libs/classie',
 		"localforage": 				'../libs/localforage.min',
 		"modernizr": 				'../libs/modernizr',
-		"sjcl": 				'../libs/sjcl',
+		"sjcl": 					'../libs/sjcl',
 		"Utils": 					'../libs/Utils',
 		"domReady": 				'../libs/domready',
 		"classie": 					'../libs/classie',
-		'imagesloaded': 			'../libs/imagesloaded.pkgd.min'
+		'imagesloaded': 			'../libs/imagesloaded.pkgd.min',
+		'jlinq': 					'../libs/jlinq/jlinq'
 	},
     shim: {
 		'modernizr': {

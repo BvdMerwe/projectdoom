@@ -10,12 +10,12 @@
 
 ?>
 
-<div layout="column" class="footer-container" layout-fill id="footer">
-	<div layout="row" class="footer-nav">
+<div layout="column" class="footer-container" layout-fill id="footer" layout-align="center center">
+	<div layout="column" class="footer-nav"  layout-align="center center">
     <md-nav-bar
       md-selected-nav-item="currentNavItem"
       nav-bar-aria-label="navigation links"
-      flex="100" layout-align="end center">
+      >
       <md-nav-item md-nav-click="setPage('about')" name="about" layout-align="end center">
           ABOUT
       </md-nav-item>

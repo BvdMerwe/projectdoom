@@ -123,35 +123,36 @@ define( function ( require, exports, module ) {
         // lastTime.setHours(now.getHours() - (2));
         var timePassed = (now.getTime() - lastTime.getTime()) / 1000;
 
-        if ($scope.timer) {
-          $scope.show = $scope.show.concat($scope.stats);
-          startTimer(timePassed, $scope.duration);
-        } else {
-          var randIndex = Utils.getRandomInt(0, $scope.stats.length-1);
-          var randDays = Utils.getRandomInt(10, 28);
-          // var randDays = timePassed / 86400;
-          var stat = $scope.stats[randIndex];
-          for (var i = 0; i < stat.stats.length; i++) {
-            stat.time = randDays;
-            stat.stats[i].stat *= randDays;
-            stat.stats[i].dummy = 0;
-            stat.stats[i].show = "0";
+        $scope.init = function(){
+          if ($scope.timer) {
+            $scope.show = $scope.show.concat($scope.stats);
+            startTimer(timePassed, $scope.duration);
+          } else {
+            var randIndex = Utils.getRandomInt(0, $scope.stats.length-1);
+            var randDays = Utils.getRandomInt(10, 28);
+            // var randDays = timePassed / 86400;
+            var stat = $scope.stats[randIndex];
+            for (var i = 0; i < stat.stats.length; i++) {
+              stat.time = randDays;
+              stat.stats[i].stat *= randDays;
+              stat.stats[i].dummy = 0;
+              stat.stats[i].show = "0";
+            }
+            $scope.show.push(stat);
+            numberClimb(stat.stats[$scope.randStat].stat, $scope.duration);
           }
-          $scope.show.push(stat);
-          numberClimb(stat.stats[$scope.randStat].stat, $scope.duration);
-        }
 
-        function numberClimb(to, duration) {
-          var difference = to - stat.stats[$scope.randStat].dummy;
-          var perTick = difference / duration * 10;
-          $timeout(function () {
-              stat.stats[$scope.randStat].dummy = stat.stats[$scope.randStat].dummy + perTick;
-              stat.stats[$scope.randStat].show = Utils.numberWithCommas(Math.round(stat.stats[$scope.randStat].dummy));
-              if (stat.stats[$scope.randStat].dummy == to) return;
-              numberClimb(to, duration - 10);
-          }, 10);
+          function numberClimb(to, duration) {
+            var difference = to - stat.stats[$scope.randStat].dummy;
+            var perTick = difference / duration * 10;
+            $timeout(function () {
+                stat.stats[$scope.randStat].dummy = stat.stats[$scope.randStat].dummy + perTick;
+                stat.stats[$scope.randStat].show = Utils.numberWithCommas(Math.round(stat.stats[$scope.randStat].dummy));
+                if (stat.stats[$scope.randStat].dummy == to) return;
+                numberClimb(to, duration - 10);
+            }, 10);
+          }
         }
-
         var timer_1;
         function startTimer(startTime = 0, updateSpeed = 10) {
           var count = 0,
@@ -174,23 +175,7 @@ define( function ( require, exports, module ) {
             $scope.time = Utils.toDHMS(count * second);
             // $scope.time = Utils.toHHMMSS(count * second);
           }, updateSpeed, false);
-          // $interval(function () {
-          //   $scope.timeCoefficient = count * (seconds / secondsPerDay);
-          //   for (var x = 0; x < $scope.show.length; x++) {
-          //     for (var i = 0; i < $scope.show[x].stats.length; i++) {
-          //       $scope.show[x].time = count;
-          //       $scope.show[x].stats[i].dummy = 0;
-          //       $scope.show[x].stats[i].show = Utils.numberWithCommas((($scope.show[x].stats[i].stat * $scope.timeCoefficient) * $scope.amount).toFixed(2));
-          //     }
-          //   }
-          //   count += 1;
-          //   $scope.time = Utils.toDHMS(count * seconds);
-          // }, updateSpeed);
         }
-        // $scope.$watch('dynamic.amount', function(){
-        //   timer_1.stop();
-        //   timer_1.set_interval($scope.duration);
-        // }, true)
         function timer() //https://github.com/Atticweb/smart-interval
         {
           var timer = {
@@ -222,6 +207,9 @@ define( function ( require, exports, module ) {
           };
           return timer;
         }
+        // $scope.$on('$routeChangeSuccess', function (){
+          $scope.init();
+        // });
 			}],
       // controllerAs: 'vm',
 		};

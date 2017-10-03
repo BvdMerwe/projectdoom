@@ -18,13 +18,26 @@
             <div layout="row" layout-md="column" >
                 <div flex="grow" flex-md="100" class="md-padding">
                     <img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption" />
+<!-- 
+                    <div data-ui-carousel
+                        globalFilter = "false"
+                        showFilter = "true"
+                        filterBy="product_type"
+                        single = "true"
+                        needsCta = "false"
+                        maxHeight = "500px"
+                        maxWidth = "500px"
+                        gutter = "10px"
+                        displayName ="false"
+                        contentType = "product"></div> -->
 
                     <div class="tag-group">
-                        <md-button class="md-primary primary-tag">Outdoor</md-button>
-                        <md-button class="md-primary primary-tag">Infestation</md-button>
+                        <md-button class="md-primary primary-tag" ng-repeat="tag in pageContent.product_categories">{{tag.name}}</md-button>
+                        <md-button class="md-primary primary-tag" ng-repeat="tag in pageContent.product_types">{{tag.name}}</md-button>
+                        <!-- <md-button class="md-primary primary-tag">Infestation</md-button>
                         <md-button class="md-primary primary-tag">Spray</md-button>
                         <md-button class="md-primary primary-tag">Multi-Insects</md-button>
-                        <md-button class="md-primary primary-tag">Infestation</md-button>
+                        <md-button class="md-primary primary-tag">Infestation</md-button> -->
                     </div>
                 </div>
                 <div flex="grow" flex-md="100" class="md-padding">
@@ -224,15 +237,17 @@
             <div layout="column" class="md-padding">
                 <h3 class="carousel-title">Where to buy</h3>
                 <div data-ui-carousel
-                    flex="100"
-                    isWidget        = "true"
-                    showTitle       = "true"
-                    showSubheader   = "true"
-                    showDescription = "true"
-                    showButton      = "true"
-                    contentType     = "retailer"
-                    sortBy="ASC" orderBy="post_title"
-                    maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>
+                    globalFilter = "false"
+                    showFilter = "false"
+                    filterBy="insect_categories"
+                    single = "false"
+                    needsCta = "false"
+                    maxHeight = "350px"
+                    maxWidth = "200px"
+                    gutter = "10px"
+                    displayName ="false"
+                    buttonBorders="false"
+                    contentType = "retailer"></div>
             </div>
             <!-- -->
 
@@ -259,7 +274,6 @@
             <!-- [BODY SECTION] -->
 
             <div flex="grow">
-
                 <div data-ui-gallery
 					flex="100"
 					isWidget        = "false"

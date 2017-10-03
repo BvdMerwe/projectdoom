@@ -548,19 +548,21 @@ body.super-search-open {
 	display: block;
 	width:100%;
 	left:0;
-	z-index: 999999;
+	/* z-index: 999999; */
 }
 
-.insect-controller-buttons .lnr-chevron-left,
-.insect-controller-buttons .lnr-chevron-right {
+.insect-controller-buttons .icon-chevron-left,
+.insect-controller-buttons .icon-chevron-right {
 	position: absolute;
 	font-size: 2em;
+	background-color: transparent;
+	border: none;
 } 
 
-.insect-controller-buttons .lnr-chevron-left {
+.insect-controller-buttons .icon-chevron-left {
 	left:0;
 }
-.insect-controller-buttons .lnr-chevron-right {
+.insect-controller-buttons .icon-chevron-right {
 	right:0;
 }
 /**

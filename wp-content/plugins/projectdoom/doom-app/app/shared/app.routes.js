@@ -467,7 +467,7 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$rootScope', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function($rootScope, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({

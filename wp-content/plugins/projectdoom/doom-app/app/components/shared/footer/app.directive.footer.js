@@ -28,79 +28,65 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
-define( function ( require, exports, module ) {
+define(function (require, exports, module) {
 
-    'use strict';
+  'use strict';
 
-	require("app-xhr");
-	require("app-utils");
-	require("app-page");
-	require("angular-progress");
+  require("app-xhr");
+  require("app-utils");
+  require("app-page");
+  require("angular-progress");
   require("angular-material");
 
-	// Load dependent modules
-	var appDirectiveFooter,
-				appConfig		= JSON.parse(require("text!../../app/app.config.json")),
-        domReady 		= require("domReady"),
-        isMobile 		= require("isMobile"),
-				angular 		= require("angular");
+  // Load dependent modules
+  var appDirectiveFooter,
+    appConfig = JSON.parse(require("text!../../app/app.config.json")),
+    domReady = require("domReady"),
+    isMobile = require("isMobile"),
+    angular = require("angular");
 
-	//
-	var Application = Application || {};
-	Application.Directives = {};
+  //
+  var Application = Application || {};
+  Application.Directives = {};
 
-	Application.Directives.uiFooter = function () {
+  Application.Directives.uiFooter = function () {
 
-		return {
-			restrict: 		'AE',
-			transclude: 	false, // pass entire template?
-			templateUrl: 	appConfig.general.path+'/app/components/shared/footer/footer.php',
-			scope: {
+    return {
+      restrict: 'AE',
+      transclude: false, // pass entire template?
+      templateUrl: appConfig.general.path + '/app/components/shared/footer/footer.php',
+      scope: {
         //attribute params
-				//paramName:'@paramname',
-	    },
-			link: function (scope, element, attrs, controller) {
-        scope.open = function(page){
-          // scope.static = '';
-          // scope.current = '';
-          // console.log("Showing footer page", page.post_name);
-          // scope.current = page;
-          
+        //paramName:'@paramname',
+      },
+      link: function (scope, element, attrs, controller) {
+        scope.addOpen = function(){
+          angular.element(element[0].querySelector("#footer")).addClass('open');
+        }
+        scope.addClose = function(){
+          angular.element(element[0].querySelector("#footer")).removeClass('open');
+        }
+        scope.close = function () {
+          console.log("Hiding footer page");
+          element.removeClass('open');
+        }
+        scope.checkPath();
+      },
+      controller: ['$rootScope', '$scope', '$sce', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'pagesManager', function ($rootScope, $scope, $sce, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, pagesManager) {
+        $scope.open = function (page) {
           switch (page) {
             case 'faq':
             case 'contact':
             case 'about':
             case 'legal':
-              angular.element(element[0].querySelector("#footer")).addClass('open');
+              $scope.addOpen();
               break;
             default:
-            angular.element(element[0].querySelector("#footer")).removeClass('open');
+              $scope.addClose();
               return;
           }
         };
-        // scope.openStatic = function(page){
 
-        //   scope.static = '';
-        //   scope.current = '';
-        //   switch (page) {
-        //     case 'faq':
-        //       scope.static = 'faq';
-        //       break;
-        //     case 'contact':
-        //       scope.static = 'contact';
-        //       break;
-        //     default:
-        //       return;
-        //   }
-        //   element.addClass('open');
-        // }
-        scope.close = function() {
-          console.log("Hiding footer page");
-          element.removeClass('open');
-        }
-
-			},
-			controller:  	[ '$rootScope', '$scope', '$sce', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'pagesManager', function ( $rootScope, $scope, $sce, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, pagesManager ) {
         var requestObj = {
           method: "GET",
           type: 'page'
@@ -122,55 +108,50 @@ define( function ( require, exports, module ) {
         // }, function(err){
         //   console.log("Fek", err);
         // });
-        $scope.setPage = function(page){
-          $location.path("/"+page);
+        $scope.setPage = function (page) {
+          $location.path("/" + page);
           // console.log("navigate to ",page);
         }
 
-        $scope.$on( "$routeChangeStart", function(){
+        $scope.$on("$routeChangeStart", function () {
           $scope.close();
-				});
+        });
 
-        $scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
+        $scope.$on("$routeChangeSuccess", function (ev, to, toParams, from, fromParams) {
           $scope.renderPath = $rootScope.renderPath;
           $scope.open(to.$$route.action);
-				});
-        // $scope.goPage = function (pageName) {
-        //   $scope.close();
-        //   switch (pageName) {
-        //     case 'faq':
-        //       $scope.openStatic(pageName);
-        //       return;
-        //     case 'contact':
-        //       $scope.openStatic(pageName);
-        //       return;
-        //   }
-        //   for (var i = 0; i < $scope.pages.length; i++) {
-        //     if ($scope.pages[i].post_name == pageName) {
-        //       $scope.open($scope.pages[i]);
-        //       return;
-        //     }
-        //   }
-        //   $scope.close();
-        // }
-			}],
+        });
+        $scope.checkPath = function(){
+          switch ($location.$$path) {
+            case '/faq':
+            case '/contact':
+            case '/about':
+            case '/legal':
+              $scope.renderPath = $rootScope.renderPath;
+              $scope.open($location.$$path.substring(1));
+              $scope.setPage($location.$$path.substring(1));
+              break;
+            default:
+          }
+        }
+      }],
       // controllerAs: 'vm',
-		};
+    };
 
-	};
+  };
 
-	domReady( function () {
+  domReady(function () {
 
 		/*
 		 * APP MODULE
 		 */
-		appDirectiveFooter = appDirectiveFooter || angular.module( 'appDirectiveFooter', [ 'appUtils', 'appXHR', 'ngMaterial', 'ngProgress' ] );
+    appDirectiveFooter = appDirectiveFooter || angular.module('appDirectiveFooter', ['appUtils', 'appXHR', 'ngMaterial', 'ngProgress']);
 
-		appDirectiveFooter
-			.directive( Application.Directives );
+    appDirectiveFooter
+      .directive(Application.Directives);
 
 
-	});
+  });
 
-	exports.appDirectiveFooter = appDirectiveFooter;
+  exports.appDirectiveFooter = appDirectiveFooter;
 });

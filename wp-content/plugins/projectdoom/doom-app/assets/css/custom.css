@@ -10,6 +10,23 @@
   display: inline-block !important;
 }
 
+md-toolbar {
+  z-index: 0 !important;
+}
+
+.md-track-container {
+  top: 24px;
+  height: 1px;
+}
+
+.md-track-container .md-track {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.md-track-container .md-track-fill {
+  background-color: #14A774;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -24,12 +41,16 @@
 /***********************************************
 * Navigation STYLE
 ***********************************************/
+div[data-ui-navigation] {
+  z-index: 9;
+}
+
 .super-menu-open .site-content, .super-menu-open .app-dashboard {
   height: 100%;
 }
 
 .super-menu {
-  z-index: 1000;
+  z-index: 10;
 }
 
 .super-menu-open div[data-ui-navigation],
@@ -106,12 +127,15 @@ md-sidenav ul li {
   content: initial !important;
 }
 
+.no-border .carousel-control {
+  border-color: transparent;
+}
+
 .carousel-container {
   position: relative;
 }
 
 .carousel-container .controls {
-  z-index: 10;
   font-size: 20px;
 }
 
@@ -203,7 +227,6 @@ md-sidenav ul li {
   max-height: 150px;
   max-width: 100%;
   position: relative;
-  z-index: 1;
 }
 
 .carousel-container .carousel .carousel-item-name, .carousel-container .carousel .cta {
@@ -235,6 +258,10 @@ md-autocomplete-wrap input {
 
 .md-autocomplete-suggestions-container {
   background: #fff;
+}
+
+#search-takeover {
+  color: #fff;
 }
 
 #search-takeover.open .search-container.layout-fill {
@@ -273,7 +300,7 @@ md-autocomplete-wrap input {
   -o-transition: 0.8s;
   transition: 0.8s;
   position: relative;
-  z-index: 12;
+  z-index: 10;
   outline: none !important;
   border: 0;
   background: transparent;
@@ -300,7 +327,7 @@ md-autocomplete-wrap input {
   right: 0;
   pointer-events: none;
   background-color: transparent;
-  z-index: 10;
+  z-index: 7;
 }
 
 .searchbar-container .search-bar {
@@ -343,7 +370,7 @@ md-autocomplete-wrap input {
   top: 0;
   right: -100%;
   background: #fff;
-  z-index: 11;
+  z-index: 9;
   overflow: auto;
 }
 
@@ -418,17 +445,20 @@ md-autocomplete-wrap input {
 /***********************************************
 * footer STYLE
 ***********************************************/
+#footer {
+  color: #fff;
+}
+
 #footer.open .footer-content {
   top: 0px;
 }
 
 #footer .footer-nav {
-  z-index: 11;
+  color: #fff;
   position: absolute;
   width: 100%;
   bottom: 0;
   left: 0;
-  width: 100%;
   background-color: #14A774;
 }
 
@@ -480,6 +510,20 @@ md-autocomplete-wrap input {
 /***********************************************
 * configurator STYLE
 ***********************************************/
+/*****
+
+slider style
+
+*****/
+div[data-ui-configurator] md-slider .md-thumb {
+  display: none;
+  font-family: 'doom-icons';
+}
+
+div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
+  content: "\e900";
+}
+
 #configurator {
   width: 100%;
 }
@@ -885,6 +929,3 @@ md-autocomplete-wrap input {
   display: inline-block;
   margin-top: 0.625em;
 }
- 
-
- /*# sourceMappingURL= custom.css.map */

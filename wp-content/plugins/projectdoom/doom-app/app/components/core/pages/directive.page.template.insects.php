@@ -60,8 +60,8 @@
                     
                 </div>
                 <div class="insect-controller-buttons">
-                    <button class="lnr lnr-chevron-left" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
-                    <button class="lnr lnr-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
+                    <button class="icon-chevron-left" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
+                    <button class="icon-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
                 </div>
             </div>
             <div layout="row" layout-md="column" layout-align="center start">

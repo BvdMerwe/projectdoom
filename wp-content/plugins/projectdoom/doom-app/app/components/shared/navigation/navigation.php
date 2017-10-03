@@ -29,7 +29,7 @@
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
 					</div> -->
 					<!-- <div data-ui-randomstat ></div> -->
-					<div data-ui-randomstat timer="true" ></div>
+					<div data-ui-randomstat duration="300" ></div>
 					
 					
 					<div flex="30" layout-fill>

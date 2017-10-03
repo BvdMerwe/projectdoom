@@ -144,7 +144,7 @@
         </div>
         <div class="product-container" flex="33">
           <div class="product" layout="row" layout-fill layout-align="center end">
-            <img src="{{result.product.image}}" alt="{{result.product.post_name}}" />
+            <img ng-src="{{result.product.image}}" alt="{{result.product.post_name}}" />
           </div>
         </div>
         <div class="solution-container" flex="33">

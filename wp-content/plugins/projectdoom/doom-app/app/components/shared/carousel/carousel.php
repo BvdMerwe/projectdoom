@@ -9,7 +9,28 @@
  */
 
 ?>
-
+<md-toolbar class="md-hue-1 toolbar-filter" data-ng-if="showFilter">
+	<div class="md-toolbar-tools" layout-align="start end" style="border-bottom:2px solid #14A774;">
+		<md-button 
+			md-no-ink
+			class="md-primary md-hue-2 btn-filter" 
+			aria-label="" 
+			data-filter-id="{{value.term_id}}"
+			data-ng-click="filter($event, value.term_id)"
+			data-ng-if="value.name == 'Flying' || value.name == 'Crawling'"
+			data-ng-repeat="(key, value) in insectFilterCategories">
+				{{value.name}}
+		</md-button>
+		<md-button 
+			class="md-primary md-hue-3 btn-filter active-filter" 
+			aria-label=""
+			data-filter-id="all"
+			data-ng-click="filter( $event, 'all' )">
+				ALL
+		</md-button>
+	</div>
+</md-toolbar>
+<div ng-transclude></div>
 <div layout="column" class="carousel-container">
 	<div class="controls" ng-if="itemLength > 0">
 		<span class="carousel-control left lnr lnr-chevron-left" ng-click="goLeft($event)"></span>
@@ -21,7 +42,7 @@
 				<div>
 					<div class="bg-box" style="max-height:calc({{maxHeight}} - 85px);">
 						<!-- <div class="bg-image" style="height:calc({{maxHeight}} - 85px);background: url('{{item.image}}') center bottom no-repeat; background-size: contain;"></div> -->
-						<img class="image" src="{{item.image}}"/>
+						<img class="image" ng-src="{{item.image}}" style="max-height:calc({{maxHeight}} - 85px)"/>
 					</div>
 					<div class="carousel-item-name" ng-if="displayName">{{item.post_title}}</div>
 					<div class="cta" ng-if="needsCta">

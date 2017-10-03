@@ -38,12 +38,14 @@ define(function (require, exports, module) {
 	require("app-product");
 	require("angular-progress");
 	require("angular-material");
+	require("jlinq");
 
 	// Load dependent modules
 	var appDirectiveCarousel,
 		appConfig = JSON.parse(require("text!../../app/app.config.json")),
 		domReady = require("domReady"),
 		isMobile = require("isMobile"),
+		// jlinq = 
 		angular = require("angular");
 
 	//
@@ -54,7 +56,7 @@ define(function (require, exports, module) {
 
 		return {
 			restrict: 'AE',
-			transclude: false, // pass entire template?
+			transclude: true, // pass entire template?
 			templateUrl: appConfig.general.path + '/app/components/shared/carousel/carousel.php',
 			scope: {
 				// items: '=?itemList',
@@ -64,11 +66,14 @@ define(function (require, exports, module) {
 				contentType: '@contenttype',
 				maxHeight: '@maxheight',
 				maxWidth: '@maxwidth',
-				needsCta: '=needscta',
+				needsCta: '=cta',
 				displayName: '=displayname',
 				isSingle: '=single',
 				gutter: '@gutter',
-				items: '=?items'
+				globalFilter: '=?globalfilter',
+				showFilter: "=?showfilter",
+				filterBy: "@filterby",
+				buttonBorders: "=?buttonborders"
 			},
 			link: function (scope, element, attr, controller) {
 				scope.contentType = attr.contenttype;
@@ -83,7 +88,9 @@ define(function (require, exports, module) {
 				// scope.maxHeight = scope.maxWidth = "100px";
 				// if (attrs.maxheight) {scope.maxHeight = attrs.maxheight;}
 				// if (attrs.maxwidth) {scope.maxWidth = attrs.maxwidth;}
-
+				if (!scope.buttonBorders) {
+					angular.element(element).addClass("no-border");
+				}
 				var thisElem = scope.thisElem = element;
 				var index = 0;
 				scope.domItems = angular.element(element[0].querySelector('.list')).children[0];
@@ -99,7 +106,7 @@ define(function (require, exports, module) {
 					angular.element(element[0].querySelector('.carousel')).css('width', scope.maxWidth);
 				}
 
-				controller.updateCarousel(thisElem);
+				scope.updateCarousel(thisElem);
 				/************************************
 				*	functions
 				************************************/
@@ -190,9 +197,9 @@ define(function (require, exports, module) {
 					if (scope.moving) {
 						return;
 					}
-					if (Math.abs(container.scrollLeft - direction) > 5) {
+					if (Math.abs(container.scrollLeft - direction) > 1) {
 						direction = container.scrollLeft;
-						console.log("too fast");
+						// console.log("too fast");
 						return;
 					}
 					if (container.scrollLeft % (amount + gutter) != 0) {
@@ -223,12 +230,21 @@ define(function (require, exports, module) {
 				angular.element($window).on('resize', onResize);
 				scope.$on('$destroy', cleanUp);
 			},
-			controller: ['$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
+			controller: ['$filter','$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
 				//init data
 				$scope.contentType;
 				$scope.insectType;
 				$scope.productType;
 
+				// if ($scope.showFilter == undefined) {
+				// 	$scope.showFilter = false;
+				// }
+				if ($scope.globalFilter) {
+					$scope.$on('$testEvent', function (event, data) {
+						$scope.insectType = data;
+						$scope.updateCarousel();
+					});
+				}
 
 				if ($scope.items != undefined) {
 					$scope.itemLength = $scope.items.length;
@@ -239,7 +255,7 @@ define(function (require, exports, module) {
 				// $scope.displayName = false;
 				// $scope.isSingle = false;
 				//Get data
-				this.updateCarousel = function (thisElem) {
+				$scope.updateCarousel = function (thisElem) {
 
 					var requestObj = {
 						method: "GET",
@@ -257,11 +273,55 @@ define(function (require, exports, module) {
 								if (angular.isDefined($route.current.locals.app_data) && angular.isDefined($scope.productType)) {
 									$scope.items = [];
 									var results = $route.current.locals.app_data.products;
+									_getUniqueCategories( results );
+
+									// _initiateLayout();
+									/** /
+									var asdf = results;
+									asdf = jlinq.from(asdf)
+										.equals("insect_categories", ja)
+										.select();
+									// asdf = jlinq.from(asdf)
+									// .equals("product_types.slug", $scope.productType)
+									// .select();
+									console.log(asdf);
+
+									/**/
+									/**/
+									var productTypes = _returnUniqueCategories($route.current.locals.app_data.products);
+									var insectTypes = _returnUniqueCategories($route.current.locals.app_data.insects);
+									var final = [];
+									// for (var i = 0; i < productTypes.length; i++) {
+									// 	if (productTypes[i].name == $scope.productType) {
+												for (var j = 0; j < results.length; j++) {
+													for (var i = 0; i < results[j].insect_categories.length; i++) {
+														if (results[j].insect_categories[i].slug == $scope.insectType) {
+															final.push(results[j]);
+															break;
+														}
+													}
+												}
+									// 	}
+									// }
+									for (var j = 0; j < results.length; j++) {
+										for (var i = 0; i < results[j].product_types.length; i++) {
+											if (results[j].product_types[i].slug == $scope.productType) {
+												final.push(results[j]);
+												break;
+											}
+										}
+									}
+									_initiateLayout(final);
+									break;
+
+									/** /
+
 									var taxes = $route.current.locals.app_data.taxonomy;
 									//console.log('GARR[]:', $scope.insectType, $route.current.locals.app_data);
-									for (var index = 0; index < taxes.product_categories.length; index++) {
-										var element = taxes.product_categories[index];
-									}
+									
+									// for (var index = 0; index < productTypes.length; index++) {
+									// 	var element = productTypes[index];
+									// }
 									// go through all insect categories (Flying / Crawling)
 									//loop1:
 									//for (var index = 0; index < taxes.length; index++) {
@@ -288,6 +348,7 @@ define(function (require, exports, module) {
 												break;
 										}
 									});
+									/**/
 									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
 								} else {
 									$scope.success($route.current.locals.app_data.products);
@@ -328,6 +389,9 @@ define(function (require, exports, module) {
 									if (taxi[indie].product[indey].ID == results[index].ID) {
 										if (taxi[indie].name.toLowerCase() == $scope.productType.toLowerCase()) {
 											results[index].product_type = taxi[indie].name;
+											if (results[index].image == undefined) {
+												results[index].image = "https://unsplash.it/65/150";
+											}
 											out.push(results[index]);
 										}
 										//console.log('Got Em!', taxi[indie].name, $scope.productType);
@@ -353,7 +417,6 @@ define(function (require, exports, module) {
 				$scope.error = function (error) {
 					console.log("Fek");
 				}
-
 				$scope.$on('items-loaded', function () {
 					if ($scope.itemLength > 0) {
 						//update controls
@@ -369,41 +432,61 @@ define(function (require, exports, module) {
 				});
 
 				$scope.filter = function ($ev, key) {
-					//console.log( 'Filtering...', key, $ev );
+					console.log('Filtering...', key, $ev);
 					_filterBtnClasses(key);
 					var newItems = [];
 					if (key == "all") {
-						// _initialiseData($scope.contentType);
+						$scope.success($route.current.locals.app_data.products);
+						return;
 					} else {
 						switch ($scope.contentType) {
 							case 'insect':
-								for (var index = 0; index < $scope.gridItems.length; index++) {
+								for (var index = 0; index < $scope.items.length; index++) {
 									//var element = $scope.gridItems[index];
-									for (var index2 = 0; index2 < $scope.gridItems[index].insect_categories.length; index2++) {
+									for (var index2 = 0; index2 < $scope.items[index].insect_categories.length; index2++) {
 										//var element = $scope.gridItems[index].insect_categories[index2];
-										if ($scope.gridItems[index].insect_categories[index2].term_id == key) {
-											newItems.push($scope.gridItems[index]);
+										if ($scope.items[index].insect_categories[index2].term_id == key) {
+											newItems.push($scope.items[index]);
 										}
 									}
 								}
 								break;
 							case 'product':
-								for (var index = 0; index < $scope.gridItems.length; index++) {
-									//var element = $scope.gridItems[index];
-									for (var index2 = 0; index2 < $scope.gridItems[index].product_categories.length; index2++) {
-										//var element = $scope.gridItems[index].product_categories[index2];
-										if ($scope.gridItems[index].product_categories[index2].term_id == key) {
-											newItems.push($scope.gridItems[index]);
+								switch ($scope.filterBy) {
+									case "insect_categories":
+										$scope.items = $route.current.locals.app_data.products;
+										for (var index = 0; index < $scope.items.length; index++) {
+											//var element = $scope.gridItems[index];
+											for (var index2 = 0; index2 < $scope.items[index].insect_categories.length; index2++) {
+												//var element = $scope.gridItems[index].product_categories[index2];
+												if ($scope.items[index].insect_categories[index2].term_id == key) {
+													newItems.push($scope.items[index]);
+												}
+											}
 										}
-									}
+										break;
+									case "product_types":
+									default:
+										$scope.items = $route.current.locals.app_data.products;
+										for (var index = 0; index < $scope.items.length; index++) {
+											//var element = $scope.gridItems[index];
+											for (var index2 = 0; index2 < $scope.items[index].product_types.length; index2++) {
+												//var element = $scope.gridItems[index].product_categories[index2];
+												if ($scope.items[index].product_types[index2].term_id == key) {
+													newItems.push($scope.items[index]);
+												}
+											}
+										}
+										break;
 								}
+								
 								break;
 							default:
 								throw 'Invalid Content Type Active';
 								break;
 						}
 					}
-					$scope.items = newItems;
+					$scope.success(newItems);
 				}
 
 				$scope.goto = function (type, name) {
@@ -417,6 +500,187 @@ define(function (require, exports, module) {
 							$location.path('/' + name);
 							break;
 					}
+				}
+				function _getUniqueCategories(results) {
+
+					$scope.filterCategories = [];
+
+					var cats = [];
+					var insects = [];
+					var insectCats = [];
+
+					switch ($scope.contentType.toLowerCase()) {
+
+						case 'product':
+
+							for (var index = 0; index < results.length; index++) {
+
+								cats.push(results[index].product_categories);
+								insectCats.push(results[index].insect_categories);
+
+							}
+
+							break;
+
+						case 'insect':
+
+							for (var index = 0; index < results.length; index++) {
+
+								cats.push(results[index].insect_categories);
+
+							}
+
+							//cats = results.insect_categories;
+
+							break;
+
+						default:
+
+							throw 'Invalid Content Type for Gallery';
+
+							break;
+
+					}
+
+					/** /
+					for (var index = 0; index < cats.length; index++) {
+							cats =  $scope.filter('filterBy', '')(cats);
+							
+					}/**/
+
+					$scope.filterCategories = $filter('flatten')(cats);
+					$scope.insectFilterCategories = $filter('flatten')(insectCats);
+					$scope.filterCategories = $filter('unique')($scope.filterCategories, 'term_id');
+					$scope.insectFilterCategories = $filter('unique')($scope.insectFilterCategories, 'term_id');
+
+					//console.log( 'categories:', $scope.filterCategories, $scope.insectFilterCategories );
+
+				}
+				function _filterBtnClasses(key) {
+
+					var filterToolBarBtns = document.querySelectorAll('.toolbar-filter .md-button');
+
+					for (var index = 0; index < filterToolBarBtns.length; index++) {
+						// var element = filterToolBarBtns[index];
+						Utils.removeClass(filterToolBarBtns[index], 'active-filter');
+
+					}
+
+					var activeFilter = document.querySelector('[data-filter-id="' + key + '"]');
+
+					console.log('activeFilter:', activeFilter);
+
+					Utils.addClass(activeFilter, 'active-filter');
+
+				}
+				function _getUniqueCategories(results) {
+
+					$scope.filterCategories = [];
+
+					var cats = [];
+					var insects = [];
+					var insectCats = [];
+
+					switch ($scope.contentType.toLowerCase()) {
+
+						case 'product':
+
+							for (var index = 0; index < results.length; index++) {
+
+								cats.push(results[index].product_types);
+								insectCats.push(results[index].insect_categories);
+
+							}
+
+							break;
+
+						case 'insect':
+
+							for (var index = 0; index < results.length; index++) {
+
+								cats.push(results[index].insect_categories);
+
+							}
+
+							//cats = results.insect_categories;
+
+							break;
+
+						default:
+
+							throw 'Invalid Content Type for Gallery';
+
+							break;
+
+					}
+
+					/** /
+					for (var index = 0; index < cats.length; index++) {
+							cats =  $scope.filter('filterBy', '')(cats);
+							
+					}/**/
+
+					$scope.filterCategories = $filter('flatten')(cats);
+					$scope.insectFilterCategories = $filter('flatten')(insectCats);
+					$scope.filterCategories = $filter('unique')($scope.filterCategories, 'term_id');
+					$scope.insectFilterCategories = $filter('unique')($scope.insectFilterCategories, 'term_id');
+
+					//console.log( 'categories:', $scope.filterCategories, $scope.insectFilterCategories );
+
+				}
+				function _returnUniqueCategories(results) {
+					var filterCategories = [];
+
+					var cats = [];
+					var insects = [];
+					var insectCats = [];
+
+					switch ($scope.contentType.toLowerCase()) {
+
+						case 'product':
+
+							for (var index = 0; index < results.length; index++) {
+
+								cats.push(results[index].product_types);
+								insectCats.push(results[index].insect_categories);
+
+							}
+
+							break;
+
+						case 'insect':
+
+							for (var index = 0; index < results.length; index++) {
+
+								cats.push(results[index].insect_categories);
+
+							}
+
+							//cats = results.insect_categories;
+
+							break;
+
+						default:
+
+							throw 'Invalid Content Type for Gallery';
+
+							break;
+
+					}
+
+					/** /
+					for (var index = 0; index < cats.length; index++) {
+							cats =  $scope.filter('filterBy', '')(cats);
+							
+					}/**/
+
+					filterCategories = $filter('flatten')(cats);
+					filterCategories = $filter('unique')(filterCategories, 'term_id');
+
+					return filterCategories;
+
+					//console.log( 'categories:', $scope.filterCategories, $scope.insectFilterCategories );
+
 				}
 			}],
 			// controllerAs: 'vm',

@@ -490,19 +490,33 @@ define( function ( require, exports, module ) {
 			transclude: 	true,
 			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.home.php',
 			/**/
-			controller:  	[ '$rootScope', '$scope', '$http', '$q', '$route', '$timeout', 'transformRequestAsFormPost', 'Utils', function ( $rootScope, $scope, $http, $q, $route, $timeout, transformRequestAsFormPost, Utils ) {
+			controller:  	[ '$location', '$rootScope', '$scope', '$http', '$q', '$route', '$timeout', 'transformRequestAsFormPost', 'Utils', function ( $location, $rootScope, $scope, $http, $q, $route, $timeout, transformRequestAsFormPost, Utils ) {
 
 				var inputMsgTimeout,
 					inputValidationTimeout;
 
 				//$scope.pageContent = {};
-
+				$scope.sendTestEvent = function (event, data) {
+					$rootScope.$broadcast('$testEvent', event);
+				}
+				$scope.$on( '$destroy', function(evt, data) {
+		
+					inputMsgTimeout  = null;
+					inputValidationTimeout  = null;
+		
+				});
 				$scope.$on( '$destroy', function(evt, data) {
 
 					inputMsgTimeout  = null;
 					inputValidationTimeout  = null;
 
 				});
+				if ($location.$$path == "/") {
+					var pests = $route.current.locals.app_data.insects;
+					var rand = Utils.getRandomInt(0,pests.length-1);
+					$location.path("/insects/"+pests[rand].post_name);
+				}
+				
 
 				/** /
 				$rootScope.$on( "projects", function( type, data ){

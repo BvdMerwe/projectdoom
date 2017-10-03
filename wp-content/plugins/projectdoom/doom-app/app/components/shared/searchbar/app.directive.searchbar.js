@@ -42,6 +42,7 @@ define( function ( require, exports, module ) {
 	require("app-search");
 	require("angular-progress");
   require("angular-material");
+  require("jlinq");
 
 	// Load dependent modules
 	var appDirectiveSearchBar,
@@ -96,13 +97,24 @@ define( function ( require, exports, module ) {
           //   }
           // });
           if ($scope.contentType == 'faq') {
-            $scope.results = $route.current.locals.app_data.pagecontent;
+            $scope.results = $route.current.locals.app_data.faqs;
           }
           $scope.selectedItemChange = function(item) {
             // scope.searchText += item.post_title;
           }
           $scope.searchTextChange = function(searchText) {
-            var results = $filter('filter')($route.current.locals.app_data.pagecontent, searchText);
+            var insects = $route.current.locals.app_data.insects;
+            var products = $route.current.locals.app_data.products;
+            var faqs = $route.current.locals.app_data.faqs;
+            var stuff = insects.concat(products.concat(faqs));
+
+            var results = $filter('filter')(stuff, searchText);
+            if ($scope.contentType) {
+              results = jlinq
+                .from(results)
+                .equals("post_type", $scope.contentType)
+                .select();
+            }
             $scope.results = results;
           }
           $scope.querySearch = function(searchText, search) {
@@ -126,13 +138,13 @@ define( function ( require, exports, module ) {
             if (query.indexOf($scope.placeholder.replace("...", " ")) == 0 && !search) {
               query = query.replace($scope.placeholder.replace("...", " "), "").toLowerCase()
               var cache = $route.current.locals.app_data;
-              for (var i = 0; i < cache.pagecontent.length; i++) {
+              for (var i = 0; i < cache.insects.length; i++) {
                 // Utils.forEach(cache.insects, function (obj) {
                 //   if (query.indexOf(obj) < 0) {
                 //     results.push(obj);
                 //   }
                 // })
-                var insect = cache.pagecontent[i];
+                var insect = cache.insects[i];
                 var faq = cache.faq[i];
                 if (insect.post_title.toLowerCase().indexOf(query) == 0) {
                   results.push(insect);
@@ -178,7 +190,7 @@ define( function ( require, exports, module ) {
             } else {
               cache = $route.current.locals.app_data;
               //restructure cache to an array
-              var rebuildCache = cache.pagecontent/*.concat(cache.products)*/;
+              var rebuildCache = cache/*.pagecontent.concat(cache.products)*/;
 
               results = $filter('filter')(rebuildCache, query);
               $scope.results = results;
