@@ -76,7 +76,11 @@ define( function ( require, exports, module ) {
 
 		/***/
 		$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
-
+			if (to.$$route.action == "home") {
+				var pests = $route.current.locals.app_data.insects;
+				var rand = Utils.getRandomInt(0,pests.length-1);
+				$location.path("/insects/"+pests[rand].post_name);
+			}
 			//console.log(ev, to, toParams, from, fromParams);
 
 			//$scope.currentInsect = {};

@@ -344,6 +344,8 @@ md-nav-ink-bar {
 
 .page-products div[data-ui-carousel] {
 	position: relative;
+    max-width: calc(100% - 30px);
+    margin-left: 16px;
 }
 .page-products div[data-ui-carousel]:before {
 	position: absolute;
@@ -384,7 +386,7 @@ md-nav-ink-bar {
 
 .page-products div[data-ui-carousel] img {
 	position: relative;
-	width:100%;
+	max-width:100%;
 }
 
 .super-bug-image {
@@ -674,18 +676,18 @@ md-nav-ink-bar {
 	
 }
 
-.insect-controller-buttons .lnr-chevron-left,
-.insect-controller-buttons .lnr-chevron-right {
+.insect-controller-buttons .icon-chevron-left,
+.insect-controller-buttons .icon-chevron-right {
 	position: absolute;
 	font-size: 2em;
 	border:none;
 	background:none;
 } 
 
-.insect-controller-buttons .lnr-chevron-left {
+.insect-controller-buttons .icon-chevron-left {
 	left:0;
 }
-.insect-controller-buttons .lnr-chevron-right {
+.insect-controller-buttons .icon-chevron-right {
 	right:0;
 }
 
@@ -698,20 +700,20 @@ md-nav-ink-bar {
 }
 /**/
 
-.configurator-progress { 
+.breadcrumbs { 
 	border-radius:0;
 	height:5px;
 	background: #444;
 	margin:2em auto;
 } 
 
-.configurator-progress .md-thumb,
-.configurator-progress .md-thumb:after {
+.breadcrumbs .md-thumb,
+.breadcrumbs .md-thumb:after {
 	width:40px;
 	height:40px;
 }
 
-.configurator-progress .md-thumb {
+.breadcrumbs .md-thumb {
 	top: -20px;
 	left:-20px;
 	background-color: #444444;
@@ -724,13 +726,13 @@ md-nav-ink-bar {
 	border:none;
 }
 
-.configurator-progress .md-thumb:after {
+.breadcrumbs .md-thumb:after {
 	background-color:#444444;
 	border:2px solid #fff;
 	box-shadow: 0 0 2px 5px #444;
 }
 
-md-slider .md-track-container {
+.breadcrumbs md-slider .md-track-container {
 	display:none;
 }
 

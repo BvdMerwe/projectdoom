@@ -123,12 +123,18 @@ md-sidenav ul li {
 /***********************************************
 * Carousel STYLE
 ***********************************************/
+div[data-ui-carousel] {
+  position: relative;
+  max-width: calc(100% - 30px);
+  margin-left: 16px;
+}
+
 .retailer-carousel .item .bg-box::before {
   content: initial !important;
 }
 
 .no-border .carousel-control {
-  border-color: transparent;
+  border-color: transparent !important;
 }
 
 .carousel-container {
@@ -515,13 +521,48 @@ md-autocomplete-wrap input {
 slider style
 
 *****/
-div[data-ui-configurator] md-slider .md-thumb {
-  display: none;
+div[data-ui-configurator] .configurator-steps md-slider .md-thumb {
   font-family: 'doom-icons';
 }
 
-div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
+div[data-ui-configurator][pest='ant'] .configurator-steps .md-thumb::after {
   content: "\e900";
+  top: -4px;
+}
+
+div[data-ui-configurator][pest='fishmoth'] .configurator-steps .md-thumb::after {
+  content: "\e902";
+  top: 0px;
+  font-size: 55px;
+}
+
+div[data-ui-configurator][pest='cockroach'] .configurator-steps .md-thumb::after {
+  content: "\e901";
+  top: -7px;
+}
+
+div[data-ui-configurator][pest='fly'] .configurator-steps .md-thumb::after {
+  content: "\e904";
+  top: -12px;
+}
+
+div[data-ui-configurator][pest='mosquito'] .configurator-steps .md-thumb::after {
+  content: "\e905";
+  top: -8px;
+}
+
+div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
+  content: "\e903";
+  top: -3px;
+}
+
+.configurator-steps .md-thumb::after {
+  content: "\e900";
+  font-size: 45px;
+  transform: rotate(90deg);
+  top: -4px;
+  color: #14A774;
+  border: none;
 }
 
 #configurator {
@@ -687,11 +728,16 @@ div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
   border: 5px solid #14A774;
 }
 
-#configurator .insect-selector.selected.desc {
+#configurator .insect-selector.selected .desc {
   opacity: 1;
 }
 
 #configurator .insect-selector .desc {
+  -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -ms-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -o-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 0;
   height: 150px;
 }
@@ -754,8 +800,16 @@ div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
   border-color: transparent;
 }
 
+#configurator .step-1 .content:hover .insect-selector .desc {
+  opacity: 0;
+}
+
 #configurator .step-1 .content:hover .insect-selector:hover {
   border-color: #14A774;
+}
+
+#configurator .step-1 .content:hover .insect-selector:hover .desc {
+  opacity: 1;
 }
 
 #configurator .step-2.inactive {

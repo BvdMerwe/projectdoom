@@ -636,6 +636,7 @@
             <div flex="grow">
 				<h3 class="carousel-title">Where to buy</h3>
                 <div data-ui-carousel
+                    buttonBorders="false"
                     flex="100"
                     single = "false"
                     needsCta = "false"

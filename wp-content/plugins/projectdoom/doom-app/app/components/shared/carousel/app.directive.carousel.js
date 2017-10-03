@@ -88,7 +88,7 @@ define(function (require, exports, module) {
 				// scope.maxHeight = scope.maxWidth = "100px";
 				// if (attrs.maxheight) {scope.maxHeight = attrs.maxheight;}
 				// if (attrs.maxwidth) {scope.maxWidth = attrs.maxwidth;}
-				if (!scope.buttonBorders) {
+				if (scope.buttonBorders === false) {
 					angular.element(element).addClass("no-border");
 				}
 				var thisElem = scope.thisElem = element;
