@@ -229,6 +229,10 @@ define(function (require, exports, module) {
 				angular.element(container).on('scroll', onScroll);
 				angular.element($window).on('resize', onResize);
 				scope.$on('$destroy', cleanUp);
+
+				scope.hide = function(){
+					angular.element(element[0]).addClass("hide");
+				}
 			},
 			controller: ['$filter','$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
 				//init data
@@ -364,8 +368,10 @@ define(function (require, exports, module) {
 							default:
 								throw ("Please provide a content type.");
 						}
-					} else {
+					} else if ($scope.items.length > 0) {
 						$scope.success($scope.items);
+					} else {
+						$scope.error();
 					}
 
 					// $scope.managerGet(requestObj).then(success, error);
@@ -406,7 +412,7 @@ define(function (require, exports, module) {
 					$scope.success(out);
 				}
 				$scope.success = function (data) {
-					$scope.items = data;
+					$scope.items = $filter('unique')(data);
 					$scope.itemLength = data.length;
 					// $scope.$digest();
 					$timeout(function () {
@@ -416,6 +422,7 @@ define(function (require, exports, module) {
 				}
 				$scope.error = function (error) {
 					console.log("Fek");
+					$scope.hide();
 				}
 				$scope.$on('items-loaded', function () {
 					if ($scope.itemLength > 0) {
@@ -428,6 +435,8 @@ define(function (require, exports, module) {
 						} else {
 							controls.style.display = "initial";
 						}
+					} else {
+						angular.element($scope.thisElem[0]).addClass("hide");
 					}
 				});
 
