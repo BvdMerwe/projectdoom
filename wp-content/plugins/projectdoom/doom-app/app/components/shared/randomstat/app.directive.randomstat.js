@@ -54,7 +54,7 @@ define( function ( require, exports, module ) {
 			templateUrl: 	appConfig.general.path+'/app/components/shared/randomstat/randomstat.php',
 			scope: {
         timer: "@",
-        duration: "="
+        duration: "=?"
 	    },
 			link: function (scope, element, attrs, controller) {
 

@@ -301,14 +301,17 @@ body.super-search-open {
 }
 
 .page-404 .app-dashboard,
-.page-about .app-dashboard,
+/* .page-about .app-dashboard,
 .page-legal .app-dashboard,
 .page-contact .app-dashboard,
+.page-faq .app-dashboard, */
 .super-search-open .app-dashboard .search-container,
 .super-menu-open .app-dashboard .md-sidenav-left {
 	background-color:#14A774;
 }
 
+
+.page-faq .app-dashboard,
 .page-404 .md-nav-bar .md-button._md-nav-button,
 .page-about .md-nav-bar .md-button._md-nav-button,
 .page-legal .md-nav-bar .md-button._md-nav-button,
@@ -595,7 +598,7 @@ body.super-search-open {
 
 .animate-page-switch.ng-leave.ng-leave-active,
 .animate-page-switch.ng-enter {
-	top:-50px;
+	top:100%;
 }
 .animate-page-switch.ng-leave,
 .animate-page-switch.ng-enter.ng-enter-active {

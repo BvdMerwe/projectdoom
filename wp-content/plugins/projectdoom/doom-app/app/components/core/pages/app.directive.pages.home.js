@@ -892,6 +892,17 @@ define( function ( require, exports, module ) {
 			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.legal.php'
 		}
 	};
+	
+	Application.Directives.uiAppPageFaq = function () {
+
+		return {
+			restrict: 		'AE',
+			scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.faq.php'
+		}
+	};
 
 	Application.Directives.uiAppPageContact = function () {
 
