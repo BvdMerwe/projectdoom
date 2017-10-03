@@ -28,23 +28,23 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 **/
-define( function ( require, exports, module ) {
+define(function (require, exports, module) {
 
-    'use strict';
+	'use strict';
 
 	require("app-xhr");
 	require("app-utils");
 	require("app-retailer");
 	require("app-product");
 	require("angular-progress");
-  require("angular-material");
+	require("angular-material");
 
 	// Load dependent modules
 	var appDirectiveCarousel,
-				appConfig		= JSON.parse(require("text!../../app/app.config.json")),
-        domReady 		= require("domReady"),
-        isMobile 		= require("isMobile"),
-				angular 		= require("angular");
+		appConfig = JSON.parse(require("text!../../app/app.config.json")),
+		domReady = require("domReady"),
+		isMobile = require("isMobile"),
+		angular = require("angular");
 
 	//
 	var Application = Application || {};
@@ -53,251 +53,386 @@ define( function ( require, exports, module ) {
 	Application.Directives.uiCarousel = function () {
 
 		return {
-			restrict: 		'AE',
-			transclude: 	false, // pass entire template?
-			templateUrl: 	appConfig.general.path+'/app/components/shared/carousel/carousel.php',
+			restrict: 'AE',
+			transclude: false, // pass entire template?
+			templateUrl: appConfig.general.path + '/app/components/shared/carousel/carousel.php',
 			scope: {
 				// items: '=?itemList',
 				// itemLength: '=?listLength'
-				contentType:'@contenttype',
-				maxAmount:'@maxamount',
-				contentType:'@contenttype',
-				maxHeight:'@maxheight',
-				maxWidth:'@maxwidth',
-				needsCta:'=needscta',
-				displayName:'=displayname',
-				isSingle:'=single',
-				gutter:'@gutter',
-	    },
-			link: function (scope, element, attrs, controller) {
-        if (scope.contentType === "retailer"){
-          angular.element(element).addClass("retailer-carousel");
-        }
-					// scope.contentType = attrs.contenttype;
-					// scope.maxAmount = attrs.maxamount;
-					// scope.maxHeight = scope.maxWidth = "100px";
-					// if (attrs.maxheight) {scope.maxHeight = attrs.maxheight;}
-					// if (attrs.maxwidth) {scope.maxWidth = attrs.maxwidth;}
-
-					var thisElem = scope.thisElem = element;
-          var index = 0;
-          scope.domItems = angular.element(element[0].querySelector('.list')).children[0];
-          console.log(scope.domItems);
-          /* Add classes */
-          if (!scope.needsCta || !scope.displayName) {
-            console.log(element);
-            angular.element(element[0].querySelector('.list')).addClass('no-cta');
-          }
-
-          if (scope.isSingle) {
-            angular.element(element[0]).addClass('single');
-            angular.element(element[0].querySelector('.carousel')).css('width', scope.maxWidth);
-          }
-
-					controller.updateCarousel(thisElem);
-					/************************************
-					*	functions
-					************************************/
-					// scope.scrollContainer = element[0].getElementsByClassName('carousel');
-					var amount = parseInt(scope.maxWidth.slice(0, -2));
-          var gutter = + parseInt(scope.gutter.slice(0, -2));
-					var elem;
-					scope.goLeft = function ($event) {
-            move(-1,$event);
-					}
-					scope.goRight = function ($event) {
-            move(1,$event);
-					}
-          function move(direction,$event) {
-  						elem = $event.target.parentElement.parentElement.querySelector('.carousel');
-              var to = elem.scrollLeft+(((amount) + gutter)*direction);
-              // if (to % (amount + gutter) != 0) {
-              //   console.log("nope");
-              //   return;
-              // }
-
-              if (direction > 0) {
-                to = Math.ceil((elem.scrollLeft + direction) / (amount + gutter)) * (amount + gutter);
-
-              } else {
-                to = Math.floor((elem.scrollLeft + direction) / (amount + gutter)) * (amount + gutter);
-              }
-              scope.moving = true;
-              horizontalScrollTo(elem, to, 300);
-              setTimeout(function(){
-                scope.moving = false;
-                direction = container.scrollLeft;
-              }, 400);
-          }
-					// var childWidth = parseInt(elem.childNodes[1].innerWidth, 10);
-					// var elemWidth = parseInt(elem.innerWidth, 10);
-					//TODO: add to utils.js
-					function horizontalScrollTo(element, to, duration) {
-            to = Math.floor(to);
-
-				    if (duration < 0) return;
-						try { //check for IE
-							var childWidth = parseInt(window.getComputedStyle(element.childNodes[1], null).getPropertyValue('width'), 10);
-							var elemWidth = parseInt(window.getComputedStyle(element, null).getPropertyValue('width'), 10);
-						} catch(e) {
-							var childWidth = parseInt(element.childNodes[1].currentStyle.width, 10);
-							var elemWidth = parseInt(element.currentStyle.width, 10);
-						}
-						if (to > childWidth - elemWidth) {
-							to = Math.abs(childWidth - elemWidth);
-						}
-						if (to < 0) {
-							to = 0;
-						}
-						// console.log(to, " ", childWidth, " ", elemWidth);
-				    var difference = to - element.scrollLeft;
-				    var perTick = difference / duration * 10;
-
-				    setTimeout(function () {
-				        element.scrollLeft = element.scrollLeft + perTick;
-				        if (element.scrollLeft == to) return;
-				        horizontalScrollTo(element, to, duration - 10);
-				    }, 10);
-
-					}
-
-					//show and hide arrows if outer size > inner size
-					var $window = window;
-					scope.width = $window.innerWidth;
-          function onResize(){
-              // uncomment for only fire when $window.innerWidth change
-              if (scope.width !== $window.innerWidth)
-              {
-                  scope.width = $window.innerWidth;
-                  scope.$digest();
-									var container = thisElem[0].querySelector('.carousel');
-									var inner = thisElem[0].querySelector('.list');
-									var controls = thisElem[0].querySelector('.controls');
-									if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
-										controls.style.display = "none";
-									} else {
-										controls.style.display = "initial";
-									}
-              }
-          };
-          var direction = 0;
-          function onScroll($event){
-            // console.log(container.scrollLeft % (amount + gutter));
-            if (scope.moving) {
-              return;
-            }
-            if (Math.abs(container.scrollLeft - direction) > 5) {
-              direction = container.scrollLeft;
-              console.log("too fast");
-              return;
-            }
-            if (container.scrollLeft % (amount + gutter) != 0) {
-              var totalWidth = (amount * scope.itemLength) + (gutter * (scope.itemLength - 1));
-              //horizontalScrollTo nearest 0
-              var to;
-              if (direction < container.scrollLeft) {
-                to = Math.ceil(container.scrollLeft / (amount + gutter)) * (amount + gutter);
-              } else {
-                to = Math.floor(container.scrollLeft / (amount + gutter)) * (amount + gutter);
-              }
-              elem = $event.target.parentElement.parentElement.querySelector('.carousel');
-
-              scope.moving = true;
-              horizontalScrollTo(elem, to, 300);
-              setTimeout(function(){
-                scope.moving = false;
-                direction = container.scrollLeft;
-              }, 400);
-            }
-          }
-          function cleanUp() {
-              angular.element($window).off('resize', onResize);
-              angular.element(container).off('scroll', onScroll);
-          }
-          var container = thisElem[0].querySelector('.carousel');
-          angular.element(container).on('scroll', onScroll);
-          angular.element($window).on('resize', onResize);
-          scope.$on('$destroy', cleanUp);
+				contentType: '@contenttype',
+				maxAmount: '@maxamount',
+				contentType: '@contenttype',
+				maxHeight: '@maxheight',
+				maxWidth: '@maxwidth',
+				needsCta: '=needscta',
+				displayName: '=displayname',
+				isSingle: '=single',
+				gutter: '@gutter',
+				items: '=?items'
 			},
-			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ( $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager ) {
-					//init data
+			link: function (scope, element, attr, controller) {
+				scope.contentType = attr.contenttype;
+				scope.insectType = attr.insecttype;
+				scope.productType = attr.producttype;
+
+				if (scope.contentType === "retailer") {
+					angular.element(element).addClass("retailer-carousel");
+				}
+				// scope.contentType = attrs.contenttype;
+				// scope.maxAmount = attrs.maxamount;
+				// scope.maxHeight = scope.maxWidth = "100px";
+				// if (attrs.maxheight) {scope.maxHeight = attrs.maxheight;}
+				// if (attrs.maxwidth) {scope.maxWidth = attrs.maxwidth;}
+
+				var thisElem = scope.thisElem = element;
+				var index = 0;
+				scope.domItems = angular.element(element[0].querySelector('.list')).children[0];
+				console.log(scope.domItems);
+				/* Add classes */
+				if (!scope.needsCta || !scope.displayName) {
+					console.log(element);
+					angular.element(element[0].querySelector('.list')).addClass('no-cta');
+				}
+
+				if (scope.isSingle) {
+					angular.element(element[0]).addClass('single');
+					angular.element(element[0].querySelector('.carousel')).css('width', scope.maxWidth);
+				}
+
+				controller.updateCarousel(thisElem);
+				/************************************
+				*	functions
+				************************************/
+				// scope.scrollContainer = element[0].getElementsByClassName('carousel');
+				var amount = parseInt(scope.maxWidth.slice(0, -2));
+				var gutter = + parseInt(scope.gutter.slice(0, -2));
+				var elem;
+				scope.goLeft = function ($event) {
+					move(-1, $event);
+				}
+				scope.goRight = function ($event) {
+					move(1, $event);
+				}
+				function move(direction, $event) {
+					elem = $event.target.parentElement.parentElement.querySelector('.carousel');
+					var to = elem.scrollLeft + (((amount) + gutter) * direction);
+					// if (to % (amount + gutter) != 0) {
+					//   console.log("nope");
+					//   return;
+					// }
+
+					if (direction > 0) {
+						to = Math.ceil((elem.scrollLeft + direction) / (amount + gutter)) * (amount + gutter);
+
+					} else {
+						to = Math.floor((elem.scrollLeft + direction) / (amount + gutter)) * (amount + gutter);
+					}
+					scope.moving = true;
+					horizontalScrollTo(elem, to, 300);
+					setTimeout(function () {
+						scope.moving = false;
+						direction = container.scrollLeft;
+					}, 400);
+				}
+				// var childWidth = parseInt(elem.childNodes[1].innerWidth, 10);
+				// var elemWidth = parseInt(elem.innerWidth, 10);
+				//TODO: add to utils.js
+				function horizontalScrollTo(element, to, duration) {
+					to = Math.floor(to);
+
+					if (duration < 0) return;
+					try { //check for IE
+						var childWidth = parseInt(window.getComputedStyle(element.childNodes[1], null).getPropertyValue('width'), 10);
+						var elemWidth = parseInt(window.getComputedStyle(element, null).getPropertyValue('width'), 10);
+					} catch (e) {
+						var childWidth = parseInt(element.childNodes[1].currentStyle.width, 10);
+						var elemWidth = parseInt(element.currentStyle.width, 10);
+					}
+					if (to > childWidth - elemWidth) {
+						to = Math.abs(childWidth - elemWidth);
+					}
+					if (to < 0) {
+						to = 0;
+					}
+					// console.log(to, " ", childWidth, " ", elemWidth);
+					var difference = to - element.scrollLeft;
+					var perTick = difference / duration * 10;
+
+					setTimeout(function () {
+						element.scrollLeft = element.scrollLeft + perTick;
+						if (element.scrollLeft == to) return;
+						horizontalScrollTo(element, to, duration - 10);
+					}, 10);
+
+				}
+
+				//show and hide arrows if outer size > inner size
+				var $window = window;
+				scope.width = $window.innerWidth;
+				function onResize() {
+					// uncomment for only fire when $window.innerWidth change
+					if (scope.width !== $window.innerWidth) {
+						scope.width = $window.innerWidth;
+						scope.$digest();
+						var container = thisElem[0].querySelector('.carousel');
+						var inner = thisElem[0].querySelector('.list');
+						var controls = thisElem[0].querySelector('.controls');
+						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
+							controls.style.display = "none";
+						} else {
+							controls.style.display = "initial";
+						}
+					}
+				};
+				var direction = 0;
+				function onScroll($event) {
+					// console.log(container.scrollLeft % (amount + gutter));
+					if (scope.moving) {
+						return;
+					}
+					if (Math.abs(container.scrollLeft - direction) > 5) {
+						direction = container.scrollLeft;
+						console.log("too fast");
+						return;
+					}
+					if (container.scrollLeft % (amount + gutter) != 0) {
+						var totalWidth = (amount * scope.itemLength) + (gutter * (scope.itemLength - 1));
+						//horizontalScrollTo nearest 0
+						var to;
+						if (direction < container.scrollLeft) {
+							to = Math.ceil(container.scrollLeft / (amount + gutter)) * (amount + gutter);
+						} else {
+							to = Math.floor(container.scrollLeft / (amount + gutter)) * (amount + gutter);
+						}
+						elem = $event.target.parentElement.parentElement.querySelector('.carousel');
+
+						scope.moving = true;
+						horizontalScrollTo(elem, to, 300);
+						setTimeout(function () {
+							scope.moving = false;
+							direction = container.scrollLeft;
+						}, 400);
+					}
+				}
+				function cleanUp() {
+					angular.element($window).off('resize', onResize);
+					angular.element(container).off('scroll', onScroll);
+				}
+				var container = thisElem[0].querySelector('.carousel');
+				angular.element(container).on('scroll', onScroll);
+				angular.element($window).on('resize', onResize);
+				scope.$on('$destroy', cleanUp);
+			},
+			controller: ['$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
+				//init data
+				$scope.contentType;
+				$scope.insectType;
+				$scope.productType;
+
+
+				if ($scope.items != undefined) {
+					$scope.itemLength = $scope.items.length;
+				} else {
 					$scope.itemLength = 0;
-          // $scope.needsCta = false;
-          // $scope.displayName = false;
-          // $scope.isSingle = false;
-					//Get data
-					this.updateCarousel = function(thisElem) {
+				}
+				// $scope.needsCta = false;
+				// $scope.displayName = false;
+				// $scope.isSingle = false;
+				//Get data
+				this.updateCarousel = function (thisElem) {
 
-						var requestObj = {
-							method: "GET",
-							type: $scope.contentType
-						};
-						//get results from cache
-						// $scope.items = $route.current.locals.app_data[$scope.contentType];
-						//if no cache check request type
-						if ($scope.itemLength < 1) {
-							switch ($scope.contentType) {
-								case 'insect':
-									insectsManager.getInsects(requestObj).then($scope.success, $scope.error);
-									break;
-								case 'product':
-									productsManager.getProducts(requestObj).then($scope.success, $scope.error);
-									break;
-								case 'package':
-									packagesManager.getPackages(requestObj).then($scope.success, $scope.error);
-									break;
-								case 'retailer':
-									retailersManager.getRetailers(requestObj).then($scope.success, $scope.error);
-									break;
-								default:
-									throw("Please provide a content type.");
+					var requestObj = {
+						method: "GET",
+						type: $scope.contentType
+					};
+					//get results from cache
+					// $scope.items = $route.current.locals.app_data[$scope.contentType];
+					//if no cache check request type
+					if ($scope.itemLength < 1) {
+						switch ($scope.contentType) {
+							case 'insect':
+								insectsManager.getInsects(requestObj).then($scope.success, $scope.error);
+								break;
+							case 'product':
+								if (angular.isDefined($route.current.locals.app_data) && angular.isDefined($scope.productType)) {
+									$scope.items = [];
+									var results = $route.current.locals.app_data.products;
+									var taxes = $route.current.locals.app_data.taxonomy;
+									//console.log('GARR[]:', $scope.insectType, $route.current.locals.app_data);
+									for (var index = 0; index < taxes.product_categories.length; index++) {
+										var element = taxes.product_categories[index];
+									}
+									// go through all insect categories (Flying / Crawling)
+									//loop1:
+									//for (var index = 0; index < taxes.length; index++) {
+									angular.forEach(taxes.insect_categories, function (val, key) {
+										//var insectArray = val.insect;
+										//console.log('trying['+key+']:', val );
+										switch (val.name.toLowerCase()) {
+											case 'flying':
+											case 'crawling':
+												//console.log('trying:', taxes[index].toLowerCase(), $scope.insectType );
+												loop2:
+												for (var indey = 0; indey < val.insect.length; indey++) {
+													var element = val.insect[indey];
+													if (val.insect[indey].post_name == $scope.insectType) {
+														//gallaryProducts.push( array[index.product] );
+														//console.log('Got Em!');
+														_initiateLayout(val.product);
+														break loop2;
+													}
+												}
+												break;
+											default:
+												//continue;
+												break;
+										}
+									});
+									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
+								} else {
+									$scope.success($route.current.locals.app_data.products);
+								}
+								// productsManager.getProducts(requestObj).then($scope.success, $scope.error);
+								break;
+							case 'package':
+								packagesManager.getPackages(requestObj).then($scope.success, $scope.error);
+								break;
+							case 'retailer':
+								retailersManager.getRetailers(requestObj).then($scope.success, $scope.error);
+								break;
+							default:
+								throw ("Please provide a content type.");
+						}
+					} else {
+						$scope.success($scope.items);
+					}
+
+					// $scope.managerGet(requestObj).then(success, error);
+				}
+				function _initiateLayout(results) {
+					// $scope.items = [];
+					// var results = $route.current.locals.app_data.products;
+					var out = [];
+					loop1:
+					for (var index = 0; index < results.length; index++) {
+						var taxi = $route.current.locals.app_data.taxonomy.product_types;
+						//angular.forEach( $route.current.locals.app_data.taxonomy.product_types, function(val, key) {
+						loop2:
+						for (var indie = 0; indie < taxi.length; indie++) {
+							if (angular.isDefined(taxi[indie].product)) {
+								// go through the product_type products
+								loop3:
+								for (var indey = 0; indey < taxi[indie].product.length; indey++) {
+									//break;
+									// if product is 
+									if (taxi[indie].product[indey].ID == results[index].ID) {
+										if (taxi[indie].name.toLowerCase() == $scope.productType.toLowerCase()) {
+											results[index].product_type = taxi[indie].name;
+											out.push(results[index]);
+										}
+										//console.log('Got Em!', taxi[indie].name, $scope.productType);
+										break loop2;
+									}
+								}
 							}
 						}
-
-						// $scope.managerGet(requestObj).then(success, error);
+						//});
 					}
+					//$scope.gridItems = results;
+					$scope.success(out);
+				}
+				$scope.success = function (data) {
+					$scope.items = data;
+					$scope.itemLength = data.length;
+					// $scope.$digest();
+					$timeout(function () {
+						$scope.$broadcast("items-loaded");
+					}, 100);
+					// console.log(data);
+				}
+				$scope.error = function (error) {
+					console.log("Fek");
+				}
 
-					$scope.success = function(data) {
-						$scope.items = data;
-						$scope.itemLength = data.length;
-						// $scope.$digest();
-						$timeout(function(){
-							$scope.$broadcast("items-loaded");
-						}, 100);
-						// console.log(data);
-					}
-					$scope.error = function(error){
-						console.log("Fek");
-					}
-
-					$scope.$on('items-loaded', function(){
-						if ($scope.itemLength > 0) {
-							//update controls
-							var container = $scope.thisElem[0].querySelector('.carousel');
-							var inner = $scope.thisElem[0].querySelector('.list');
-							var controls = $scope.thisElem[0].querySelector('.controls');
-							if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
-								controls.style.display = "none";
-							} else {
-								controls.style.display = "initial";
-							}
+				$scope.$on('items-loaded', function () {
+					if ($scope.itemLength > 0) {
+						//update controls
+						var container = $scope.thisElem[0].querySelector('.carousel');
+						var inner = $scope.thisElem[0].querySelector('.list');
+						var controls = $scope.thisElem[0].querySelector('.controls');
+						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
+							controls.style.display = "none";
+						} else {
+							controls.style.display = "initial";
 						}
-					})
+					}
+				});
+
+				$scope.filter = function ($ev, key) {
+					//console.log( 'Filtering...', key, $ev );
+					_filterBtnClasses(key);
+					var newItems = [];
+					if (key == "all") {
+						// _initialiseData($scope.contentType);
+					} else {
+						switch ($scope.contentType) {
+							case 'insect':
+								for (var index = 0; index < $scope.gridItems.length; index++) {
+									//var element = $scope.gridItems[index];
+									for (var index2 = 0; index2 < $scope.gridItems[index].insect_categories.length; index2++) {
+										//var element = $scope.gridItems[index].insect_categories[index2];
+										if ($scope.gridItems[index].insect_categories[index2].term_id == key) {
+											newItems.push($scope.gridItems[index]);
+										}
+									}
+								}
+								break;
+							case 'product':
+								for (var index = 0; index < $scope.gridItems.length; index++) {
+									//var element = $scope.gridItems[index];
+									for (var index2 = 0; index2 < $scope.gridItems[index].product_categories.length; index2++) {
+										//var element = $scope.gridItems[index].product_categories[index2];
+										if ($scope.gridItems[index].product_categories[index2].term_id == key) {
+											newItems.push($scope.gridItems[index]);
+										}
+									}
+								}
+								break;
+							default:
+								throw 'Invalid Content Type Active';
+								break;
+						}
+					}
+					$scope.items = newItems;
+				}
+
+				$scope.goto = function (type, name) {
+					switch (type) {
+						case 'insect':
+						case 'product':
+							type += 's';
+							$location.path('/' + type + '/' + name);
+							break;
+						case 'page':
+							$location.path('/' + name);
+							break;
+					}
+				}
 			}],
-      // controllerAs: 'vm',
+			// controllerAs: 'vm',
 		};
 
 	};
 
-	domReady( function () {
+	domReady(function () {
 
 		/*
 		 * APP MODULE
 		 */
-		appDirectiveCarousel = appDirectiveCarousel || angular.module( 'appDirectiveCarousel', [ 'appUtils', 'appXHR', 'ngMaterial', 'ngProgress' ] );
+		appDirectiveCarousel = appDirectiveCarousel || angular.module('appDirectiveCarousel', ['appUtils', 'appXHR', 'ngMaterial', 'ngProgress']);
 
 		appDirectiveCarousel
-			.directive( Application.Directives );
+			.directive(Application.Directives);
 
 
 	});
