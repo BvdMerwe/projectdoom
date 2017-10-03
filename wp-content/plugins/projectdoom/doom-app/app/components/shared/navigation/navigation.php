@@ -77,10 +77,10 @@
 			<div class="md-padding" flex="10" style="text-align:center;background-color:#14A774;z-index:99;max-width: 86px !important;">
 				<md-button ng-click="toggleLeft()"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
-					<md-icon style="padding-top:5px;">
+					<md-icon style="padding-top:10px;">
 							<span style=""></span>
 							<span style=""></span>
-							<span style=""></span>
+							
 					</md-icon>
 				</md-button>
 				<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>

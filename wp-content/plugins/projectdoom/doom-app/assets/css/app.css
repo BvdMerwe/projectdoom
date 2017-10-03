@@ -534,7 +534,11 @@ md-nav-ink-bar {
 	/**/
 	color:#000000;
 }
+.insect-insects li {
+	color:#ff510b;
+}
 .product-insects li {
+	color:#14A774;
 	border:2px solid #14A774;
 }
 
