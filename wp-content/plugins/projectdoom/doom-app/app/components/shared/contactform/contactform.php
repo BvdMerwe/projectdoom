@@ -9,10 +9,10 @@
  */
 
 ?>
-	<div layout="column">
+	<div layout="column" layout-align="center center" flex="100"> 
 		<div layout="row" layout-xs="column" >
 
-			<md-content class="md-padding" flex-xs="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
+			<div class="md-padding" flex-xs="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
 
                 <form id="formContact" name="userForm" novalidate>
 
@@ -97,18 +97,18 @@
 
                 <div data-ng-transclude></div>
 
-            </md-content>
-            <md-content class="md-padding layout-padding" flex-xs="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
+            </div>
+            <div class="md-padding layout-padding" flex-xs="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
 
                 <h3>CONTACT INFORMATION</h3>
 
-                <p><md-icon svgIcon="thumbs-up"></md-icon>P.O. BOX 200, ISANDO, 1600.</p>
+                <p><i class="lnr lnr-map-marker"></i>&nbsp;&nbsp;Tiger Brands Limited,<br />3010 William Nicol Drive, Bryanston<br />2021.</p>
 
-                <p><md-icon>home</md-icon>&nbsp;011 921 1690</p>
+                <p><i class="lnr lnr-phone"></i>&nbsp;&nbsp;0860 101 107</p>
 
-                <p><md-icon>home</md-icon>&nbsp;Lorem@tigerbrands.co.za.</p> 
+                <p><i class="lnr lnr-inbox"></i>&nbsp;&nbsp;<a href="mailto:tigercsd@tigerbrands.com" style="text-decoration:none;color:#fff;">tigercsd@tigerbrands.com</a></p> 
 
-            </md-content>
+            </div>
 
         </div>   
 	</div>

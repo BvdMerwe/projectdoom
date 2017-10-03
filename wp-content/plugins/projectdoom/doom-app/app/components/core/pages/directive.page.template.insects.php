@@ -13,9 +13,9 @@
                     -->
                     <div data-ng-switch="pageContent.post_name">
                         <div data-ng-switch-when="flea">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can suck</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}</h1>
-                            <p flex="100" class="page-description">their bodyweight in blood a day. Their fav drinking spot is covered in fur and answers to the name Ruffus..</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> suck</p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}} times*</h1>
+                            <p flex="100" class="page-description">their bodyweight in blood a day. Their fave drinking spot is covered in fur and answers to the name, Scruffles.</p>
                         </div>
                         <div data-ng-switch-when="cockroach">
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go 4 weeks without food</p>
@@ -23,24 +23,24 @@
                             <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your pj’s while you sleep tonight.</p>
                         </div>
                         <div data-ng-switch-when="ant">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
-                            <p flex="100" class="page-description">a day in your home.</p>
+                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}s</strong> hijacking the food in your skaftin are vomiting</p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />every second*</h1>
+                            <p flex="100" class="page-description">on your sandwich as they discuss the heist..</p>
                         </div>
-                        <div data-ng-switch-when="fly">
+                        <div data-ng-switch-when="fly"> 
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
-                            <p flex="100" class="page-description">a day in your home.</p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />seconds*</h1>
+                            <p flex="100" class="page-description">while feeding. So if the fly on your Sunday seven colours was ‘only there’ for 40 seconds...</p>
                         </div>
                         <div data-ng-switch-when="mosquito">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}</strong> can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
-                            <p flex="100" class="page-description">a day in your home.</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}</strong> lay</p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs*</h1>
+                            <p flex="100" class="page-description">at a time, after biting. Only females bite, and they have a fragrant fetish for smelly feet. .</p>
                         </div> 
                         <div data-ng-switch-when="fishmoth">
-                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}</strong> eating holes<br />through the private bits of<br />your underwear are laying  can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs</h1>
-                            <p flex="100" class="page-description">a day in your home.</p>
+                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}</strong> eating holes<br />through the private bits of<br />your underwear are laying<br /></p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br /></h1>
+                            <p flex="100" class="page-description">eggs a day*, in your home.</p>
                         </div>
                         
                     </div>
