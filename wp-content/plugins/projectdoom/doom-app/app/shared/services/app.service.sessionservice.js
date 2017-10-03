@@ -162,8 +162,138 @@ define( function ( require, exports, module ) {
 		
 		var factory = {};
 
-		factory.currentUser 		= null;
-		factory.AuthenticatedUser 	= '';
+		factory.currentUser = { 
+			'firstVisit'	: '',
+			'lastVisit'		: '',
+			'firstTime'		: '',
+			'sessionID'		: '',
+			'lastCheck'		: '',
+			'ip'			: '',
+			'geo'			: ''
+		};
+		factory.sessionStart 		= false;
+
+		/**
+		 * @public
+		 * 
+		 * Start Current User Session
+		 *
+		 *
+		 * @return {Object.Promise } [description]
+		 **/
+		
+		factory.checkSession = function () {
+
+			var deferred 	= $q.defer(),
+				_self 		= this;
+
+			if( _self.sessionStart === true ) {
+
+				_self.returningVisitor().then( function(riri) {
+
+						// RETURN
+						_self.currentUser.firstVisit 	= riri;
+						_self.currentUser.firstTime 	= false;
+						_self.currentUser.lastVisit 	= Date.now();
+
+						deferred.resolve(_self.currentUser);
+
+					}, function(erriri){
+
+						// NOOB
+						_self.start().then( function(sessdb) {
+	
+								deferred.resolve(sessdb);
+
+							}, function(errdb) {
+
+								deferred.reject(errdb);
+
+							}
+						);
+								
+					}
+				);
+
+			} else {
+
+				_self.returningVisitor().then( function(riri) {
+
+						MemCache.dataGet( 'doomSession', 'sessionstorage' ).then(function(sessdata) {
+
+								_self.currentUser 				= sessdata;
+								_self.currentUser.firstVisit 	= riri;
+								_self.currentUser.firstTime 	= false;
+								_self.currentUser.lastVisit = Date.now();
+
+								deferred.resolve(_self.currentUser);
+
+							}, function(error) {
+
+								// NOOB
+								_self.start().then( function(sessdb) {
+
+										//console.log('usersession:', sessdb);
+										sessdb.firstVisit 	= riri;
+										sessdb.firstTime 	= true;
+
+										deferred.resolve(sessdb);
+
+									}, function(errdb) {
+
+										deferred.reject(errdb);
+
+									}
+								);
+							}
+						);
+
+					}, function(erriri){
+
+						console.log('new visitor?');
+
+						MemCache.dataGet( 'doomSession', 'sessionstorage' ).then(function(sessdata) {
+
+								console.log('Nope!');
+
+								_self.currentUser 				= sessdata;
+								_self.currentUser.firstTime 	= false;
+								
+								deferred.resolve(_self.currentUser);
+
+							}, function(error) {
+
+								console.log('Yurp!');
+
+								// NOOB
+								_self.start().then( function(sessdb) {
+
+										MemCache.dataStore( 'doom-mis-visit', ''+sessdb.firstVisit+'', 'localstorage' ).then( function(newssession) {
+
+												deferred.resolve(sessdb);					
+											
+											}, function(e) {
+											
+												deferred.reject( e );
+											}
+										);
+							
+									}, function(errdb) {
+
+										deferred.reject(errdb);
+
+									}
+								);
+							}
+						);
+
+					}
+				);
+
+			}
+
+			return deferred.promise;
+		}
 				
 		/**
 		 * @public
@@ -174,39 +304,95 @@ define( function ( require, exports, module ) {
 		 * @return {Object.Promise } [description]
 		 **/
 		
-		factory.start = function ( data ) {
+		factory.start = function () {
 		
-			Utils._strict( [ Object ], arguments );
-		
+			//Utils._strict( [ Object ], arguments );
+
 			var deferred 	= $q.defer(),
 				_self 		= this;
-		
-			//console.log('Store user:', data);
-		
-			_self.currentUser = {
-				'last-visit'	: '',
-				'time-started'	: '',
-				'sessionID'		: '',
-				'lastUpdate'	: '',
-				'ip'			: '',
-				'geo'			: ''
-			};
-		
-			MemCache.dataStore( 'doomSession', _self.currentUser, 'sessionstorage' ).then( function() {
-		
-					deferred.resolve(_self.currentUser);
 
+			_self.currentUser.firstTime 	= true;
+			_self.currentUser.firstVisit 	= Date.now();
+			_self.currentUser.lastVisit 	= Date.now();
+
+			_self.update( _self.currentUser ).then( function(results) {
+
+					_self.sessionStart == true;
+
+					deferred.resolve(results);
+
+				}, function(err) {
+
+					deferred.reject(err);
+				}
+			);
+
+			return deferred.promise;
 		
-					console.log('AuthenticatedUser Login:', _self.currentUser);
+		}
+
+		/**
+		 * @public
+		 * 
+		 * Start Current User Session
+		 *
+		 *
+		 * @return {Object.Promise } [description]
+		 **/
 		
+		factory.returningVisitor = function () {
+
+			var deferred 	= $q.defer(),
+				_self 		= this;
+
+			MemCache.dataGet( 'doom-mis-visit', 'localstorage' ).then(function(sessdata) {
+
+					deferred.resolve(sessdata);
+
+				}, function(errsess) {
+
+					deferred.reject( errsess );
+
+				}
+			);
+			
+			return deferred.promise;
+
+		}
+
+		/**
+		 * @public
+		 * 
+		 * Update Current User Session
+		 *
+		 *
+		 * @return {} [description]
+		 **/
+		factory.update = function ( details ) {
+
+			Utils._strict( [ Object ], arguments );
+
+			var deferred 	= $q.defer(),
+				_self 		= this;
+
+			//_self.currentUser.lastVisit = Date.now();
+
+			MemCache.dataStore( 'doomSession', details, 'sessionstorage' ).then( function(memdb) {
+		
+					deferred.resolve(memdb);
+
+					//_self.sessionStart = true;
+
+					//console.log('Session Updated:', memdb);
+				
 				}, function(e) {
-		
+				
 					deferred.reject( e );
 				}
 			);
-		
+
 			return deferred.promise;
-		
+
 		}
 		
 		/**
@@ -224,10 +410,9 @@ define( function ( require, exports, module ) {
 		
 			MemCache.dataRemove( 'doomSession', 'sessionstorage' ).then( function(){
 		
-					console.info('Kicking this bastard out!');
-		
-					_self.AuthenticatedUser 	= "";
-					_self.currentUser 			= null;
+					//console.info('Kicking this bastard out!');
+					_self.currentUser 		= {};
+					_self.sessionStart 		= false;
 		
 					//MemCache.dataRemove( 'currentUser', 'sessionstorage' ).then( function(){
 
@@ -244,43 +429,6 @@ define( function ( require, exports, module ) {
 		
 		}
 
-		/**
-		 * @public
-		 * 
-		 * Get Current User Session
-		 *
-		 * @return {Function.callback } [boolean, object]
-		 **/
-		factory.getSession = function ( callback ) {
-		
-			Utils._strict( [ Function ], arguments );
-		
-			var _self = this;
-			//var deferred 	= $q.defer();
-		
-			MemCache.dataGet( 'doomSession', 'sessionstorage').then( function(data) {
-		
-					if( data === false || Utils._isObjEmpty(data) ) {
-			
-						callback( _self.currentUser == null );
-			
-					} else {
-			
-						_self.currentUser = data;
-			
-						callback( false, data );
-			
-					}
-		
-				}, function(err) {
-		
-					callback( _self.currentUser == null );
-		
-				}
-			);
-		
-		}
-		
 		return factory;
 			
 	}]

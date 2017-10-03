@@ -54,7 +54,7 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'home',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
@@ -77,11 +77,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -89,7 +95,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -113,11 +120,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'about',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'about',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -136,11 +143,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -148,7 +161,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -172,11 +186,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'legal',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'legal',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -195,11 +209,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -207,7 +227,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -231,11 +252,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'products',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -254,11 +275,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -266,7 +293,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -290,11 +318,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'products',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -313,11 +341,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -325,7 +359,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -349,11 +384,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'insects',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'insects',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -372,11 +407,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -384,7 +425,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -408,11 +450,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'insects.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'insects',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -431,11 +473,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
-                                            console.log('route insects.single:', results);   
+                                            //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -443,7 +491,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -467,11 +516,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq',
                             resolve: {
-                                app_data: [ '$rootScope', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function($rootScope, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'faq',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -490,11 +539,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -502,7 +557,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -526,11 +582,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'faq',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -549,11 +605,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -561,7 +623,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -585,11 +648,11 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'contact',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache ) {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'contact',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -608,11 +671,17 @@ define( function ( require, exports, module ) {
                                             'type': 'retailer',
                                             'method': 'GET'
                                         }),
-                                        MemCache.dataTaxonomy()
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
                                     ])
                                     .then( function(results){
 
                                             //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
                                                 faqs 	    : results[3],
@@ -620,7 +689,8 @@ define( function ( require, exports, module ) {
                                                 products 	: results[1],
                                                 pagecontent : results[0],
                                                 retailers   : results[4],
-                                                taxonomy    : results[5]
+                                                taxonomy    : results[5],
+                                                session     : results[6]
                                             }; 
 
                                         }, function(e){
@@ -640,11 +710,70 @@ define( function ( require, exports, module ) {
                         }
                     )
                     .otherwise({
-                        action: 	'404'
+                        action: 	'404',
+                        resolve: {
+                            app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                
+                                return $q.all([
+                                    pagesManager.getPages({
+                                        'type': 'home',
+                                        'method': 'GET'
+                                    }),
+                                    productsManager.getProducts({
+                                        'type': 'product',
+                                        'method': 'GET'
+                                    }),
+                                    insectsManager.getInsects({
+                                        'type': 'insect',
+                                        'method': 'GET'
+                                    }),
+                                    faqsManager.getFAQs({
+                                        'type': 'faq',
+                                        'method': 'GET'
+                                    }),
+                                    retailersManager.getRetailers({
+                                        'type': 'retailer',
+                                        'method': 'GET'
+                                    }),
+                                    MemCache.dataTaxonomy(),
+                                    SessionService.checkSession()
+                                ])
+                                .then( function(results){
+
+                                        //console.log('route data-products:', results);   
+
+                                        var firstVisit = new Date(results[6].firstVisit);
+                                        var lastVisit = new Date(results[6].lastVisit);
+            
+                                        //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+
+                                        return {
+                                            faqs 	    : results[3],
+                                            insects 	: results[2],
+                                            products 	: results[1],
+                                            pagecontent : results[0],
+                                            retailers   : results[4],
+                                            taxonomy    : results[5],
+                                            session     : results[6]
+                                        }; 
+
+                                    }, function(e){
+
+                                        //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                        console.error('No bootUp(products): ', e); 
+
+                                        return e;
+
+                                    }
+                                );
+
+                            }] 
+                        }
                     });	
 				
 			}])
-			.run([ '$rootScope', '$location', '$route', '$routeParams', 'ngProgress', function ( $rootScope, $location, $route, $routeParams, ngProgress ) {
+			.run([ '$rootScope', '$location', '$route', '$routeParams', 'ngProgress', 'SessionService', function ( $rootScope, $location, $route, $routeParams, ngProgress, SessionService ) {
 
 				
 				/**
@@ -813,6 +942,32 @@ define( function ( require, exports, module ) {
                         window.document.body.classList.add('page-404');
                         
                     }
+					
+                };
+                
+                /**
+				 * @private
+				 * 
+				 * Update bodyClasses
+				 *
+				 */
+				var _authorization = function() 
+				{
+                    
+					SessionService.checkSession().then( function(sessdb) {
+
+                            var firstVisit = new Date(sessdb.firstVisit);
+                            var lastVisit = new Date(sessdb.lastVisit);
+
+                            console.log('usersession:', sessdb, firstVisit.toTimeString(), lastVisit.toTimeString());
+
+                        }, function(errdb) {
+
+                            console.error('session error:', errdb);
+                            //Math.floor(Date.now() / 1000);
+
+                        }
+                    );
 					
 				};
 				

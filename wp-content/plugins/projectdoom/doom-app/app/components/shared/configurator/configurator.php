@@ -17,24 +17,31 @@
     <p>Get the right {{config.pest.post_title}} killer for you</p>
     -->
     <div class="breadcrumbs">
-      <md-slider flex class="md-primary" md-discrete data-ng-model="breadcrumbState" step="1" min="1" max="4" aria-label="state-slider" ng-change="setState(breadcrumbState)"></md-slider>
+      <md-slider flex class="md-primary configurator-progress" md-discrete data-ng-model="breadcrumbState" step="1" min="1" max="4" aria-label="state-slider" ng-change="setState(breadcrumbState)"></md-slider>
     </div>
   </div>
   <div class="configurator-steps">
+    
     <div class="step-1 {{step1State}} {{step3State}}">
-      <div class="content" layout="row" layout-align="space-around center">
-        <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
-          <div class="thumbnail">
-            <i class="icon-{{insect.post_name}}"></i>
-          </div>
-          <div class="name">
-            <h3>{{insect.post_title}}</h3>
-          </div>
-          <div class="desc">
-            <p>{{insect.post_content | limitTo:50}}</p>
-          </div>
-          <div class="start-button">
-            <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
+      
+      <div class="content" layout="column" layout-align="space-around center">
+        <div class="content" layout="row" layout-align="space-around center">
+          <h3 class="carousel-title" flex="100" style="text-align:center;margin:2em auto;">Identify Pest</h3>
+        </div>
+        <div class="content" layout="row" layout-align="space-around center">
+          <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
+            <div class="thumbnail">
+              <i class="icon-{{insect.post_name}}"></i>
+            </div>
+            <div class="name">
+              <h3>{{insect.post_title}}</h3>
+            </div>
+            <div class="desc">
+              <p>{{insect.post_content | limitTo:50}}</p>
+            </div>
+            <div class="start-button">
+              <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
+            </div>
           </div>
         </div>
       </div>
@@ -45,30 +52,32 @@
         </a>
       </div>
     </div>
-    <div class="step-2 {{step2State}}">
-      <div class="content" layout="row" layout-wrap layout-align="center center">
-        <div flex="100">
-          <p>How long has the gogga been bugging you for?</p>
-          <md-slider-container layout="row" layout-align="space-between center">
-            <span flex="15"></span>
-            <md-slider flex="70" class="md-primary" md-discrete data-ng-model="config.duration" step="1" min="1" max="3" aria-label="duration"></md-slider>
-            <span flex="15"></span>
-          </md-slider-container>
-          <div layout="row" layout-align="space-around center">
-            <span>A&nbsp;day&nbsp;+</span>
-            <span>A&nbsp;week&nbsp;+</span>
-            <span>A&nbsp;month&nbsp;+</span>
+    <div class="step-2 {{step2State}}" flex="100" layout="column">
+      <br />
+      <div flex="100" class="content" layout="column" layout-wrap layout-align="center center">
+          <div flex="100">
+            <p>How long has the gogga been bugging you for?</p>
+            <md-slider-container layout="row" layout-align="space-between center">
+              <span flex="15"></span>
+              <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.duration" step="1" min="1" max="3" aria-label="duration"></md-slider>
+              <span flex="15"></span>
+            </md-slider-container>
+            <div layout="row" layout-align="space-around center">
+              <span>A&nbsp;day&nbsp;+</span>
+              <span>A&nbsp;week&nbsp;+</span>
+              <span>A&nbsp;month&nbsp;+</span>
+            </div>
           </div>
-        </div>
-        <div flex="100">
-          <p>How many goggas did you see?</p>
-          <md-slider-container layout="row" layout-align="space-between center">
-            <span flex="15">Few</span>
-            <md-slider flex="70" class="md-primary" md-discrete data-ng-model="config.amount" step="1" min="1" max="2" aria-label="amount"></md-slider>
-            <span flex="15">Many</span>
-          </md-slider-container>
-          <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
-        </div>
+          <div flex="100">
+            <p>How many goggas did you see?</p>
+            <md-slider-container layout="row" layout-align="space-between center">
+              <span flex="15">Few</span>
+              <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.amount" step="1" min="1" max="2" aria-label="amount"></md-slider>
+              <span flex="15">Many</span>
+            </md-slider-container>
+            <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
+          </div>
+        
       </div>
       <div class="revert" data-ng-click="setState(2)">
         <a>
@@ -78,6 +87,7 @@
       </div>
     </div>
     <div class="step-3 {{step3State}}" layout-fill layout="column" layout-align="center center">
+      
       <div class="content" layout-fill layout="column" layout-gt-sm="row" layout-align="space-between center">
         <div class="map-container" flex>
           <img class="map" src="/projectdoom/wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>

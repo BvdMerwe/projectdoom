@@ -14,7 +14,7 @@
 
 			<?php /**/?>
 			
-			<div flex="100" layout-fill id="main-container">
+			<div flex="100" layout-fill>
 
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]" flex="100">
 	
@@ -28,25 +28,7 @@
 							<br /><br /><br /><br />
 							<p class="page-title" style="font-size:50px;">...right?</p>
 						</div>
-						<!-- <button ng-click="sendTestEvent('flying')">Send</button>
 
-						<div layout="column" flex="40" layout-align="center center">
-							<div data-ui-carousel
-								globalFilter = "false"
-								showFilter = "true"
-								filterBy="insect_categories"
-								single = "false"
-								cta = "true"
-								maxHeight = "350px"
-								maxWidth = "200px"
-								gutter = "10px"
-								displayName ="true"
-								contentType = "product"
-								insectType = "fly"
-								productType = "spray">
-								<h1>Flies</h1>
-							</div>
-						</div> -->
 					</div>
 
 					<!-- /HOME PAGE TEMPLATE HERE -->
@@ -99,21 +81,25 @@
 					</div>
 					/CONTACT PAGE TEMPLATE HERE -->
 
-					<!-- DEFAULT PAGE TEMPLATE HERE -->
+					<!-- DEFAULT PAGE TEMPLATE HERE
 					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
 
-					<div data-ui-randomstat duration="300" duration="0"></div>
-					<!-- <div data-ui-randomstat timer="true" ></div> -->
-
+						<div data-ui-404 flex="100" class="md-padding" style="text-align:center;">
+							<br /><br /><br /><br />
+							<h1 flex="100" class="page-title" style="font-size:200px;">LOADING</h1>
+							<br /><br /><br /><br />
+							
+							<p class="page-title" style="font-size:50px;">...</p>
+						</div>
 
 					</div>
-					<!-- /DEFAULT PAGE TEMPLATE HERE -->
+					/DEFAULT PAGE TEMPLATE HERE -->
 
 				</div>
 			</div>
 
 			<?php /**/?>
 
-			<div  data-ui-footer layout="column" layout-align="start center" flex="100" <?php/*style="background-color:#14A774;max-height:100px;"*/?>></div>
+			<div  data-ui-footer layout="column" layout-align="start center" flex="100" style=""></div>
 
 		</div>

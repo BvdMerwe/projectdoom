@@ -50,12 +50,24 @@
                     <br /><br />
                     <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you.</p>
                     <ul class="insect-insects">
-                        <li class="icon-insect-cockroach active" title="Cockroaches"></li>
-                        <li class="icon-insect-fly" title="Flies"></li>
-                        <li class="icon-insect-mosquito" title="Mosquitoes"></li>
-                        <li class="icon-insect-ant" title="Ants"></li>
-                        <li class="icon-insect-fishmoth" title="Fishmoths"></li>
-                        <li class="icon-insect-flea" title="Fleas"></li>
+                        <li data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
+                            <i class="icon-ant"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
+                            <i class="icon-cockroach"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
+                            <i class="icon-fishmoth"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
+                            <i class="icon-flea"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
+                            <i class="icon-fly"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
+                            <i class="icon-mosquito"></i>
+                        </li>
                     </ul>
                     
                 </div>
@@ -72,18 +84,13 @@
                     <br /><br />
                     <div class="tag-group insect-buttons-cta" layout="row" layout-align="space-between stretch">
                         <div class="flex">
-                            <!--<div class="thumbnail" style="border:none;">
-                                <i class="icon-{{pageContent.post_name}}"></i>
-                            </div>-->
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/insects/pageContent.post_title')">
-                                <span class="icon icon-insect-{{pageContent.post_title}}"></span>
+                                <span class="icon "><i class="icon-{{pageContent.post_name}}"></i></span>
                                 {{pageContent.post_title}}<br />Profile
                             </md-button>
                         </div>
                         <div class="flex">
-                            <!--<div class="thumbnail" style="border:none;">
-                                <i class="icon-{{pageContent.post_name}}"></i>
-                            </div>-->
+                           
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/products/pageContent.post_title')">
                                 <span class="icon icon-solution"></span>
                                 {{pageContent.post_title}}<br />Killers
@@ -91,9 +98,7 @@
 
                         </div>
                         <div class="flex">
-                            <!--<div class="thumbnail" style="border:none;">
-                                <i class="icon-{{pageContent.post_name}}"></i>
-                            </div>-->
+                            
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/insects/pageContent.post_title')">
                                 <span class="icon icon-hand"></span>
                                 {{pageContent.post_title}}<br />Prevention
@@ -119,13 +124,13 @@
             <div layout="column" layout-md="column" layout-align="start start">
                 <br /><br />
                 <h3 id="makethemstop" flex="100" class="page-title" style="font-size:40px;">Make Them Stop</h3>
-                <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you</p>
+                <p flex="100" class="page-description" style="margin-bottom:0;">Get the right {{pageContent.post_title}} Killer for you</p>
                 <br /><br />
             </div>
             <div layout="row" layout-md="column" layout-align="center center">
-                
+
                 <div data-ui-configurator style="" pest="{{pageContent.post_name}}" flex="100"></div>
-                
+
             </div>
         </div>
 

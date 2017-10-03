@@ -633,8 +633,8 @@ div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
 #configurator .step-1 .revert .number, #configurator .step-2 .revert .number, #configurator .step-3 .revert .number {
   border: 3px solid #000;
   display: block;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 100%;
   font-size: 47px;
   margin: 0 auto 15px;
@@ -687,8 +687,12 @@ div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
   border: 5px solid #14A774;
 }
 
+#configurator .insect-selector.selected.desc {
+  opacity: 1;
+}
+
 #configurator .insect-selector .desc {
-  display: block;
+  opacity: 0;
   height: 150px;
 }
 
@@ -696,7 +700,7 @@ div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
   width: 1.5em;
   height: 1.5em;
   display: inline-block;
-  font-size: 1em;
+  font-size: 3em;
   border: 0.1em solid inherit;
   border-radius: 100%;
   padding: 0.2em 0;
@@ -732,7 +736,7 @@ div[data-ui-configurator] md-slider .md-thumb[pest="ant"]::before {
 
 #configurator .step-1.active {
   border-color: transparent;
-  padding: 40px 10%;
+  padding: 0;
   width: 100%;
   margin: 0;
 }
