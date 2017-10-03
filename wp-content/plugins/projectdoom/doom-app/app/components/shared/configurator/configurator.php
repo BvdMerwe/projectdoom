@@ -147,7 +147,7 @@
           <div class="stat-controls">
             <div class="stat-selector" ng-click="showStat(stat)" ng-repeat="stat in result.stats">
               <!-- <i class="icon lnr lnr-{{stat.type}}"></i> -->
-              <i class="icon lnr lnr-bug"></i>
+              <i class="icon icon-{{stat.type}}"></i>
               <span>{{stat.type}}</span>
             </div>
           </div>

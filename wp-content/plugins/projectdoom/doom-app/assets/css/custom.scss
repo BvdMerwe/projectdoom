@@ -441,38 +441,38 @@ div[data-ui-configurator][pest='ant'] .configurator-steps {
 }
 div[data-ui-configurator][pest='fishmoth'] .configurator-steps {
   .md-thumb::after {
-    content: "\e902";
+    content: "\e907";
     top: 0px;
     font-size: 55px;
   }
 }
 div[data-ui-configurator][pest='cockroach'] .configurator-steps {
   .md-thumb::after {
-    content: "\e901";
+    content: "\e904";
     top: -7px;
   }
 }
 div[data-ui-configurator][pest='fly'] .configurator-steps {
   .md-thumb::after {
-    content: "\e904";
+    content: "\e909";
     top: -12px;
   }
 }
 div[data-ui-configurator][pest='mosquito'] .configurator-steps {
   .md-thumb::after {
-    content: "\e905";
+    content: "\e90c";
     top: -8px;
   }
 }
 div[data-ui-configurator][pest='flea'] .configurator-steps {
   .md-thumb::after {
-    content: "\e903";
+    content: "\e908";
     top: -3px;
   }
 }
 .configurator-steps {
   .md-thumb::after {
-    content: "\e900";
+    content: "\e904";
     font-size: 45px;
     transform: rotate(90deg);
     top: -4px;

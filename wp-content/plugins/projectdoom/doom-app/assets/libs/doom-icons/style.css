@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'doom-icons';
-  src:  url('fonts/doom-icons.eot?7uh3ff');
-  src:  url('fonts/doom-icons.eot?7uh3ff#iefix') format('embedded-opentype'),
-    url('fonts/doom-icons.ttf?7uh3ff') format('truetype'),
-    url('fonts/doom-icons.woff?7uh3ff') format('woff'),
-    url('fonts/doom-icons.svg?7uh3ff#doom-icons') format('svg');
+  src:  url('fonts/doom-icons.eot?jqrftc');
+  src:  url('fonts/doom-icons.eot?jqrftc#iefix') format('embedded-opentype'),
+    url('fonts/doom-icons.ttf?jqrftc') format('truetype'),
+    url('fonts/doom-icons.woff?jqrftc') format('woff'),
+    url('fonts/doom-icons.svg?jqrftc#doom-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,60 +24,82 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-zap:before {
-  content: "\e912";
-}
-.icon-chevron-left:before {
-  content: "\e910";
-}
-.icon-chevron-right:before {
-  content: "\e911";
-}
-.icon-nope:before {
-  content: "\e90a";
-}
-.icon-search:before {
-  content: "\e90e";
-}
-.icon-menu:before {
-  content: "\e906";
-}
-.icon-bottle:before {
-  content: "\e907";
-}
-.icon-envelope:before {
-  content: "\e908";
-}
-.icon-hand:before {
-  content: "\e909";
-}
-.icon-phone:before {
-  content: "\e90b";
-}
-.icon-pin:before {
-  content: "\e90c";
-}
-.icon-poop:before {
-  content: "\e90d";
-}
-.icon-speech:before {
-  content: "\e90f";
-}
 .icon-ant:before {
   content: "\e900";
 }
-.icon-cockroach:before {
+.icon-bottle:before {
   content: "\e901";
 }
-.icon-fishmoth:before {
+.icon-chevron-left:before {
   content: "\e902";
 }
-.icon-flea:before {
+.icon-chevron-right:before {
   content: "\e903";
 }
-.icon-fly:before {
+.icon-cockroach:before {
   content: "\e904";
 }
-.icon-mosquito:before {
+.icon-eggs:before {
   content: "\e905";
+}
+.icon-envelope:before {
+  content: "\e906";
+}
+.icon-fishmoth:before {
+  content: "\e907";
+}
+.icon-flea:before {
+  content: "\e908";
+}
+.icon-fly:before {
+  content: "\e909";
+}
+.icon-hand:before {
+  content: "\e90a";
+}
+.icon-menu:before {
+  content: "\e90b";
+}
+.icon-mosquito:before {
+  content: "\e90c";
+}
+.icon-nope:before {
+  content: "\e90d";
+}
+.icon-phone:before {
+  content: "\e90e";
+}
+.icon-pin:before {
+  content: "\e90f";
+}
+.icon-poops:before {
+  content: "\e910";
+}
+.icon-refresh .path1:before {
+  content: "\e911";
+  color: rgb(0, 0, 0);
+}
+.icon-refresh .path2:before {
+  content: "\e912";
+  margin-left: -0.900390625em;
+  color: rgb(35, 31, 32);
+}
+.icon-refresh .path3:before {
+  content: "\e913";
+  margin-left: -0.900390625em;
+  color: rgb(0, 0, 0);
+}
+.icon-refresh .path4:before {
+  content: "\e914";
+  margin-left: -0.900390625em;
+  color: rgb(35, 31, 32);
+}
+.icon-search:before {
+  content: "\e915";
+}
+.icon-speech:before {
+  content: "\e916";
+}
+.icon-zap:before {
+  content: "\e917";
 }
