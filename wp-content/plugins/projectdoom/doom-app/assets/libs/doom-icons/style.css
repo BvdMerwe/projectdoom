@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'doom-icons';
-  src:  url('fonts/doom-icons.eot?3c3t9i');
-  src:  url('fonts/doom-icons.eot?3c3t9i#iefix') format('embedded-opentype'),
-    url('fonts/doom-icons.ttf?3c3t9i') format('truetype'),
-    url('fonts/doom-icons.woff?3c3t9i') format('woff'),
-    url('fonts/doom-icons.svg?3c3t9i#doom-icons') format('svg');
+  src:  url('fonts/doom-icons.eot?5k3723');
+  src:  url('fonts/doom-icons.eot?5k3723#iefix') format('embedded-opentype'),
+    url('fonts/doom-icons.ttf?5k3723') format('truetype'),
+    url('fonts/doom-icons.woff?5k3723') format('woff'),
+    url('fonts/doom-icons.svg?5k3723#doom-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-nope:before {
+  content: "\e90a";
+}
+.icon-search:before {
+  content: "\e90e";
+}
+.icon-menu:before {
+  content: "\e906";
+}
+.icon-bottle:before {
+  content: "\e907";
+}
+.icon-envelope:before {
+  content: "\e908";
+}
+.icon-hand:before {
+  content: "\e909";
+}
+.icon-phone:before {
+  content: "\e90b";
+}
+.icon-pin:before {
+  content: "\e90c";
+}
+.icon-poop:before {
+  content: "\e90d";
+}
+.icon-speech:before {
+  content: "\e90f";
+}
 .icon-ant:before {
   content: "\e900";
 }
