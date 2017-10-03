@@ -3,7 +3,7 @@
 * Displays Products Content
 *
 * @package WordPress
-* @subpackage Twenty_Seventeen
+* @subpackage doom
 * @since 1.0
 * @version 1.0
 */
@@ -32,12 +32,34 @@
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                     <ul class="product-insects">
+                        <li data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
+                            <i class="icon-ant"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
+                            <i class="icon-cockroach"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
+                            <i class="icon-fishmoth"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
+                            <i class="icon-flea"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
+                            <i class="icon-fly"></i>
+                        </li>
+                        <li data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
+                            <i class="icon-mosquito"></i>
+                        </li>
+                        <!--
                         <li class="icon-insect-cockroach active" title="Cockroaches"></li>
                         <li class="icon-insect-fly" title="Flies"></li>
                         <li class="icon-insect-mosquito active" title="Mosquitoes"></li>
                         <li class="icon-insect-ant" title="Ants"></li>
                         <li class="icon-insect-fishmoth" title="Fishmoths"></li>
-                        <li class="icon-insect-flea" title="Fleas"></li>
+                        <li class="icon-insect-flea" title="Fleas">
+                            <i class="icon-flea"></i>
+                        </li>
+                        -->
                     </ul>
                     <md-button class="md-primary primary-cta">Get Product Coupon</md-button>
 					<br /><br />
@@ -68,161 +90,38 @@
 						</collapsible-item>
 
 					</ang-accordion>
-					<?php /** /?>
-                    <div class="panel-group custom-accordion" id="accordionProductSingle" role="tablist" aria-multiselectable="true" data-one-at-a-time="true">
-
-                        <!-- GENERAL CONFIGURATION -->
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
-                                <h4 class="panel-title uppercase tl">
-                                    <a
-                                        data-ui-collapser
-                                        role="button"
-                                        data-toggle="collapse"
-                                        data-parent="#accordionProductSingle"
-                                        data-target="#collapsePanelBenefits"
-                                        aria-expanded="false">
-                                            01 Benefits<span class="icon-chevron-down fr"></span>
-                                    </a>
-                                </h4>
-                            </div>
-
-                            <div id="collapsePanelBenefits" class="panel-collapse collapse" role="tabpanel">
-
-                                <div class="panel-body">
-
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- DIRECTION FOR USE -->
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
-                                <h4 class="panel-title uppercase tl">
-                                    <a
-                                        data-ui-collapser
-                                        role="button"
-                                        data-toggle="collapse"
-                                        data-parent="#accordionProductSingle"
-                                        data-target="#collapseDirectionForUse"
-                                        aria-expanded="false">
-                                            02 Direction for use<span class="icon-chevron-down fr"></span>
-                                    </a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseDirectionForUse" class="panel-collapse collapse" role="tabpanel">
-
-                                <div class="panel-body">
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- STORAGE & DISPOSAL -->
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
-                                <h4 class="panel-title uppercase tl">
-                                    <a
-                                        data-ui-collapser
-                                        role="button"
-                                        data-toggle="collapse"
-                                        data-parent="#accordionProductSingle"
-                                        data-target="#collapseStorageDisposal"
-                                        aria-expanded="false">
-                                            03 Storage &amp; Disposal<span class="icon-chevron-down fr"></span>
-                                    </a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseStorageDisposal" class="panel-collapse collapse" role="tabpanel">
-
-                                <div class="panel-body">
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-
-                                </div>
-
-                            </div>
-
-						</div>
-
-						<!-- PRECAUTIONS -->
-                        <div class="panel panel-default">
-
-                            <div class="panel-heading drop-shadow-bottom" role="tab" id="accordionProduct">
-                                <h4 class="panel-title uppercase tl">
-                                    <a
-                                        data-ui-collapser
-                                        role="button"
-                                        data-toggle="collapse"
-                                        data-parent="#accordionProductSingle"
-                                        data-target="#collapsePrecautions"
-                                        aria-expanded="false">
-                                            04 Precautions<span class="icon-chevron-down fr"></span>
-                                    </a>
-                                </h4>
-                            </div>
-
-                            <div id="collapsePrecautions" class="panel-collapse collapse" role="tabpanel">
-
-                                <div class="panel-body">
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-					</div>
-					<?php /**/?>
+					
                     <h3 class="carousel-title">Similar Products</h3>
                     <br /><br />
-                    <!--
-                    <div data-ui-gallery
-                        flex="100"
-                        isWidget        = "true"
-                        showTitle       = "false"
-                        showSubheader   = "false"
-                        showDescription = "false"
-                        showButton      = "true"
-                        contentType     = "product"
-                        sortBy="ASC" orderBy="post_title"
-                        gridItemsDesktopWide="1" gridItemsDesktop="1" gridItemsMobile="1"></div>
-                    -->
-                </div>
-                <!--
-                <div flex="grow">
-
                     <div data-ui-carousel
-                                flex="100"
-                                isWidget        = "true"
-                                showTitle       = "true"
-                                showSubheader   = "true"
-                                showDescription = "true"
-                                showButton      = "true"
-                                contentType     = "retailer"
-                                sortBy="ASC" orderBy="post_title"
-                                maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>
-
+                        flex="100"
+                        single          = "true"
+                        needsCta        = "true"
+                        maxHeight       = "250px"
+                        maxWidth        = "250px"
+                        gutter          = "10px"
+                        displayName     = "true"
+                        insectType      = ""
+                        productType     = "spray"
+                        contentType="product"></div>
+                    
                 </div>
-                -->
+                
             </div>
             <div layout="column" class="md-padding">
                 <h3 class="carousel-title">Where to buy</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single          = "false"
+                    needsCta        = "false"
+                    maxHeight       = "250px"
+                    maxWidth        = "250px"
+                    gutter          = "10px"
+                    displayName     = "false"
+                    insectType      = ""
+                    productType     = ""
+                    contentType="retailer"></div>
+                <!--
                 <div data-ui-carousel
                     flex="100"
                     isWidget        = "true"
@@ -232,7 +131,7 @@
                     showButton      = "true"
                     contentType     = "retailer"
                     sortBy="ASC" orderBy="post_title"
-                    maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>
+                    maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>-->
             </div>
             <!-- -->
 
@@ -245,7 +144,7 @@
                 <div flex="60" flex-md="100" class="md-padding">
                     <div class="bg-box">
                         <!--<img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption">-->
-                        <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image" alt="" style="width:100%;" />
+                        <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
                 <div flex="40" flex-md="100" class="md-padding">
@@ -257,9 +156,10 @@
             <!-- [/HERO SECTION] -->
 
             <!-- [BODY SECTION] -->
-
+            
+            <!--
             <div flex="grow">
-
+               
                 <div data-ui-gallery
 					flex="100"
 					isWidget        = "false"
@@ -277,6 +177,7 @@
                         <h3 flex="100" class="carousel-title">Ants</h3>
                         
                 </div>
+                
                 
                 <div data-ui-gallery
 					flex="100"
@@ -489,17 +390,247 @@
 					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
 				
             </div>
+            -->
+
+            <div flex="grow">
+				<h3 class="carousel-title">Ants</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "ant"
+                    productType     = "spray"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "ant"
+                    productType     = "electric"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "ant"
+                    productType     = "powder"
+                    contentType="product"></div>
+
+            </div>
+
+            <div flex="grow">
+				<h3 class="carousel-title">Cockroaches</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "cockroach"
+                    productType     = "spray"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "cockroach"
+                    productType     = "electric"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "cockroach"
+                    productType     = "powder"
+                    contentType="product"></div>
+
+            </div>
+
+            <div flex="grow">
+				<h3 class="carousel-title">Fishmoths</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "fishmoth"
+                    productType     = "spray"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "fishmoth"
+                    productType     = "electric"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "fishmoth"
+                    productType     = "powder"
+                    contentType="product"></div>
+
+            </div>
+
+            <div flex="grow">
+				<h3 class="carousel-title">Fleas</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "flea"
+                    productType     = "spray"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "flea"
+                    productType     = "electric"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "flea"
+                    productType     = "powder"
+                    contentType="product"></div>
+
+            </div>
+
+            <div flex="grow">
+				<h3 class="carousel-title">Flies</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "fly"
+                    productType     = "spray"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "fly"
+                    productType     = "electric"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "fly"
+                    productType     = "powder"
+                    contentType="product"></div>
+
+            </div>
+
+            <div flex="grow">
+				<h3 class="carousel-title">Mosquitoes</h3>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "mosquito"
+                    productType     = "spray"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "mosquito"
+                    productType     = "electric"
+                    contentType="product"></div>
+                <div data-ui-carousel
+                    flex="100"
+                    single = "false"
+                    needsCta = "true"
+                    maxHeight = "250px"
+                    maxWidth = "250px"
+                    gutter = "10px"
+                    displayName ="true"
+                    insectType     	= "mosquito"
+                    productType     = "powder"
+                    contentType="product"></div>
+
+            </div>
 
             <div flex="grow">
 				<h3 class="carousel-title">Where to buy</h3>
                 <div data-ui-carousel
                     flex="100"
-                    isSingle = "false"
+                    single = "false"
                     needsCta = "false"
                     maxHeight = "250px"
                     maxWidth = "250px"
                     gutter = "10px"
                     displayName ="false"
+                    productType     = ""
                     contentType="retailer"></div>
 
             </div>

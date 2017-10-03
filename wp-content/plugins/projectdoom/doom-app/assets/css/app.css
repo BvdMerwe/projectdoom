@@ -179,6 +179,11 @@ button, html, input, select, textarea {
 	font-family: 'Montserrat', sans-serif;
 }
 
+/**
+* 
+* Header Navigation
+* 
+**/
 .hamburger-menu span{
 	position:relative;
 	height:2px;
@@ -246,6 +251,15 @@ body.super-search-open {
 	overflow:hidden;
 }
 
+md-nav-ink-bar {
+	background-color: #14A774 !important;
+}
+
+/**
+* 
+* SUPER MENU
+* 
+**/
 .super-menu,
 .super-menu ul li a {	
 	color:#ffffff;
@@ -328,12 +342,13 @@ body.super-search-open {
 	color:#ffffff;
 }
 
-.page-products div[data-ui-gallery] {
+.page-products div[data-ui-carousel] {
 	position: relative;
 }
-.page-products div[data-ui-gallery]:before {
+.page-products div[data-ui-carousel]:before {
 	position: absolute;
 	content: attr(producttype);
+	content: '';
 	display: block;
 	top: 10%;
     left: 0;
@@ -345,6 +360,31 @@ body.super-search-open {
     font-weight: bold;
 	color: #ddd;
 	color: rgba(221, 221, 221,0.3);
+
+	background-repeat:no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+.page-products div[producttype="spray"]:before {
+	background-image:url('../images/SPRAYS.png');
+}
+ 
+.page-products div[producttype="electric"]:before {
+	background-image:url('../images/ELECTRICS.png');
+}
+
+.page-products div[producttype="coil"]:before {
+	background-image:url('../images/COILS.png');
+}
+
+.page-products div[producttype="powder"]:before {
+	background-image:url('../images/POWDER.png');
+}
+
+.page-products div[data-ui-carousel] img {
+	position: relative;
+	width:100%;
 }
 
 .super-bug-image {
@@ -355,10 +395,7 @@ body.super-search-open {
 }
 /**
 * 
-* Page Structure
-*
-* 
-*
+* General Page Structure
 * 
 **/
 .page-content {
@@ -402,6 +439,18 @@ body.super-search-open {
     margin: 2em 0;
 }
 
+/**
+* 
+* Page Products Structure
+* 
+**/
+
+.products-hero-image {
+	width: 100%;
+    position: relative;
+    left: -10%;
+}
+
 .product-image {
 	position: relative;
 	border:1px solid #ffffff;
@@ -419,6 +468,11 @@ body.super-search-open {
 	text-transform: lowercase;
 }
 
+/**
+* 
+* Page Insects Structure
+* 
+**/
 .carousel-title {
 	color:#14A774;
 	font-size: 30px;
@@ -448,9 +502,13 @@ body.super-search-open {
 
 .product-insects li.active,
 .insect-insects li.active {
+	/** /
 	background-color:#14A774;
 	border:2px solid #14A774;
+	/**/
 	color:#ffffff;
+	background-color:#14A774;
+	border:2px solid #14A774;
 }
 
 .product-insects li:first-child,
@@ -458,6 +516,72 @@ body.super-search-open {
 	margin-left:0;
 }
 
+.insect-insects li,
+.product-insects li {
+	position: relative;
+	margin-left: 5px;
+	display: inline-block;
+	/**/
+	border-radius: 50%;
+
+	width:60px;
+	height:60px;
+
+	margin-left: 5px;
+
+	border:2px solid #ff510b;
+	display: inline-block;
+	/**/
+	color:#000000;
+}
+.product-insects li {
+	border:2px solid #14A774;
+}
+
+.insect-insects li i,
+.product-insects li i{
+	position: relative;
+    font-size: 2em;
+    width: 28px;
+	height: 30px;
+	/** /
+    border: 2px solid #ff510b;
+    display: inline-block;
+	border-radius: 50%;
+	/**/
+	padding: 10px;
+	
+	left: 10px;
+    top: 12px;
+}
+
+.insect-insects li.icon-insect-ant i{
+	
+}
+
+.insect-insects li.icon-insect-cockroach i{
+	
+}
+
+.insect-insects li.icon-insect-fly i,
+.product-insects li.icon-insect-fly i{
+	left: 5px;
+}
+
+.insect-insects li.icon-insect-flea i{
+	
+}
+
+.insect-insects li.icon-insect-fishmoth i,
+.product-insects li.icon-insect-fishmoth i{
+	left:13px;
+}
+
+.insect-insects li.icon-insect-mosquito i,
+.product-insects li.icon-insect-mosquito i{
+	left:4px;
+}
+/** /
 .icon-insect-cockroach {
 
 }
@@ -476,7 +600,7 @@ body.super-search-open {
 .icon-insect-flea {
 
 }
-
+/**/
 .primary-cta {
 	background-color: #ff510b;
 	border:1px solid #ff510b;
@@ -501,19 +625,9 @@ body.super-search-open {
 }
 
 
-.insect-insects li {
-	position: relative;
-	border-radius: 50%;
-	width:30px;
-	height:30px;
 
-	margin-left: 5px;
 
-	border:2px solid #ff510b;
-	display: inline-block;
 
-	color:#000000;
-}
 
 .insect-buttons-cta div {
 	border-left:1px solid #cccccc;
@@ -529,6 +643,7 @@ body.super-search-open {
 	font-weight: bold;
 	color:#ff510b;
 	font-size: 20px;
+	line-height: 25px;
 	text-transform: uppercase;
 	border:none;
 }
@@ -538,9 +653,17 @@ body.super-search-open {
 	display:block;
 	width:80px;
 	height:80px;
+	color:#444;
+	font-size: 2.5em;
 	border:5px solid #444444;
 	border-radius:50%;
-	margin: 2em auto;
+	margin: 20px auto;
+	margin-bottom:15px;
+}
+
+.insect-buttons-cta div .md-button .icon i {
+	position: relative;
+	top:15px;
 }
 
 .insect-controller-buttons {
@@ -548,13 +671,15 @@ body.super-search-open {
 	display: block;
 	width:100%;
 	left:0;
-	z-index: 999999;
+	
 }
 
 .insect-controller-buttons .lnr-chevron-left,
 .insect-controller-buttons .lnr-chevron-right {
 	position: absolute;
 	font-size: 2em;
+	border:none;
+	background:none;
 } 
 
 .insect-controller-buttons .lnr-chevron-left {
@@ -562,6 +687,56 @@ body.super-search-open {
 }
 .insect-controller-buttons .lnr-chevron-right {
 	right:0;
+}
+
+/** /
+#configurator .insect-selector .desc {
+	opacity: 0;
+}
+#configurator .insect-selector.selected .desc {
+	opacity: 1;
+}
+/**/
+
+.configurator-progress { 
+	border-radius:0;
+	height:5px;
+	background: #444;
+	margin:2em auto;
+} 
+
+.configurator-progress .md-thumb,
+.configurator-progress .md-thumb:after {
+	width:40px;
+	height:40px;
+}
+
+.configurator-progress .md-thumb {
+	top: -20px;
+	left:-20px;
+	background-color: #444444;
+    box-shadow: 0 0 0 4px #444444;
+    border: 2px solid #fff;
+}
+
+.step-2 .configurator-progress .md-thumb {
+	background: none;
+	border:none;
+}
+
+.configurator-progress .md-thumb:after {
+	background-color:#444444;
+	border:2px solid #fff;
+	box-shadow: 0 0 2px 5px #444;
+}
+
+md-slider .md-track-container {
+	display:none;
+}
+
+.config-head {
+	margin-bottom:2em;
+	pointer-events: none;
 }
 /**
 * 
@@ -584,6 +759,8 @@ body.super-search-open {
 
 .animate-page-switch {
 	padding:20px;
+	top: 40px;
+    position: relative;
 }
 
 .animate-page-switch.ng-animate {
@@ -655,9 +832,23 @@ md-card md-card-content {
 	width:100%;
 	padding: 10px;
 }
+
 .bg-box {
+	position: relative;
 	width: 100%; height: 100%;
 }
+
+.bg-box::before {
+    content: "";
+    position: absolute;
+    top: 32%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px solid #14A774;
+    z-index: -1;
+}
+
 .bg-image {
 	width: 100%; height: 100%;
 }

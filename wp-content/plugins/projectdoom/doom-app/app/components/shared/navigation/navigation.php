@@ -19,11 +19,11 @@
 				md-whiteframe="4"
 				style="position: fixed;width:100%;height:100%;top:0;left:0;">
 
-				<md-content layout-padding layout="column" style="z-index:999;">
+				<div layout-padding layout="column" style="z-index:999;">
 					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">
 					</md-button>
-				</md-content>
-				<md-content layout-padding layout-fill layout="row" layout-align="center center" style="padding:50px 100px">
+				</div>
+				<div layout-padding layout-fill layout="row" layout-align="center center" style="padding:50px 100px">
 
 					<!-- <div flex="70" layout-fill>
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
@@ -67,14 +67,14 @@
 						</ul>
 
 					</div>
-				</md-content>
+				</div>
 
 		</md-sidenav>
 	</div>
 	<div layout="column" class="md-primary">
 		<div layout="row" layout-xs="column" flex-xs="100">
 
-			<md-content class="md-padding" flex="10" style="text-align:center;background-color:#14A774;z-index:99;max-width: 86px !important;">
+			<div class="md-padding" flex="10" style="text-align:center;background-color:#14A774;z-index:99;max-width: 86px !important;">
 				<md-button ng-click="toggleLeft()"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:5px;">
@@ -84,9 +84,9 @@
 					</md-icon>
 				</md-button>
 				<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
-      		</md-content>
+      		</div>
 
-			<md-content class="md-padding" flex="80" layout="row" layout-align="center center" style="z-index:99;">
+			<div class="md-padding" flex="80" layout="row" layout-align="center center" style="z-index:99;">
 				<md-nav-bar 
 					class="primary-navigation"
 					md-selected-nav-item="currentNavItem"
@@ -106,9 +106,9 @@
 				<div data-ng-transclude>
 					
 				</div>
-            </md-content>
-            <md-content class="md-padding" flex="10" layout="row" layout-align="end center">
+            </div>
+            <div class="md-padding" flex="10" layout="row" layout-align="end center">
 				<div data-ui-search id="search-takeover"></div>
-            </md-content>
+            </div>
         </div>
 	</div>

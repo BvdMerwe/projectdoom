@@ -459,8 +459,8 @@ md-sidenav {
       .number {
         border: 3px solid #000;
         display: block;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         border-radius: 100%;
         font-size: 47px;
         margin: 0 auto 15px;
@@ -498,10 +498,13 @@ md-sidenav {
     vertical-align: top;
     border: 5px solid transparent;
     &.selected {
-      border: 5px solid $green;
+      border: 5px solid $green; 
+      &.desc {
+        opacity:1;
+      }
     }
     .desc {
-      display: block;
+      opacity:0;
       height: 150px;
     }
     .thumbnail {
@@ -509,7 +512,7 @@ md-sidenav {
         width: 1.5em;
         height: 1.5em;
         display: inline-block;
-        font-size: 1em;
+        font-size: 3em;
         border: 0.1em solid inherit;
         border-radius: 100%;
         padding: 0.2em 0;
@@ -544,7 +547,7 @@ md-sidenav {
     }
     &.active {
       border-color: transparent;
-      padding: 40px 10%;
+      padding: 0;
       width: 100%;
       margin: 0;
     }

@@ -272,6 +272,8 @@ define( function ( require, exports, module ) {
                                     for (var index = 0; index < $scope.gridItems.length; index++) {
                                         
                                         //var element = $scope.gridItems[index];
+
+                                        console.log('HELL NWA:', $scope.gridItems[index]);
                                         
                                         for (var index2 = 0; index2 < $scope.gridItems[index].product_categories.length; index2++) {
                                             
@@ -286,7 +288,7 @@ define( function ( require, exports, module ) {
                                         
                                     }
 
-                                    break;
+                                    break; 
 
                                 default:
 
@@ -359,34 +361,6 @@ define( function ( require, exports, module ) {
                             //console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
                         }
 
-                        /** * /
-                        // group by product types;
-                        if( angular.isDefined($route.current.locals.app_data) ) {
-
-                            //go through each product type
-                            angular.forEach( $route.current.locals.app_data.taxonomy.product_types, function(val, key) {
-
-                                if( angular.isDefined(val.product) ) {
-
-                                    // go through the product_type products
-                                    for (var index = 0; index < val.product.length; index++) {
-                                        break;
-                                        // if product is 
-                                       //if( val.product[index].ID == ) {
-
-                                       //}
-                                    }
-
-                                }
-
-                            });
-
-                        }
-                        /** */
-                        //
-
-                        //$scope.gridItems = results;
-
                     }
 
                     function _initialiseData( type ) {
@@ -424,15 +398,19 @@ define( function ( require, exports, module ) {
                                 
                                 if( angular.isDefined($route.current.locals.app_data) ) {
 
-                                    var taxes = $route.current.locals.app_data.taxonomy;
+                                    // GROUP PRODUCTS BY FLYING & CRAWLING
+                                    _getUniqueCategories( $route.current.locals.app_data.products );
 
+                                    var taxes = $route.current.locals.app_data.taxonomy;
+                                    
+                                    /** /
                                     //console.log('GARR[]:', $scope.insectType, $route.current.locals.app_data);
 
                                     for (var index = 0; index < taxes.product_categories.length; index++) {
                                         var element = taxes.product_categories[index];
                                         
                                     }
-
+                                    /**/
                                     // go through all insect categories (Flying / Crawling)
                                     //loop1:
                                     //for (var index = 0; index < taxes.length; index++) {
@@ -460,6 +438,12 @@ define( function ( require, exports, module ) {
                                                         //gallaryProducts.push( array[index.product] );
 
                                                         //console.log('Got Em!');
+
+                                                        //element.insect_categories = val;
+                                                        //val.insect[indey].insect_categories = val;
+                                                        //val.product.product_categories = [];
+
+                                                        //console.log('Got Em!', val.product, element);
 
                                                         _initiateLayout(val.product);
                                                         
@@ -687,7 +671,7 @@ define( function ( require, exports, module ) {
 
                         var activeFilter = document.querySelector('[data-filter-id="' + key + '"]');
 
-                        console.log('activeFilter:', activeFilter);
+                        //console.log('activeFilter:', activeFilter);
 
                         Utils.addClass( activeFilter, 'active-filter');
 

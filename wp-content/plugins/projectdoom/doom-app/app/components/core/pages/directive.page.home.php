@@ -100,6 +100,6 @@
 
 			<?php /**/?>
 
-			<div  data-ui-footer layout="column" layout-align="start center" flex="100" style="background-color:#14A774;max-height:100px;"></div>
+			<div  data-ui-footer layout="column" layout-align="start center" flex="100" style=""></div>
 
 		</div>
