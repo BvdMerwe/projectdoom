@@ -69,7 +69,7 @@ define( function ( require, exports, module ) {
 		appDoom.config( [ '$mdThemingProvider', function ( $mdThemingProvider ) {
 
 				//$mdThemingProvider.theme('default');
-				/***/
+				/*** /
 				//$mdThemingProvider.theme('doomgreen');
 
 				$mdThemingProvider.definePalette('doomgreen', {
@@ -148,7 +148,8 @@ define( function ( require, exports, module ) {
 				//$mdThemingProvider.theme('green');
 				//$mdThemingProvider.setDefaultTheme('doomgreen');
 				//$mdThemingProvider.theme('doomgreen');
-				$mdThemingProvider.setDefaultTheme('none');
+				// $mdThemingProvider.setDefaultTheme('none');
+				$mdThemingProvider.disableTheming();
 				
 				/** /
 				.dark-primary-color    { background: #388E3C; }
