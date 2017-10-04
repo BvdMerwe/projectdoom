@@ -52,9 +52,9 @@
         </a>
       </div>
     </div>
-    <div class="step-2 {{step2State}}" flex="100" layout="column">
+    <div class="step-2 {{step2State}}" flex="100" layout="row" style="padding: 0 45px;">
       <br />
-      <div flex="100" class="content" layout="column" layout-wrap layout-align="center center">
+      <div flex="100" class="content" layout="row" layout-wrap layout-align="center center">
           <div flex="100">
             <p>How long has the gogga been bugging you for?</p>
             <md-slider-container layout="row" layout-align="space-between center">
@@ -62,10 +62,10 @@
               <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.duration" step="1" min="1" max="3" aria-label="duration"></md-slider>
               <span flex="15"></span>
             </md-slider-container>
-            <div layout="row" layout-align="space-around center">
-              <span>A&nbsp;day&nbsp;+</span>
-              <span>A&nbsp;week&nbsp;+</span>
-              <span>A&nbsp;month&nbsp;+</span>
+            <div layout="row" layout-align="space-between center">
+              <span flex="15">A&nbsp;day&nbsp;+</span>
+              <span flex="70">A&nbsp;week&nbsp;+</span>
+              <span flex="15">A&nbsp;month&nbsp;+</span>
             </div>
           </div>
           <div flex="100">
@@ -90,7 +90,7 @@
       
       <div class="content" layout-fill layout="column" layout-gt-sm="row" layout-align="space-between center">
         <div class="map-container" flex>
-          <img class="map" src="/projectdoom/wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
+          <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475">
             <!-- <defs><style>.cls-1{fill:#fff;stroke:#231f20;stroke-width:5px;}.cls-10,.cls-2{font-size:12px;font-family:MyriadPro-Regular, Myriad Pro;}.cls-3{letter-spacing:0em;}.cls-4{letter-spacing:0em;}.cls-5{letter-spacing:-0.01em;}.cls-6{letter-spacing:0em;}.cls-7{letter-spacing:-0.01em;}.cls-8{letter-spacing:0.01em;}.cls-9{letter-spacing:-0.01em;}.cls-10{letter-spacing:-0.03em;}.cls-11{letter-spacing:0em;}</style></defs> -->
           	<g id="bedroom" ng-click="setLocation('bedroom')" class="area {{config.location.indexOf('bedroom') > -1}}">
@@ -140,6 +140,9 @@
       </div>
     </div>
     <div class="final {{finalPage}}">
+      <div class="final-backbutton" ng-click="setState(3)">
+        <span class="icon-chevron-left"></span>
+      </div>
       <div class="final-container" layout="row" layout-fill layout-align="center start" layout-wrap>
         <div class="stats-container" flex="33">
           <h2>In your home</h2>

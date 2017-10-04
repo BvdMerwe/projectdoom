@@ -67,6 +67,18 @@ define( function ( require, exports, module ) {
         //     break;
         //   }
         // }
+        scope.$on("$routeChangeSuccess", function(ev, to){
+          scope.config.pest = to.params.ID;
+          var insects = scope.insects;
+          for (var i = 0; i < insects.length; i++) {
+            insects[i].selected = '';
+            if (typeof scope.config.pest == "string" && scope.config.pest.toLowerCase() == insects[i].post_name.toLowerCase()) {
+              insects[i].selected = 'selected';
+              scope.config.pest = insects[i];
+            }
+          }
+          scope.insects = insects;
+        });
 
 			},
 			controller:  	[ '$scope', '$sce', '$filter', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'insectsManager','productsManager', function ( $scope, $sce, $filter, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, insectsManager, productsManager ) {
@@ -299,6 +311,9 @@ define( function ( require, exports, module ) {
         $scope.evaluate = function (config) {
           // console.clear();
           // console.log("inputs",$scope.config);
+          // if ($scope.result.pest == $scope.pest) {
+          //   return $scope.result;
+          // }
 /** /
 
           Get product from pest type
@@ -413,6 +428,7 @@ define( function ( require, exports, module ) {
             }
           }
           return {
+            pest: pest,
             product: {},
             stats: results,
             infestation: infestation

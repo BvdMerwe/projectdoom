@@ -27,6 +27,10 @@ md-toolbar {
   background-color: #14A774;
 }
 
+md-backdrop {
+  display: none;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -127,6 +131,7 @@ div[data-ui-carousel] {
   position: relative;
   max-width: calc(100% - 30px);
   margin-left: 16px;
+  text-align: center;
 }
 
 .retailer-carousel .item .bg-box::before {
@@ -151,7 +156,7 @@ div[data-ui-carousel] {
 
 .carousel-container .controls .carousel-control {
   position: absolute;
-  top: calc(50% - 0.5em - 5px);
+  top: calc(33%);
   cursor: pointer;
   -webkit-transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   -moz-transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
@@ -365,6 +370,10 @@ md-autocomplete-wrap input {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.searchbar-container .search-results .collapsible-item.ng-animate {
+  position: relative !important;
+}
+
 .search-container.layout-fill {
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
   -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -461,6 +470,7 @@ md-autocomplete-wrap input {
 
 #footer .footer-nav {
   color: #fff;
+  z-index: 1;
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -517,9 +527,7 @@ md-autocomplete-wrap input {
 * configurator STYLE
 ***********************************************/
 /*****
-
 slider style
-
 *****/
 div[data-ui-configurator] .configurator-steps md-slider .md-thumb {
   font-family: 'doom-icons';
@@ -565,6 +573,9 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
   border: none;
 }
 
+/*****
+END slider style
+*****/
 #configurator {
   width: 100%;
 }
@@ -601,7 +612,6 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
 #configurator .configurator-steps {
   width: 100%;
   position: relative;
-  overflow: hidden;
   min-height: 550px;
 }
 
@@ -643,7 +653,6 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
   position: absolute;
   min-height: 350px;
   pointer-events: none;
-  max-width: 870px;
 }
 
 #configurator .step-1 .content, #configurator .step-2 .content, #configurator .step-3 .content {
@@ -724,12 +733,9 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
   border: 5px solid transparent;
 }
 
-#configurator .insect-selector.selected {
-  border: 5px solid #14A774;
-}
-
-#configurator .insect-selector.selected .desc {
-  opacity: 1;
+#configurator .insect-selector .start-button {
+  opacity: 0;
+  pointer-events: none;
 }
 
 #configurator .insect-selector .desc {
@@ -742,27 +748,42 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
   height: 150px;
 }
 
-#configurator .insect-selector .thumbnail i[class*='icon-'] {
+#configurator .insect-selector .thumbnail i[class^='icon-'] {
   width: 1.5em;
-  height: 1.5em;
+  height: 1em;
   display: inline-block;
   font-size: 3em;
-  border: 0.1em solid inherit;
+  border: 3px solid transparent;
   border-radius: 100%;
   padding: 0.2em 0;
   /* box-sizing: border-box; */
-}
-
-#configurator .insect-selector .thumbnail i[class*='icon-'].thin-border {
-  border-width: 1px;
-}
-
-#configurator .insect-selector .thumbnail i[class*='icon-'].thick-border {
   border-width: 3px;
 }
 
-#configurator .insect-selector .thumbnail i[class*='icon-'].no-border {
+#configurator .insect-selector .thumbnail i[class^='icon-'].thin-border {
+  border-width: 1px;
+}
+
+#configurator .insect-selector .thumbnail i[class^='icon-'].no-border {
   border-color: transparent;
+}
+
+#configurator .insect-selector.selected {
+  border: 5px solid #14A774;
+}
+
+#configurator .insect-selector.selected .thumbnail i {
+  border-color: #14A774;
+  color: #14A774;
+}
+
+#configurator .insect-selector.selected .desc {
+  opacity: 1;
+}
+
+#configurator .insect-selector.selected .start-button {
+  opacity: 1;
+  pointer-events: all;
 }
 
 #configurator .step-1 {
@@ -800,16 +821,36 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
   border-color: transparent;
 }
 
+#configurator .step-1 .content:hover .insect-selector .thumbnail i {
+  border-color: transparent;
+  color: inherit;
+}
+
 #configurator .step-1 .content:hover .insect-selector .desc {
   opacity: 0;
+}
+
+#configurator .step-1 .content:hover .insect-selector .start-button {
+  opacity: 0;
+  pointer-events: none;
 }
 
 #configurator .step-1 .content:hover .insect-selector:hover {
   border-color: #14A774;
 }
 
+#configurator .step-1 .content:hover .insect-selector:hover .thumbnail i {
+  border-color: #14A774;
+  color: #14A774;
+}
+
 #configurator .step-1 .content:hover .insect-selector:hover .desc {
   opacity: 1;
+}
+
+#configurator .step-1 .content:hover .insect-selector:hover .start-button {
+  opacity: 1;
+  pointer-events: all;
 }
 
 #configurator .step-2.inactive {
@@ -943,9 +984,23 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
   opacity: 1;
 }
 
+#configurator .final .final-backbutton {
+  display: block;
+  position: absolute;
+  top: 45%;
+  background-color: #FF510B;
+  border: 3px solid #FF510B;
+  padding: 10px 11px 9px;
+  left: 9px;
+  color: #fff;
+  cursor: pointer;
+}
+
 #configurator .final .final-container {
   border: 3px solid #14A774;
-  margin-top: 100px;
+  margin: 0px -30px 0 30px;
+  box-sizing: border-box;
+  width: calc(100% - 30px);
 }
 
 #configurator .final .final-container .product {
@@ -954,7 +1009,7 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
 
 #configurator .final .final-container .product img {
   vertical-align: baseline;
-  max-height: 550px;
+  max-height: 600px;
 }
 
 #configurator .final .stats-container, #configurator .final .solution-container {
@@ -986,4 +1041,16 @@ div[data-ui-configurator][pest='flea'] .configurator-steps .md-thumb::after {
 #configurator .final .stat-selector span {
   display: inline-block;
   margin-top: 0.625em;
+}
+
+/***********************************************
+* accordion STYLE
+***********************************************/
+.accordion {
+  width: 100%;
+}
+
+.page-faq ::selection, .page-contact ::selection, .page-legal ::selection, .page-about ::selection, .super-menu-open ::selection, .super-search-open ::selection {
+  color: #FF510B;
+  text-shadow: none;
 }

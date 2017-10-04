@@ -74,6 +74,17 @@ define( function ( require, exports, module ) {
 			
 		});
 
+		$scope.goto = function (path) {
+			$location.path(path);
+		}
+
+		$scope.scrollTo = function(id) {
+				// console.log(document.querySelector(id));
+			var to = document.querySelector(id).offsetTop;
+			// Utils.scrollTo(document,to, 300);
+			window.scrollTo(0, to)
+		}
+
 		/***/
 		$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
 			if (to.$$route.action == "home") {
@@ -515,7 +526,7 @@ define( function ( require, exports, module ) {
 					inputValidationTimeout  = null;
 
 				});
-				if ($location.$$path == "/") {
+				if ($location.$$path == "/" && angular.isDefined($route.current.locals)) {
 					var pests = $route.current.locals.app_data.insects;
 					var rand = Utils.getRandomInt(0,pests.length-1);
 					$location.path("/insects/"+pests[rand].post_name);

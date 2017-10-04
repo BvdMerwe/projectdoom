@@ -38,9 +38,9 @@
       <span>{{result.post_content}}</span>
     </div> -->
     <md-list layout-padding class="search-results">
+      <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">  
         <md-list-item class="md-3-line result" ng-repeat="result in results">
-        <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">  
-          <div ng-click="navigate(result.post_type, result.post_name)" layout="row" class="search-result" ng-if="result.post_type != 'faq'">
+          <div ng-click="navigate(result.post_type, result.post_name)" layout="row" flex="100" class="search-result" ng-if="result.post_type != 'faq'">
             <img ng-src="{{result.image}}" class="md-avatar" >
             <div class="md-list-item-text">
               <h3>{{result.post_title}}</h3>
@@ -54,8 +54,9 @@
               <p>{{result.post_content}}</p>
             </div>
           </collapsible-item>
-        </ang-accordion>
-      </md-list-item>
+        </md-list-item>
+
+      </ang-accordion>  
     </md-list>
 </md-content>
 </div>

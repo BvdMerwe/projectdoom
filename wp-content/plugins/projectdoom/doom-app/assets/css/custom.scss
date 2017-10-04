@@ -35,6 +35,10 @@ md-toolbar {
   }
 }
 
+md-backdrop {
+  display: none;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -128,6 +132,7 @@ div[data-ui-carousel] {
 	position: relative;
   max-width: calc(100% - 30px);
   margin-left: 16px;
+  text-align: center;
 }
 .retailer-carousel {
   .item .bg-box::before{
@@ -150,7 +155,7 @@ div[data-ui-carousel] {
     
     .carousel-control {
       position: absolute;
-      top: calc(50% - 0.5em - 5px);
+      top: calc(33%);
       cursor: pointer;
       @include transition(0.3s cubic-bezier(0.42,-0.37, 0.55, 1.43));
       outline: none;
@@ -336,6 +341,9 @@ div[data-ui-carousel] {
         background-color: rgba(#000, 0.1);
       }
     }
+    .collapsible-item.ng-animate {
+      position: relative !important;
+    }
   }
 }
 
@@ -371,7 +379,7 @@ div[data-ui-carousel] {
   }
   .footer-nav {
     color: #fff;
-    // z-index: 1;
+    z-index: 1;
     // position: fixed;    
     position: absolute;
     // top: 100%;
@@ -422,9 +430,7 @@ div[data-ui-carousel] {
 * configurator STYLE
 ***********************************************/
 /*****
-
 slider style
-
 *****/
 div[data-ui-configurator] .configurator-steps {
   md-slider .md-thumb {
@@ -480,6 +486,9 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
     border: none;
   }
 }
+/*****
+END slider style
+*****/
 #configurator { 
   width: 100%;
 
@@ -502,7 +511,7 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
   .configurator-steps {
     width: 100%;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     // height: 100vh;
     min-height: 550px;
 
@@ -525,7 +534,7 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
     position: absolute;
     min-height: 350px;
     pointer-events: none;
-    max-width: 870px;
+    // max-width: 870px;
     .content {
       @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
 
@@ -586,11 +595,10 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
     padding: 20px;
     vertical-align: top;
     border: 5px solid transparent;
-    &.selected {
-      border: 5px solid $green; 
-      .desc {
-        opacity:1;
-      }
+
+    .start-button {
+      opacity: 0;
+      pointer-events: none;
     }
     .desc {
       @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
@@ -598,12 +606,12 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
       height: 150px;
     }
     .thumbnail {
-      i[class*='icon-'] {
+      i[class^='icon-'] {
         width: 1.5em;
-        height: 1.5em;
+        height: 1em;
         display: inline-block;
         font-size: 3em;
-        border: 0.1em solid inherit;
+        border: 3px solid transparent;
         border-radius: 100%;
         padding: 0.2em 0;
         /* box-sizing: border-box; */
@@ -611,12 +619,27 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
         &.thin-border {
           border-width: 1px;
         }
-        &.thick-border {
+        // &.thick-border {
           border-width: 3px;
-        }
+        // }
         &.no-border {
           border-color: transparent;
         }
+      }
+    }
+
+    &.selected{
+      border: 5px solid $green;
+      .thumbnail i {
+        border-color: $green;
+        color: $green;
+      }
+      .desc {
+        opacity:1;
+      }
+      .start-button {
+        opacity: 1;
+        pointer-events: all;
       }
     }
   }
@@ -649,14 +672,30 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
     .content:hover {
       .insect-selector {
         border-color: transparent;
+        .thumbnail i {
+          border-color: transparent;
+          color: inherit;
+        }
         .desc {
           opacity: 0;
+        }
+        .start-button {
+          opacity: 0;
+          pointer-events: none;
         }
         &:hover {
           border-color: $green;
 
+          .thumbnail i {
+            border-color: $green;
+            color: $green;
+          }
           .desc {
             opacity: 1;
+          }
+          .start-button {
+            opacity: 1;
+            pointer-events: all;
           }
         }
       }
@@ -751,16 +790,29 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
       pointer-events: all;
       opacity: 1;
     }
-
+    .final-backbutton {
+      display: block;
+      position: absolute;
+      top: 45%;
+      background-color: $orange;
+      border: 3px solid $orange;
+      padding: 10px 11px 9px;
+      left: 9px;
+      color: #fff;
+      cursor: pointer;
+    }
     .final-container {
       border: 3px solid $green;
-      margin-top: 100px;
+      margin: 0px -30px 0 30px;
+      // margin-top: 100px;
+      box-sizing: border-box;
+      width: calc(100% - 30px);
       .product {
         max-height: 500px;
 
         img {
           vertical-align: baseline;
-          max-height: 550px;
+          max-height: 600px;
         }
       }
     }
@@ -791,5 +843,22 @@ div[data-ui-configurator][pest='flea'] .configurator-steps {
         margin-top: 0.625em;
       }
     }
+  }
+}
+
+
+/***********************************************
+* accordion STYLE
+***********************************************/
+.accordion {
+  width: 100%;
+}
+
+
+.page-faq, .page-contact, .page-legal, .page-about, .super-menu-open, .super-search-open{
+
+  ::selection 	{
+    color: $orange;
+    text-shadow: none;
   }
 }

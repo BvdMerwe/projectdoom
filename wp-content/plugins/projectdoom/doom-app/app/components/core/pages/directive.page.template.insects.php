@@ -46,27 +46,27 @@
                     </div>
                     
                     <br /><br />
-                    <md-button class="md-primary primary-cta" style="padding:10px 45px;font-size:30px;margin:0;">Make Them Stop</md-button>
+                    <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta" style="padding:10px 45px;font-size:30px;margin:0;">Make Them Stop</md-button>
                     <br /><br />
                     <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you.</p>
                     <ul class="insect-insects">
-                        <li data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
-                            <i class="icon-ant"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
+                        <li data-ng-click="goto('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
-                            <i class="icon-fishmoth"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
-                            <i class="icon-flea"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
+                        <li data-ng-click="goto('/insects/fly')" data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
                             <i class="icon-fly"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
+                        <li data-ng-click="goto('/insects/mosquito')" data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
                             <i class="icon-mosquito"></i>
+                        </li>
+                        <li data-ng-click="goto('/insects/ant')" data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
+                            <i class="icon-ant"></i>
+                        </li>
+                        <li data-ng-click="goto('/insects/fishmoth')" data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
+                            <i class="icon-fishmoth"></i>
+                        </li>
+                        <li data-ng-click="goto('/insects/flea')" data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
+                            <i class="icon-flea"></i>
                         </li>
                     </ul>
                     
@@ -92,32 +92,37 @@
                         <div class="flex">
                            
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/products/pageContent.post_title')">
-                                <span class="icon icon-solution"></span>
+                                <span class="icon "><i class="icon-zap"></i></span>
                                 {{pageContent.post_title}}<br />Killers
                             </md-button>
 
                         </div>
-                        <div class="flex">
+                        <!-- <div class="flex">
                             
                             <md-button class="md-primary primary-tag" data-ng-click="goTo('/insects/pageContent.post_title')">
                                 <span class="icon icon-hand"></span>
                                 {{pageContent.post_title}}<br />Prevention
                             </md-button>
-                        </div>
+                        </div> -->
                     </div>
                     
                 </div>
-                <div layout="column" flex="40" layout-align="center center">
+                <div layout="column" flex="40" layout-align="start start">
                     <h3 flex="100" class="carousel-title">Products</h3>
-                     <div data-ui-carousel
-                            
-                            single = "true"
-                            needsCta = "true"
-                            maxHeight = "350px"
-                            maxWidth = "200px"
-                            gutter = "10px"
-                            displayName ="true"
-                            contentType="product"></div>
+                    <div layout="row">
+                    <div data-ui-carousel
+                        single          = "true"
+                        cta             = "true"
+                        maxHeight       = "300px"
+                        maxWidth        = "250px"
+                        gutter          = "10px"
+                        displayName     = "true"
+                        insectType      = ""
+                        productType     = ""
+                        showFilter      = "true"
+                        filterBy        = "product_types"
+                        contentType="product"></div>
+                </div>
                 </div>
             </div>
 

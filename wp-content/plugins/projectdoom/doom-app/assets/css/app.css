@@ -118,7 +118,7 @@ body:after {
  }
  .collapsible-item {
 	margin-bottom: 10px;
-	
+	width: 100%;
 }
 
 .collapsible-item .title {
@@ -135,11 +135,16 @@ body:after {
 }
 
 .collapsible-item .title .icon {
-	float: right;
 	height: 20px;
-	width: 20px;
-	font-size: 19px !important;
-	padding-right: 1px;
+    width: 20px;
+    font-size: 19px !important;
+    padding-right: 1px;
+    position: absolute;
+    right: 0 !important;
+    left: initial !important;
+    top: initial !important;
+    bottom: initial !important;
+	
 }
 
 .collapsible-item .title .iconleft {
@@ -345,7 +350,8 @@ md-nav-ink-bar {
 .page-products div[data-ui-carousel] {
 	position: relative;
     max-width: calc(100% - 30px);
-    margin-left: 16px;
+	margin-left: 16px;
+	text-align: center;
 }
 .page-products div[data-ui-carousel]:before {
 	position: absolute;
@@ -513,6 +519,13 @@ md-nav-ink-bar {
 	border:2px solid #14A774;
 }
 
+.product-insects li:hover,
+.insect-insects li:hover {
+	color:#fff;
+	background-color:#ff510b;
+	border:2px solid #ff510b;
+}
+
 .product-insects li:first-child,
 .insect-insects li:first-child {
 	margin-left:0;
@@ -535,6 +548,7 @@ md-nav-ink-bar {
 	display: inline-block;
 	/**/
 	color:#000000;
+	cursor: pointer;
 }
 .insect-insects li {
 	color:#ff510b;
@@ -585,7 +599,8 @@ md-nav-ink-bar {
 
 .insect-insects li.icon-insect-mosquito i,
 .product-insects li.icon-insect-mosquito i{
-	left:4px;
+	left: 7px;
+    top: 14px;
 }
 /** /
 .icon-insect-cockroach {

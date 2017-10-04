@@ -66,7 +66,7 @@ define(function (require, exports, module) {
 				contentType: '@contenttype',
 				maxHeight: '@maxheight',
 				maxWidth: '@maxwidth',
-				needsCta: '=cta',
+				cta: '=cta',
 				displayName: '=displayname',
 				isSingle: '=single',
 				gutter: '@gutter',
@@ -96,7 +96,7 @@ define(function (require, exports, module) {
 				scope.domItems = angular.element(element[0].querySelector('.list')).children[0];
 				console.log(scope.domItems);
 				/* Add classes */
-				if (!scope.needsCta || !scope.displayName) {
+				if (!scope.cta || !scope.displayName) {
 					console.log(element);
 					angular.element(element[0].querySelector('.list')).addClass('no-cta');
 				}
@@ -255,7 +255,7 @@ define(function (require, exports, module) {
 				} else {
 					$scope.itemLength = 0;
 				}
-				// $scope.needsCta = false;
+				// $scope.cta = false;
 				// $scope.displayName = false;
 				// $scope.isSingle = false;
 				//Get data
@@ -274,7 +274,7 @@ define(function (require, exports, module) {
 								insectsManager.getInsects(requestObj).then($scope.success, $scope.error);
 								break;
 							case 'product':
-								if (angular.isDefined($route.current.locals.app_data) && angular.isDefined($scope.productType)) {
+								if (angular.isDefined($route.current.locals.app_data) && $scope.productType != "") {
 									$scope.items = [];
 									var results = $route.current.locals.app_data.products;
 									_getUniqueCategories( results );
@@ -355,7 +355,11 @@ define(function (require, exports, module) {
 									/**/
 									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
 								} else {
-									$scope.success($route.current.locals.app_data.products);
+									var results = $route.current.locals.app_data.products;
+									_initiateLayout(results);
+									_getUniqueCategories( results );
+									$scope.success(results);
+									$scope.productType = "all";
 								}
 								// productsManager.getProducts(requestObj).then($scope.success, $scope.error);
 								break;
