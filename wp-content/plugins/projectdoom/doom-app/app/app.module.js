@@ -31,7 +31,7 @@ define( function ( require, exports, module ) {
     require("app-package");
 	require("app-retailer");
 	require("app-search");
-
+	require("angular-gmaps");
 	require("angular-material");
 	require("angular-accordion");
 
@@ -64,7 +64,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * UI MODULE
 		 */
-		appDoom = appDoom || angular.module( 'appDoom', [ 'ngMaterial', 'angAccordion', 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appSearchService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectiveCarousel', 'appDirectiveGallery', 'appDirectiveSearchBar', 'appDirectiveSearch', 'appDirectiveFormContact', 'appDirectivePreloader', 'appDirectiveScrollToTop', 'appDirectiveConfigurator', 'appDirectiveRandomstat', 'appDirectiveFooter' ] );
+		appDoom = appDoom || angular.module( 'appDoom', [ 'ngMaterial', 'ngMap', 'angAccordion', 'appRoutes', 'appPageService', 'appInsectService', 'appProductService', 'appPackageService', 'appRetailerService', 'appFAQService', 'appSearchService', 'appDirectivePageHome', 'appDirectiveNavigation', 'appDirectiveCarousel', 'appDirectiveGallery', 'appDirectiveSearchBar', 'appDirectiveSearch', 'appDirectiveFormContact', 'appDirectivePreloader', 'appDirectiveScrollToTop', 'appDirectiveConfigurator', 'appDirectiveRandomstat', 'appDirectiveFooter' ] );
 
 		appDoom.config( [ '$mdThemingProvider', function ( $mdThemingProvider ) {
 

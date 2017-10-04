@@ -2,9 +2,10 @@
 #------------------------------------------------
 # Remove default scripts
 #------------------------------------------------
-add_action('wp_enqueue_scripts', 'remove_script');
+add_action('wp_enqueue_scripts', 'custom_scripts');
 
-function remove_script(){
+function custom_scripts(){
+    wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCUubwYmWvP0p9PQihrWIas7qrSqHpam9w' );
     // wp_dequeue_script( 'wp-emoji-release.min.js' );
 }
 
