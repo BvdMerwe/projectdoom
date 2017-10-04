@@ -53,7 +53,7 @@
 				<div>
 					<div class="bg-box" style="max-height:calc({{maxHeight}} - 85px);">
 						<!-- <div class="bg-image" style="height:calc({{maxHeight}} - 85px);background: url('{{item.image}}') center bottom no-repeat; background-size: contain;"></div> -->
-						<img class="image" ng-src="{{item.image}}" style="max-height:calc({{maxHeight}} - 85px)"/>
+						<img class="image" ng-src="{{item.image}}" style="max-height:calc({{maxHeight}} - 85px)" ng-click="goto(contentType, item.post_name)" />
 					</div>
 					<div class="carousel-item-name" ng-if="displayName">{{item.post_title}}</div>
 					<div class="cta" ng-if="cta">

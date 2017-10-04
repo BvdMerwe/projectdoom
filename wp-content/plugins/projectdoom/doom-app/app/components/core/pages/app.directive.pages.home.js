@@ -146,6 +146,40 @@ define( function ( require, exports, module ) {
 
 		};
 
+		$scope.nextProduct = function () {
+
+			//var currentSect = getCurrentNextInsect();
+
+			getCurrentNextProduct();
+
+			console.log( 'open next product page:', $scope.currentInsect );
+
+			$location.path( '/products/' + $scope.pageContent.post_name );
+			
+		};
+
+		$scope.prevProduct = function () {
+
+			getCurrentPrevProduct();
+
+			console.log( 'open prev product page:', $scope.currentInsect );
+
+			$location.path( '/products/' + $scope.pageContent.post_name );
+
+			//$location.path( '/insects/' + page );
+
+		};
+
+		$scope.filterProducts = function( category ) {
+
+			Utils._strict( [ String ], arguments );
+
+			console.log( 'open filtered product page:', $scope.currentInsect );
+
+			$location.path( '/products/' + category );
+
+		}
+
 		function getCurrentNextInsect() {
 
 			if( angular.isDefined( $route.current.locals.app_data.insects ) ) {
@@ -203,6 +237,76 @@ define( function ( require, exports, module ) {
 							$scope.pageContent = array[(index.length) - 1];
 
 							console.log('last insect:', $scope.pageContent);
+
+						}
+
+						break;
+
+					}
+					
+				}
+
+			}
+
+		}
+
+		function getCurrentNextProduct() {
+
+			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
+
+				var array = $route.current.locals.app_data.products;
+				
+				for (var index = 0; index < array.length; index++) {
+					var element = array[index];
+
+					if( element.post_name == $route.current.pathParams.ID  ) {
+
+						if( angular.isDefined( array[index + 1]) ) {
+
+							$scope.pageContent = array[index + 1];
+
+							console.log('next product:', $scope.pageContent);
+
+						} else if( angular.isDefined( array[0]) ) {
+
+							$scope.pageContent = array[0];
+
+							console.log('reset product:', $scope.pageContent);
+
+						}
+
+						break;
+
+					}
+					
+				}
+
+			}
+
+		}
+
+		function getCurrentPrevProduct() {
+
+			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
+
+				var array = $route.current.locals.app_data.products;
+				
+				for (var index = 0; index < array.length; index++) {
+					var element = array[index];
+
+					if( element.post_name == $route.current.pathParams.ID  ) {
+
+						if( angular.isDefined( array[index - 1]) ) {
+
+							$scope.pageContent = array[index - 1];
+
+							console.log('prev product:', $scope.pageContent);
+
+						} else if( angular.isDefined( array[(index.length) - 1]) ) {
+
+							$scope.pageContent = array[(index.length) - 1];
+
+							console.log('last product:', $scope.pageContent);
 
 						}
 

@@ -30,7 +30,7 @@
       </md-nav-item>
     </md-nav-bar>
   </div>
-  <md-content class="footer-content" layout-fill data-ng-switch="renderPath[0]" >
+  <div class="footer-content" layout-fill data-ng-switch="renderPath[0]" >
     <!-- <div class="footer-control">
       <i class="lnr lnr-cross close-footer" ng-click="close()"></i>
     </div> -->
@@ -75,5 +75,5 @@
 
     </div>
     <!-- /CONTACT PAGE TEMPLATE HERE -->
-  </md-content>
+  </div>
 </div>
