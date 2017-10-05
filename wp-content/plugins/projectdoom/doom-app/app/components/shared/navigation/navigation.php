@@ -17,13 +17,15 @@
 				class="md-sidenav-left super-menu"
 				md-component-id="left"
 				md-whiteframe="4"
-				style="position: fixed;width:100%;height:100%;top:0;left:0;">
-
-				<div layout-padding layout="column" style="z-index:999;">
+				layout="row"
+				layout-align="space-between start"
+				style="position: fixed;width:100%;height:100%;top:0;left:0;padding-top:10%;">
+				<!--
+				<div layout-padding layout="column" style="z-index:9;">
 					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">
 					</md-button>
-				</div>
-				<div layout-padding layout-fill layout="row" layout-align="center center" style="padding:50px 100px">
+				</div>-->
+				<div flex="100" layout-padding layout="row" layout-align="center start" style="padding:50px 100px">
 
 					<!-- <div flex="70" layout-fill>
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
@@ -86,7 +88,7 @@
 				<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
       		</div>
 
-			<div class="md-padding" flex="80" layout="row" layout-align="center center" style="z-index:99;">
+			<div class="md-padding" flex="80" flex-offset="5" layout="row" layout-align="center center" style="z-index:99;">
 				<md-nav-bar 
 					class="primary-navigation"
 					md-selected-nav-item="currentNavItem"

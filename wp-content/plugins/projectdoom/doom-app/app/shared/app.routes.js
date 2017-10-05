@@ -128,7 +128,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'about',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -194,7 +194,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'legal',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -260,7 +260,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'products',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -326,7 +326,139 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'products',
+                                            'method': 'GET'
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
+                                    ])
+                                    .then( function(results){
+
+                                            //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+ 
+                                            return {
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5],
+                                                session     : results[6]
+                                            }; 
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.error('No bootUp(products): ', e); 
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }] 
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/products/category/:ID',
+                        {
+                            action: 	'products.filter.taxonomy',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                    
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'products',
+                                            'method': 'GET'
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
+                                    ])
+                                    .then( function(results){
+
+                                            //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+ 
+                                            return {
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5],
+                                                session     : results[6]
+                                            }; 
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.error('No bootUp(products): ', e); 
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }] 
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/profile',
+                        {
+                            action: 	'profile',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                    
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'insects',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -392,7 +524,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'insects',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -458,7 +590,73 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'insects',
+                                            'method': 'GET'
+                                        }),
+                                        productsManager.getProducts({
+                                            'type': 'product',
+                                            'method': 'GET'
+                                        }),
+                                        insectsManager.getInsects({
+                                            'type': 'insect',
+                                            'method': 'GET'
+                                        }),
+                                        faqsManager.getFAQs({
+                                            'type': 'faq',
+                                            'method': 'GET'
+                                        }),
+                                        retailersManager.getRetailers({
+                                            'type': 'retailer',
+                                            'method': 'GET'
+                                        }),
+                                        MemCache.dataTaxonomy(),
+                                        SessionService.checkSession()
+                                    ])
+                                    .then( function(results){
+
+                                            //console.log('route data-products:', results);   
+
+                                            var firstVisit = new Date(results[6].firstVisit);
+                                            var lastVisit = new Date(results[6].lastVisit);
+                
+                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+ 
+                                            return {
+                                                faqs 	    : results[3],
+                                                insects 	: results[2],
+                                                products 	: results[1],
+                                                pagecontent : results[0],
+                                                retailers   : results[4],
+                                                taxonomy    : results[5],
+                                                session     : results[6]
+                                            }; 
+
+                                        }, function(e){
+
+                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+
+                                            console.error('No bootUp(products): ', e); 
+
+                                            return e;
+
+                                        }
+                                    );
+
+                                }] 
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/profile/:ID',
+                        {
+                            action: 	'profile.single',
+                            resolve: {
+                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                    
+									return $q.all([
+                                        pagesManager.getPages({
+                                            'type': 'insects',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -524,7 +722,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'faq',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -590,7 +788,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'faq',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -656,7 +854,7 @@ define( function ( require, exports, module ) {
                                     
 									return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'home',
+                                            'type': 'contact',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -799,6 +997,7 @@ define( function ( require, exports, module ) {
 					var renderAction = $route.current.action;
 				
 					if( renderAction == undefined ) {
+                        console.error('renderAction undefined');
 						return;
 					}
 						 
@@ -817,23 +1016,36 @@ define( function ( require, exports, module ) {
 					isFAQ 					= ( renderPath[ 0 ] == "faq" ),
 					isContact 				= ( renderPath[ 0 ] == "contact" ),
 					isProducts				= ( renderPath[ 0 ] == "products" ),
-					isInsects				= ( renderPath[ 0 ] == "insects" ),
+                    isInsects				= ( renderPath[ 0 ] == "insects" ),
+                    isProfile				= ( renderPath[ 0 ] == "profile" ),
                     isConfigurator			= ( renderPath[ 0 ] == "configurator" ),
                     is404                   = ( renderPath[ 0 ] == "404" );
 	
 					if( isProducts ) {
 				
-						var isProductPage		= ( renderPath[ 1 ] == "single" );
+                        var isProductPage		= ( renderPath[ 1 ] == "single" );
+                        var isProductCategory	= ( renderPath[ 2 ] == "taxonomy" );
 				
-						$rootScope.isProductPage 	= isProductPage;
+                        $rootScope.isProductPage 	    = isProductPage;
+                        $rootScope.isProductCategory 	= isProductCategory;
 				
 					}
 
 					if( isInsects ) {
 						
-						var isInsectPage		= ( renderPath[ 1 ] == "single" );
+                        var isInsectPage		= ( renderPath[ 1 ] == "single" );
+                        var isInsectCategory		= ( renderPath[ 1 ] == "taxonomy" );
 						
-						$rootScope.isInsectPage 	= isInsectPage;
+                        $rootScope.isInsectPage 	= isInsectPage;
+                        $rootScope.isInsectCategory = isInsectCategory;
+						
+                    }
+                    
+                    if( isProfile ) {
+						
+                        var isProfilePage		= ( renderPath[ 1 ] == "single" );
+						
+                        $rootScope.isProfilePage 	= isProfilePage;
 						
 					}
 				
@@ -847,11 +1059,13 @@ define( function ( require, exports, module ) {
                     $rootScope.isFAQ 			= isFAQ;
                     $rootScope.is404		    = is404;
 					$rootScope.isContact 		= isContact;
-					$rootScope.isProducts 		= isProducts;
-					$rootScope.isInsects		= isInsects;
-					$rootScope.isConfigurator	= isConfigurator;
-					$rootScope.isProductPage	= isProductPage;
-					$rootScope.isInsectPage		= isInsectPage;
+                    $rootScope.isProducts 		= isProducts;
+                    $rootScope.isInsects		= isInsects;
+                    $rootScope.isProfilePage	= isProfilePage;
+                    $rootScope.isProductCategory	= isProductCategory;
+					$rootScope.isInsectCategory	    = isInsectCategory;
+					$rootScope.isProductPage	    = isProductPage;
+					$rootScope.isInsectPage		    = isInsectPage;
 				
 					// update body classes
 					_updateBodyClass();
@@ -901,7 +1115,23 @@ define( function ( require, exports, module ) {
 							
 						}						
 							
-						window.document.body.classList.add('page-insects');
+                        window.document.body.classList.add('page-insects');
+                        
+                    } else if( $rootScope.isProfile === true ) {
+							
+						if( $rootScope.isProfilePage ) {
+							
+							window.document.title = 'Insect Profile - ' + MainWindowTitle;
+							
+							window.document.body.classList.add('page-insects-profile');
+							
+						} else {
+							
+							window.document.title = 'Insect Profile - ' + MainWindowTitle;
+							
+						}						
+							
+						window.document.body.classList.add('page-profile');
 
 					} else if( $rootScope.isAbout === true ) {
 						
@@ -954,7 +1184,7 @@ define( function ( require, exports, module ) {
 				 * 
 				 * Update bodyClasses
 				 *
-				 */
+				 * /
 				var _authorization = function() 
 				{
                     
@@ -974,7 +1204,7 @@ define( function ( require, exports, module ) {
                     );
 					
 				};
-				
+				/***/
 				/**
 				 * @private
 				 * 

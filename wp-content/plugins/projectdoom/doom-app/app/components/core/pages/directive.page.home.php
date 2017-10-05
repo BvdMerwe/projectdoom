@@ -65,6 +65,14 @@
 					</div>
 					<!-- /INSECTS PAGE TEMPLATE HERE -->
 
+					<!-- INSECTS PROFILE PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="profile">
+
+						<div data-ui-app-page-profile page-name="insects-profile" class="page-content" flex-xs="100" flex="100"></div>	
+
+					</div>
+					<!-- /INSECTS PROFILE PAGE TEMPLATE HERE -->
+
 					<!-- FAQ PAGE TEMPLATE HERE 
 					<div layout="column" class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
 

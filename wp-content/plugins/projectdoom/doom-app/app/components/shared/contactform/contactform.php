@@ -10,9 +10,9 @@
 
 ?>
 	<div layout="column" layout-align="center center" flex="100"> 
-		<div layout="row" layout-xs="column" >
+		<div layout="row" layout-md="column" >
 
-			<div class="md-padding" flex-xs="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
+			<div class="md-padding" flex-md="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
 
                 <form id="formContact" name="userForm" novalidate>
 
@@ -98,16 +98,35 @@
                 <div data-ng-transclude></div>
 
             </div>
-            <div class="md-padding layout-padding" flex-xs="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
+            <div class="" flex-md="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
+                <div data-ui-google-map
+                    data-map
+					zoom="10" 
+					center="[-26.0752982, 28.0242038]"
+					scrollwheel = "false"
+					disable-default-u-i="false"
+					disable-double-click-zoom="false"
+					draggable="true"
+					draggable-cursor="help"
+					dragging-cursor="move"
+					navigationControl ="true"
+					keyboard-shortcuts="false"
+					max-zoom="20"
+					min-zoom="6"
+                    tilt="45"
+                    style="color:#444;text-align:center;padding:0;"
+                    map-type-id="ROADMAP"></div>
+                <div class="md-padding">
+                    <h3 style="margin-top:5px;">CONTACT INFORMATION</h3>
 
-                <h3>CONTACT INFORMATION</h3>
+                    <p><i class="lnr lnr-map-marker"></i>&nbsp;&nbsp;Tiger Brands Limited,<br />3010 William Nicol Drive, Bryanston<br />2021.</p>
 
-                <p><i class="lnr lnr-map-marker"></i>&nbsp;&nbsp;Tiger Brands Limited,<br />3010 William Nicol Drive, Bryanston<br />2021.</p>
+                    <p><i class="lnr lnr-phone"></i>&nbsp;&nbsp;0860 101 107</p>
 
-                <p><i class="lnr lnr-phone"></i>&nbsp;&nbsp;0860 101 107</p>
-
-                <p><i class="lnr lnr-inbox"></i>&nbsp;&nbsp;<a href="mailto:tigercsd@tigerbrands.com" style="text-decoration:none;color:#fff;">tigercsd@tigerbrands.com</a></p> 
-
+                    <p><i class="lnr lnr-inbox"></i>&nbsp;&nbsp;<a href="mailto:tigercsd@tigerbrands.com" style="text-decoration:none;color:#fff;">tigercsd@tigerbrands.com</a></p> 
+                    <br /><br />
+                </div>
+                
             </div>
 
         </div>   

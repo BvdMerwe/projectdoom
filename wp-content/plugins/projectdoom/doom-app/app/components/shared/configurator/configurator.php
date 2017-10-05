@@ -26,7 +26,7 @@
       
       <div class="content" layout="column" layout-align="space-around center">
         <div class="content" layout="row" layout-align="space-around center">
-          <h3 class="carousel-title" flex="100" style="text-align:center;margin:2em auto;">Identify Pest</h3>
+          <h3 class="carousel-title" flex="100" style="text-align:center;margin:2em auto;">Select your bug</h3>
         </div>
         <div class="content" layout="row" layout-align="space-around center">
           <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
@@ -56,7 +56,7 @@
       <br />
       <div flex="100" class="content" layout="row" layout-wrap layout-align="center center">
           <div flex="100">
-            <p>How long has the gogga been bugging you for?</p>
+            <p>How long have they been bugging you for?</p>
             <md-slider-container layout="row" layout-align="space-between center">
               <span flex="15"></span>
               <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.duration" step="1" min="1" max="3" aria-label="duration"></md-slider>
@@ -69,11 +69,11 @@
             </div>
           </div>
           <div flex="100">
-            <p>How many goggas did you see?</p>
+            <p>How many bugs did you see?</p>
             <md-slider-container layout="row" layout-align="space-between center">
-              <span flex="15">Few</span>
+              <span flex="15">A few</span>
               <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.amount" step="1" min="1" max="2" aria-label="amount"></md-slider>
-              <span flex="15">Many</span>
+              <span flex="15">A lot</span>
             </md-slider-container>
             <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
           </div>
@@ -126,7 +126,7 @@
           </svg>
         </div>
         <div class="text" flex>
-          <h3>Your Home</h3>
+          <h3>Where have the goggas invaded?</h3>
           <p>Drop pin on location or select an option below</p>
           <md-select ng-model="config.location" multiple aria-label="locations">
               <md-option ng-value="'bedroom'">Bedroom</md-option>
@@ -161,11 +161,12 @@
           </div>
         </div>
         <div class="solution-container" flex="33">
-          <h2>Your solution</h2>
+          <h2>Your results and solution</h2>
           <p>{{result.product.post_content}}</p>
           <div class="">
-            <md-button class="primary-cta" data-ng-click="goTo('/products')">View Product</md-button>
+            <md-button class="primary-cta" data-ng-click="goTo('/products')">View more</md-button>
             <md-button class="primary-cta">Where can I get it?</md-button>
+            <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
           </div>
         </div>
       </div>

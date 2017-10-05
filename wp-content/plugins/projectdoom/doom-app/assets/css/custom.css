@@ -105,7 +105,7 @@ md-sidenav ul li {
   content: ' ';
   height: 33px;
   width: 2px;
-  background-color: #333;
+  background-color: #ffffff;
 }
 
 .close::before {

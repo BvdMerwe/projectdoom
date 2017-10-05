@@ -39,7 +39,8 @@ define( function ( require, exports, module ) {
 	require("app-routes");
 	require("angular-route");
     require("angular-material");
-    require("app-sessionservice");
+	require("app-sessionservice");
+	require("angular-gmaps");
 
 	// Load dependent modules
 	var appDirectivePageHome,
@@ -60,6 +61,7 @@ define( function ( require, exports, module ) {
 		$scope.currentInsect;
 
 		$scope.pageContent = {};
+		$scope.productsPageFilter = '';
 
 		$scope.$on( '$destroy', function(evt, data) {
 
@@ -74,8 +76,20 @@ define( function ( require, exports, module ) {
 			
 		});
 
-		$scope.goto = function (path) {
+		$scope.goTo = function (path) {
 			$location.path(path);
+		}
+
+		$scope.viewProfile = function (path) {
+
+			$location.path( '/profile/' + path );
+
+		}
+
+		$scope.browseBycategory = function (type, path) {
+
+			$location.path( '/' + type + '/category/' + path );
+
 		}
 
 		$scope.scrollTo = function(id) {
@@ -92,7 +106,7 @@ define( function ( require, exports, module ) {
 				var rand = Utils.getRandomInt(0,pests.length-1);
 				$location.path("/insects/"+pests[rand].post_name);
 			}
-			//console.log(ev, to, toParams, from, fromParams);
+			//console.log(ev, to, toParams, from, fromParams); 
 
 			//$scope.currentInsect = {};
 
@@ -319,7 +333,7 @@ define( function ( require, exports, module ) {
 			}
 
 		}
-
+		/*
 		function dataInitialise( type ) {
 
 			Utils._strict( [ String ], arguments );
@@ -363,7 +377,7 @@ define( function ( require, exports, module ) {
 
 			return deferred.promise;
 
-		}
+		}*/
 
 		function getPageContent( cola ) {
 
@@ -371,15 +385,17 @@ define( function ( require, exports, module ) {
 
 			for (var index = 0; index < cola.length; index++) {
 				
-				if( $rootScope.isProductPage || $rootScope.isInsectPage ) {
+				if( $rootScope.isProductPage || $rootScope.isInsectPage || $rootScope.isProfilePage ) {
 
 					if( cola[index].post_name == $route.current.pathParams.ID ) {
+
+						//console.log('Yo!', cola[index]);
 						
 						return cola[index];
 
 					}
 
-				} else {
+				} else { 
 
 					if( cola[index].post_name == $route.current.$$route.action ) {
 						
@@ -397,18 +413,24 @@ define( function ( require, exports, module ) {
 
 		function _ini() {
 
+			$rootScope.productsPageFilter = $route.current.pathParams.ID;
+
 			if( angular.isDefined($route.current.locals.app_data) ) {
 
 				
 				//MemCache.dataTaxonomy().then( function(results){
 
-					console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
+					
+
+					console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID, $rootScope.renderPath, $rootScope.productsPageFilter );
 
 						if( $rootScope.isProductPage ) {
 
+							$scope.productsPageFilter = $route.current.pathParams.ID;
+
 							$scope.pageContent = getPageContent( $route.current.locals.app_data.products ); //$route.current.locals.app_data.pagecontent[0];
 
-						} else if( $rootScope.isInsectPage ) {
+						} else if( $rootScope.isInsectPage || $rootScope.isProfilePage ) {
 
 							$scope.currentInsect = $route.current.pathParams.ID;
 
@@ -444,6 +466,194 @@ define( function ( require, exports, module ) {
 		console.info('Page Controller Ready.');
 
 	}];
+
+	Application.Directives.uiGoogleMap = function () {
+
+		return {
+			restrict: 		'AE',
+			//scope: 			{},
+			transclude: 	true,
+			//templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.home.php',
+			/**/
+			controller:  	[ '$window', '$scope', '$compile', '$http', '$q', 'Utils', 'NavigatorGeolocation', 'GeoCoder', 'StreetView', function ( $window, $scope, $compile, $http, $q, Utils, NavigatorGeolocation, GeoCoder, StreetView  ) {
+
+				var gmap;
+
+				$scope.$on('mapInitialized', function(event, map) {
+
+					console.log('map initialised', map);
+
+					var addresses = [];
+
+					addresses.push({
+						title 	: "Tiger Brands Limited",
+						address : "310 William Nicol Drive, Bryanston, 2021",
+						lat 	: "",
+						long 	: ""
+					});
+
+					gmap = map;
+
+					angular.forEach( addresses, function(val, key) {
+
+						_geoIT ( val.address, val.title, function(e) {
+
+							if( e === false ) {
+							
+								console.error( 'no gps (' + val.title + '): ', e );
+							
+							} else {
+								
+								//map.setCenter(e);		
+								
+								//console.log( ' gps (' + val.title + '): ', e );
+
+								_plot( e, val.address, val.title );
+
+							}
+
+						});
+
+					});
+
+					/** /
+					_geoIT ( address, title, function(e) {
+
+						if( e === false ) {
+						
+							console.error( 'no gps:', e );
+						
+						} else {
+							
+							map.setCenter(e);
+
+							gmap = map;
+
+							_plot( e, address, title );
+
+						}
+
+					});
+					/**/
+			
+				});
+
+				/**
+				 * Geocode Address to Latitude & Longitude
+				 *
+				 * @param String.addr 		 Physical Address
+				 * @param String.addrTitle	 Location Title
+				 * 
+				 * @return null
+				 */
+				function _geoIT ( addr, addrTitle, callback ) {
+
+					Utils._strict( [ String, String, Function ], arguments );
+
+					//var geocoder = new google.maps.Geocoder();
+					//var deferred = $q.defer();
+					var geocoder = new google.maps.Geocoder();
+					//var _self = this;
+
+					geocoder.geocode({ 
+							'address' : addr
+						},
+						function( results, status) {					
+													
+							if ( status == google.maps.GeocoderStatus.OK ) {
+												
+								//_self.map.setCenter(results[0].geometry.location);
+
+								callback( results[0].geometry.location);
+
+								//deferred.resolve( results[0].geometry.location );
+
+								//_self.plot( results[0].geometry.location, addr, addrTitle );
+												
+							} else {
+
+								callback (false);
+								//deferred.reject( 'Geocoder failed due to: '+ status );
+							}
+					});
+
+					//return deferred.promise;
+
+				}
+
+				/**
+				 * Geocode Address to Latitude & Longitude
+				 *
+				 * @param Object.latlng	 LatLong Coordinates
+				 * @param String.addr 		 Physical Address
+				 * @param String.addrTitle	 Location Title
+				 * 
+				 * @return Null
+				 */
+				function  _plot ( latlng, addr, addrTitle ) {
+
+					//Utils._strict( [ Object, String, String ], arguments );
+
+					if ( window.google == null || window.google == undefined ) {
+
+						console.error('google not defined...yet...?');
+
+						return;
+
+					} else {
+
+						var _self = this;
+
+						var marker = new google.maps.Marker({
+								map: gmap,//_self.map,
+								position: latlng,
+								animation: google.maps.Animation.DROP,
+								title: addrTitle
+						});
+
+						var infowindow = new google.maps.InfoWindow({
+										content: 
+											'<h3 class="tc uppercase">' + addrTitle + '</h3>' +
+											'<p>' + addr + '</p>'
+						});
+
+						//console.log( 'jus plotted:', addrTitle, latlng );
+						
+						infowindow.open( gmap, marker );
+
+						google.maps.event.addListener( marker, 'click', function() {
+							infowindow.open( gmap, marker );
+						});
+
+					}
+
+				}
+				/*** /
+				function _calcRoute ( from, to ) {
+
+					var directionsService = new google.maps.DirectionsService();
+
+					var request = {
+						origin:from,
+						destination:to,
+						travelMode: google.maps.TravelMode.DRIVING,
+						unitSystem: google.maps.UnitSystem.METRIC,
+						region: 'za'
+					};
+					directionsService.route(request, function(result, status) {
+
+						if (status == google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(result);
+						};
+					})
+				
+				}/***/
+
+			}]
+			/**/
+		}
+
+	};
 
 	Application.Directives.uiCollapser = function () {
 
@@ -991,15 +1201,15 @@ define( function ( require, exports, module ) {
 		}
 	};
 
-	/** /
-	Application.Directives.uiAppPageInsectsSingle = function () {
+	/**/
+	Application.Directives.uiAppPageProfile = function () {
 
 		return {
 			restrict: 		'AE',
 			scope: 			{},
 			transclude: 	true,
 			controller:		Application.Controllers.pagesController,
-			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.insects.single.php'
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.profile.php'
 		}
 	};
 	/**/
@@ -1392,7 +1602,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * APP MODULE
 		 */
-		appDirectivePageHome = appDirectivePageHome || angular.module( 'appDirectivePageHome', [ 'appUtils', 'appFilters', 'appXHR', 'appMemCache', 'appSessionService', 'ngRoute', 'ngMaterial' ] );
+		appDirectivePageHome = appDirectivePageHome || angular.module( 'appDirectivePageHome', [ 'ngMap', 'appUtils', 'appFilters', 'appXHR', 'appMemCache', 'appSessionService', 'ngRoute', 'ngMaterial' ] );
 
 		appDirectivePageHome
 			.controller( Application.Controllers )
