@@ -36,7 +36,7 @@ md-toolbar {
 }
 
 md-backdrop {
-  background-color: transparent;
+  background-color: rgba(#fff, 0.5);
 }
 
 /***********************************************
@@ -49,12 +49,17 @@ md-backdrop {
 
 .app-dashboard {
   padding-bottom: 90px;
+  overflow-x: hidden; 
 }
 /***********************************************
 * Navigation STYLE
 ***********************************************/
 div[data-ui-navigation] {
   z-index: 9;
+
+  md-backdrop {
+    display: none;
+  }
 }
 //override body height when takeover open
 .super-menu-open {
@@ -510,7 +515,7 @@ END slider style
   .configurator-steps {
     width: 100%;
     position: relative;
-    // overflow: hidden;
+    overflow: hidden;
     // height: 100vh;
     min-height: 550px;
 
@@ -645,7 +650,7 @@ END slider style
     }
   }
   .step-1 {
-    height: 420px;
+    // height: 420px;
     max-width: 100%;
     &.active.inactive {
       // margin: 45px 10%;
@@ -660,6 +665,8 @@ END slider style
       }
     }
     &.active {
+      overflow-y: visible !important;
+      overflow-x: auto;
       border-color: transparent;
       padding: 0;
       width: 100%;
@@ -708,13 +715,13 @@ END slider style
       height: 300px;
     }
     &.active {
-      @include transform(translateX(8%));
+      @include transform(translateX(5%));
     }
   }
   .step-3 {
     padding: 0;
     &.active {
-      @include transform(translateX(12%));
+      @include transform(translateX(10%));
       // height: 150px;
     }
     .text {
@@ -805,7 +812,7 @@ END slider style
     .final-container {
       border: 3px solid $green;
       margin: 0px -30px 0 30px;
-      // margin-top: 100px;
+      margin-top: 100px;
       box-sizing: border-box;
       width: calc(100% - 30px);
       .product {

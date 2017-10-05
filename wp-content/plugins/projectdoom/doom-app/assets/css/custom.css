@@ -28,7 +28,7 @@ md-toolbar {
 }
 
 md-backdrop {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /***********************************************
@@ -40,6 +40,7 @@ md-backdrop {
 
 .app-dashboard {
   padding-bottom: 90px;
+  overflow-x: hidden;
 }
 
 /***********************************************
@@ -47,6 +48,10 @@ md-backdrop {
 ***********************************************/
 div[data-ui-navigation] {
   z-index: 9;
+}
+
+div[data-ui-navigation] md-backdrop {
+  display: none;
 }
 
 .super-menu-open .site-content, .super-menu-open .app-dashboard {
@@ -105,7 +110,7 @@ md-sidenav ul li {
   content: ' ';
   height: 33px;
   width: 2px;
-  background-color: #ffffff;
+  background-color: #333;
 }
 
 .close::before {
@@ -621,6 +626,7 @@ END slider style
 #configurator .configurator-steps {
   width: 100%;
   position: relative;
+  overflow: hidden;
   min-height: 550px;
 }
 
@@ -802,7 +808,6 @@ END slider style
 }
 
 #configurator .step-1 {
-  height: 420px;
   max-width: 100%;
 }
 
@@ -817,6 +822,8 @@ END slider style
 }
 
 #configurator .step-1.active {
+  overflow-y: visible !important;
+  overflow-x: auto;
   border-color: transparent;
   padding: 0;
   width: 100%;
@@ -878,11 +885,11 @@ END slider style
 }
 
 #configurator .step-2.active {
-  -webkit-transform: translateX(8%);
-  -moz-transform: translateX(8%);
-  -ms-transform: translateX(8%);
-  -o-transform: translateX(8%);
-  transform: translateX(8%);
+  -webkit-transform: translateX(5%);
+  -moz-transform: translateX(5%);
+  -ms-transform: translateX(5%);
+  -o-transform: translateX(5%);
+  transform: translateX(5%);
 }
 
 #configurator .step-3 {
@@ -890,11 +897,11 @@ END slider style
 }
 
 #configurator .step-3.active {
-  -webkit-transform: translateX(12%);
-  -moz-transform: translateX(12%);
-  -ms-transform: translateX(12%);
-  -o-transform: translateX(12%);
-  transform: translateX(12%);
+  -webkit-transform: translateX(10%);
+  -moz-transform: translateX(10%);
+  -ms-transform: translateX(10%);
+  -o-transform: translateX(10%);
+  transform: translateX(10%);
 }
 
 #configurator .step-3 .text {
@@ -1014,6 +1021,7 @@ END slider style
 #configurator .final .final-container {
   border: 3px solid #14A774;
   margin: 0px -30px 0 30px;
+  margin-top: 100px;
   box-sizing: border-box;
   width: calc(100% - 30px);
 }

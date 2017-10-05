@@ -26,7 +26,7 @@
       
       <div class="content" layout="column" layout-align="space-around center">
         <div class="content" layout="row" layout-align="space-around center">
-          <h3 class="carousel-title" flex="100" style="text-align:center;margin:2em auto;">Select your bug</h3>
+          <h3 class="carousel-title" flex="100" style="text-align:center;margin:1em auto;">Select your bug</h3>
         </div>
         <div class="content" layout="row" layout-align="space-around center">
           <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
