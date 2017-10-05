@@ -37,7 +37,7 @@
               <h3>{{insect.post_title}}</h3>
             </div>
             <div class="desc">
-              <p>{{insect.post_content | limitTo:50}}</p>
+              <p>{{insect.doom_insect_config_description}}</p>
             </div>
             <div class="start-button">
               <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
@@ -59,13 +59,14 @@
             <p>How long have they been bugging you for?</p>
             <md-slider-container layout="row" layout-align="space-between center">
               <span flex="15"></span>
-              <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.duration" step="1" min="1" max="3" aria-label="duration"></md-slider>
+              <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.duration" step="1" min="1" max="4" aria-label="duration"></md-slider>
               <span flex="15"></span>
             </md-slider-container>
             <div layout="row" layout-align="space-between center">
-              <span flex="15">A&nbsp;day&nbsp;+</span>
-              <span flex="70">A&nbsp;week&nbsp;+</span>
-              <span flex="15">A&nbsp;month&nbsp;+</span>
+              <span flex="25">A&nbsp;day&nbsp;+</span>
+              <span flex="25">A&nbsp;week&nbsp;+</span>
+              <span flex="25">A&nbsp;month&nbsp;+</span>
+              <span flex="25">More&nbsp;than&nbsp;a&nbsp;year</span>
             </div>
           </div>
           <div flex="100">

@@ -88,18 +88,22 @@ function post_type_product() {
 
   	$meta_boxes = array(
 
-  		'format_settings' => array('name' => 'format_settings', 'type' => 'open', 'title' => __('', 'doom')),
+  		// 'format_settings' => array('name' => 'format_settings', 'type' => 'open', 'title' => __('', 'doom')),
 
-  		'doom_product-status' => array( 'name' => 'doom_product-status', 'title' => __('Product Availability', 'doom'), 'desc' => 'Choose the option that describes the availability of this product', 'options' => array('in stock', 'out of stock'), 'type' => 'select'),
+  		// 'doom_product-status' => array( 'name' => 'doom_product-status', 'title' => __('Product Availability', 'doom'), 'desc' => 'Choose the option that describes the availability of this product', 'options' => array('in stock', 'out of stock'), 'type' => 'select'),
 
-  		array('type' => 'divider'),
+  		// array('type' => 'divider'),
 
-  		'doom_product-price' => array( 'name' => 'doom_product-price', 'title' => __('Product Price', 'doom'), 'desc' => 'price in ZAR per item', 'type' => 'text'),
+  		// 'doom_product-price' => array( 'name' => 'doom_product-price', 'title' => __('Product Price', 'doom'), 'desc' => 'price in ZAR per item', 'type' => 'text'),
 
-  		'doom_product-discount' => array( 'name' => 'doom_product-discount', 'title' => __('Product Discount', 'doom'), 'desc' => 'discount in %', 'type' => 'text'),
+  		// 'doom_product-discount' => array( 'name' => 'doom_product-discount', 'title' => __('Product Discount', 'doom'), 'desc' => 'discount in %', 'type' => 'text'),
 
-  		'doom_product-internal_code' => array( 'name' => 'doom_product-internal_code', 'title' => __('Internal Reference Code', 'doom'), 'desc' => 'eg SKU', 'type' => 'text'),
-
+  		// 'doom_product-internal_code' => array( 'name' => 'doom_product-internal_code', 'title' => __('Internal Reference Code', 'doom'), 'desc' => 'eg SKU', 'type' => 'text'),
+  		'doom_product_ideal_for' => array( 'name' => 'doom_product_ideal_for', 'title' => __('Ideal for', 'doom'), 'desc' => 'e.g - Indoors/Outdoors', 'type' => 'richtext'),
+  		'doom_product_benefits' => array( 'name' => 'doom_product_benefits', 'title' => __('Benefits', 'doom'), 'desc' => 'Long-lasting effect', 'type' => 'richtext'),
+  		'doom_product_directions' => array( 'name' => 'doom_product_directions', 'title' => __('Directions', 'doom'), 'desc' => 'Use only as directed', 'type' => 'richtext'),
+  		'doom_product_storage_disposal' => array( 'name' => 'doom_product_storage_disposal', 'title' => __('Storage and disposal', 'doom'), 'desc' => 'Store in a cool, dry place', 'type' => 'richtext'),
+  		'doom_product_precautions' => array( 'name' => 'doom_product_precautions', 'title' => __('Precautions', 'doom'), 'desc' => 'e.g - Avoid excessive inhalation', 'type' => 'richtext'),
 
   	array('type' => 'close'),
 
@@ -121,6 +125,8 @@ function post_type_product() {
   			get_meta_text( $meta, $value );
   		if ( $meta['type'] == 'text_small' )
   			get_meta_text_small( $meta, $value );
+		elseif ( $meta['type'] == 'richtext' ) 
+			get_meta_richtext($meta, $value);
   		elseif ( $meta['type'] == 'textarea' )
   			get_meta_textarea( $meta, $value );
   		elseif ( $meta['type'] == 'select' )

@@ -13,6 +13,7 @@ function doom_create_meta_box() {
 
 	//add_meta_box('page-meta-boxes', __('Page Settings', 'doom'), 'page_meta_boxes', 'insect', 'normal', 'high');
 	add_meta_box('insect-meta-boxes', __('Insect Details', 'doom'), 'insect_meta_boxes', 'insect', 'normal', 'high');
+	add_meta_box('product-meta-boxes', __('Product Details', 'doom'), 'product_meta_boxes', 'product', 'normal', 'high');
 
 }
 
@@ -37,6 +38,7 @@ extract( $args ); ?>
 extract( $args ); ?>
 
 	<div class="divider"></div>
+	<hr/>
 	<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
 
 
@@ -53,8 +55,8 @@ extract( $args ); global $post; ?>
 	<div class="meta-box">
 		<strong><?php echo $title; ?></strong>
 		<br/><input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo esc_html( $value, 1 ); ?>" size="30" tabindex="30" <?php if($extras == "getimage" OR $extras == "getvideo") { ?>class="uploadbutton"<?php } ?> />
-		<?php if($extras == "getimage") { ?><a href="media-upload.php?post_id=<?php echo $post->ID; ?>&amp;type=image&amp;TB_iframe=true&amp;width=640&amp;height=790" id="add_image" class="thickbox button" title='Add an Image' onclick="return false;">Get Image</a><?php } elseif($extras == "getvideo") { ?><a href="media-upload.php?post_id=<?php echo $post->ID; ?>&amp;type=video&amp;TB_iframe=true&amp;width=640&amp;height=790" id="add_video" class="thickbox button" title='Add a Video' onclick="return false;">Get Video</a><?php } ?>
 		<div class="meta-desc"><?php echo $desc; ?></div>
+		<?php if($extras == "getimage") { ?><a href="media-upload.php?post_id=<?php echo $post->ID; ?>&amp;type=image&amp;TB_iframe=true&amp;width=640&amp;height=790" id="add_image" class="thickbox button" title='Add an Image' onclick="return false;">Get Image</a><?php } elseif($extras == "getvideo") { ?><a href="media-upload.php?post_id=<?php echo $post->ID; ?>&amp;type=video&amp;TB_iframe=true&amp;width=640&amp;height=790" id="add_video" class="thickbox button" title='Add a Video' onclick="return false;">Get Video</a><?php } ?>
 		<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
 	</div>
 
@@ -64,8 +66,8 @@ extract( $args ); ?>
 
 	<div class="meta-box">
 		<strong><?php echo $title; ?></strong>
-		<br/><input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php if(esc_html( $value, 1 )) { echo esc_html( $value, 1 ); } else { echo esc_html( $std, 1 ); } ?>" size="30" tabindex="30" class="small-textbox" />
 		<div class="meta-desc"><?php echo $desc; ?></div>
+		<br/><input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php if(esc_html( $value, 1 )) { echo esc_html( $value, 1 ); } else { echo esc_html( $std, 1 ); } ?>" size="30" tabindex="30" class="small-textbox" />
 		<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
 	</div>
 
@@ -75,6 +77,7 @@ extract( $args ); ?>
 
 	<div class="meta-box">
 		<strong><?php echo $title; ?></strong>
+		<div class="meta-desc"><?php echo $desc; ?></div>
 		<br/><select name="<?php echo $name; ?>" id="<?php echo $name; ?>">
 		<?php foreach ( $options as $option ) : ?>
 			<option <?php if(htmlentities($value, ENT_QUOTES) == $option) echo ' selected="selected"'; ?>>
@@ -82,7 +85,6 @@ extract( $args ); ?>
 			</option>
 		<?php endforeach; ?>
 		</select>
-		<div class="meta-desc"><?php echo $desc; ?></div>
 		<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
 	</div>
 
@@ -337,8 +339,8 @@ extract( $args ); ?>
 
 	<div class="meta-box <?php if($size == "large") { ?>meta-box-large<?php } ?>">
 		<strong><?php echo $title; ?></strong>
-		<br/><textarea name="<?php echo $name; ?>" id="<?php echo $name; ?>" cols="60" rows="4" tabindex="30"><?php echo esc_html( $value, 1 ); ?></textarea>
 		<div class="meta-desc"><?php echo $desc; ?></div>
+		<br/><textarea name="<?php echo $name; ?>" id="<?php echo $name; ?>" cols="60" rows="4" tabindex="30"><?php echo esc_html( $value, 1 ); ?></textarea>
 		<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
 	</div>
 
@@ -355,6 +357,23 @@ extract( $args ); ?>
 	</div>
 
 
+<?php } function get_meta_richtext( $args = array(), $value = false ) {
+extract( $args ); ?>
+	<div class="meta-box">
+		<h1><?php echo $title;?></h1> <br/>
+		<?php echo $desc; ?>
+		<?php wp_editor( $value, $name, array(
+			'wpautop'       => true,
+			'media_buttons' => false,
+			'textarea_name' => $name,
+			'textarea_rows' => 10,
+			'teeny'         => false
+		) ); ?>
+		<input type="hidden" name="<?php echo $name; ?>_noncename" id="<?php echo $name; ?>_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) ); ?>" />
+		<br/>
+		<br/>
+		<hr/>
+	</div>
 <?php }
 
 function doom_save_meta_data( $post_id ) {

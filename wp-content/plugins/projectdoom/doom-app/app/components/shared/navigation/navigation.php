@@ -55,9 +55,9 @@
 									<li><a href="javascript:;" title="" data-ng-click="goto('ant')" name="insects-ants">Ants</a></li>
 									<li><a href="javascript:;" title="" data-ng-click="goto('cockroach')" name="insects-cockroaches">Cockroaches</a></li>
 									<li><a href="javascript:;" title="" data-ng-click="goto('fly')" name="insects-flies">Flies</a></li>
-									<li><a href="javascript:;" title="" data-ng-click="goto('mosquitoes')" name="insects-mosquitoes">Mosquitoes</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('mosquito')" name="insects-mosquitoes">Mosquitoes</a></li>
 									<li><a href="javascript:;" title="" data-ng-click="goto('flea')" name="insects-fleas">Fleas</a></li>
-									<li><a href="javascript:;" title="" data-ng-click="goto('fishmoths')" name="insects-fishmoths">Fishmoths</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('fishmoth')" name="insects-fishmoths">Fishmoths</a></li>
 								</ul>
 							</li>
 							<li>
@@ -74,9 +74,9 @@
 		</md-sidenav>
 	</div>
 	<div layout="column" class="md-primary">
-		<div layout="row" layout-xs="column" flex-xs="100">
+		<div layout="row" layout-xs="column" layout-align="space-between center" flex-xs="100">
 
-			<div class="md-padding" flex="10" style="text-align:center;background-color:#14A774;z-index:99;max-width: 86px !important;">
+			<div class="md-padding" style="text-align:center;background-color:#14A774;z-index:99;width: 80px;height: 80px;">
 				<md-button ng-click="toggleLeft()"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:10px;">
@@ -88,7 +88,7 @@
 				<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
       		</div>
 
-			<div class="md-padding" flex="80" flex-offset="5" layout="row" layout-align="center center" style="z-index:99;">
+			<div class="md-padding" layout="row" layout-align="center center" style="z-index:99;">
 				<md-nav-bar 
 					class="primary-navigation"
 					md-selected-nav-item="currentNavItem"
@@ -109,7 +109,7 @@
 					
 				</div>
             </div>
-            <div class="md-padding" flex="10" layout="row" layout-align="end center">
+            <div class="md-padding" layout="row" layout-align="end center">
 				<div data-ui-search id="search-takeover"></div>
             </div>
         </div>

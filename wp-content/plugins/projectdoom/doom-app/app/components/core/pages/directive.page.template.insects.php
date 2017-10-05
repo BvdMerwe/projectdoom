@@ -277,20 +277,20 @@
                 <!-- RELATED PRODU|CTS -->
                 <div layout="column" flex="40" flex-md="100" layout-align="start start" layout-align-md="center center">
                     <h3 flex="100" class="carousel-title">Products</h3>
-                    <div layout="row" flex="100">
-                        <div data-ui-carousel
-                            single          = "true"
-                            cta             = "true"
-                            maxHeight       = "300px"
-                            maxWidth        = "250px"
-                            gutter          = "10px"
-                            displayName     = "true"
-                            insectType      = ""
-                            productType     = ""
-                            showFilter      = "true"
-                            filterBy        = "product_types"
-                            contentType="product"></div>
-                    </div>
+                    <div layout="row">
+                    <div data-ui-carousel
+                        single          = "true"
+                        cta             = "true"
+                        maxHeight       = "550px"
+                        maxWidth        = "200px"
+                        gutter          = "175px"
+                        displayName     = "true"
+                        insectType      = ""
+                        productType     = ""
+                        showFilter      = "true"
+                        filterBy        = "product_types"
+                        contentType="product"></div>
+                </div>
                 </div>
             </div>
 

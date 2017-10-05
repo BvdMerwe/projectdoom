@@ -276,7 +276,8 @@ class DataGetter
           SELECT meta_key, meta_value
           FROM $wpdb->postmeta AS pm
           WHERE pm.post_id = $post_id
-          AND pm.meta_key LIKE 'doom_%'");
+          AND pm.meta_key LIKE 'doom_%'
+          OR pm.meta_key LIKE '_thumbnail_id'");
         foreach ($keys as $i => $key) {
           $post->{$key->meta_key} = $key->meta_value;
           if ($key->meta_key == '_thumbnail_id') {
@@ -357,6 +358,25 @@ static public function getFaqs() {
         // return str_replace('%s', $attachment, $natural);
         // return $wpdb->prepare($natural, urldecode($search));
       $posts = $wpdb->get_results($wpdb->prepare($natural, $search));
+      
+      foreach ($posts as $pkey => $post) {
+        $post_id = $post->ID;
+        //get meta-keys
+        $keys = $wpdb->get_results("
+          SELECT meta_key, meta_value
+          FROM $wpdb->postmeta AS pm
+          WHERE pm.post_id = $post_id
+          AND (pm.meta_key LIKE 'doom_%'
+          OR pm.meta_key LIKE '_thumbnail_id')");
+        foreach ($keys as $i => $key) {
+          $post->{$key->meta_key} = $key->meta_value;
+          if ($key->meta_key == '_thumbnail_id') {
+            $post->image = $wpdb->get_results($wpdb->prepare("
+              SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+          }
+        }
+        //--
+      }
       if (count($posts) > 0) {
         $dur  = round((microtime() - $time), 6);
         return $result = array('time' => $dur, 'count' => count($posts), 'results' => $posts, 'method' => 'natural');
@@ -368,6 +388,24 @@ static public function getFaqs() {
       AND MATCH(post_content, post_title)
       AGAINST('%s' IN BOOLEAN MODE)";
     $posts = $wpdb->get_results($wpdb->prepare($boolean, '*+'.str_ireplace(" ", "+", $search)));
+    
+    foreach ($posts as $x => $post) {
+      //get meta-keys
+      $keys = $wpdb->get_results("
+        SELECT meta_key, meta_value
+        FROM $wpdb->postmeta AS pm
+        WHERE pm.post_id = $post->ID
+        AND pm.meta_key LIKE 'doom_%'
+        OR pm.meta_key LIKE '_thumbnail_id'");
+      foreach ($keys as $i => $key) {
+        $post->{$key->meta_key} = $key->meta_value;
+        if ($key->meta_key == '_thumbnail_id') {
+          $post->image = $wpdb->get_results($wpdb->prepare("
+            SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+        }
+      }
+      //--
+    }
     if (count($posts) > 0) {
       $dur  = round((microtime() - $time), 6);
       return $result = array('time' => $dur, 'count' => count($posts), 'results' => $posts, 'method' => 'boolean');
@@ -389,6 +427,25 @@ static public function getFaqs() {
       // return var_dump($search, true) ." - ".$basic;
       // $posts = $wpdb->get_results($wpdb->prepare($basic, '%'.$search.'%', '%'.$search.'%'));
       $posts = $wpdb->get_results($basic);
+      
+      foreach ($posts as $x => $post) {
+        //get meta-keys
+        $keys = $wpdb->get_results("
+          SELECT meta_key, meta_value
+          FROM $wpdb->postmeta AS pm
+          WHERE pm.post_id = $post->ID
+          AND pm.meta_key LIKE 'doom_%'
+          OR pm.meta_key LIKE '_thumbnail_id'");
+        foreach ($keys as $i => $key) {
+          $post->{$key->meta_key} = $key->meta_value;
+          if ($key->meta_key == '_thumbnail_id') {
+            $post->image = $wpdb->get_results($wpdb->prepare("
+              SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+          }
+        }
+        //--
+      }
+      //--
       if (count($posts) > 0) {
         $dur  = round((microtime() - $time), 6);
         $result = array('time' => $dur, 'count' => count($posts), 'results' => $posts, 'method' => 'basic');

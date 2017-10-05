@@ -176,6 +176,41 @@ define( function ( require, exports, module ) {
 		/**
 		 * @public
 		 * 
+		 * Check if session expired 
+		 *
+		 *
+		 * @return {Object.Promise } [boolean]
+		 **/
+
+		factory.checkExp = function () {
+
+			var deferred 	= $q.defer(),
+			_self 		= this;
+			
+			MemCache.dataGet( 'doomSession', 'sessionstorage' ).then(function(data) {
+				var now =  new Date(),
+					last = new Date(data.lastVisit),
+					diff = now.getTime() - last.getTime();
+				
+				if (diff / 1000 > 60 * 60 /* * 24*/) { //more than an hour
+					deferred.resolve(true);
+				} else {
+					deferred.resolve(false);
+				}
+
+			}, function (err) {
+
+				deferred.promise;
+
+			});
+
+			return deferred.promise;
+
+		}
+
+		/**
+		 * @public
+		 * 
 		 * Start Current User Session
 		 *
 		 *

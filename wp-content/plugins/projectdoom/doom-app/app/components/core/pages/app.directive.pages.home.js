@@ -76,7 +76,8 @@ define( function ( require, exports, module ) {
 			
 		});
 
-		$scope.goTo = function (path) {
+		$scope.goto = function (path) {
+			$scope.scrollTo(0, 0);
 			$location.path(path);
 		}
 

@@ -383,6 +383,11 @@ define( function ( require, exports, module ) {
               timeCoefficent = 10;
               days = 30;
               break;
+            case 4:
+              // amountCoefficient *= 10;
+              timeCoefficent = 100;
+              days = 360;
+              break;
           }
 
           var locationCoefficient = 0;
@@ -430,6 +435,7 @@ define( function ( require, exports, module ) {
           return {
             pest: pest,
             product: {},
+            days: days,
             stats: results,
             infestation: infestation
           };
@@ -450,12 +456,31 @@ define( function ( require, exports, module ) {
         }
 
         $scope.outputCopy = function (stat) {
+          var copy = stat.copy;
           if (stat.copy != undefined && stat.copy.indexOf("#STAT#") >= 0) {
-            var number = Utils.numberWithCommas(stat.stat);
-            var copy = $sce.trustAsHtml(stat.copy.replace("#STAT#", "<br/><span class='stat'>"+number+"</span><br/>"));
-            return copy;
+            // var number = Utils.numberWithCommas(stat.stat);
+            copy = copy.replace("#STAT#", "<br/><span class='stat'>"+$filter('shortNumber')(stat.stat)+"</span><br/>");
           }
-          return $sce.trustAsHtml("<br/><span class='stat'>"+stat.stat +" "+ stat.type+"</span><br/>");
+          if (copy != undefined && copy.indexOf("#TIME#") >= 0) {
+            var time = "";
+            switch ($scope.result.days) {
+              case 1:
+                time = "few days";
+                break;
+              case 7:
+                time = "week";
+                break;
+              case 30:
+                time = "month";
+                break;
+              case 360:
+                time = "year";
+                break;
+            }
+            copy = copy.replace("#TIME#", time);
+          }
+          // return $sce.trustAsHtml("<br/><span class='stat'>"+$filter('shortNumber')(stat.stat) +" "+ stat.type+"</span><br/>");
+          return $sce.trustAsHtml(copy);
         }
 			}],
       // controllerAs: 'vm',

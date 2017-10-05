@@ -110,10 +110,17 @@ define( function ( require, exports, module ) {
 
             var results = $filter('filter')(stuff, searchText);
             if ($scope.contentType) {
-              results = jlinq
-                .from(results)
-                .equals("post_type", $scope.contentType)
-                .select();
+              if ($scope.contentType != "all") {
+                results = jlinq
+                  .from(results)
+                  .equals("post_type", $scope.contentType)
+                  .select();
+              } else {
+                results = jlinq
+                  .from(results)
+                  .sort('-post_type')
+                  .select();
+              }
             }
             $scope.results = results;
           }
@@ -164,7 +171,7 @@ define( function ( require, exports, module ) {
                   }
                 }
               }
-              $scope.results = results;
+              $scope.results = jlinq.from(results).sort('post_type');
               deferred.resolve( results );
             } else if (search) {
               // if (query == "") {
@@ -176,7 +183,7 @@ define( function ( require, exports, module ) {
                   requestObj.type = "faq/search/?q="+query;
                 }
                 searchManager.getSearch(requestObj).then(function(data){
-                  $scope.results = data.results;
+                  $scope.results = jlinq.from(data.results).sort('-post_type').select();
                   // $scope.$digest();
                   console.log(data);
                 }, function(data){
@@ -193,7 +200,7 @@ define( function ( require, exports, module ) {
               var rebuildCache = cache/*.pagecontent.concat(cache.products)*/;
 
               results = $filter('filter')(rebuildCache, query);
-              $scope.results = results;
+              $scope.results = jlinq.from(results).sort('-post_type').select();
               deferred.resolve( results );
             }
             return deferred;

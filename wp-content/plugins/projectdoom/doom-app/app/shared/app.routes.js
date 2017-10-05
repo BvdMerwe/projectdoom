@@ -55,65 +55,70 @@ define( function ( require, exports, module ) {
                             action: 	'home',
                             resolve: {
                                 app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
-                                    
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'home',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                                            // if ($location.$$path == "/") {
-                                                var pests = results[2];
-                                                var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
-                                                $location.path("/insects/"+pests[rand].post_name);
-                                            // }
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+                                    return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
-
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                // if ($location.$$path == "/") {
+                                                    var pests = results[2];
+                                                    var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
+                                                    $location.path("/insects/"+pests[rand].post_name);
+                                                // }
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
                                 }] 
                             }
 
@@ -1189,11 +1194,13 @@ define( function ( require, exports, module ) {
 				{
                     
 					SessionService.checkSession().then( function(sessdb) {
-
+                            if (sessdb.lastVisit  - (Date.now() / 1000 | 0)) {
+                                console.warn(new Date(sessdb.lastVisit));
+                            }
                             var firstVisit = new Date(sessdb.firstVisit);
                             var lastVisit = new Date(sessdb.lastVisit);
 
-                            console.log('usersession:', sessdb, firstVisit.toTimeString(), lastVisit.toTimeString());
+                            console.alert('usersession:', sessdb, firstVisit.toTimeString(), lastVisit.toTimeString());
 
                         }, function(errdb) {
 
@@ -1234,7 +1241,7 @@ define( function ( require, exports, module ) {
 				
 					//console.log('success route: ', to , toParams);
 				
-					//_authorization();
+					// _authorization();
 
 					_resetBodyClass();
 
