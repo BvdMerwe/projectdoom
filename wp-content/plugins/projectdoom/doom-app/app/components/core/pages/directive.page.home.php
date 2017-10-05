@@ -14,7 +14,7 @@
 
 			<?php /**/?>
 			
-			<div flex="100" layout-fill>
+			<div flex="100" layout-fill style="max-width: 1366px; margin: 0 auto;">
 
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]" flex="100">
 	
@@ -81,19 +81,21 @@
 					</div>
 					/CONTACT PAGE TEMPLATE HERE -->
 
-					<!-- DEFAULT PAGE TEMPLATE HERE
+					<!-- DEFAULT PAGE TEMPLATE HERE -->
 					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
 
-						<div data-ui-404 flex="100" class="md-padding" style="text-align:center;">
+						<!-- <div data-ui-404 flex="100" class="md-padding" style="text-align:center;">
 							<br /><br /><br /><br />
 							<h1 flex="100" class="page-title" style="font-size:200px;">LOADING</h1>
 							<br /><br /><br /><br />
 							
 							<p class="page-title" style="font-size:50px;">...</p>
+						</div> -->
+						<div style="padding-top: 90px;">
+							<ui-randomstat duration="300"></ui-randomstat>
 						</div>
-
 					</div>
-					/DEFAULT PAGE TEMPLATE HERE -->
+					<!--/DEFAULT PAGE TEMPLATE HERE -->
 
 				</div>
 			</div>

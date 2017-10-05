@@ -509,6 +509,7 @@ md-nav-ink-bar {
 	display: inline-block;
 
 	color:#000000;
+	cursor: initial !important;
 }
 
 .product-insects li.active,
@@ -522,7 +523,7 @@ md-nav-ink-bar {
 	border:2px solid #14A774;
 }
 
-.product-insects li:hover,
+/* .product-insects li:hover, */
 .insect-insects li:hover {
 	color:#fff;
 	background-color:#ff510b;
@@ -803,22 +804,16 @@ md-nav-ink-bar {
 **/
 .animate-page-switch-container {
 	position:relative;
-	background:transparent;
-	/** /
-	text-align: center;
-	height:40px;
-	width:300px;
-	/**/
-	overflow:hidden;
+	padding-top: 80px
 }
 
-.animate-page-switch {
+/* .animate-page-switch {
 	padding:20px;
 	top: 40px;
     position: relative;
-}
+} */
 
-.animate-page-switch.ng-animate {
+/* .animate-page-switch.ng-animate {
 	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 
 	position:absolute;
@@ -826,8 +821,8 @@ md-nav-ink-bar {
 	left:0;
 	right:0;
 	bottom:0;
-}
-
+} */
+/* 
 .animate-page-switch.ng-leave.ng-leave-active,
 .animate-page-switch.ng-enter {
 	top:100%;
@@ -835,7 +830,7 @@ md-nav-ink-bar {
 .animate-page-switch.ng-leave,
 .animate-page-switch.ng-enter.ng-enter-active {
 	top:0;
-}
+} */
 
 /**
 * 

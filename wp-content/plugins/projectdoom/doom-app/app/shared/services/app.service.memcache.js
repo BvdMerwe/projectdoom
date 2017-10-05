@@ -59,6 +59,16 @@ define( function ( require, exports, module ) {
 		
 			switch( type ) {
 		
+				case "localstorge":
+		
+					var deferred = $q.defer();
+
+					localStorage.clear();
+					
+					return deferred.resolve
+		
+				break;
+		
 				default:
 		
 					var deferred = $q.defer();

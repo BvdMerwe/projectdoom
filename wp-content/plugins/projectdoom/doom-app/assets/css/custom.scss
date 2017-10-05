@@ -36,7 +36,7 @@ md-toolbar {
 }
 
 md-backdrop {
-  display: none;
+  background-color: transparent;
 }
 
 /***********************************************
@@ -187,7 +187,7 @@ div[data-ui-carousel] {
     }
   }
   .carousel {
-    overflow-x: scroll !important;
+    overflow-x: hidden !important;
     .list {
       @include flexbox();
       @include align-items(flex-end);
@@ -401,29 +401,28 @@ div[data-ui-carousel] {
       // z-index: 9;
       overflow: auto;
       padding-top: 81px;
-
-      .animate-page-switch{
+      
+      &>.animate-page-switch{
         margin-bottom: 200px;
         .ng-animate {
           @include transition(0.4s cubic-bezier(.25,.8,.25,1));
-        
-          position:absolute;
-          top:0;
-          left:0;
-          right:0;
-          bottom:0;
         }
       }
-      
-      .animate-page-switch.ng-leave.ng-leave-active,
-      .animate-page-switch.ng-enter {
-        top:100%;
+      &>.animate-page-switch.ng-leave.ng-leave-active,
+      &>.animate-page-switch.ng-enter {
+        @include transform(translateY(100%));
+        opacity: 0;
       }
-      .animate-page-switch.ng-leave,
-      .animate-page-switch.ng-enter.ng-enter-active {
-        top:0;
+      &>.animate-page-switch.ng-leave,
+      &>.animate-page-switch.ng-enter.ng-enter-active {
+        @include transform(translateY(0%));
+        opacity: 1;
       }
-  }
+    }
+
+    div[data-ui-form-contact] {
+      color: #000;
+    }
 }
 
 /***********************************************
@@ -604,9 +603,11 @@ END slider style
       @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
       opacity:0;
       height: 150px;
+      max-width: 110px;
     }
     .thumbnail {
       i[class^='icon-'] {
+        @include transition(0.4s cubic-bezier(.25,.8,.25,1));
         width: 1.5em;
         height: 1em;
         display: inline-block;

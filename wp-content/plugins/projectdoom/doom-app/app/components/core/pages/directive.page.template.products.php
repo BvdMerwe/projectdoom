@@ -64,7 +64,7 @@
                         cta = "false"
                         maxHeight = "500px"
                         maxWidth = "500px"
-                        gutter = "250px"
+                        gutter = "175px"
                         displayName ="false"
                         contentType = "product"></div> -->
 
@@ -112,32 +112,38 @@
                         </li>
                         -->
                     </ul>
-                    <md-button class="md-primary primary-cta">Get Product Coupon</md-button>
-					<br /><br />
+                    <!-- <md-button class="md-primary primary-cta">Get Product Coupon</md-button>
+					<br /><br /> -->
 
 					<ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">
-						<collapsible-item title="01 Benefits">
+						<collapsible-item title="01 Ideal For">
 							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
+								<p ng-bind-html="pageContent.doom_product_ideal_for | trustAsHtml"></p>
+							</div>
+                        </collapsible-item>
+                        
+						<collapsible-item title="02 Benefits">
+							<div>
+								<p ng-bind-html="pageContent.doom_product_benefits | trustAsHtml"></p>
 							</div>
 						</collapsible-item>
 
-						<collapsible-item title="02 Direction for use">
+						<collapsible-item title="03 Direction for use">
 							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-							</div>
+                                <p ng-bind-html="pageContent.doom_product_directions | trustAsHtml"></p>
+                            </div>
 						</collapsible-item>
 
-						<collapsible-item title="03 Storage &amp; Disposal">
+						<collapsible-item title="04 Storage &amp; Disposal">
 							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-							</div>
+                                <p ng-bind-html="pageContent.doom_product_storage_disposal | trustAsHtml"></p>
+                            </div>
 						</collapsible-item>
 
-						<collapsible-item title="04 Precautions">
+						<collapsible-item title="05 Precautions">
 							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin commodo magna vitae risus congue, eget rutrum libero luctus. Aenean sit amet lorem at velit mollis dapibus ac consectetur elit. Suspendisse laoreet massa iaculis, mattis nisl vel, tempus magna. Proin consequat odio lacinia, faucibus mi sit amet, tincidunt est. Nullam vitae tincidunt dolor. Maecenas id sem vitae sapien bibendum venenatis. Nulla quis nisi dignissim, viverra elit a, efficitur dui. Fusce dictum vestibulum enim sed bibendum. Nam vitae tortor orci. Sed convallis ultricies enim, ut consectetur magna ultricies et.</p>
-							</div>
+                                <p ng-bind-html="pageContent.doom_product_precautions | trustAsHtml"></p>
+                            </div>
 						</collapsible-item>
 
 					</ang-accordion>
@@ -454,7 +460,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "ant"
                     productType     = "spray"
@@ -465,7 +471,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "ant"
                     productType     = "electric"
@@ -476,7 +482,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "ant"
                     productType     = "powder"
@@ -492,7 +498,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "cockroach"
                     productType     = "spray"
@@ -503,7 +509,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "cockroach"
                     productType     = "electric"
@@ -514,7 +520,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "cockroach"
                     productType     = "powder"
@@ -530,7 +536,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "fishmoth"
                     productType     = "spray"
@@ -541,7 +547,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "fishmoth"
                     productType     = "electric"
@@ -552,7 +558,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "fishmoth"
                     productType     = "powder"
@@ -568,7 +574,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "flea"
                     productType     = "spray"
@@ -579,7 +585,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "flea"
                     productType     = "electric"
@@ -590,7 +596,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "flea"
                     productType     = "powder"
@@ -606,7 +612,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "fly"
                     productType     = "spray"
@@ -617,7 +623,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "fly"
                     productType     = "electric"
@@ -628,7 +634,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "fly"
                     productType     = "powder"
@@ -644,7 +650,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "mosquito"
                     productType     = "spray"
@@ -655,7 +661,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "mosquito"
                     productType     = "electric"
@@ -666,7 +672,7 @@
                     cta = "true"
                     maxHeight = "550px"
                     maxWidth = "200px"
-                    gutter = "250px"
+                    gutter = "175px"
                     displayName ="true"
                     insectType     	= "mosquito"
                     productType     = "powder"

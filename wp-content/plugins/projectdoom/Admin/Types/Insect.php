@@ -83,28 +83,45 @@ function insect_custom_columns($column){
   function doom_insect_meta_boxes() {
 
   	$meta_boxes = array(
-  	'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Insect Details', 'doom')),
+  	'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Insect Profile Details', 'doom')),
 
+		'doom_insect_about' => array( 'name' => 'doom_insect_about', 'title' => __('A bit about me', 'doom'), 'desc' => 'Profile page about copy', 'std' => '', 'type' => 'richtext'),
+		'doom_insect_lives_in' => array( 'name' => 'doom_insect_lives_in', 'title' => __('I live in', 'doom'), 'desc' => 'Profile page where the fly lives copy', 'std' => '', 'type' => 'richtext'),
+		'doom_insect_best_known' => array( 'name' => 'doom_insect_best_known', 'title' => __('I\'m best known for', 'doom'), 'desc' => 'Best know for copy', 'std' => '', 'type' => 'richtext'),
+		'doom_insect_hobbies' => array( 'name' => 'doom_insect_hobbies', 'title' => __('Interests/hobbies', 'doom'), 'desc' => 'Interests/hobbies copy', 'std' => '', 'type' => 'richtext'),
+		array('type' => 'divider'),
+
+		'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Insect Configurator Details', 'doom')),
+		'doom_insect_config_description' => array( 'name' => 'doom_insect_config_description', 'title' => __('Short Description', 'doom'), 'desc' => 'Configurator insect copy', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+		  
   		'doom_insect_egg' => array( 'name' => 'doom_insect_egg', 'title' => __('Eggs per day', 'doom'), 'desc' => 'Amount of eggs layed per day', 'std' => '', 'type' => 'text_small'),
-  		'doom_insect_egg_copy' => array( 'name' => 'doom_insect_egg_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_egg_copy' => array( 'name' => 'doom_insect_egg_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat. Use #STAT# to delimit where the stat should be. E.g, This has happened in your house #STAT# times.', 'std' => '', 'type' => 'textarea'),
+		  array('type' => 'divider'),
 
   		'doom_insect_molt' => array( 'name' => 'doom_insect_molt', 'title' => __('Molts per day', 'doom'), 'desc' => 'Times the pest molts per day', 'std' => '', 'type' => 'text_small'),
-  		'doom_insect_molt_copy' => array( 'name' => 'doom_insect_molt_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_molt_copy' => array( 'name' => 'doom_insect_molt_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'std' => '', 'type' => 'textarea'),
+		  array('type' => 'divider'),
 
   		'doom_insect_mate' => array( 'name' => 'doom_insect_mate', 'title' => __('Mate per day', 'doom'), 'desc' => 'Times the pest mates per day', 'type' => 'text_small'),
-  		'doom_insect_mate_copy' => array( 'name' => 'doom_insect_mate_copy', 'title' => __('Copy to accompany stat', 'doom'), 'desc' => 'Copy to accompany stat', 'type' => 'text_small'),
+  		'doom_insect_mate_copy' => array( 'name' => 'doom_insect_mate_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'type' => 'textarea'),
+		  array('type' => 'divider'),
 
   		'doom_insect_life' => array( 'name' => 'doom_insect_life', 'title' => __('Life span', 'doom'), 'desc' => 'How long the pest lives', 'std' => '', 'type' => 'text_small'),
-  		'doom_insect_life_copy' => array( 'name' => 'doom_insect_life_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_life_copy' => array( 'name' => 'doom_insect_life_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'std' => '', 'type' => 'textarea'),
+		  array('type' => 'divider'),
 
   		'doom_insect_poop' => array( 'name' => 'doom_insect_poop', 'title' => __('Poops per day', 'doom'), 'desc' => 'Times the pest poops per day', 'std' => '', 'type' => 'text_small'),
-  		'doom_insect_poop_copy' => array( 'name' => 'doom_insect_poop_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'std' => '', 'type' => 'text_small'),
+  		'doom_insect_poop_copy' => array( 'name' => 'doom_insect_poop_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'std' => '', 'type' => 'textarea'),
+		  array('type' => 'divider'),
 
   		'doom_insect_vomit' => array( 'name' => 'doom_insect_vomit', 'title' => __('Vomits per day', 'doom'), 'desc' => 'Times the pest vomits per day', 'type' => 'text_small'),
-  		'doom_insect_vomit_copy' => array( 'name' => 'doom_insect_vomit_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'type' => 'text_small'),
+  		'doom_insect_vomit_copy' => array( 'name' => 'doom_insect_vomit_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'type' => 'textarea'),
+		  array('type' => 'divider'),
 
       'doom_insect_sucks' => array( 'name' => 'doom_insect_sucks', 'title' => __('Blood sucks per day', 'doom'), 'desc' => 'Times the pest sucks blood per day', 'type' => 'text_small'),
-      'doom_insect_sucks_copy' => array( 'name' => 'doom_insect_sucks_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany stat', 'type' => 'text_small'),
+      'doom_insect_sucks_copy' => array( 'name' => 'doom_insect_sucks_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'type' => 'textarea'),
+	  array('type' => 'divider'),
 
 
   		//'doom_thumbnail_align' => array( 'name' => 'doom_thumbnail_align', 'title' => __('Featured Image alignment', 'doom'), 'desc' => 'Choose your Featured Image alignment.', 'options' => array('center top', 'center bottom', 'center center'), 'type' => 'select'),
@@ -129,6 +146,8 @@ function insect_custom_columns($column){
   			get_meta_text( $meta, $value );
   		if ( $meta['type'] == 'text_small' )
   			get_meta_text_small( $meta, $value );
+		elseif ( $meta['type'] == 'richtext' ) 
+			get_meta_richtext($meta, $value);
   		elseif ( $meta['type'] == 'textarea' )
   			get_meta_textarea( $meta, $value );
   		elseif ( $meta['type'] == 'select' )

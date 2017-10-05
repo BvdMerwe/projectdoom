@@ -113,9 +113,9 @@
                     <div data-ui-carousel
                         single          = "true"
                         cta             = "true"
-                        maxHeight       = "300px"
-                        maxWidth        = "250px"
-                        gutter          = "10px"
+                        maxHeight       = "550px"
+                        maxWidth        = "200px"
+                        gutter          = "175px"
                         displayName     = "true"
                         insectType      = ""
                         productType     = ""

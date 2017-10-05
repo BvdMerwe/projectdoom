@@ -184,10 +184,12 @@ define(function (require, exports, module) {
 						var container = thisElem[0].querySelector('.carousel');
 						var inner = thisElem[0].querySelector('.list');
 						var controls = thisElem[0].querySelector('.controls');
-						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
-							controls.style.display = "none";
-						} else {
-							controls.style.display = "initial";
+						if (controls != null || controls != undefined) {
+							if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
+								controls.style.display = "none";
+							} else {
+								controls.style.display = "initial";
+							}
 						}
 					}
 				};
@@ -400,7 +402,7 @@ define(function (require, exports, module) {
 										if (taxi[indie].name.toLowerCase() == $scope.productType.toLowerCase()) {
 											results[index].product_type = taxi[indie].name;
 											if (results[index].image == undefined) {
-												results[index].image = "https://unsplash.it/65/150";
+												results[index].image = "https://unsplash.it/240/215";
 											}
 											out.push(results[index]);
 										}
@@ -417,7 +419,7 @@ define(function (require, exports, module) {
 				}
 				$scope.success = function (data) {
 					$scope.items = $filter('unique')(data);
-					$scope.itemLength = data.length;
+					$scope.itemLength = $scope.items.length;
 					// $scope.$digest();
 					$timeout(function () {
 						$scope.$broadcast("items-loaded");
