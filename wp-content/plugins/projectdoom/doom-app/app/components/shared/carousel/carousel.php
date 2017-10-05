@@ -10,7 +10,14 @@
 
 ?>
 <md-toolbar class="md-hue-1 toolbar-filter" data-ng-if="showFilter">
-	<div class="md-toolbar-tools" layout-align="start end" style="border-bottom:2px solid #14A774;">
+	<div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #14A774;">
+		<md-button 
+			class="md-primary md-hue-3 btn-filter active-filter" 
+			aria-label=""
+			data-filter-id="all"
+			data-ng-click="filter( $event, 'all' )">
+				ALL
+		</md-button>
 		<md-button 
 			md-no-ink
 			class="md-primary md-hue-2 btn-filter" 
@@ -32,13 +39,6 @@
 			data-ng-repeat="(key, value) in filterCategories">
 				{{value.name}}
 		</md-button>
-		<md-button 
-			class="md-primary md-hue-3 btn-filter active-filter" 
-			aria-label=""
-			data-filter-id="all"
-			data-ng-click="filter( $event, 'all' )">
-				ALL
-		</md-button>
 	</div>
 </md-toolbar>
 <div ng-transclude></div>
@@ -57,7 +57,7 @@
 					</div>
 					<div class="carousel-item-name" ng-if="displayName">{{item.post_title}}</div>
 					<div class="cta" ng-if="cta">
-						<md-button class="primary-cta" ng-click="goto(contentType, item.post_name)">View&nbsp;More</md-button class="primary-cta">
+						<md-button class="primary-cta fill-width" ng-click="goto(contentType, item.post_name)">View&nbsp;More</md-button class="primary-cta">
 					</div>
 				</div>
 			</div>

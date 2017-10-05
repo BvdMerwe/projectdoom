@@ -14,7 +14,7 @@
 
 			<?php /**/?>
 			
-			<div flex="100" layout-fill style="max-width: 1366px; margin: 0 auto;">
+			<div flex="100" class="main-container" layout-fill style="max-width: 1366px; margin: 0 auto;">
 
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]" flex="100">
 	
@@ -22,7 +22,7 @@
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="home">
 
 						<div data-ui-app-page-home page-name="home" class="page-content" flex-xs="100" flex="100"></div>
-						<div data-ui-404 flex="100" class="md-padding" style="text-align:center;">
+						<div data-ui-404 flex="100" class="" style="text-align:center;">
 							<br /><br /><br /><br />
 							<h1 flex="100" class="page-title" style="font-size:200px;">HOME</h1> 
 							<br /><br /><br /><br />
@@ -76,7 +76,7 @@
 					<!-- FAQ PAGE TEMPLATE HERE 
 					<div layout="column" class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
 
-						<div data-ui-app-page-content page-name="faq" class="page-content" flex="100" class="md-padding"></div>
+						<div data-ui-app-page-content page-name="faq" class="page-content" flex="100" class=""></div>
 
 					</div>
 					/FAQ PAGE TEMPLATE HERE -->
@@ -92,7 +92,7 @@
 					<!-- DEFAULT PAGE TEMPLATE HERE -->
 					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
 
-						<!-- <div data-ui-404 flex="100" class="md-padding" style="text-align:center;">
+						<!-- <div data-ui-404 flex="100" class="" style="text-align:center;">
 							<br /><br /><br /><br />
 							<h1 flex="100" class="page-title" style="font-size:200px;">LOADING</h1>
 							<br /><br /><br /><br />

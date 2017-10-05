@@ -16,7 +16,7 @@
         <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
             <!-- -->
             <div layout="row" layout-md="column" layout-align="start start" layout-align-md="center center">
-                <div flex="50" flex-md="100"  class="md-padding" style="padding:20px 40px;"> 
+                <div flex="50" flex-md="100"  class="" style=""> 
                     <div class="bg-box product-image-holder">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                         <div class="product-controller-buttons">
@@ -78,7 +78,7 @@
                     </div>
                     
                 </div>
-                <div flex="40" flex-offset="10" flex-offset-md="0" flex-md="100" layout-align-md="center start" class="md-padding" style="padding:20px 40px;">
+                <div flex="40" flex-offset="10" flex-offset-md="0" flex-md="100" layout-align-md="center start" class="" style="">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
@@ -168,7 +168,7 @@
                 
             </div>
             
-            <div layout="column" class="md-padding">
+            <div layout="column" class="">
                 <h3 class="carousel-title" style="margin-bottom:0;">Where to buy</h3>
                 <div data-ui-carousel
                     flex="100"
@@ -202,13 +202,13 @@
 
             <!-- [HERO SECTION] -->
             <div layout="row" layout-md="column" layout-align="center center">
-                <div flex="60" flex-md="100" class="md-padding">
+                <div flex="60" flex-md="100" class="">
                     <div class="bg-box">
                         <!--<img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption">-->
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex="40" flex-md="100" class="md-padding" layout-align-md="center center">
+                <div flex="40" flex-md="100" class="" layout-align-md="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>

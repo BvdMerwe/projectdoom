@@ -441,9 +441,9 @@ md-nav-ink-bar {
 
 
 .page-title {
-	font-size: 55px;
+	font-size: 44pt;
     margin: 0;
-	line-height: 60px;
+	line-height: 1.1em;
 	text-transform: uppercase;
 	color:#14A774;
 }
@@ -652,8 +652,13 @@ md-nav-ink-bar {
 	border:1px solid #ff510b;
 	color:#ffffff;
 	border-radius: 0;
-	padding: 0 15px;
+	padding: 0 35px;
 	font-weight: bold;
+	margin: 0;
+}
+
+.primary-cta.fill-width {
+	width: 100%;
 }
 
 .primary-cta:hover {
@@ -812,7 +817,7 @@ md-nav-ink-bar {
 }
 
 .config-head {
-	margin-bottom:2em;
+	margin:2em 0;
 	pointer-events: none;
 }
 
@@ -895,7 +900,8 @@ md-nav-ink-bar {
 }
 
 .toolbar-filter {
-	margin: 2em auto;
+	/* margin: 2em auto; */
+	margin: 1em 0;
 }
 
 .btn-filter {

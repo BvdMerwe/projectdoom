@@ -9,7 +9,7 @@
 */
 ?>
 		<div layout="row" layout-fill layout-xs="column" flex="100">
-			<md-content class="md-padding" flex="100">
+			<md-content class="" flex="100">
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]" flex="100">
 
                     <?php // layout options based on columns, hero section etc. ?>

@@ -12,6 +12,12 @@
 
 md-toolbar {
   z-index: 0 !important;
+  min-height: auto;
+}
+
+md-toolbar .md-toolbar-tools {
+  height: auto;
+  padding: 0 8px;
 }
 
 .md-track-container {
@@ -28,14 +34,23 @@ md-toolbar {
 }
 
 md-backdrop {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
+}
+
+md-select-menu {
+  border: 3px solid #14A774;
+}
+
+md-select-menu md-option {
+  background: #fff;
+  border-bottom: 1px solid #14A774;
 }
 
 /***********************************************
 * Body container STYLE
 ***********************************************/
-#main-container {
-  padding-top: 90px;
+.main-container {
+  padding: 0 80px;
 }
 
 .app-dashboard {
@@ -139,6 +154,10 @@ div[data-ui-carousel] {
   text-align: center;
 }
 
+div[data-ui-carousel][single='true'] {
+  margin-left: 0px;
+}
+
 .retailer-carousel .item .bg-box::before {
   content: initial !important;
 }
@@ -226,6 +245,8 @@ div[data-ui-carousel] {
 
 .carousel-container .carousel .item .bg-box {
   position: relative;
+  margin: 0 !important;
+  width: initial !important;
 }
 
 .carousel-container .carousel .item .bg-box::before {
@@ -249,11 +270,13 @@ div[data-ui-carousel] {
   text-align: center;
   width: 100%;
   margin: 10px 0;
-  min-height: 30px;
 }
 
 .carousel-container .carousel .carousel-item-name {
+  margin: 1em 0;
   font-size: 10px;
+  font-weight: bold;
+  color: #14A774;
   text-transform: capitalize;
 }
 
@@ -746,6 +769,7 @@ END slider style
   padding: 20px;
   vertical-align: top;
   border: 5px solid transparent;
+  max-width: 200px;
 }
 
 #configurator .insect-selector .start-button {
@@ -762,6 +786,7 @@ END slider style
   opacity: 0;
   height: 150px;
   max-width: 110px;
+  margin: 0 auto;
 }
 
 #configurator .insect-selector .thumbnail i[class^='icon-'] {
@@ -814,11 +839,11 @@ END slider style
 #configurator .step-1.active.inactive {
   border-color: #000;
   width: 70%;
-  -webkit-transform: translateX(-12%) translateY(7%) scale(0.7);
-  -moz-transform: translateX(-12%) translateY(7%) scale(0.7);
-  -ms-transform: translateX(-12%) translateY(7%) scale(0.7);
-  -o-transform: translateX(-12%) translateY(7%) scale(0.7);
-  transform: translateX(-12%) translateY(7%) scale(0.7);
+  -webkit-transform: translateX(-10%) translateY(7%) scale(0.7);
+  -moz-transform: translateX(-10%) translateY(7%) scale(0.7);
+  -ms-transform: translateX(-10%) translateY(7%) scale(0.7);
+  -o-transform: translateX(-10%) translateY(7%) scale(0.7);
+  transform: translateX(-10%) translateY(7%) scale(0.7);
 }
 
 #configurator .step-1.active {
@@ -831,46 +856,46 @@ END slider style
 }
 
 #configurator .step-1.inactive {
-  -webkit-transform: translateX(-8%);
-  -moz-transform: translateX(-8%);
-  -ms-transform: translateX(-8%);
-  -o-transform: translateX(-8%);
-  transform: translateX(-8%);
+  -webkit-transform: translateX(-10%);
+  -moz-transform: translateX(-10%);
+  -ms-transform: translateX(-10%);
+  -o-transform: translateX(-10%);
+  transform: translateX(-10%);
   height: 300px;
 }
 
-#configurator .step-1 .content:hover .insect-selector {
+#configurator .step-1 .content-inner:hover .insect-selector {
   border-color: transparent;
 }
 
-#configurator .step-1 .content:hover .insect-selector .thumbnail i {
+#configurator .step-1 .content-inner:hover .insect-selector .thumbnail i {
   border-color: transparent;
   color: inherit;
 }
 
-#configurator .step-1 .content:hover .insect-selector .desc {
+#configurator .step-1 .content-inner:hover .insect-selector .desc {
   opacity: 0;
 }
 
-#configurator .step-1 .content:hover .insect-selector .start-button {
+#configurator .step-1 .content-inner:hover .insect-selector .start-button {
   opacity: 0;
   pointer-events: none;
 }
 
-#configurator .step-1 .content:hover .insect-selector:hover {
+#configurator .step-1 .content-inner:hover .insect-selector:hover {
   border-color: #14A774;
 }
 
-#configurator .step-1 .content:hover .insect-selector:hover .thumbnail i {
+#configurator .step-1 .content-inner:hover .insect-selector:hover .thumbnail i {
   border-color: #14A774;
   color: #14A774;
 }
 
-#configurator .step-1 .content:hover .insect-selector:hover .desc {
+#configurator .step-1 .content-inner:hover .insect-selector:hover .desc {
   opacity: 1;
 }
 
-#configurator .step-1 .content:hover .insect-selector:hover .start-button {
+#configurator .step-1 .content-inner:hover .insect-selector:hover .start-button {
   opacity: 1;
   pointer-events: all;
 }

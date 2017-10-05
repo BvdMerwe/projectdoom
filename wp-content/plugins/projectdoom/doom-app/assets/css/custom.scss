@@ -21,6 +21,11 @@ $orange: #FF510B;
 
 md-toolbar {
   z-index: 0 !important;
+  min-height: auto;
+  .md-toolbar-tools {
+    height: auto;
+    padding: 0 8px;
+  }
 }
 
 .md-track-container {
@@ -36,15 +41,23 @@ md-toolbar {
 }
 
 md-backdrop {
-  background-color: rgba(#fff, 0.5);
+  background-color: rgba(#fff, 0);
+}
+md-select-menu {
+  border: 3px solid $green;
+  
+  md-option {
+    background: #fff;
+    border-bottom: 1px solid $green;
+  }
 }
 
 /***********************************************
 * Body container STYLE
 ***********************************************/
 
-#main-container {
-  padding-top: 90px;
+.main-container {
+  padding: 0 80px;
 }
 
 .app-dashboard {
@@ -139,6 +152,9 @@ div[data-ui-carousel] {
   margin-left: 16px;
   text-align: center;
 }
+div[data-ui-carousel][single='true'] {
+  margin-left: 0px;
+}
 .retailer-carousel {
   .item .bg-box::before{
     content: initial !important;
@@ -208,6 +224,8 @@ div[data-ui-carousel] {
       // margin: 0 10px;
       .bg-box {
         position: relative;
+        margin: 0 !important;
+        width: initial !important;
 
         &::before {
           content: "";
@@ -228,10 +246,13 @@ div[data-ui-carousel] {
       text-align: center;
       width: 100%;
       margin: 10px 0;
-      min-height: 30px;
+      // min-height: 30px;
     }
     .carousel-item-name {
+      margin: 1em 0;
       font-size: 10px;
+      font-weight: bold;
+      color: $green;
       text-transform: capitalize;
     }
   }
@@ -598,7 +619,8 @@ END slider style
     text-align: center !important;
     padding: 20px;
     vertical-align: top;
-    border: 5px solid transparent;
+    border: 5px solid transparent;    
+    max-width: 200px;
 
     .start-button {
       opacity: 0;
@@ -609,6 +631,7 @@ END slider style
       opacity:0;
       height: 150px;
       max-width: 110px;
+      margin: 0 auto;
     }
     .thumbnail {
       i[class^='icon-'] {
@@ -658,7 +681,7 @@ END slider style
       width: 70%;
       // min-height: 250px;
       // height: 250px;
-      @include transform(translateX(-12%) translateY(7%) scale(0.7));
+      @include transform(translateX(-10%) translateY(7%) scale(0.7));
 
       .revert {
         // padding: 65px 5%;
@@ -673,11 +696,11 @@ END slider style
       margin: 0;
     }
     &.inactive {
-      @include transform(translateX(-8%));
+      @include transform(translateX(-10%));
       height: 300px;
     }
 
-    .content:hover {
+    .content-inner:hover {
       .insect-selector {
         border-color: transparent;
         .thumbnail i {

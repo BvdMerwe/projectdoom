@@ -11,10 +11,10 @@
 ?>
 	<div layout="column">
 		<div layout="row" layout-xs="column" >
-			<md-content flex="100" class="md-padding">
+			<md-content flex="100" class="">
                 
                 <md-toolbar class="md-hue-1 toolbar-filter" data-ng-if="showFilter == 'true'">
-                    <div class="md-toolbar-tools" layout-align="start end" style="border-bottom:2px solid #14A774;">
+                    <div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #14A774;">
                         
                         
                         <md-button 

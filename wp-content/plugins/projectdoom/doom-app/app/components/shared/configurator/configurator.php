@@ -28,7 +28,7 @@
         <div class="content" layout="row" layout-align="space-around center">
           <h3 class="carousel-title" flex="100" style="text-align:center;margin:1em auto;">Select your bug</h3>
         </div>
-        <div class="content" layout="row" layout-align="space-around center">
+        <div class="content-inner" layout="row" layout-align="space-around center">
           <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
             <div class="thumbnail">
               <i class="icon-{{insect.post_name}}"></i>
@@ -165,10 +165,12 @@
           <h2>Your results and solution</h2>
           <p>{{result.product.post_content}}</p>
           <div class="">
-            <md-button class="primary-cta" data-ng-click="goTo('/products')">View more</md-button>
-            <md-button class="primary-cta">Where can I get it?</md-button>
-            <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
+            <md-button class="primary-cta fill-width" data-ng-click="goTo('/products')">View more</md-button>
+            <br/>
+            <br/>
+            <md-button class="primary-cta fill-width">Where can I get it?</md-button>
           </div>
+          <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
         </div>
       </div>
       <!--
