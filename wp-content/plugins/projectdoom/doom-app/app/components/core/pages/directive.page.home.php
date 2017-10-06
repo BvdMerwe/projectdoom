@@ -88,18 +88,22 @@
 
 					</div>
 					/CONTACT PAGE TEMPLATE HERE -->
+					<!-- INSECTS PROFILE PAGE TEMPLATE HERE -->
+					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="404">
+
+						<h1 flex="100" class="page-title stat " style="color:#000;margin-top:150px;">OOPS</h1>
+						<br />
+						<p>It looks like you found a dead link</p>
+						<div flex="100" style="padding-top: 90px;">
+							<ui-randomstat duration="300"></ui-randomstat>
+						</div>
+
+					</div>
 
 					<!-- DEFAULT PAGE TEMPLATE HERE -->
 					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
 
-						<!-- <div data-ui-404 flex="100" class="" style="text-align:center;">
-							<br /><br /><br /><br />
-							<h1 flex="100" class="page-title" style="font-size:200px;">LOADING</h1>
-							<br /><br /><br /><br />
-							
-							<p class="page-title" style="font-size:50px;">...</p>
-						</div> -->
-						<div style="padding-top: 90px;">
+						<div flex="100" style="padding-top: 90px;">
 							<ui-randomstat duration="300"></ui-randomstat>
 						</div>
 					</div>

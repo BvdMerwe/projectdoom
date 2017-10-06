@@ -87,9 +87,9 @@ define( function ( require, exports, module ) {
 
 						case 'ant':
 						case 'fly':
-						case 'fleas':
-						case 'fishmoths':
-						case 'mosquitoes':
+						case 'flea':
+						case 'fishmoth':
+						case 'mosquito':
 						case 'cockroach':
 
 							$location.path('/insects/' + page );
@@ -138,11 +138,17 @@ define( function ( require, exports, module ) {
 
 							break;
 
+						case '404':
+
+							$location.path('/404');
+
+							break;
+
 						default:
 
 							$location.path('/404');
 
-							throw 'Biaytch!';
+							console.error( 'Biaytch!');
 
 							break;
 
