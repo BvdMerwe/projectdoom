@@ -366,7 +366,6 @@ define(function (require, exports, module) {
 									_getUniqueCategories( results );
 									$scope.success(results);
 									$scope.productType = "22";
-									_filterBtnClasses($scope.productType);
 								}
 								// productsManager.getProducts(requestObj).then($scope.success, $scope.error);
 								break;
@@ -511,6 +510,7 @@ define(function (require, exports, module) {
 				}
 
 				$scope.goto = function (type, name) {
+					window.scrollTo('body', 0)
 					switch (type) {
 						case 'insect':
 						case 'product':

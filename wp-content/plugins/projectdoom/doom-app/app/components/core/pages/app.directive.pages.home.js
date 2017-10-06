@@ -103,7 +103,7 @@ define( function ( require, exports, module ) {
 		}
 
 		$scope.scrollToTop = function() {
-			window.scrollTo(0, 0)
+			window.scrollTo('body', 0)
 		}
 
 		/***/

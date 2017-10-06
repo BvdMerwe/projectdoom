@@ -168,7 +168,7 @@
             <md-button class="primary-cta fill-width" data-ng-click="goto('/products/'+result.product.post_name)">View more</md-button>
             <br/>
             <br/>
-            <md-button class="primary-cta fill-width">Where can I get it?</md-button>
+            <!-- <md-button class="primary-cta fill-width">Where can I get it?</md-button> -->
           </div>
           <p>
             <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
