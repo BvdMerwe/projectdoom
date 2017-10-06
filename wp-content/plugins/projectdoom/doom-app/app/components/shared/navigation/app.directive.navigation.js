@@ -67,7 +67,7 @@ define( function ( require, exports, module ) {
 
 					Utils._strict( [ String ], arguments );
 
-					console.log( 'open page:', page );
+					//console.log( 'open page:', page );
 
 					switch( page ) {
 
@@ -116,6 +116,13 @@ define( function ( require, exports, module ) {
 						case 'products':
 
 							$location.path('/products');
+
+							break;
+
+						case 'products/category/flying':
+						case 'products/category/crawling':
+
+							$location.path(page);
 
 							break;
 

@@ -60,7 +60,7 @@ require.config({
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',
-		"localforage": 				'../libs/localforage.min',
+		//"localforage": 				'../libs/localforage.min',
 		"modernizr": 				'../libs/modernizr',
 		"sjcl": 					'../libs/sjcl',
 		"Utils": 					'../libs/Utils',

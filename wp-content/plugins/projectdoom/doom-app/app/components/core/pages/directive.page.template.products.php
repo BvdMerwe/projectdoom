@@ -167,7 +167,7 @@
                 </div>
                 
             </div>
-            
+            <!-- 
             <div layout="column" class="">
                 <h3 class="page-title" style="margin-bottom:0;">Where to buy</h3>
                 <div data-ui-carousel
@@ -182,19 +182,9 @@
                     insectType      = ""
                     productType     = ""
                     contentType="retailer"></div>
-                <!--
-                <div data-ui-carousel
-                    flex="100"
-                    isWidget        = "true"
-                    showTitle       = "true"
-                    showSubheader   = "true"
-                    showDescription = "true"
-                    showButton      = "true"
-                    contentType     = "retailer"
-                    sortBy="ASC" orderBy="post_title"
-                    maxAmount="4" gridItemsDesktop="4" gridItemsMobile="2"></div>-->
+                
             </div>
-            <!-- -->
+            -->
 
         </div>
 

@@ -64,7 +64,7 @@ define( function ( require, exports, module ) {
     
             return {
                 restrict: 		'AE',
-                scope:          {},
+                //scope:          {},
                 transclude: 	true, // pass entire template?d
                 templateUrl: 	appConfig.general.path + 'app/components/shared/contactform/contactform.php',
                 link:           function(scope, element, attr) {
@@ -127,7 +127,7 @@ define( function ( require, exports, module ) {
                     //Gallery Parameters
 					$scope.isWidget;
 					
-					/** /
+					/**/
 					$scope.formInputs = {
 						'firstName':	'',
 						'emailAddress':	'',
@@ -146,9 +146,11 @@ define( function ( require, exports, module ) {
 					$scope.formMsg 		= false;
 					$scope.formSaving 	= false;
 					
-					$scope.save = function () {
+					$scope.submitForm = function () {
 
 						ngProgress.start();
+
+						console.log('saving form', $scope.formInputs);
 
 						try {
 
@@ -189,7 +191,7 @@ define( function ( require, exports, module ) {
 
 										if ( data.error === true ) {
 
-											_formFeedBack ( true, data.message );
+											//_formFeedBack ( true, data.message );
 
 											Utils.fadeIn( form );
 
@@ -197,7 +199,7 @@ define( function ( require, exports, module ) {
 
 											//console.log(data);
 
-											_formFeedBack ( false, data.message );
+											//_formFeedBack ( false, data.message );
 
 											form.reset();
 										
@@ -210,7 +212,7 @@ define( function ( require, exports, module ) {
 
 										ngProgress.complete();	
 												
-										_formFeedBack ( true, data.message );
+										//_formFeedBack ( true, data.message );
 
 										console.error("Request failed:", data);
 
@@ -222,7 +224,7 @@ define( function ( require, exports, module ) {
 
 									ngProgress.complete();
 
-									_formFeedBack ( true, e );
+									//_formFeedBack ( true, e );
 
 								}
 							);
@@ -233,7 +235,7 @@ define( function ( require, exports, module ) {
 
 							console.log( "validation error:", e );
 
-							_formFeedBack ( true, e );
+							//_formFeedBack ( true, e );
 						
 						}
 						
@@ -310,6 +312,8 @@ define( function ( require, exports, module ) {
 						}
 
 					}
+
+					console.warn('siyabagena!');
     
                 }]
             };

@@ -2,7 +2,7 @@
 @import "general.mixin.scss";
 @import "flex.mixin.scss";
 
-$green: #14A774;
+$green: #14A774; 
 $orange: #FF510B;
 $keyline-width: 5px;
 $keyline: $keyline-width solid $green;
@@ -28,7 +28,7 @@ md-toolbar {
     height: auto;
     padding: 0 8px;
   }
-}
+} 
 
 .md-track-container {
   top: 24px;

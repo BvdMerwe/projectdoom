@@ -30,7 +30,7 @@ define( function ( require, exports, module ) {
 	// Load dependent modules
 	var appMemCache,
 		domReady 		= require("domReady"),
-		localforage		= require("localforage"),
+		// localforage		= require("localforage"),
 		angular 		= require("angular"),
 		appConfig		= require("text!../../app/app.config.json");
 

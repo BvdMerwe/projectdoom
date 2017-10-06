@@ -26,7 +26,7 @@
                                 data-ng-model="formInputs.firstName">
                             <div ng-messages="formContact.firstName.$error">
                                 <div ng-message="required">Please provide us with a first name.</div>
-                                <div ng-message="md-maxlength">Your first name must be less than 30 characters long.</div>
+                                <!--<div ng-message="md-maxlength">Your first name must be less than 30 characters long.</div>-->
                             </div>
                         </md-input-container>
 
@@ -41,7 +41,7 @@
                                 minlength="10"  data-ng-pattern="/^.+@.+\..+$/" >
                             <div ng-messages="formContact.emailAddress.$error">
                                 <div ng-message="required">Please provide us with an email address.</div>
-                                <div ng-message="md-email">Please provide us with a valid email address.</div>
+                                <!--<div ng-message="md-email">Please provide us with a valid email address.</div>-->
                             </div>
                         </md-input-container>
                     </div>
@@ -90,7 +90,8 @@
                     <md-input-container md-no-float class="md-block"></md-input-container>
 
                     <md-input-container class="md-block" layout-align="end center">
-                        <md-button type="submit" data-ng-click="save()">Send</md-button>
+                        <!--<button type="button" class="md-button" data-ng-submit="save()">Send</button>-->
+                        <md-button type="button" data-ng-click="submitForm()" class="primary-cta">Send</md-button>
                     </md-input-container>
 
                 </form>

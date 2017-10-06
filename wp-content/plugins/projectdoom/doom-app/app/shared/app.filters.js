@@ -249,7 +249,10 @@ define( function ( require, exports, module ) {
 
 	Application.Filters.shortNumber = function () {
 
-		return function( num, digits = 2 ) {
+		return function( num, digits ) {
+
+			digits = typeof digits !== 'undefined' ? digits : 0;
+
 			var si = [
 				{ value: 1E18, symbol: "E" },
 				{ value: 1E15, symbol: "P" },

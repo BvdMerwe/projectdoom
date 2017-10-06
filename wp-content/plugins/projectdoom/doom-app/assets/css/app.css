@@ -833,11 +833,11 @@ h3.page-title {
 
 .insect-controller-buttons .icon-chevron-left,
 .product-controller-buttons .icon-chevron-left {
-	left:-60px;
+	left:0;
 }
 .insect-controller-buttons .icon-chevron-right,
 .product-controller-buttons .icon-chevron-right {
-	right:-60px;
+	right:0;
 }
 
 .product-filter-categories .primary-tag {
@@ -928,13 +928,66 @@ h3.page-title {
 .page-profile-container .map-container svg{
 	position: absolute;
     top: 0;
-    opacity: 0;
+	opacity: 1;
+	fill:transparent;
 }
 .page-profile-container .map-container img{
 
 }
 .page-profile-container .map-container svg .pin{
+	color:#444;
+	opacity: 1;
+	-webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.page-profile-container .map-container #bedroom,
+.page-profile-container .map-container #outside,
+.page-profile-container .map-container #living,
+.page-profile-container .map-container #kitchen,
+.page-profile-container .map-container #bathroom {
+	cursor: pointer;
+}
+
+.page-profile-container .map-container #bedroom.true .pin,
+.page-profile-container .map-container #outside.true .pin,
+.page-profile-container .map-container #living.true .pin,
+.page-profile-container .map-container #kitchen.true .pin,
+.page-profile-container .map-container #bathroom.true .pin {
+	fill:#14A774;
+	opacity: 1;	
+}
+
+.profile-pin-descriptions p{
+	padding: 20px 40px;
+	border-bottom:1px solid #ccc;
+	padding-bottom: 30px;
 	
+}
+/** /
+.area.true .pin {
+	fill:#14A774;
+}/**/
+
+.profile-pin-descriptions p.active,
+.profile-pin-descriptions p.active i,
+.profile-pin-descriptions p:hover,
+.profile-pin-descriptions p:hover i{
+	color:#14A774;
+}
+
+.profile-pin-descriptions i{
+	font-size: 24pt;
+	position: relative;
+	top:10px;
+	margin-right: 20px;
+	
+}
+
+.profile-pin-descriptions p:last-child{
+	border-bottom:none;
 }
 /**
 * 

@@ -63,7 +63,6 @@ define(function (require, exports, module) {
 				// itemLength: '=?listLength'
 				contentType: '@contenttype',
 				maxAmount: '@maxamount',
-				contentType: '@contenttype',
 				maxHeight: '@maxheight',
 				maxWidth: '@maxwidth',
 				cta: '=cta',

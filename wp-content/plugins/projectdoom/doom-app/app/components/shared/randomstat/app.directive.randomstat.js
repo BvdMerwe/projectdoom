@@ -154,11 +154,16 @@ define( function ( require, exports, module ) {
           }
         }
         var timer_1;
-        function startTimer(startTime = 0, updateSpeed = 10) {
+        function startTimer(startTime , updateSpeed) {
+
+          startTime   = typeof startTime !== 'undefined' ? startTime : 0;
+          updateSpeed = typeof updateSpeed !== 'undefined' ? updateSpeed : 0;
+
           var count = 0,
               second = updateSpeed / 1000,
               // seconds = updateSpeed / 10,
               secondsPerDay = 86400;
+          
           count = startTime / second;
           $scope.time = 0;
           timer_1 = new timer();

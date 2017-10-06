@@ -45,8 +45,8 @@
 							<li>
 								<a href="javascript:;" title="" data-ng-click="goto('products')" name="products">Products</a>
 								<ul>
-									<li><a href="javascript:;" title="" data-ng-click="goto('products')" name="products">Flying Insects</a></li>
-									<li><a href="javascript:;" title="" data-ng-click="goto('products')" name="products">Crawling Insects</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('products/category/flying')" name="products">Flying Insects</a></li>
+									<li><a href="javascript:;" title="" data-ng-click="goto('products/category/crawling')" name="products">Crawling Insects</a></li>
 								</ul>
 							</li>
 							<li>
@@ -97,7 +97,7 @@
 						<md-nav-item hide-xs md-nav-click="goto('insects')" name="insects">
 							PESTS
 						</md-nav-item>
-						<md-nav-item md-nav-click="goto('home')" name="home" style="z-index:9;">
+						<md-nav-item md-nav-click="" md-no-ink="true" name="home" style="z-index:9;">
 							<img data-ng-src="https://www.tbwa-cdn.co.za/projectdoom/logo.png" class="" style="width:80px;" alt="DOOM" />
 						</md-nav-item>
 						<md-nav-item hide-xs md-nav-click="goto('products')" name="products">
