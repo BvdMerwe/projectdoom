@@ -358,7 +358,7 @@ md-nav-ink-bar {
 
 .page-products div[data-ui-carousel] {
 	position: relative;
-    max-width: calc(100% - 30px);
+    /* max-width: calc(100% - 30px); */
 	margin-left: 16px;
 	text-align: center;
 }
@@ -786,8 +786,8 @@ h3.page-title {
 	top:12%; /*fallback*/
 	top:35vh;
 	
-    width: 107%;
-    left: -3.5%;
+	width: 104%;
+    left: -2%;
 }
 .product-controller-buttons {
 	top:60%;
@@ -847,6 +847,7 @@ h3.page-title {
 	font-weight:bold;
 	text-transform: uppercase;
 	font-size: 1.2em;
+	color: #FF510B;
 }
 .product-filter-categories .primary-tag.active {
 	margin:0;

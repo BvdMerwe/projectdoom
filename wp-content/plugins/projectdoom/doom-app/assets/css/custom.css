@@ -255,6 +255,7 @@ div[data-ui-carousel][single='true'] {
   transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   outline: none;
   border: 5px solid #14A774;
+  color: #14A774;
 }
 
 .carousel-container .controls .carousel-control.left {
@@ -339,10 +340,11 @@ div[data-ui-carousel][single='true'] {
 }
 
 .carousel-container .carousel .carousel-item-name {
-  
-  text-transform: capitalize;
-  color: #14A774;
+  margin: 1em 0;
+  font-size: 10px;
   font-weight: bold;
+  color: #14A774;
+  text-transform: capitalize;
 }
 
 /***********************************************
@@ -780,17 +782,20 @@ END slider style
   height: 100%;
   padding: 90px 30px;
   text-align: center;
+  color: #FF510B;
   cursor: pointer;
 }
 
 #configurator .step-1 .revert .number, #configurator .step-2 .revert .number, #configurator .step-3 .revert .number {
-  border: 5px solid #000;
+  border: 5px solid #555;
   display: block;
   width: 60px;
   height: 60px;
   border-radius: 100%;
   font-size: 47px;
+  font-weight: bold;
   margin: 0 auto 15px;
+  color: #555;
 }
 
 #configurator .step-1.active, #configurator .step-2.active, #configurator .step-3.active {

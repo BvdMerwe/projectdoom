@@ -748,12 +748,12 @@
 
             <!-- [HERO SECTION]  -->
             <div layout="row" layout-md="column" layout-align="center center">
-                <div flex="60" flex-md="100" class="md-padding">
+                <div flex="60" flex-md="100" class="">
                     <div class="bg-box">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex="40" flex-md="100" class="md-padding" layout-align-md="center center">
+                <div flex="40" flex-md="100" class="" layout-align-md="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
@@ -771,14 +771,14 @@
                         -->
                         <md-button
                             class="md-button primary-tag"
-                            data-ng-click="filterProducts('crawling')"
-                            data-ng-class="{active: pageContent.product_type == 'crawling'}">
+                            data-ng-click="filterProducts('flying')"
+                            data-ng-class="{active: pageContent.product_type == 'flying'}">
                             Flying Insects
                         </md-button>
                         <md-button
                             class="md-button primary-tag "
-                            data-ng-click="filterProducts('flying')"
-                            data-ng-class="{active: pageContent.product_type == 'flying'}">
+                            data-ng-click="filterProducts('crawling')"
+                            data-ng-class="{active: pageContent.product_type == 'crawling'}">
                             Crawling Insects
                         </md-button>
                         <md-button

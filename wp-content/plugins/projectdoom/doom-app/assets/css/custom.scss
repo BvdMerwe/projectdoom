@@ -235,6 +235,7 @@ div[data-ui-carousel][single='true'] {
       // background: rgba(#fff, 0.5);
       // padding: 5px;
       border: $keyline;
+      color: $green;
       // z-index: 1;
 
       &.left {
@@ -633,16 +634,19 @@ END slider style
       height: 100%;
       padding: 90px 30px;
       text-align: center;
+      color: $orange;
       cursor: pointer;
 
       .number {
-        border: $keyline-width solid #000;
+        border: $keyline-width solid #555;
         display: block;
         width: 60px;
         height: 60px;
         border-radius: 100%;
         font-size: 47px;
+        font-weight: bold;
         margin: 0 auto 15px;
+        color: #555;
       }
     }
     &.active {
