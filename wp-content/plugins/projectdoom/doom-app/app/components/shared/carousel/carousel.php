@@ -44,8 +44,8 @@
 <div ng-transclude></div>
 <div layout="column" class="carousel-container" style="display: {{isSingle ? 'inline-block' : 'block'}};">
 	<div class="controls" ng-if="itemLength > 0">
-		<span class="carousel-control left lnr lnr-chevron-left" ng-click="goLeft($event)"></span>
-		<span class="carousel-control right lnr lnr-chevron-right" ng-click="goRight($event)"></span>
+		<span class="carousel-control left icon-chevron-left" ng-click="goLeft($event)"></span>
+		<span class="carousel-control right icon-chevron-right" ng-click="goRight($event)"></span>
 	</div>
 	<div class="carousel">
 		<div class="list" style="<?php //height:{{maxHeight}};?>width:1000%;width:calc(({{maxWidth}} * {{itemLength}}) + ({{gutter}} * {{itemLength -1}}));">

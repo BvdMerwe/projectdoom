@@ -11,7 +11,7 @@
 		
 			
         
-<div layout="column" class="animate-page-switch-container" flex="100">
+<div class="animate-page-switch-container" layout-fill>
 
     <!-- [HERO SECTION] -->
     <div layout="row">
@@ -25,9 +25,9 @@
 
     <!-- [BODY SECTION] -->
 
-    <div flex="grow">
+    <div flex="grow" layout-fill>
 
-        <div data-ui-form-contact flex="100 md-whiteframe-7dp"></div>
+        <div data-ui-form-contact layout-fill flex="100 md-whiteframe-7dp"></div>
                         
     </div>
 

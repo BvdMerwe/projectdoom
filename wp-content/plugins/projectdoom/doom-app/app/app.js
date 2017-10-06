@@ -3855,7 +3855,7 @@ define( function ( require, exports, module ) {
 				 */
 				var _updateBodyClass = function() {
 
-					var MainWindowTitle = "DOOM Presents...What's your Pest Problem?";
+					var MainWindowTitle = "MAKE THEM STOP";
 
 					_resetBodyClass();
 

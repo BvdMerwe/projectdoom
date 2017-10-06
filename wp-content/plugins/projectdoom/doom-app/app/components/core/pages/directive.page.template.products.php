@@ -11,9 +11,9 @@
 
 
 
-    <div layout="column" layout-fill class="animate-page-switch-container" flex="100" data-ng-switch="renderPath[1]">
+    <div layout="column" layout-fill class="" flex="100" data-ng-switch="renderPath[1]">
 
-        <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
+        <div layout="column" layout-fill class="md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
             <!-- -->
             <div layout="row" layout-md="column" layout-align="start start" layout-align-md="center center">
                 <div flex="50" flex-md="100"  class="" style=""> 
@@ -147,9 +147,9 @@
 						</collapsible-item>
 
 					</ang-accordion>
-					
-                    <h3 class="carousel-title">Similar Products</h3>
-                    <br /><br />
+					<br/>
+                    <h3 class="page-title">Similar Products</h3>
+                    <br />
                     <div layout="row">
                         <div data-ui-carousel
                             single          = "true"
@@ -169,7 +169,7 @@
             </div>
             
             <div layout="column" class="">
-                <h3 class="carousel-title" style="margin-bottom:0;">Where to buy</h3>
+                <h3 class="page-title" style="margin-bottom:0;">Where to buy</h3>
                 <div data-ui-carousel
                     flex="100"
                     single          = "false"
@@ -398,7 +398,7 @@
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="taxonomy">
                     
                     <div flex="grow" data-ng-if="productsPageFilter == 'ants'">
-                        <h3 class="carousel-title">Ants</h3>
+                        <h3 class="page-title">Ants</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -436,7 +436,7 @@
                     </div>
 
                     <div flex="grow" data-ng-if="productsPageFilter == 'cockroaches'">
-                        <h3 class="carousel-title">Cockroaches</h3>
+                        <h3 class="page-title">Cockroaches</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -474,7 +474,7 @@
                     </div>
 
                     <div flex="grow" data-ng-if="productsPageFilter == 'fishmoths'">
-                        <h3 class="carousel-title">Fishmoths</h3>
+                        <h3 class="page-title">Fishmoths</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -512,7 +512,7 @@
                     </div>
 
                     <div flex="grow" data-ng-if="productsPageFilter == 'flea'">
-                        <h3 class="carousel-title">Fleas</h3>
+                        <h3 class="page-title">Fleas</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -550,7 +550,7 @@
                     </div>
 
                     <div flex="grow" data-ng-if="productsPageFilter == 'flies'">
-                        <h3 class="carousel-title">Flies</h3>
+                        <h3 class="page-title">Flies</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -588,7 +588,7 @@
                     </div>
 
                     <div flex="grow" data-ng-if="productsPageFilter == 'mosquitoes'">
-                        <h3 class="carousel-title">Mosquitos</h3>
+                        <h3 class="page-title">Mosquitos</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -630,7 +630,7 @@
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
 
                     <div flex="grow">
-                        <h3 class="carousel-title">Ants</h3>
+                        <h3 class="page-title">Ants</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -668,7 +668,7 @@
                     </div>
 
                     <div flex="grow">
-                        <h3 class="carousel-title">Cockroaches</h3>
+                        <h3 class="page-title">Cockroaches</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -706,7 +706,7 @@
                     </div>
 
                     <div flex="grow">
-                        <h3 class="carousel-title">Fishmoths</h3>
+                        <h3 class="page-title">Fishmoths</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -744,7 +744,7 @@
                     </div>
 
                     <div flex="grow">
-                        <h3 class="carousel-title">Fleas</h3>
+                        <h3 class="page-title">Fleas</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -782,7 +782,7 @@
                     </div>
 
                     <div flex="grow">
-                        <h3 class="carousel-title">Flies</h3>
+                        <h3 class="page-title">Flies</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -820,7 +820,7 @@
                     </div>
 
                     <div flex="grow">
-                        <h3 class="carousel-title">Mosquitoes</h3>
+                        <h3 class="page-title">Mosquitoes</h3>
                         <div data-ui-carousel
                             flex="100"
                             single = "false"
@@ -862,7 +862,7 @@
             </div>
 
             <div flex="grow">
-				<h3 class="carousel-title">Where to buy</h3>
+				<h3 class="page-title">Where to buy</h3>
                 <div data-ui-carousel
                     buttonBorders="false"
                     flex="100"

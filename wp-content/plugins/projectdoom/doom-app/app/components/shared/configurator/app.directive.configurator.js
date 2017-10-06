@@ -482,6 +482,15 @@ define( function ( require, exports, module ) {
           // return $sce.trustAsHtml("<br/><span class='stat'>"+$filter('shortNumber')(stat.stat) +" "+ stat.type+"</span><br/>");
           return $sce.trustAsHtml(copy);
         }
+        
+        $scope.goto = function (path) {
+          $scope.scrollToTop();
+          $location.path(path);
+        }
+        
+        $scope.scrollToTop = function() {
+          window.scrollTo(0, 0)
+        }
 			}],
       // controllerAs: 'vm',
 		};

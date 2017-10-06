@@ -1,4 +1,4 @@
-<div layout="column" layout-fill class="animate-page-switch-container page-profile-container" flex="100" data-ng-switch="renderPath[1]">
+<div layout="column" layout-fill class="page-profile-container" flex="100" data-ng-switch="renderPath[1]">
         
         <div layout="column" layout-fill layout-align="center center" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
             
@@ -11,18 +11,15 @@
             </div>
             
             <div layout="row" layout-md="column" layout-align="center start" style="position:relative;top:-100px;">
-                <div layout="column" flex="50" flex-md="100">
-                    <div class="profile-box">
-                        <br /><br />
-                        <h3 flex="100" class="page-title" style="font-size:40px;">About me</h3>
-                        <p flex="100" class="page-description">{{pageContent.doom_insect_about}}</p>
-                        <br /><br />
+                <div layout="column" flex="47" flex-md="100" flex-md="100">
+                    <div class="profile-box" layout-fill>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> About me</h3>
+                        <br />
+                        <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_about}}</p>
                     </div>
-                    <div class="profile-box" style="padding-left:0;padding-right:0;padding-bottom:0;">
-                        <br /><br />
-                        <h3 flex="100" class="page-title" style="font-size:40px;padding-left:40px;padding-rigt:40px;">I Check in at</h3>
-                        <p flex="100" class="page-description" style="padding-left:40px;padding-rigt:40px;">{{pageContent.doom_insect_lives_in}}</p>
-                        <br /><br />
+                    <div class="profile-box" layout-fill style="padding-left:0;padding-right:0;padding-bottom:0;">
+                        <h3 flex="100" class="page-title no-margin" style="font-size:40px;padding:0 40px;"><i class="icon-pin"></i> I Check in at</h3>
+                        <br />
                         <div class="map-container" style="position:relative;" flex>
                             <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475">
@@ -59,15 +56,15 @@
                                 </g>
                             </svg>
                         </div>
+                        <p flex="100" class="page-description no-margin" style="padding-left:40px;padding-rigt:40px;">{{pageContent.doom_insect_lives_in}}</p>
                     </div>
 
                 </div>
-                <div layout="column" flex="40" flex-offset="10" flex-md="100" flex-md-offset="0" layout-align-md="center center" layout-align="center start">
-                    <div class="profile-box">
-                        <br /><br />
-                        <h3 flex="100" class="page-title" style="font-size:40px;">Interests / hobbies</h3>
-                        <p flex="100" class="page-description">{{pageContent.doom_insect_hobbies}}</p>
-                        <br /><br />
+                <div layout="column" flex="47" flex-offset="5" flex-md="100" flex-md="100" flex-md-offset="0" layout-align-md="center center" layout-align="center start">
+                    <div class="profile-box" layout-fill>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> Interests / hobbies</h3>
+                        <br />
+                        <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_hobbies}}</p>
                     </div>
                     <div class=""> 
                         <h3 flex="100" class="carousel-title" style="margin-bottom:0;">Most vulnerable when</h3>

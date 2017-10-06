@@ -99,10 +99,11 @@ function post_type_product() {
   		// 'doom_product-discount' => array( 'name' => 'doom_product-discount', 'title' => __('Product Discount', 'doom'), 'desc' => 'discount in %', 'type' => 'text'),
 
   		// 'doom_product-internal_code' => array( 'name' => 'doom_product-internal_code', 'title' => __('Internal Reference Code', 'doom'), 'desc' => 'eg SKU', 'type' => 'text'),
-  		'doom_product_ideal_for' => array( 'name' => 'doom_product_ideal_for', 'title' => __('Ideal for', 'doom'), 'desc' => 'e.g - Indoors/Outdoors', 'type' => 'richtext'),
-  		'doom_product_benefits' => array( 'name' => 'doom_product_benefits', 'title' => __('Benefits', 'doom'), 'desc' => 'Long-lasting effect', 'type' => 'richtext'),
-  		'doom_product_directions' => array( 'name' => 'doom_product_directions', 'title' => __('Directions', 'doom'), 'desc' => 'Use only as directed', 'type' => 'richtext'),
-  		'doom_product_storage_disposal' => array( 'name' => 'doom_product_storage_disposal', 'title' => __('Storage and disposal', 'doom'), 'desc' => 'Store in a cool, dry place', 'type' => 'richtext'),
+  		'doom_product_more_info' => array( 'name' => 'doom_product_more_info', 'title' => __('More info', 'doom'), 'desc' => 'e.g - Indoors/Outdoors', 'type' => 'richtext'),
+  		'doom_product_ideal_for' => array( 'name' => 'doom_product_ideal_for', 'title' => __('Ideal for', 'doom'), 'desc' => 'e.g - Special info about product', 'type' => 'richtext'),
+  		'doom_product_benefits' => array( 'name' => 'doom_product_benefits', 'title' => __('Benefits', 'doom'), 'desc' => 'e.g - Long-lasting effect', 'type' => 'richtext'),
+  		'doom_product_directions' => array( 'name' => 'doom_product_directions', 'title' => __('Directions', 'doom'), 'desc' => 'e.g -Use only as directed', 'type' => 'richtext'),
+  		'doom_product_storage_disposal' => array( 'name' => 'doom_product_storage_disposal', 'title' => __('Storage and disposal', 'doom'), 'desc' => 'e.g - Store in a cool, dry place', 'type' => 'richtext'),
   		'doom_product_precautions' => array( 'name' => 'doom_product_precautions', 'title' => __('Precautions', 'doom'), 'desc' => 'e.g - Avoid excessive inhalation', 'type' => 'richtext'),
 
   	array('type' => 'close'),

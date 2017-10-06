@@ -165,12 +165,14 @@
           <h2>Your results and solution</h2>
           <p>{{result.product.post_content}}</p>
           <div class="">
-            <md-button class="primary-cta fill-width" data-ng-click="goTo('/products')">View more</md-button>
+            <md-button class="primary-cta fill-width" data-ng-click="goto('/products/'+result.product.post_name)">View more</md-button>
             <br/>
             <br/>
             <md-button class="primary-cta fill-width">Where can I get it?</md-button>
           </div>
-          <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
+          <p>
+            <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
+          </p>
         </div>
       </div>
       <!--

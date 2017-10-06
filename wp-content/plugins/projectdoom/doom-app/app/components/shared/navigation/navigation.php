@@ -73,10 +73,10 @@
 
 		</md-sidenav>
 	</div>
-	<div layout="column" class="md-primary">
-		<div layout="row" layout-xs="column" layout-align="space-between center" flex-xs="100">
+	<div layout="column" class="nav-nav in md-primary">
+		<div layout="row" layout-align="space-between center" flex-xs="100">
 
-			<div class="md-padding" style="text-align:center;background-color:#14A774;z-index:99;width: 80px;height: 80px;">
+			<div class="md-padding" style="text-align:center;background-color:#14A774;width: 80px;height: 80px;">
 				<md-button ng-click="toggleLeft()"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:10px;">
@@ -109,7 +109,7 @@
 					
 				</div>
             </div>
-            <div class="md-padding" layout="row" layout-align="end center">
+            <div class="md-padding" layout="row" layout-align="center center" style="width:80px;height80px;">
 				<div data-ui-search id="search-takeover"></div>
             </div>
         </div>

@@ -11,11 +11,11 @@
 		
 			
         
-<div layout="column" class="animate-page-switch-container" flex="100" layout-fill>
+<div layout="column" layout-fill class="animate-page-switch-container" flex="100" layout-fill>
 
-    <div layout="row" layout-align="center center"> <!-- data-ng-src="https://via.placeholder.com/500" -->
-        <div flex="60" hide-md style="text-align:center;">
-            <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image" alt="" />
+    <div layout="row" layout-fill layout-align="center center"> <!-- data-ng-src="https://via.placeholder.com/500" -->
+        <div flex="60" layout-fill hide-md style="text-align:center;">
+            <img data-ng-click="showImage()" layout-fill data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image" alt="" style="width:auto;" />
         </div>
         <div flex="40" flex-md="100">
             <!-- [HERO SECTION] -->

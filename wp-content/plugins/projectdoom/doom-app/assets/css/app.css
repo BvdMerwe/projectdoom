@@ -403,11 +403,12 @@ md-nav-ink-bar {
 	position: relative;
     width: 100%;
     top: -50px;
-    left: 5%;
+	left: 5%;
 }
 
 .super-hero-bg {
 	position: relative;
+	max-height: 700px;
 }
 .super-hero-bg:before {
 	content: '';
@@ -439,18 +440,36 @@ md-nav-ink-bar {
 	font-size:50px;
 }
 
-
 .page-title {
-	font-size: 44pt;
-    margin: 0;
+	margin: 0;
+	margin-top: 1em;
 	line-height: 1.1em;
 	text-transform: uppercase;
 	color:#14A774;
 }
 
+h1.page-title {
+	font-size: 44pt;
+}
+
+h3.page-title {
+	font-size: 24pt;
+}
+
+.page-title.stat {
+	margin: 0;
+	font-size: 44pt;
+	line-height: 0.8;
+	max-width: 400px;
+}
+.page-title.stat sup {
+	font-size: 0.5em;
+}
 .page-description {
-	font-size: 20px;
-    line-height: 28px;
+	/* font-size: 20px;
+	line-height: 28px; */
+	font-size: 14px;
+    line-height: 1.625em;
 }
 
 .page-about .page-content-copy,
@@ -487,7 +506,7 @@ md-nav-ink-bar {
 
 .tag-group {
 	position: relative;
-	margin-top:3em;
+	margin-top:80px;
 }
 
 .primary-tag {
@@ -514,7 +533,7 @@ md-nav-ink-bar {
 .product-insects,
 .insect-insects {
 	position: relative;
-	margin: 2em auto;
+	margin: 2.5em auto;
 	padding: 0;
 }
 
@@ -684,6 +703,7 @@ md-nav-ink-bar {
 	border-left:1px solid #cccccc;
 	padding: 60px 0;
 	text-align: center;
+	margin-top: 1em;
 }
 
 .insect-buttons-cta div:last-child {
@@ -723,11 +743,35 @@ md-nav-ink-bar {
 	display: block;
 	width:100%;
 	left:0;
-	top:27vh;
+	top:12%; /*fallback*/
+	top:35vh;
 	
+    width: 107%;
+    left: -3.5%;
 }
 .product-controller-buttons {
 	top:60%;
+
+    width: 123%;
+    left: -11.5%;
+}
+
+.carousel-container.layout-column::after,
+.carousel-container.layout-column::before  {
+    /* content: ""; */
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, transparent , white);
+    position: absolute;
+    left: calc(100% - 30px);
+	top: 0;
+	pointer-events: none;
+}
+
+.carousel-container.layout-column::before {
+    right: calc(100% - 30px);
+	background: linear-gradient(to left, transparent , white);
+	z-index: 1;
 }
 
 .insect-controller-buttons .icon-chevron-left,
@@ -762,7 +806,7 @@ md-nav-ink-bar {
 	padding:10px 40px;
 	font-weight:bold;
 	text-transform: uppercase;
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 .product-filter-categories .primary-tag.active {
 	margin:0;
@@ -824,9 +868,11 @@ md-nav-ink-bar {
 /***PROFILE*/
 .profile-box {
 	border:5px solid #14A774;
-	padding:20px 40px;
+	/* padding:20px; */
+	padding:1.625em;
 	margin: 2em auto;
 	background-color:#fff;
+	box-sizing: border-box;
 }
 
 .page-profile-container .map-container {

@@ -77,7 +77,7 @@ define( function ( require, exports, module ) {
 		});
 
 		$scope.goto = function (path) {
-			$scope.scrollTo(0, 0);
+			$scope.scrollToTop();
 			$location.path(path);
 		}
 
@@ -98,6 +98,10 @@ define( function ( require, exports, module ) {
 			var to = document.querySelector(id).offsetTop;
 			// Utils.scrollTo(document,to, 300);
 			window.scrollTo(0, to)
+		}
+
+		$scope.scrollToTop = function() {
+			window.scrollTo(0, 0)
 		}
 
 		/***/

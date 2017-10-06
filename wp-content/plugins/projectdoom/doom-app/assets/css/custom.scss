@@ -4,6 +4,8 @@
 
 $green: #14A774;
 $orange: #FF510B;
+$keyline-width: 5px;
+$keyline: $keyline-width solid $green;
 
 /***********************************************
 * General STYLE
@@ -44,12 +46,26 @@ md-backdrop {
   background-color: rgba(#fff, 0);
 }
 md-select-menu {
-  border: 3px solid $green;
+  border: $keyline;
   
   md-option {
     background: #fff;
     border-bottom: 1px solid $green;
   }
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-margin-sides {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.no-margin-above-below {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /***********************************************
@@ -100,14 +116,48 @@ div[data-ui-navigation] {
       color: #fff !important;
     }
   }
+
+  //add thing for navbar
+  .nav-nav {
+    @include transition(none !important);
+    background-color: transparent !important; 
+  }
+
+  .page-content {
+    padding: 0px 80px;
+    max-width: 1366px;
+    margin: 0 auto;
+  }
+
+  .animate-page-switch-container {
+    padding: 0;
+  }
 } 
 
 div[data-ui-navigation] {
   position: fixed;
   width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid $green;
   z-index: 1;
+  height: 80px;
+
+  .nav-nav {
+    @include transition(0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19));
+    position: absolute;
+    background-color: rgba(#fff, 0.9);
+    border-bottom: 1px solid $green;
+    top: -80px;
+    width: 100%;
+    z-index: 11;
+
+    &.in {
+        top: 0;
+    }
+  }
+  &:hover {
+    .nav-nav {
+      top: 0;
+    }
+  }
 }
 md-sidenav {
   margin: 0;
@@ -184,15 +234,16 @@ div[data-ui-carousel][single='true'] {
       // border-radius: 100%;
       // background: rgba(#fff, 0.5);
       // padding: 5px;
-      border: 3px solid $green;
+      border: $keyline;
+      // z-index: 1;
 
       &.left {
-        right: calc(100% - 3px);
+        right: calc(100% - #{$keyline-width});
         // left: 10px;
         padding: 5px 4px 5px 6px !important;
       }
       &.right {
-        left: calc(100% - 3px);
+        left: calc(100% - #{$keyline-width});
         // right: 10px;
         //fix for skew font
         padding: 5px 4px 5px 4px !important;
@@ -231,7 +282,7 @@ div[data-ui-carousel][single='true'] {
           content: "";
           position: absolute;
           top: 35px; left: 0; right: 0; bottom: 0;
-          border: 3px solid $green;
+          border: $keyline;
           z-index: 0;
         }
       }
@@ -400,7 +451,7 @@ div[data-ui-carousel][single='true'] {
   color :#fff;
   &.open {
     .footer-content{
-      top: 0px;
+      top: 80px;
     }
   }
   .footer-nav {
@@ -422,14 +473,16 @@ div[data-ui-carousel][single='true'] {
       @include transition(0.4s cubic-bezier(.25,.8,.25,1));
       position: fixed;
       top: 100%;
-      min-height: 100%;
+      // min-height: 100%;
+      height: calc(100% - 80px - 48px);
+      width: 100%;
       background-color: $green;
       // z-index: 9;
       overflow: auto;
-      padding-top: 81px;
+      // padding-top: 81px;
       
       &>.animate-page-switch{
-        margin-bottom: 200px;
+        // margin-bottom: 200px;
         .ng-animate {
           @include transition(0.4s cubic-bezier(.25,.8,.25,1));
         }
@@ -448,6 +501,9 @@ div[data-ui-carousel][single='true'] {
 
     div[data-ui-form-contact] {
       color: #000;
+      input, textarea {
+        border-bottom: 1px solid#7B7B7A;;
+      }
     }
 }
 
@@ -553,7 +609,7 @@ END slider style
     opacity: 0;
     @include transform(translateX(250px));
     background-color: #fff;
-    border: 3px solid $green;
+    border: $keyline;
     margin: 0 15%;
     width: 70%;
     position: absolute;
@@ -580,7 +636,7 @@ END slider style
       cursor: pointer;
 
       .number {
-        border: 3px solid #000;
+        border: $keyline-width solid #000;
         display: block;
         width: 60px;
         height: 60px;
@@ -599,7 +655,7 @@ END slider style
     &.inactive {
       pointer-events: all;
       opacity: 1;
-      border: 3px solid #000;
+      border: $keyline-width solid #000;
       // width: 150px;
       pointer-events: all;
       min-height: 300px;
@@ -640,7 +696,7 @@ END slider style
         height: 1em;
         display: inline-block;
         font-size: 3em;
-        border: 3px solid transparent;
+        border: $keyline-width solid transparent;
         border-radius: 100%;
         padding: 0.2em 0;
         /* box-sizing: border-box; */
@@ -826,14 +882,14 @@ END slider style
       position: absolute;
       top: 45%;
       background-color: $orange;
-      border: 3px solid $orange;
+      border: $keyline-width solid $orange;
       padding: 10px 11px 9px;
       left: 9px;
       color: #fff;
       cursor: pointer;
     }
     .final-container {
-      border: 3px solid $green;
+      border: $keyline;
       margin: 0px -30px 0 30px;
       margin-top: 100px;
       box-sizing: border-box;
@@ -863,7 +919,7 @@ END slider style
       cursor: pointer;
       .icon {
         display: block;
-        // border: 3px solid;
+        // border: $keyline-width solid;
         width: 100%;
         border-radius: 100%;
         font-size: 30px;

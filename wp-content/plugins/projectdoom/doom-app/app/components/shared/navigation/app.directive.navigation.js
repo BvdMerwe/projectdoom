@@ -189,6 +189,31 @@ define( function ( require, exports, module ) {
 					}, 200);
 				}
 
+				function onScroll($event) {
+					var newPos = document.body.scrollTop;
+					var goingDown = false;
+					if (newPos > oldPos) {
+						goingDown = true;
+					} else if (newPos < oldPos) {
+						goingDown = false;
+					}
+					var a = document.body.querySelector(".nav-nav");
+					var elm = angular.element(a);
+					if (goingDown && newPos > 81) {
+						elm.removeClass("in");
+					} else {
+						elm.addClass("in");
+					}
+					oldPos = newPos;
+				}
+				function cleanUp() {
+					angular.element(container).off('scroll', onScroll);
+				}
+				var container = document;
+				var oldPos = 0;
+				angular.element(container).on('scroll', onScroll);
+				$scope.$on('$destroy', cleanUp);
+
 				//console.log('waddup from navigation');
 
 			}]

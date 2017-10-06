@@ -97,7 +97,7 @@
             
             <?php /**/?>
             <div layout="row" layout-md="column" layout-align="center start" layout-align-md="center center" class="super-hero-bg" md-swipe-left="prevInsect()" md-swipe-right="nextInsect()">
-                <div flex="50" flex-md="100" flex-md="100">
+                <div flex="50" flex-md="100" flex-md="100" style="margin-top: -49px;">
                     <!--<div class="super-bug-image-bg" style="background-image:url('{{pageContent.image}}');"></div>-->
                     <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
                 </div>
@@ -105,34 +105,34 @@
                 <div flex="40" flex-offset="10" flex-md="100" class="" layout-align="center start" layout-align-md="center start">
                     <div data-ng-switch="pageContent.post_name">
                         <div data-ng-switch-when="flea">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> suck</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}} times a day<sup>*</sup></h1>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can suck</p>
+                            <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}-->15 times<sup>*</sup></h1>
                             <p flex="100" class="page-description">their bodyweight in blood a day. Their fave drinking spot is covered in fur and answers to the name, Scruffles.</p>
                         </div>
                         <div data-ng-switch-when="cockroach">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />one week<sup>*</sup></h1>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go</p>
+                            <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}><br /-->1 week<sup>*</sup></h1>
                             <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your pj’s while you sleep tonight.</p>
                         </div>
                         <div data-ng-switch-when="ant">
-                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}s</strong> hijacking the food in your skaftin are vomiting</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />every second*</h1>
-                            <p flex="100" class="page-description">on your sandwich as they discuss the heist..</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> vomit every</p>
+                            <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->second<sup>*</sup></h1>
+                            <p flex="100" style="max-width:90%;" class="page-description">That includes the ones currently hijacking the sandwich in your skaftin. </p>
                         </div>
                         <div data-ng-switch-when="fly"> 
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />seconds<sup>*</sup></h1>
-                            <p flex="100" class="page-description">while feeding. So if the fly on your Sunday seven colours was ‘only there’ for 40 seconds...</p>
+                            <p flex="100" class="page-description"><strong><!--{{pageContent.post_title}}-->Flies</strong> poop once every </p>
+                            <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->10 seconds<sup>*</sup></h1>
+                            <p flex="100" class="page-description">while feeding. Good to know for next time you spot a fly snacking on your Sunday seven colours.</p>
                         </div>
                         <div data-ng-switch-when="mosquito">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}</strong> lay</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs<sup>*</sup></h1>
-                            <p flex="100" class="page-description">at a time, after biting. Only females bite, and they have a fragrant fetish for smelly feet. .</p>
+                            <p flex="100" class="page-description">Only female <strong>{{pageContent.post_title}}s</strong> bite and they can lay up to </p>
+                            <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->150 eggs<sup>*</sup></h1>
+                            <p flex="100" class="page-description">at a time. They’re particularly fond of pungent odours, like your smelly feet. </p>
                         </div> 
                         <div data-ng-switch-when="fishmoth">
-                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}</strong> eating holes<br />through the private bits of<br />your underwear are laying<br /></p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />eggs a day<sup>*</sup></h1>
-                            <p flex="100" class="page-description">in your home.</p>
+                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}s</strong> eating holes through the private bits of your underwear are laying</p>
+                            <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->2.5 eggs<sup>*</sup></h1>
+                            <p flex="100" class="page-description">a day, in your home.</p>
                         </div>
                         
                     </div>
@@ -141,22 +141,22 @@
                     <!-- <br /><br /> -->
                     <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you.</p>
                     <ul class="insect-insects">
-                        <li data-ng-click="goTo('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
+                        <li data-ng-click="goto('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/fly')" data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
+                        <li data-ng-click="goto('/insects/fly')" data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
                             <i class="icon-fly"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/mosquito')" data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
+                        <li data-ng-click="goto('/insects/mosquito')" data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
                             <i class="icon-mosquito"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/ant')" data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
+                        <li data-ng-click="goto('/insects/ant')" data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
                             <i class="icon-ant"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/fishmoth')" data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
+                        <li data-ng-click="goto('/insects/fishmoth')" data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
                             <i class="icon-fishmoth"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/flea')" data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
+                        <li data-ng-click="goto('/insects/flea')" data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
                             <i class="icon-flea"></i>
                         </li>
                     </ul>
@@ -213,22 +213,22 @@
                     <br /><br />
                     <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you.</p>
                     <ul class="insect-insects">
-                        <li data-ng-click="goTo('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
+                        <li data-ng-click="goto('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/fly')" data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
+                        <li data-ng-click="goto('/insects/fly')" data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
                             <i class="icon-fly"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/mosquito')" data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
+                        <li data-ng-click="goto('/insects/mosquito')" data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
                             <i class="icon-mosquito"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/ant')" data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
+                        <li data-ng-click="goto('/insects/ant')" data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
                             <i class="icon-ant"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/fishmoth')" data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
+                        <li data-ng-click="goto('/insects/fishmoth')" data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
                             <i class="icon-fishmoth"></i>
                         </li>
-                        <li data-ng-click="goTo('/insects/flea')" data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
+                        <li data-ng-click="goto('/insects/flea')" data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
                             <i class="icon-flea"></i>
                         </li>
                     </ul>
@@ -247,7 +247,7 @@
                 <div layout="column" flex="50" flex-md="100" layout-align-md="center center">
                     <h3 flex="100" class="page-title" style="">{{pageContent.post_title}}</h3>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
-                    <div class="tag-group insect-buttons-cta" flex="100" layout="row" layout-align="space-between stretch" layout-align-md="space-between stretch">
+                    <div class="insect-buttons-cta" flex="100" layout="row" layout-align="space-between stretch" layout-align-md="space-between stretch">
                         <div class="flex">
                             <md-button class="md-primary primary-tag" data-ng-click="viewProfile(pageContent.post_name)">
                                 <span class="icon "><i class="icon-{{pageContent.post_name}}"></i></span>
@@ -264,7 +264,7 @@
                         </div>
                         <!-- <div class="flex">
                             
-                            <md-button class="md-primary primary-tag" data-ng-click="goTo('/insects/pageContent.post_title')">
+                            <md-button class="md-primary primary-tag" data-ng-click="goto('/insects/pageContent.post_title')">
                                 <span class="icon "><i class="icon-hand"></i></span>
                                 {{pageContent.post_title}}<br />Prevention
                             </md-button>
@@ -295,7 +295,6 @@
             <!-- CONFIGURATOR -->
             <div layout="column" layout-md="column" layout-align="start start" layout-align-md="center center">
                 <!-- <br /><br /> -->
-                <p></p>
                 <h3 id="makethemstop" flex="100" class="page-title" style="">Make Them Stop</h3>
                 <p flex="100" class="page-description" style="margin-bottom:0;">Get the right {{pageContent.post_name}} killer for your {{pageContent.post_name}} problem.</p>
                 <!-- <br /><br /> -->

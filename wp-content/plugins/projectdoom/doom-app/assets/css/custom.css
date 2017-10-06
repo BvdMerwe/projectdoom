@@ -38,12 +38,26 @@ md-backdrop {
 }
 
 md-select-menu {
-  border: 3px solid #14A774;
+  border: 5px solid #14A774;
 }
 
 md-select-menu md-option {
   background: #fff;
   border-bottom: 1px solid #14A774;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-margin-sides {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.no-margin-above-below {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /***********************************************
@@ -94,12 +108,64 @@ div[data-ui-navigation] md-backdrop {
   color: #fff !important;
 }
 
+.super-menu-open .nav-nav,
+.page-about .nav-nav,
+.page-legal .nav-nav,
+.page-faq .nav-nav,
+.page-contact .nav-nav {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+  background-color: transparent !important;
+}
+
+.super-menu-open .page-content,
+.page-about .page-content,
+.page-legal .page-content,
+.page-faq .page-content,
+.page-contact .page-content {
+  padding: 0px 80px;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.super-menu-open .animate-page-switch-container,
+.page-about .animate-page-switch-container,
+.page-legal .animate-page-switch-container,
+.page-faq .animate-page-switch-container,
+.page-contact .animate-page-switch-container {
+  padding: 0;
+}
+
 div[data-ui-navigation] {
   position: fixed;
   width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid #14A774;
   z-index: 1;
+  height: 80px;
+}
+
+div[data-ui-navigation] .nav-nav {
+  -webkit-transition: 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -moz-transition: 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -ms-transition: 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -o-transition: 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  transition: 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #14A774;
+  top: -80px;
+  width: 100%;
+  z-index: 11;
+}
+
+div[data-ui-navigation] .nav-nav.in {
+  top: 0;
+}
+
+div[data-ui-navigation]:hover .nav-nav {
+  top: 0;
 }
 
 md-sidenav {
@@ -188,16 +254,16 @@ div[data-ui-carousel][single='true'] {
   -o-transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   outline: none;
-  border: 3px solid #14A774;
+  border: 5px solid #14A774;
 }
 
 .carousel-container .controls .carousel-control.left {
-  right: calc(100% - 3px);
+  right: calc(100% - 5px);
   padding: 5px 4px 5px 6px !important;
 }
 
 .carousel-container .controls .carousel-control.right {
-  left: calc(100% - 3px);
+  left: calc(100% - 5px);
   padding: 5px 4px 5px 4px !important;
 }
 
@@ -256,7 +322,7 @@ div[data-ui-carousel][single='true'] {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 3px solid #14A774;
+  border: 5px solid #14A774;
   z-index: 0;
 }
 
@@ -493,7 +559,7 @@ md-autocomplete-wrap input {
 }
 
 #footer.open .footer-content {
-  top: 0px;
+  top: 80px;
 }
 
 #footer .footer-nav {
@@ -518,14 +584,10 @@ md-autocomplete-wrap input {
   transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: fixed;
   top: 100%;
-  min-height: 100%;
+  height: calc(100% - 80px - 48px);
+  width: 100%;
   background-color: #14A774;
   overflow: auto;
-  padding-top: 81px;
-}
-
-#footer .footer-content > .animate-page-switch {
-  margin-bottom: 200px;
 }
 
 #footer .footer-content > .animate-page-switch .ng-animate {
@@ -558,6 +620,10 @@ md-autocomplete-wrap input {
 
 #footer div[data-ui-form-contact] {
   color: #000;
+}
+
+#footer div[data-ui-form-contact] input, #footer div[data-ui-form-contact] textarea {
+  border-bottom: 1px solid #7B7B7A;
 }
 
 /***********************************************
@@ -685,7 +751,7 @@ END slider style
   -o-transform: translateX(250px);
   transform: translateX(250px);
   background-color: #fff;
-  border: 3px solid #14A774;
+  border: 5px solid #14A774;
   margin: 0 15%;
   width: 70%;
   position: absolute;
@@ -719,7 +785,7 @@ END slider style
 }
 
 #configurator .step-1 .revert .number, #configurator .step-2 .revert .number, #configurator .step-3 .revert .number {
-  border: 3px solid #000;
+  border: 5px solid #000;
   display: block;
   width: 60px;
   height: 60px;
@@ -743,7 +809,7 @@ END slider style
 #configurator .step-1.inactive, #configurator .step-2.inactive, #configurator .step-3.inactive {
   pointer-events: all;
   opacity: 1;
-  border: 3px solid #000;
+  border: 5px solid #000;
   pointer-events: all;
   min-height: 300px;
   max-width: 750px;
@@ -799,7 +865,7 @@ END slider style
   height: 1em;
   display: inline-block;
   font-size: 3em;
-  border: 3px solid transparent;
+  border: 5px solid transparent;
   border-radius: 100%;
   padding: 0.2em 0;
   /* box-sizing: border-box; */
@@ -1036,7 +1102,7 @@ END slider style
   position: absolute;
   top: 45%;
   background-color: #FF510B;
-  border: 3px solid #FF510B;
+  border: 5px solid #FF510B;
   padding: 10px 11px 9px;
   left: 9px;
   color: #fff;
@@ -1044,7 +1110,7 @@ END slider style
 }
 
 #configurator .final .final-container {
-  border: 3px solid #14A774;
+  border: 5px solid #14A774;
   margin: 0px -30px 0 30px;
   margin-top: 100px;
   box-sizing: border-box;

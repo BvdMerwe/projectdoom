@@ -30,7 +30,7 @@
       </md-nav-item>
     </md-nav-bar>
   </div>
-  <div class="footer-content" layout-fill data-ng-switch="renderPath[0]" >
+  <div class="footer-content" data-ng-switch="renderPath[0]" >
     <!-- <div class="footer-control">
       <i class="lnr lnr-cross close-footer" ng-click="close()"></i>
     </div> -->
@@ -45,33 +45,33 @@
     </div> -->
 
     <!-- ABOUT PAGE TEMPLATE HERE -->
-    <div class="animate-page-switch md-accent" flex="100" data-ng-switch-when="about">
+    <div class="animate-page-switch md-accent" layout-fill flex="100" data-ng-switch-when="about">
 
-      <div data-ui-app-page-about page-name="about" class="page-content" flex-xs="100" flex="100"></div>
+      <div data-ui-app-page-about layout-fill page-name="about" class="page-content" flex-xs="100" flex="100"></div>
 
     </div>
     <!-- /ABOUT PAGE TEMPLATE HERE -->
 
     <!-- LEGAL PAGE TEMPLATE HERE -->
-    <div class="animate-page-switch md-accent" flex="100" data-ng-switch-when="legal">
+    <div class="animate-page-switch md-accent" layout-fill flex="100" data-ng-switch-when="legal">
 
-      <div data-ui-app-page-legal page-name="legal" class="page-content" flex-xs="100" flex="100"></div>
+      <div data-ui-app-page-legal layout-fill page-name="legal" class="page-content" flex-xs="100" flex="100"></div>
 
     </div>
     <!-- /LEGAL PAGE TEMPLATE HERE -->
     
     <!-- FAQ PAGE TEMPLATE HERE -->
-    <div class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
+    <div class="animate-page-switch md-accent" layout-fill layout-xs="column" flex="100" data-ng-switch-when="faq">
 
-      <div data-ui-app-page-faq page-name="faq" class="page-faq" flex="100" class=""></div>
+      <div data-ui-app-page-faq layout-fill page-name="faq" class="page-content" flex="100" class=""></div>
 
     </div>
     <!-- /FAQ PAGE TEMPLATE HERE -->
 
     <!-- CONTACT PAGE TEMPLATE HERE -->
-    <div class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="contact">
+    <div class="animate-page-switch md-accent" layout-fill layout-xs="column" flex="100" data-ng-switch-when="contact">
 
-      <div data-ui-app-page-contact page-name="contact" class="page-content" flex-xs="100" layout="column" layout-align="center center"></div>
+      <div data-ui-app-page-contact layout-fill page-name="contact" class="page-content" flex-xs="100" layout="column" layout-align="center center"></div>
 
     </div>
     <!-- /CONTACT PAGE TEMPLATE HERE -->
