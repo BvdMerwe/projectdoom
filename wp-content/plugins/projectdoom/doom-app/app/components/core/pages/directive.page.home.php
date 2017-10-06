@@ -91,16 +91,18 @@
 					<!-- INSECTS PROFILE PAGE TEMPLATE HERE -->
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="404">
 
-						<h1 flex="100" class="page-title stat" style="color:#000;">40?!?</h1>
+						<h1 flex="100" class="page-title stat " style="color:#000;margin-top:150px;">OOPS</h1>
+						<br />
+						<p>It looks like you found a dead link</p>
+						<div flex="100" style="padding-top: 90px;">
+							<ui-randomstat duration="300"></ui-randomstat>
+						</div>
 
 					</div>
 
 					<!-- DEFAULT PAGE TEMPLATE HERE -->
 					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
 
-						<h1 flex="100" class="page-title stat " style="color:#000;margin-top:150px;">OOPS</h1>
-						<br />
-						<p>It looks like you found a dead link</p>
 						<div flex="100" style="padding-top: 90px;">
 							<ui-randomstat duration="300"></ui-randomstat>
 						</div>

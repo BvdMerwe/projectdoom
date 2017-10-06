@@ -138,11 +138,17 @@ define( function ( require, exports, module ) {
 
 							break;
 
+						case '404':
+
+							$location.path('/404');
+
+							break;
+
 						default:
 
 							$location.path('/404');
 
-							throw 'Biaytch!';
+							console.error( 'Biaytch!');
 
 							break;
 
