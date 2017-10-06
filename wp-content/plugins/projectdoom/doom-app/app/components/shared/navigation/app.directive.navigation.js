@@ -87,9 +87,9 @@ define( function ( require, exports, module ) {
 
 						case 'ant':
 						case 'fly':
-						case 'fleas':
-						case 'fishmoths':
-						case 'mosquitoes':
+						case 'flea':
+						case 'fishmoth':
+						case 'mosquito':
 						case 'cockroach':
 
 							$location.path('/insects/' + page );

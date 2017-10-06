@@ -296,6 +296,10 @@ md-nav-ink-bar {
 	padding-top:0;
 }
 
+.super-menu ul li:first-child {
+	padding-top:20px;
+}
+
 .super-menu ul li:last-child {
 	border-bottom:none;
 }
