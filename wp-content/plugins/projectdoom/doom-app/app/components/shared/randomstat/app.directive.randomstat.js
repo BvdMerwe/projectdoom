@@ -67,8 +67,8 @@ define( function ( require, exports, module ) {
           {
             insect: "ant",
             stats: [
-              { name: "eggs", stat: 0, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
-              { name: "poops", stat: -300, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
+              // { name: "eggs", stat: 0, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
+              // { name: "poops", stat: -300, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
               { name: "vomit", stat: 86400, firstPart: "vomit", secondPart: "times", pastFirst: "vomited", pastSecond: "times"},
             ]
           },
@@ -76,7 +76,7 @@ define( function ( require, exports, module ) {
             insect: "cockroach",
             stats: [
               { name: "eggs", stat: 2.35, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
-              { name: "poops", stat: -30, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
+              // { name: "poops", stat: -30, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
               { name: "molt", stat: 0.09, firstPart: "molt", secondPart: "times", pastFirst: "molted", pastSecond: "times"},
             ]
           },
@@ -84,7 +84,7 @@ define( function ( require, exports, module ) {
             insect: "fishmoth",
             stats: [
               { name: "eggs", stat: 2.5, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
-              { name: "poops", stat: -120, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
+              // { name: "poops", stat: -120, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
               { name: "molt", stat: 0.02, firstPart: "molt", secondPart: "times", pastFirst: "molted", pastSecond: "times"},
             ]
           },
@@ -93,7 +93,7 @@ define( function ( require, exports, module ) {
             stats: [
               { name: "eggs", stat: 50, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
               { name: "poops", stat: 288, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
-              { name: "sucks", stat: 288, firstPart: "suck blood", secondPart: "times", pastFirst: "sucked blood", pastSecond: "times"},
+              { name: "sucks", stat: 15, firstPart: "suck blood", secondPart: "times", pastFirst: "sucked blood", pastSecond: "times"},
             ]
           },
           {
@@ -108,7 +108,7 @@ define( function ( require, exports, module ) {
             insect: "mosquito",
             stats: [
               { name: "eggs", stat: 10, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
-              { name: "poops", stat: 0, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
+              // { name: "poops", stat: 0, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
               { name: "sucks", stat: 1, firstPart: "suck blood", secondPart: "times", pastFirst: "sucked blood", pastSecond: "times"},
             ]
           }
