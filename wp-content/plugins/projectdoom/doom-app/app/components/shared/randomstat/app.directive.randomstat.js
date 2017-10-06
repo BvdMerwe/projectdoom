@@ -139,6 +139,7 @@ define( function ( require, exports, module ) {
               stat.stats[i].show = "0";
             }
             $scope.show.push(stat);
+            $scope.randStat = Utils.getRandomInt(0, stat.stats.length-1);
             numberClimb(stat.stats[$scope.randStat].stat, $scope.duration);
           }
 

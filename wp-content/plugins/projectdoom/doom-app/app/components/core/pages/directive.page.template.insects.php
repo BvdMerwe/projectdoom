@@ -272,9 +272,9 @@
                     
                 </div>
                 <!-- RELATED PRODU|CTS -->
-                <div layout="column" flex="40" flex-offset="10" flex-md="100" layout-align="start start" layout-align-md="center center">
+                <div layout="column" layout-fill flex="40" flex-offset="10" flex-md="100" layout-align="start start" layout-align-md="center center">
                     <h3 flex="100" class="page-title">Products</h3>
-                    <div layout="row">
+                    <div layout="row" layout-fill>
                     <div data-ui-carousel
                         single          = "true"
                         cta             = "true"

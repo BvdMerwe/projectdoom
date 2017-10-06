@@ -129,61 +129,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'about',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'about',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -195,61 +201,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'legal',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'legal',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -261,61 +273,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'products',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -327,61 +345,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'products',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -393,61 +417,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'products.filter.taxonomy',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'products',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -459,61 +489,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'profile',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'insects',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -525,61 +561,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'insects',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'insects',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -591,61 +633,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'insects.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'insects',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -657,61 +705,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'profile.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'insects',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -723,61 +777,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -789,61 +849,67 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'faq.single',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
-                                        pagesManager.getPages({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        productsManager.getProducts({
-                                            'type': 'product',
-                                            'method': 'GET'
-                                        }),
-                                        insectsManager.getInsects({
-                                            'type': 'insect',
-                                            'method': 'GET'
-                                        }),
-                                        faqsManager.getFAQs({
-                                            'type': 'faq',
-                                            'method': 'GET'
-                                        }),
-                                        retailersManager.getRetailers({
-                                            'type': 'retailer',
-                                            'method': 'GET'
-                                        }),
-                                        MemCache.dataTaxonomy(),
-                                        SessionService.checkSession()
-                                    ])
-                                    .then( function(results){
-
-                                            //console.log('route data-products:', results);   
-
-                                            var firstVisit = new Date(results[6].firstVisit);
-                                            var lastVisit = new Date(results[6].lastVisit);
-                
-                                            //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
- 
-                                            return {
-                                                faqs 	    : results[3],
-                                                insects 	: results[2],
-                                                products 	: results[1],
-                                                pagecontent : results[0],
-                                                retailers   : results[4],
-                                                taxonomy    : results[5],
-                                                session     : results[6]
-                                            }; 
-
-                                        }, function(e){
-
-                                            //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                            console.error('No bootUp(products): ', e); 
-
-                                            return e;
-
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
                                         }
-                                    );
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
 
                                 }] 
                             }
@@ -855,11 +921,85 @@ define( function ( require, exports, module ) {
                         {
                             action: 	'contact',
                             resolve: {
-                                app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                     
-									return $q.all([
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
+                                        }
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
+
+                                }] 
+                            }
+
+                        }
+                    )
+                    .otherwise({
+                        action: 	'404',
+                        resolve: {
+                            app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                
+                                return SessionService.checkExp().then(function(expired){
+                                    if (expired) {
+                                        MemCache.dataReset('localstorage');
+                                    }
+                                    return $q.all([
                                         pagesManager.getPages({
-                                            'type': 'contact',
+                                            'type': 'home',
                                             'method': 'GET'
                                         }),
                                         productsManager.getProducts({
@@ -887,7 +1027,11 @@ define( function ( require, exports, module ) {
 
                                             var firstVisit = new Date(results[6].firstVisit);
                                             var lastVisit = new Date(results[6].lastVisit);
-                
+                                            // if ($location.$$path == "/") {
+                                                var pests = results[2];
+                                                var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
+                                                $location.path("/insects/"+pests[rand].post_name);
+                                            // }
                                             //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
  
                                             return {
@@ -910,70 +1054,9 @@ define( function ( require, exports, module ) {
 
                                         }
                                     );
-
-                                }] 
-                            }
-
-                        }
-                    )
-                    .otherwise({
-                        action: 	'404',
-                        resolve: {
-                            app_data: [ '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
-                                
-                                return $q.all([
-                                    pagesManager.getPages({
-                                        'type': 'home',
-                                        'method': 'GET'
-                                    }),
-                                    productsManager.getProducts({
-                                        'type': 'product',
-                                        'method': 'GET'
-                                    }),
-                                    insectsManager.getInsects({
-                                        'type': 'insect',
-                                        'method': 'GET'
-                                    }),
-                                    faqsManager.getFAQs({
-                                        'type': 'faq',
-                                        'method': 'GET'
-                                    }),
-                                    retailersManager.getRetailers({
-                                        'type': 'retailer',
-                                        'method': 'GET'
-                                    }),
-                                    MemCache.dataTaxonomy(),
-                                    SessionService.checkSession()
-                                ])
-                                .then( function(results){
-
-                                        //console.log('route data-products:', results);   
-
-                                        var firstVisit = new Date(results[6].firstVisit);
-                                        var lastVisit = new Date(results[6].lastVisit);
-            
-                                        //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
-
-                                        return {
-                                            faqs 	    : results[3],
-                                            insects 	: results[2],
-                                            products 	: results[1],
-                                            pagecontent : results[0],
-                                            retailers   : results[4],
-                                            taxonomy    : results[5],
-                                            session     : results[6]
-                                        }; 
-
-                                    }, function(e){
-
-                                        //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
-
-                                        console.error('No bootUp(products): ', e); 
-
-                                        return e;
-
-                                    }
-                                );
+                                }, function(data){
+                                    return deferred.promise;
+                                });
 
                             }] 
                         }

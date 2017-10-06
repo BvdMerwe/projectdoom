@@ -216,6 +216,10 @@ define( function ( require, exports, module ) {
 
 				//console.log('waddup from navigation');
 
+				$scope.$on('$routeChangeSuccess', function(){
+					$scope.close();
+				});
+
 			}]
 		};
 

@@ -192,7 +192,10 @@ define( function ( require, exports, module ) {
 					last = new Date(data.lastVisit),
 					diff = now.getTime() - last.getTime();
 				
-				if (diff / 1000 > 60 * 60 /* * 24*/) { //more than an hour
+				/*return true for testing TODO: TAKE OUT*/
+				return deferred.resolve(true);
+				/**/
+				if (diff / 1000 > 60 * 60  * 24) { //more than a day
 					deferred.resolve(true);
 				} else {
 					deferred.resolve(false);

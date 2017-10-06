@@ -19,7 +19,7 @@
 				md-whiteframe="4"
 				layout="row"
 				layout-align="space-between start"
-				style="position: fixed;width:100%;height:100%;top:0;left:0;padding-top:10%;">
+				style="position: fixed;width:100%;height:100%;top:0;left:0;padding:80px 0 40px;">
 				<!--
 				<div layout="column" style="z-index:9;">
 					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">

@@ -27,6 +27,12 @@ md-toolbar {
   .md-toolbar-tools {
     height: auto;
     padding: 0 8px;
+    color: $orange;
+
+    .md-button {
+      font-weight: bold !important;
+
+    }
   }
 }
 
