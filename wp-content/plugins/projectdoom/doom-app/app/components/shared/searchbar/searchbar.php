@@ -51,7 +51,7 @@
           </div>
           <collapsible-item title="{{result.post_title}}" ng-if="result.post_type == 'faq'">
             <div>
-              <p>{{result.post_content}}</p>
+              <p ng-bind-html="result.post_content | trustAsHtml"></p>
             </div>
           </collapsible-item>
         </md-list-item>

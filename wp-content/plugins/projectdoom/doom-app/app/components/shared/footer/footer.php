@@ -53,7 +53,7 @@
     <!-- /ABOUT PAGE TEMPLATE HERE -->
 
     <!-- LEGAL PAGE TEMPLATE HERE -->
-    <div class="animate-page-switch md-accent" layout-fill flex="100" data-ng-switch-when="legal">
+    <div class="animate-page-switch md-accent" flex="100" data-ng-switch-when="legal">
 
       <div data-ui-app-page-legal layout-fill page-name="legal" class="page-content" flex-xs="100" flex="100"></div>
 

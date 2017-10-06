@@ -18,6 +18,11 @@ md-toolbar {
 md-toolbar .md-toolbar-tools {
   height: auto;
   padding: 0 8px;
+  color: #FF510B;
+}
+
+md-toolbar .md-toolbar-tools .md-button {
+  font-weight: bold !important;
 }
 
 .md-track-container {

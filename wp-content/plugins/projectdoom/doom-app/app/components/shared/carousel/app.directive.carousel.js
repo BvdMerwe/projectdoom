@@ -365,7 +365,8 @@ define(function (require, exports, module) {
 									_initiateLayout(results);
 									_getUniqueCategories( results );
 									$scope.success(results);
-									$scope.productType = "all";
+									$scope.productType = "22";
+									_filterBtnClasses($scope.productType);
 								}
 								// productsManager.getProducts(requestObj).then($scope.success, $scope.error);
 								break;
@@ -521,6 +522,7 @@ define(function (require, exports, module) {
 							break;
 					}
 				}
+				/*
 				function _getUniqueCategories(results) {
 
 					$scope.filterCategories = [];
@@ -566,7 +568,7 @@ define(function (require, exports, module) {
 					for (var index = 0; index < cats.length; index++) {
 							cats =  $scope.filter('filterBy', '')(cats);
 							
-					}/**/
+					}/** /
 
 					$scope.filterCategories = $filter('flatten')(cats);
 					$scope.insectFilterCategories = $filter('flatten')(insectCats);
@@ -576,9 +578,10 @@ define(function (require, exports, module) {
 					console.log( 'filter categories:', $scope.filterCategories, $scope.insectFilterCategories );
 
 				}
+				*/
 				function _filterBtnClasses(key) {
 
-					var filterToolBarBtns = document.querySelectorAll('.toolbar-filter .md-button');
+					var filterToolBarBtns = document.body.querySelectorAll('.toolbar-filter .md-button');
 
 					for (var index = 0; index < filterToolBarBtns.length; index++) {
 						// var element = filterToolBarBtns[index];

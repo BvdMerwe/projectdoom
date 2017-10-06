@@ -14,7 +14,7 @@
   <div ng-if="show.length == 1">
     <p style="max-width: 500px" ng-repeat="s in show">
       Every {{s.time}} days, <strong>a single {{s.insect}}</strong> can {{s.stats[randStat].firstPart}} up to<br/>
-      <span style="text-transform:uppercase;font-size: 6.625em; line-height: 1em;font-weight:bolder;">{{s.stats[randStat].show}}<br/>
+      <span style="text-transform:uppercase;font-size: 6.625em; line-height: 1em;font-weight:bolder;">{{s.stats[randStat].stat  | shortNumber}}<br/>
         {{s.stats[randStat].secondPart}}</span><br/>
       in your home.
     </p>
@@ -26,7 +26,7 @@
     <div ng-repeat="s in show">
       <p style="max-width: 500px">
         <strong>{{dynamic.amount}} {{s.insect}}</strong> will have {{s.stats[randStat].pastFirst}} up to
-        <span style="text-transform:uppercase;font-size: 1.125em; line-height: 1em;font-weight:bolder;">{{s.stats[randStat].show}}
+        <span style="text-transform:uppercase;font-size: 1.125em; line-height: 1em;font-weight:bolder;">{{s.stats[randStat].stat  | shortNumber}}
           </span>{{s.stats[randStat].pastSecond}}
         in your home.
       </p>
