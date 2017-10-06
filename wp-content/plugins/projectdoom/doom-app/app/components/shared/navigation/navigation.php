@@ -21,11 +21,11 @@
 				layout-align="space-between start"
 				style="position: fixed;width:100%;height:100%;top:0;left:0;padding-top:10%;">
 				<!--
-				<div layout-padding layout="column" style="z-index:9;">
+				<div layout="column" style="z-index:9;">
 					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">
 					</md-button>
 				</div>-->
-				<div flex="100" layout-padding layout="row" layout-align="center start" style="padding:50px 100px">
+				<div flex="100" layout="row" layout-align="center start" style="padding:50px 100px">
 
 					<!-- <div flex="70" layout-fill>
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>

@@ -11,7 +11,7 @@
             </div>
             
             <div layout="row" layout-md="column" layout-align="center start" style="position:relative;top:-100px;">
-                <div layout="column" flex="50" flex-md="100" layout-padding>
+                <div layout="column" flex="50" flex-md="100">
                     <div class="profile-box">
                         <br /><br />
                         <h3 flex="100" class="page-title" style="font-size:40px;">About me</h3>
@@ -62,7 +62,7 @@
                     </div>
 
                 </div>
-                <div layout="column" flex="40" flex-offset="10" flex-md="100" flex-md-offset="0" layout-align-md="center center" layout-align="center start" layout-padding>
+                <div layout="column" flex="40" flex-offset="10" flex-md="100" flex-md-offset="0" layout-align-md="center center" layout-align="center start">
                     <div class="profile-box">
                         <br /><br />
                         <h3 flex="100" class="page-title" style="font-size:40px;">Interests / hobbies</h3>

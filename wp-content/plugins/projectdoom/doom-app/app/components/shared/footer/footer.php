@@ -63,7 +63,7 @@
     <!-- FAQ PAGE TEMPLATE HERE -->
     <div class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
 
-      <div data-ui-app-page-faq page-name="faq" class="page-faq" flex="100" class="md-padding"></div>
+      <div data-ui-app-page-faq page-name="faq" class="page-faq" flex="100" class=""></div>
 
     </div>
     <!-- /FAQ PAGE TEMPLATE HERE -->

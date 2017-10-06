@@ -11,7 +11,7 @@
 ?>
 	<div layout="column">
 		<div layout="row" layout-xs="column" >
-			<md-content data-ui-navigation class="md-padding" flex="50">
+			<md-content data-ui-navigation class="" flex="50">
                 <md-sidenav
                     class="md-sidenav-left"
                     md-component-id="left"
@@ -47,7 +47,7 @@
                 </h3>
             </md-content>
 		
-			<md-content data-ui-navigation class="md-padding" flex="50">
+			<md-content data-ui-navigation class="" flex="50">
                 <md-nav-bar
 				    md-selected-nav-item="currentNavItem"
 				    nav-bar-aria-label="navigation links">

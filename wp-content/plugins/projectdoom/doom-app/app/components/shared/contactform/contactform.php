@@ -12,7 +12,7 @@
 	<div layout="column" layout-align="center center" flex="100"> 
 		<div layout="row" layout-md="column" >
 
-			<div class="md-padding" flex-md="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
+			<div class="" flex-md="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
 
                 <form id="formContact" name="userForm" novalidate>
 
@@ -116,7 +116,7 @@
                     tilt="45"
                     style="color:#444;text-align:center;padding:0;"
                     map-type-id="ROADMAP"></div>
-                <div class="md-padding">
+                <div class="">
                     <h3 style="margin-top:5px;">CONTACT INFORMATION</h3>
 
                     <p><i class="lnr lnr-map-marker"></i>&nbsp;&nbsp;Tiger Brands Limited,<br />3010 William Nicol Drive, Bryanston<br />2021.</p>

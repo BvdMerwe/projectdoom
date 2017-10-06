@@ -15,7 +15,7 @@
 
     <!-- [HERO SECTION] -->
     <div layout="row">
-        <div flex="grow" class="md-padding">
+        <div flex="grow" class="">
             <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
             
         </div>
@@ -25,7 +25,7 @@
 
     <!-- [BODY SECTION] -->
 
-    <div flex="grow" class="md-padding page-content-copy">
+    <div flex="grow" class=" page-content-copy">
 
         <p flex="100">{{pageContent.post_content}}</p>
                         

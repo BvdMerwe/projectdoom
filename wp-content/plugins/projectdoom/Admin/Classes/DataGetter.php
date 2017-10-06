@@ -6,7 +6,7 @@
 class DataGetter
 {
 
-  const POST_GETS = "ID, post_content, post_title, post_type, post_name";
+  const POST_GETS = "ID, post_content, post_title, post_type, post_name, post_date";
   const TERM_GETS = "term_id, name, slug";
   const TAX_GETS = "t.name, tt.term_id, taxonomy, term_taxonomy_id, description";
   const O_TAX_GETS = "tt.term_id, taxonomy, tt.term_taxonomy_id, description";

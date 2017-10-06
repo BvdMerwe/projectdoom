@@ -37,7 +37,7 @@
       <span>{{result.post_title}}</span>
       <span>{{result.post_content}}</span>
     </div> -->
-    <md-list layout-padding class="search-results">
+    <md-list class="search-results">
       <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">  
         <md-list-item class="md-3-line result" ng-repeat="result in results">
           <div ng-click="navigate(result.post_type, result.post_name)" layout="row" flex="100" class="search-result" ng-if="result.post_type != 'faq'">

@@ -200,7 +200,7 @@ define( function ( require, exports, module ) {
 
 			}, function (err) {
 
-				deferred.promise;
+				deferred.resolve(false);
 
 			});
 
