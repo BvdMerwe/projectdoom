@@ -151,7 +151,7 @@
           <div class="stat-controls">
             <div class="stat-selector" ng-click="showStat(stat)" ng-repeat="stat in result.stats">
               <!-- <i class="icon lnr lnr-{{stat.type}}"></i> -->
-              <i class="icon icon-{{stat.type}}"></i>
+              <i class="icon icon-{{stat.type == 'molts' ? result.pest.post_name : stat.type}}"></i>
               <span>{{stat.type}}</span>
             </div>
           </div>
@@ -163,11 +163,11 @@
         </div>
         <div class="solution-container" flex="33">
           <h2>Your results and solution</h2>
-          <p>{{result.product.post_content}}</p>
+          <p class="page-description">{{result.product.post_content}}</p>
           <div class="">
             <md-button class="primary-cta fill-width" data-ng-click="goto('/products/'+result.product.post_name)">View more</md-button>
-            <br/>
-            <br/>
+            <!-- <br/>
+            <br/> -->
             <!-- <md-button class="primary-cta fill-width">Where can I get it?</md-button> -->
           </div>
           <p>

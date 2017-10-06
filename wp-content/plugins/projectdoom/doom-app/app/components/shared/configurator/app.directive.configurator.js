@@ -342,14 +342,14 @@ define( function ( require, exports, module ) {
           var pest = config.pest;
           var dataPoints = {
             eggs: parseFloat(pest.doom_insect_egg),
-            sucks: parseFloat(pest.doom_insect_sucks),
+            blood: parseFloat(pest.doom_insect_sucks),
             molts: parseFloat(pest.doom_insect_molt),
             vomits: parseFloat(pest.doom_insect_vomit),
             poops: parseFloat(pest.doom_insect_poop)
           }
           var statCopy = {
             eggs: pest.doom_insect_egg_copy,
-            sucks: pest.doom_insect_sucks_copy,
+            blood: pest.doom_insect_sucks_copy,
             molts: pest.doom_insect_molt_copy,
             vomits: pest.doom_insect_vomit_copy,
             poops: pest.doom_insect_poop_copy
