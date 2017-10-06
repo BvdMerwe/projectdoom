@@ -253,8 +253,10 @@ div[data-ui-carousel] {
 }
 
 .carousel-container .carousel .carousel-item-name {
-  font-size: 10px;
+  
   text-transform: capitalize;
+  color: #14A774;
+  font-weight: bold;
 }
 
 /***********************************************

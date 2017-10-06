@@ -253,6 +253,55 @@ define( function ( require, exports, module ) {
 				return deferred.promise;
 		
 			},
+			getByProductType: function( term ) {
+
+				Utils._strict( [ String ], arguments );
+		
+				var _self 		= this,
+					deferred 	= $q.defer(),
+					dataHolder	= [];
+
+					//console.log('geting', term);
+
+				_self.getProducts({
+					'type': 'product',
+					'method': 'GET'
+				}).then( function(results){
+						
+						for (var index = 0; index < results.length; index++) {
+							
+							var element = results[index];
+
+							var i;
+							for ( i in element.product_types ) {
+
+								//console.log('i', i);
+
+							
+								if( element.product_types[i].slug == term ) {
+
+									
+									
+									dataHolder.push(element);
+
+								}
+
+							}
+							
+						}
+		
+						deferred.resolve(dataHolder );
+
+					},function(error){
+
+						deferred.reject( error );
+
+					}
+				);
+		
+				return deferred.promise;
+		
+			},
 			flush: function() {
 		
 				var _self 		= this,
@@ -278,7 +327,7 @@ define( function ( require, exports, module ) {
 		
 			},
 			/**
-			 * @private Get data for all projects
+			 * @private Get data for all products
 			 * 
 			 * @param {Object.obj}
 			 *
@@ -298,7 +347,7 @@ define( function ( require, exports, module ) {
 				})
 				.success( function(data, status) {
 				
-					deferred.resolve( data );
+					deferred.resolve( $filter('orderBy')( data, 'ID', false ) );
 				
 				})
 				.error( function(data, status) {

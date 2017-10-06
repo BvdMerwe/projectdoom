@@ -67,7 +67,7 @@ define(function (require, exports, module) {
           angular.element(element[0].querySelector("#footer")).removeClass('open');
         }
         scope.close = function () {
-          console.log("Hiding footer page");
+          //console.log("Hiding footer page");
           element.removeClass('open');
         }
         scope.checkPath();

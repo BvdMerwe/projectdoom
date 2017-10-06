@@ -14,7 +14,7 @@
 
 			<?php /**/?>
 			
-			<div flex="100" layout-fill style="max-width: 1366px; margin: 0 auto;">
+			<div flex="100" layout-fill style="max-width: 1366px; margin: 0 auto;padding:0 50px;">
 
 				<div layout="column" class="animate-page-switch-container" data-ng-switch="renderPath[0]" flex="100">
 	

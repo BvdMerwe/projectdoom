@@ -102,7 +102,7 @@
                     <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
                 </div>
                 
-                <div flex="40" flex-offset="10" flex-md="100" class="md-padding" layout-align="center start" layout-align-md="center start">
+                <div flex="40" flex-offset="10" flex-offset-md-"0" flex-md="100" class="md-padding" layout-align="center start" layout-align-md="center start">
                     <div data-ng-switch="pageContent.post_name">
                         <div data-ng-switch-when="flea">
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> suck</p>
@@ -110,19 +110,19 @@
                             <p flex="100" class="page-description">their bodyweight in blood a day. Their fave drinking spot is covered in fur and answers to the name, Scruffles.</p>
                         </div>
                         <div data-ng-switch-when="cockroach">
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go 4 weeks without food</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go</p>
                             <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />one week<sup>*</sup></h1>
-                            <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your pj’s while you sleep tonight.</p>
+                            <p flex="100" class="page-description">without a head. That means a headless, hedonistic roach could be making its way up your PJs while you sleep tonight.</p>
                         </div>
                         <div data-ng-switch-when="ant">
-                            <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}s</strong> hijacking the food in your skaftin are vomiting</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />every second*</h1>
-                            <p flex="100" class="page-description">on your sandwich as they discuss the heist..</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> vomit every</p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_vomit}}<br /> seconds<sup>*</sup></h1>
+                            <p flex="100" class="page-description">That includes the ones currently hijacking the sandwich in your skaftin.</p>
                         </div>
                         <div data-ng-switch-when="fly"> 
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can go 4 weeks without food</p>
-                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_egg}}<br />seconds<sup>*</sup></h1>
-                            <p flex="100" class="page-description">while feeding. So if the fly on your Sunday seven colours was ‘only there’ for 40 seconds...</p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> poop once every</p>
+                            <h1 flex="100" class="page-title" style="color:#000;">{{pageContent.doom_insect_poop}}<br />seconds<sup>*</sup></h1>
+                            <p flex="100" class="page-description">while feeding. Good to know for next time you spot a fly snacking on your Sunday seven colours.</p>
                         </div>
                         <div data-ng-switch-when="mosquito">
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}</strong> lay</p>
@@ -161,14 +161,13 @@
                         </li>
                     </ul>
                 </div>
-                
-                
-            </div>
-            <div class="insect-controller-buttons">
+                <div class="insect-controller-buttons">
                     <button class="icon-chevron-left" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
                     <button class="icon-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
                 </div>
-            <?php /**/?>
+            </div>
+                
+            <?php /** /?>
              <!-- 
             <div layout="row" layout-md="column" layout-align="start start">
                 <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
@@ -241,11 +240,11 @@
                 </div>
             </div>
             -->
-
-            <div layout="row" layout-md="column" layout-align="center start" layout-align-md="center center">
+            <?php /**/?>
+            <div layout="row" layout-md="column" layout-align="space-between start" layout-align-md="center center" style="position:relative;top:-100px;">
                 <!-- PEST LINKS -->
                 <div layout="column" flex="60" flex-md="100" layout-padding layout-align-md="center center">
-                    <br /><br />
+                    
                     <h3 flex="100" class="page-title" style="font-size:40px;">{{pageContent.post_title}}</h3>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                     <br /><br />
@@ -276,7 +275,7 @@
                 </div>
                 <!-- RELATED PRODU|CTS -->
                 <div layout="column" flex="40" flex-md="100" layout-align="start start" layout-align-md="center center">
-                    <h3 flex="100" class="carousel-title">Products</h3>
+                    <h1 flex="100" class="carousel-title">{{pageContent.post_title}} Products</h1>
                     <div layout="row">
                     <div data-ui-carousel
                         single          = "true"

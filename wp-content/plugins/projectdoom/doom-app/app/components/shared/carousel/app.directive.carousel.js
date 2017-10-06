@@ -94,10 +94,10 @@ define(function (require, exports, module) {
 				var thisElem = scope.thisElem = element;
 				var index = 0;
 				scope.domItems = angular.element(element[0].querySelector('.list')).children[0];
-				console.log(scope.domItems);
+				//console.log(scope.domItems);
 				/* Add classes */
 				if (!scope.cta || !scope.displayName) {
-					console.log(element);
+					//console.log(element);
 					angular.element(element[0].querySelector('.list')).addClass('no-cta');
 				}
 
@@ -236,7 +236,7 @@ define(function (require, exports, module) {
 					angular.element(element[0]).addClass("hide");
 				}
 			},
-			controller: ['$filter','$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
+			controller: ['$filter', '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $rootScope, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
 				//init data
 				$scope.contentType;
 				$scope.insectType;
@@ -273,11 +273,14 @@ define(function (require, exports, module) {
 					if ($scope.itemLength < 1) {
 						switch ($scope.contentType) {
 							case 'insect':
+								console.warn('The fuck dude?!?');
 								insectsManager.getInsects(requestObj).then($scope.success, $scope.error);
 								break;
 							case 'product':
 								if (angular.isDefined($route.current.locals.app_data) && $scope.productType != "") {
 									$scope.items = [];
+
+									//console.info('scoping...');
 									var results = $route.current.locals.app_data.products;
 									_getUniqueCategories( results );
 
@@ -358,6 +361,8 @@ define(function (require, exports, module) {
 									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
 								} else {
 									var results = $route.current.locals.app_data.products;
+
+									//console.info('scoping...');
 									_initiateLayout(results);
 									_getUniqueCategories( results );
 									$scope.success(results);
@@ -379,6 +384,7 @@ define(function (require, exports, module) {
 					} else {
 						$scope.error();
 					}
+					//console.log('Quickturn update', $scope.itemLength, $scope.contentType, $scope.productType);
 
 					// $scope.managerGet(requestObj).then(success, error);
 				}
@@ -568,7 +574,7 @@ define(function (require, exports, module) {
 					$scope.filterCategories = $filter('unique')($scope.filterCategories, 'term_id');
 					$scope.insectFilterCategories = $filter('unique')($scope.insectFilterCategories, 'term_id');
 
-					//console.log( 'categories:', $scope.filterCategories, $scope.insectFilterCategories );
+					console.log( 'filter categories:', $scope.filterCategories, $scope.insectFilterCategories );
 
 				}
 				function _filterBtnClasses(key) {

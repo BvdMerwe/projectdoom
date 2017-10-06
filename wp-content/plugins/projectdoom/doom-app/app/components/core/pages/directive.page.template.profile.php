@@ -18,10 +18,10 @@
                         <p flex="100" class="page-description">{{pageContent.doom_insect_about}}</p>
                         <br /><br />
                     </div>
-                    <div class="profile-box" style="padding-left:0;padding-right:0;padding-bottom:0;">
+                    <div class="profile-box" style="padding-left:0;padding-right:0;padding-bottom:0;" data-ng-if="pageContent.doom_insect_lives_in">
                         <br /><br />
-                        <h3 flex="100" class="page-title" style="font-size:40px;padding-left:40px;padding-rigt:40px;">I Check in at</h3>
-                        <p flex="100" class="page-description" style="padding-left:40px;padding-rigt:40px;">{{pageContent.doom_insect_lives_in}}</p>
+                        <h3 flex="100" class="page-title" data-ng-if="pageContent.doom_insect_lives_in" style="font-size:40px;padding-left:40px;padding-rigt:40px;">I Check in at</h3>
+                        <p flex="100" class="page-description" data-ng-if="pageContent.doom_insect_lives_in" style="padding-left:40px;padding-rigt:40px;">{{pageContent.doom_insect_lives_in}}</p>
                         <br /><br />
                         <div class="map-container" style="position:relative;" flex>
                             <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>

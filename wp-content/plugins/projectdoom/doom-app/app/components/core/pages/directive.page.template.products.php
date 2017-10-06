@@ -198,9 +198,9 @@
 
         </div>
 
-        <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
+        <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="filter" >
 
-            <!-- [HERO SECTION] -->
+            <!-- [HERO SECTION]  -->
             <div layout="row" layout-md="column" layout-align="center center">
                 <div flex="60" flex-md="100" class="md-padding">
                     <div class="bg-box">
@@ -214,190 +214,121 @@
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                 </div>
             </div>
+
+            <div class="product-filter-categories">
+                <!--
+                <md-button
+                    ng-repeat="productType in pageContent.product_types"
+                    class="md-button primary-tag active"
+                    data-ng-click="filterProducts('coil')">
+                    {{productType.name}}
+                </md-button>
+                -->
+                <md-button
+                    class="md-button primary-tag"
+                    data-ng-click="filterProducts('flying')"
+                    data-ng-class="{active: productsPageFilter == 'flying'}">
+                    Flying Insects
+                </md-button>
+                <md-button
+                    class="md-button primary-tag "
+                    data-ng-click="filterProducts('crawling')"
+                    data-ng-class="{active: productsPageFilter == 'crawling'}">
+                    Crawling Insects
+                </md-button>
+                <md-button
+                    class="md-button primary-tag  "
+                    data-ng-click="filterProducts('all')"
+                    data-ng-class="{active: productsPageFilter == ''}">
+                    All
+                </md-button>
+                        
+            </div>
             <!-- [/HERO SECTION] -->
 
             <!-- [BODY SECTION] -->
-            
-            <!--
-            <div flex="grow">
-               
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "true"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "ant"
-                    productType     = "spray"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
-                        <h3 flex="100" class="carousel-title">Ants</h3>
-                        
-                </div>
-                
-                
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "ant"
-                    productType     = "coil"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-
-				<div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "mosquitoes"
-                    productType     = "electric"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
-						<h3 flex="100" class="carousel-title">Mosquitoes</h3>
-                </div>
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "mosquitoes"
-                    productType     = "powder"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "mosquitoes"
-                    productType     = "spray"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-				
-				<div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "flea"
-                    productType     = "spray"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
-						<h3 flex="100" class="carousel-title">Fleas</h3>
-                </div>
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "flea"
-                    productType     = "powder"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "flea"
-                    productType     = "electric"
-					sortBy="ASC" orderBy="post_title"
-                    gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-
-				<div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "fishmoths"
-                    productType     = "spray"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2">
-						<h3 flex="100" class="carousel-title">Fishmoths</h3>
-                </div>
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "fishmoths"
-                    productType     = "powder"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-                <div data-ui-gallery
-					flex="100"
-					isWidget        = "false"
-					showTitle       = "true"
-					showFilter      = "false"
-					globalFilter    = "true"
-					showSubheader   = "true"
-					showDescription = "true"
-					showButton      = "true"
-					contentType     = "product"
-                    insectType     	= "fishmoths"
-                    productType     = "electric"
-					sortBy="ASC" orderBy="post_title"
-					gridItemsDesktopWide="3" gridItemsDesktop="3" gridItemsMobile="2"></div>
-				
-            </div>
-            -->
 
             <div layout="column" layout-fill class="" flex="100" data-ng-switch="renderPath[2]">
 
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="taxonomy">
                     
-                    <div flex="grow" data-ng-if="productsPageFilter == 'ants'">
+                    <?php /**/?>
+                    <div flex="grow" data-ng-if="productsPageFilter == 'flying'">
+                        <h3 class="carousel-title">Mosquitos</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "mosquito"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "mosquito"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "mosquito"
+                            productType     = "powder"
+                            contentType="product"></div>
+
+                        <h3 class="carousel-title">Flies</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fly"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fly"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fly"
+                            productType     = "powder"
+                            contentType="product"></div>
+
+                        
+
+                    </div>
+
+                    <div flex="grow" data-ng-if="productsPageFilter == 'crawling'">
                         <h3 class="carousel-title">Ants</h3>
                         <div data-ui-carousel
                             flex="100"
@@ -433,9 +364,6 @@
                             productType     = "powder"
                             contentType="product"></div>
 
-                    </div>
-
-                    <div flex="grow" data-ng-if="productsPageFilter == 'cockroaches'">
                         <h3 class="carousel-title">Cockroaches</h3>
                         <div data-ui-carousel
                             flex="100"
@@ -470,10 +398,7 @@
                             insectType     	= "cockroach"
                             productType     = "powder"
                             contentType="product"></div>
-
-                    </div>
-
-                    <div flex="grow" data-ng-if="productsPageFilter == 'fishmoths'">
+                        
                         <h3 class="carousel-title">Fishmoths</h3>
                         <div data-ui-carousel
                             flex="100"
@@ -509,9 +434,6 @@
                             productType     = "powder"
                             contentType="product"></div>
 
-                    </div>
-
-                    <div flex="grow" data-ng-if="productsPageFilter == 'flea'">
                         <h3 class="carousel-title">Fleas</h3>
                         <div data-ui-carousel
                             flex="100"
@@ -549,86 +471,41 @@
 
                     </div>
 
-                    <div flex="grow" data-ng-if="productsPageFilter == 'flies'">
-                        <h3 class="carousel-title">Flies</h3>
-                        <div data-ui-carousel
-                            flex="100"
-                            single = "false"
-                            cta = "true"
-                            maxHeight = "550px"
-                            maxWidth = "200px"
-                            gutter = "175px"
-                            displayName ="true"
-                            insectType     	= "fly"
-                            productType     = "spray"
-                            contentType="product"></div>
-                        <div data-ui-carousel
-                            flex="100"
-                            single = "false"
-                            cta = "true"
-                            maxHeight = "550px"
-                            maxWidth = "200px"
-                            gutter = "175px"
-                            displayName ="true"
-                            insectType     	= "fly"
-                            productType     = "electric"
-                            contentType="product"></div>
-                        <div data-ui-carousel
-                            flex="100"
-                            single = "false"
-                            cta = "true"
-                            maxHeight = "550px"
-                            maxWidth = "200px"
-                            gutter = "175px"
-                            displayName ="true"
-                            insectType     	= "fly"
-                            productType     = "powder"
-                            contentType="product"></div>
-
-                    </div>
-
-                    <div flex="grow" data-ng-if="productsPageFilter == 'mosquitoes'">
-                        <h3 class="carousel-title">Mosquitos</h3>
-                        <div data-ui-carousel
-                            flex="100"
-                            single = "false"
-                            cta = "true"
-                            maxHeight = "550px"
-                            maxWidth = "200px"
-                            gutter = "175px"
-                            displayName ="true"
-                            insectType     	= "mosquito"
-                            productType     = "spray"
-                            contentType="product"></div>
-                        <div data-ui-carousel
-                            flex="100"
-                            single = "false"
-                            cta = "true"
-                            maxHeight = "550px"
-                            maxWidth = "200px"
-                            gutter = "175px"
-                            displayName ="true"
-                            insectType     	= "mosquito"
-                            productType     = "electric"
-                            contentType="product"></div>
-                        <div data-ui-carousel
-                            flex="100"
-                            single = "false"
-                            cta = "true"
-                            maxHeight = "550px"
-                            maxWidth = "200px"
-                            gutter = "175px"
-                            displayName ="true"
-                            insectType     	= "mosquito"
-                            productType     = "powder"
-                            contentType="product"></div>
-
-                    </div>
+                  
+                    <?php/**/?>
 
                 </div>
 
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
-
+                    <div class="product-filter-categories">
+                        <!--
+                        <md-button
+                            ng-repeat="productType in pageContent.product_types"
+                            class="md-button primary-tag active"
+                            data-ng-click="filterProducts('coil')">
+                            {{productType.name}}
+                        </md-button>
+                        -->
+                        <md-button
+                            class="md-button primary-tag"
+                            data-ng-click="filterProducts('spray')"
+                            data-ng-class="{active: pageContent.product_type == 'Spray'}">
+                            Spray
+                        </md-button>
+                        <md-button
+                            class="md-button primary-tag "
+                            data-ng-click="filterProducts('coil')"
+                            data-ng-class="{active: pageContent.product_type == 'Coil'}">
+                            Coil
+                        </md-button>
+                        <md-button
+                            class="md-button primary-tag "
+                            data-ng-click="filterProducts('electric')"
+                            data-ng-class="{active: pageContent.product_type == 'Electric'}">
+                            Electric
+                        </md-button>
+                        
+                    </div>
                     <div flex="grow">
                         <h3 class="carousel-title">Ants</h3>
                         <div data-ui-carousel
@@ -861,26 +738,303 @@
 
             </div>
 
-            <div flex="grow">
-				<h3 class="carousel-title">Where to buy</h3>
-                <div data-ui-carousel
-                    buttonBorders="false"
-                    flex="100"
-                    single = "false"
-                    cta = "false"
-                    maxHeight = "250px"
-                    maxWidth = "250px"
-                    gutter = "10px"
-                    displayName ="false"
-                    productType     = ""
-                    contentType="retailer"
-                    layout="column" layout-align="center center"></div>
-
-            </div>
-
             <!-- [/BODY SECTION] -->
 
             <!--<div data-ng-transclude flex="100" ></div>-->
+
+        </div>
+        
+        <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
+
+            <!-- [HERO SECTION]  -->
+            <div layout="row" layout-md="column" layout-align="center center">
+                <div flex="60" flex-md="100" class="md-padding">
+                    <div class="bg-box">
+                        <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
+                    </div>
+                </div>
+                <div flex="40" flex-md="100" class="md-padding" layout-align-md="center center">
+                    <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
+                    <span class="hr-divider"></span>
+                    <p flex="100" class="page-description">{{pageContent.post_content}}</p>
+                </div>
+            </div>
+            <!-- [/HERO SECTION] -->
+            <div class="product-filter-categories">
+                        <!--
+                        <md-button
+                            ng-repeat="productType in pageContent.product_types"
+                            class="md-button primary-tag active"
+                            data-ng-click="filterProducts('coil')">
+                            {{productType.name}}
+                        </md-button>
+                        -->
+                        <md-button
+                            class="md-button primary-tag"
+                            data-ng-click="filterProducts('crawling')"
+                            data-ng-class="{active: pageContent.product_type == 'crawling'}">
+                            Flying Insects
+                        </md-button>
+                        <md-button
+                            class="md-button primary-tag "
+                            data-ng-click="filterProducts('flying')"
+                            data-ng-class="{active: pageContent.product_type == 'flying'}">
+                            Crawling Insects
+                        </md-button>
+                        <md-button
+                            class="md-button primary-tag active "
+                            data-ng-click="filterProducts('all')"
+                            data-ng-class="{active: pageContent.product_type == 'all'}">
+                            All
+                        </md-button>
+                        
+            </div>
+
+           
+                    <div flex="grow">
+                        <h3 class="carousel-title">Ants</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "ant"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "ant"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "ant"
+                            productType     = "coil"
+                            contentType="product"></div>
+
+                    </div>
+
+                    <div flex="grow">
+                        <h3 class="carousel-title">Cockroaches</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "cockroach"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "cockroach"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "cockroach"
+                            productType     = "coil"
+                            contentType="product"></div>
+
+                    </div>
+
+                    <div flex="grow">
+                        <h3 class="carousel-title">Fishmoths</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fishmoth"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fishmoth"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fishmoth"
+                            productType     = "coil"
+                            contentType="product"></div>
+
+                    </div>
+
+                    <div flex="grow">
+                        <h3 class="carousel-title">Fleas</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "flea"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "flea"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "flea"
+                            productType     = "coil"
+                            contentType="product"></div>
+
+                    </div>
+
+                    <div flex="grow">
+                        <h3 class="carousel-title">Flies</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fly"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fly"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "fly"
+                            productType     = "coil"
+                            contentType="product"></div>
+
+                    </div>
+
+                    <div flex="grow">
+                        <h3 class="carousel-title">Mosquitoes</h3>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "mosquito"
+                            productType     = "spray"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "mosquito"
+                            productType     = "electric"
+                            contentType="product"></div>
+                        <div data-ui-carousel
+                            flex="100"
+                            single = "false"
+                            cta = "true"
+                            maxHeight = "550px"
+                            maxWidth = "200px"
+                            gutter = "175px"
+                            displayName ="true"
+                            insectType     	= "mosquito"
+                            productType     = "coil"
+                            contentType="product"></div>
+
+                    </div>
+
+        </div>
+        
+        <div flex="grow">
+            <h3 class="carousel-title">Where to buy</h3>
+            <div data-ui-carousel
+                buttonBorders="false"
+                flex="100"
+                single = "false"
+                cta = "false"
+                maxHeight = "250px"
+                maxWidth = "250px"
+                gutter = "10px"
+                displayName ="false"
+                productType     = ""
+                contentType="retailer"
+                layout="column" layout-align="center center"></div>
 
         </div>
 

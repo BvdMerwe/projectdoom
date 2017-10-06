@@ -53,7 +53,9 @@ define( function ( require, exports, module ) {
 	Application.Directives = {};
 	Application.Controllers = {};
 
-	Application.Controllers.pagesController =  [ '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout', 'transformRequestAsFormPost', 'Utils', 'MemCache', function ( $rootScope, $scope, $http, $q, $route, $location, $timeout, transformRequestAsFormPost, Utils, MemCache ) {
+	
+
+	Application.Controllers.pagesController =  [ '$rootScope', '$scope', '$http', '$q', '$route', '$filter', '$location', '$timeout', 'transformRequestAsFormPost', 'Utils', 'MemCache', 'productsManager', 'insectsManager', function ( $rootScope, $scope, $http, $q, $route, $filter, $location, $timeout, transformRequestAsFormPost, Utils, MemCache, productsManager, insectsManager ) {
 
 		var inputMsgTimeout,
 		inputValidationTimeout;
@@ -76,8 +78,8 @@ define( function ( require, exports, module ) {
 			
 		});
 
-		$scope.goto = function (path) {
-			$scope.scrollTo(0, 0);
+		$scope.goTo = function (path) {
+			$scope.scrollTo('body', 0);
 			$location.path(path);
 		}
 
@@ -107,32 +109,8 @@ define( function ( require, exports, module ) {
 				var rand = Utils.getRandomInt(0,pests.length-1);
 				$location.path("/insects/"+pests[rand].post_name);
 			}
-			//console.log(ev, to, toParams, from, fromParams); 
-
-			//$scope.currentInsect = {};
-
+			
 			_ini();
-
-			//console.log( 'App interface ready...', $scope );
-
-			//$scope.renderPath = $rootScope.renderPath;
-
-			//console.log('App interface ready...', $route.current.locals.app_data );
-			/*** /
-			if( angular.isDefined($route.current.locals.app_data) ) {
-
-				dataInitialise('taxonomy').then( function(results){
-
-						console.log('Activity Data: ', $route.current.locals.app_data, results );
-
-						$scope.pageContent = results[0];
-
-					}, function(error) {
-
-						console.error(error);
-					}
-				);
-			}/**/
 
 		});
 		/***/
@@ -167,9 +145,9 @@ define( function ( require, exports, module ) {
 
 			getCurrentNextProduct();
 
-			console.log( 'open next product page:', $scope.currentInsect );
+			//console.log( 'open next product page:', $scope.currentInsect, $scope.pageContent );
 
-			$location.path( '/products/' + $scope.pageContent.post_name );
+			//$location.path( '/products/' + $scope.pageContent.post_name );
 			
 		};
 
@@ -177,9 +155,9 @@ define( function ( require, exports, module ) {
 
 			getCurrentPrevProduct();
 
-			console.log( 'open prev product page:', $scope.currentInsect );
+			//console.log( 'open prev product page:', $scope.currentInsect );
 
-			$location.path( '/products/' + $scope.pageContent.post_name );
+			//$location.path( '/products/' + $scope.pageContent.post_name );
 
 			//$location.path( '/insects/' + page );
 
@@ -189,9 +167,34 @@ define( function ( require, exports, module ) {
 
 			Utils._strict( [ String ], arguments );
 
-			console.log( 'open filtered product page:', $scope.currentInsect );
+			if( $rootScope.isProductPage === true && angular.isDefined($route.current.locals.app_data) ) {
+				
+				productsManager.getByProductType( category ).then(function(results){
 
-			$location.path( '/products/' + category );
+						//console.log('filtered product list:', results );
+								
+						$location.path( '/products/' + results[0].post_name );
+
+					}, function(err){
+
+					}
+				);
+
+			} else if( $rootScope.isProducts === true && angular.isDefined($route.current.locals.app_data) ) {
+
+				//console.log('Products Filter');
+
+				if( category == "all") {
+
+					$location.path( '/products' );
+
+				} else {
+
+					$location.path( '/products/category/' + category );
+
+				}
+
+			}
 
 		}
 
@@ -269,31 +272,57 @@ define( function ( require, exports, module ) {
 
 			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
 
-				var array = $route.current.locals.app_data.products;
+				//var array = $route.current.locals.app_data.products;
+
+				var ProductCount = 0;
+				var i;
+				var stop = false;
+
+				// get current product type;
+				var i;
+				for ( i in $scope.pageContent.product_types ) {
+
+					if( angular.isDefined( $scope.pageContent.product_types[parseInt(i)] ) ) {
+
+						productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(results){
+
+								//console.log('filtered list:', results );
+								
+								for (var index = 0; index < results.length; index++) {
+									var element = results[index];
 				
-				for (var index = 0; index < array.length; index++) {
-					var element = array[index];
+									if( element.post_name == $route.current.pathParams.ID  ) {
+				
+										if( angular.isDefined( results[index + 1]) ) {
+				
+											$scope.pageContent = results[index + 1];
+				
+											//console.log('current(new) insect:', $scope.pageContent);
+				
+										} else if( angular.isDefined( results[0]) ) {
+				
+											$scope.pageContent = results[0];
 
-					if( element.post_name == $route.current.pathParams.ID  ) {
+											
+				
+											//console.log('reset product:', $scope.pageContent);
+				
+										}
 
-						if( angular.isDefined( array[index + 1]) ) {
+										$location.path( '/products/' + $scope.pageContent.post_name );
+				
+										break;
+				
+									}
+									
+								}
 
-							$scope.pageContent = array[index + 1];
+							}, function(err){
 
-							console.log('next product:', $scope.pageContent);
-
-						} else if( angular.isDefined( array[0]) ) {
-
-							$scope.pageContent = array[0];
-
-							console.log('reset product:', $scope.pageContent);
-
-						}
-
-						break;
-
+							}
+						);
 					}
-					
+
 				}
 
 			}
@@ -304,6 +333,59 @@ define( function ( require, exports, module ) {
 
 			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
 
+				var ProductCount = 0;
+				var i;
+				var stop = false;
+
+				// get current product type;
+				var i;
+				for ( i in $scope.pageContent.product_types ) {
+
+					if( angular.isDefined( $scope.pageContent.product_types[parseInt(i)] ) ) {
+
+						productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(results){
+
+								//console.log('filtered list:', results );
+								
+								for (var index = 0; index < results.length; index++) {
+									var element = results[index];
+				
+									if( element.post_name == $route.current.pathParams.ID  ) {
+				
+										if( angular.isDefined( results[index - 1]) ) {
+				
+											$scope.pageContent = results[index - 1];
+				
+											//console.log('current:prev(new) insect:', $scope.pageContent);
+
+											
+				
+										} else if( angular.isDefined( results[0]) ) {
+				
+											$scope.pageContent = results[0];
+				
+											//console.log('last product:', $scope.pageContent);
+				
+										}
+				
+										break;
+				
+									}
+
+									$location.path( '/products/' + $scope.pageContent.post_name );
+									
+								}
+
+							}, function(err){
+
+							}
+						);
+					}
+
+				}
+
+
+				/** /
 				var array = $route.current.locals.app_data.products;
 				
 				for (var index = 0; index < array.length; index++) {
@@ -330,56 +412,173 @@ define( function ( require, exports, module ) {
 					}
 					
 				}
+				/**/
 
 			}
 
 		}
-		/*
-		function dataInitialise( type ) {
 
-			Utils._strict( [ String ], arguments );
+		/** /
+		function _isInCategory( proposedPage, callback ) {
 
-			var request 	= '',
-				deferred 	= $q.defer();
+			var currentPage = $scope.pageContent;
 
-			switch( type ) {
+			//console.log('checking:', proposedPage );
 
-				case 'faq':
-				case 'taxonomy':
+			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
 
-					request = type;
 
-					break;
+				loop1:
+				for (var index = 0; index < proposedPage.product_types.length; index++) {
+					
+					var proposedelement = proposedPage.product_types[index];
 
-				default:
+					loop2:
+					for (var index2 = 0; index2 < currentPage.product_types.length; index2++) {
 
-					throw '!?!#$';
+						var currentelement = currentPage.product_types[index];
 
-					break;
+						if( proposedelement.slug == currentelement.slug ) {
+							
+							//console.log('VICTORY');
+
+							//callback( false, proposedPage);
+
+							if( $scope.pageContent.ID ==  proposedPage.ID ) {
+
+								continue;
+
+							} else {
+
+								return proposedPage;
+								
+								break loop1;
+
+							}
+
+							
+						}
+					}
+					
+				}
+
+				//callback( true, 'not in same cateogry');
+
+				//console.error('not in same cateogry');
+
+				return false;
+
 			}
 
-			$http({
-				method: 'GET',
-				url: appConfig.general.api + request,
-				transformRequest: transformRequestAsFormPost
-			})
-			.success( function(data, status) {
+		}
 
-				deferred.resolve( data );
+		function getProductsByCategory( category, callback ) {
 
-			})
-			.error( function(data, status) {
+			if( angular.isDefined( $route.current.locals.app_data.taxonomy.product_types ) ) {
 
-				console.error("dataInitialise Request failed:", data);
+				var arry = $route.current.locals.app_data.taxonomy.product_types;
+				
+				for (var index = 0; index < arry.length; index++) {
 
-				deferred.reject( data );
+					console.log(arry[index], category);
 
-			});
+					if( angular.isDefined(arry[index]) ) {
 
-			return deferred.promise;
+						if( arry[index].name.toLowerCase() == category.toLowerCase() ) {
+							
+							
+							callback( false, arry[index].product);
 
-		}*/
+							break;
 
+						}
+
+					}
+
+				}
+
+				callback( true );
+
+			}
+		}
+
+		function _isinCategory( currentPoduct, nextPoduct ) {
+			
+			/** /
+			if( angular.isDefined(!currentPoduct) || angular.isDefined(!nextPoduct)  ) {
+				return false;
+			}/** /
+
+			Utils._strict( [ Object, Object ], arguments );
+
+				loop1:
+				for (var index = 0; index < currentPoduct.product_types.length; index++) {
+					
+					var currentPoductType = currentPoduct.product_types[index];
+
+					loop2:
+					for (var index2 = 0; index2 < nextPoduct.product_types.length; index2++) {
+
+						//if( nextPoduct.post_name !== currentPoduct.post_name ) {
+
+							var nextPoductType = nextPoduct.product_types[index2];
+
+							console.log(nextPoductType.slug, 'vs', currentPoductType.slug);
+							
+							if( nextPoductType.slug.toLowerCase() == currentPoductType.slug.toLowerCase() ) {
+								
+								console.log('FOUND:', nextPoduct, currentPoduct);
+
+								return true;
+								// filter
+								break loop1;
+
+							}
+						//}
+						
+					}
+					
+				}
+
+				return false;
+
+			/** /
+			if( $rootScope.isProducts === true && angular.isDefined($route.current.locals.app_data) ) {
+				
+				console.log( 'open filtered product page:', $scope.pageContent, $rootScope.isProducts, category );
+
+				// check if product has the category
+				var prodSack = $route.current.locals.app_data.products;
+
+				for (var index = 0; index < prodSack.length; index++) {
+					
+					var element = prodSack[index];
+					
+					for (var indey = 0; indey < element.product_types.length; indey++) {
+						var element2 = element.product_types[indey];
+
+						if( element2.slug.toLowerCase() == category.toLowerCase() ) {
+
+							return true;
+
+							break;
+
+						}
+						
+					}
+					
+				}
+
+			} else {
+
+				//$location.path( '/products/' + category );
+			
+			}
+			/** /
+
+		}
+		/**/
+		
 		function getPageContent( cola ) {
 
 			Utils._strict( [ Array ], arguments );
@@ -391,6 +590,19 @@ define( function ( require, exports, module ) {
 					if( cola[index].post_name == $route.current.pathParams.ID ) {
 
 						//console.log('Yo!', cola[index]);
+						
+						return cola[index];
+
+					}
+
+				} else if( $rootScope.isProducts && $route.current.pathParams.ID ) {
+					
+					if( cola[index].post_name == 'products' ) {
+
+						//console.log('Yo!', cola[index]);
+
+						console.info('filter thsis bitch');
+						
 						
 						return cola[index];
 
@@ -414,50 +626,44 @@ define( function ( require, exports, module ) {
 
 		function _ini() {
 
-			$rootScope.productsPageFilter = $route.current.pathParams.ID;
+			//$rootScope.productsPageFilter = $route.current.pathParams.ID;
 
 			if( angular.isDefined($route.current.locals.app_data) ) {
 
-				
-				//MemCache.dataTaxonomy().then( function(results){
 
+				if( $rootScope.isProductPage ) {
+
+					$scope.productsPageFilter = $route.current.pathParams.ID;
+
+					$scope.pageContent = getPageContent( $route.current.locals.app_data.products ); //$route.current.locals.app_data.pagecontent[0];
+
+				} else if( $rootScope.isProducts ) {
+
+					//console.info('products page');
+
+					$scope.productsPageFilter = $route.current.pathParams.ID;
+
+					$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent );
+
+				} else if( $rootScope.isInsectPage || $rootScope.isProfilePage ) {
+
+					$scope.currentInsect = $route.current.pathParams.ID;
+
+					$scope.pageContent = getPageContent( $route.current.locals.app_data.insects ); //$route.current.locals.app_data.pagecontent[0];
+
+				} else {
+
+					$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
+
+				}
+
+				//$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
+
+				//console.log('Activity Data: ', $scope.pageContent );
+
+				console.log('Activity Data: ', $rootScope.productsPageFilter, $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
 					
-
-					console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID, $rootScope.renderPath, $rootScope.productsPageFilter );
-
-						if( $rootScope.isProductPage ) {
-
-							$scope.productsPageFilter = $route.current.pathParams.ID;
-
-							$scope.pageContent = getPageContent( $route.current.locals.app_data.products ); //$route.current.locals.app_data.pagecontent[0];
-
-						} else if( $rootScope.isInsectPage || $rootScope.isProfilePage ) {
-
-							$scope.currentInsect = $route.current.pathParams.ID;
-
-							$scope.pageContent = getPageContent( $route.current.locals.app_data.insects ); //$route.current.locals.app_data.pagecontent[0];
-
-						} else {
-
-							$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
-
-						}
-
-						//$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
-
-						//console.log('Activity Data: ', $scope.pageContent );
-
-						//console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
 					
-					/** * /
-					}, function(error) {
-
-						console.error(error);
-					}
-					
-
-				);
-				/***/
 			}
 
 		}

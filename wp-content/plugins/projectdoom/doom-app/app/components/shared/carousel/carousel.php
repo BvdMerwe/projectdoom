@@ -18,6 +18,7 @@
 			data-filter-id="{{value.term_id}}"
 			data-ng-click="filter($event, value.term_id)"
 			data-ng-if="contentType == 'insect'"
+			data-ng-class="{active: $first == true}"
 			data-ng-if="value.name == 'Flying' || value.name == 'Crawling'"
 			data-ng-repeat="(key, value) in insectFilterCategories">
 				{{value.name}}
@@ -32,6 +33,7 @@
 			data-ng-repeat="(key, value) in filterCategories">
 				{{value.name}}
 		</md-button>
+		<?php /** /?>
 		<md-button 
 			class="md-primary md-hue-3 btn-filter active-filter" 
 			aria-label=""
@@ -39,6 +41,7 @@
 			data-ng-click="filter( $event, 'all' )">
 				ALL
 		</md-button>
+		<?php /**/?>
 	</div>
 </md-toolbar>
 <div ng-transclude></div>

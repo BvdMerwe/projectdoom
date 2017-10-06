@@ -293,7 +293,7 @@ define( function ( require, exports, module ) {
 				})
 				.success( function(data, status) {
 				
-					deferred.resolve( data );
+					deferred.resolve( $filter('orderBy')( data, 'post_title', false ) );
 				
 				})
 				.error( function(data, status) {

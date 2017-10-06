@@ -77,7 +77,7 @@
 		<div layout="row" layout-xs="column" layout-align="space-between center" flex-xs="100">
 
 			<div class="md-padding" style="text-align:center;background-color:#14A774;z-index:99;width: 80px;height: 80px;">
-				<md-button ng-click="toggleLeft()"
+				<md-button ng-click="toggleLeft()" aria-label="Open Menu"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:10px;">
 							<span style=""></span>
@@ -85,7 +85,7 @@
 							
 					</md-icon>
 				</md-button>
-				<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
+				<md-button aria-label="Close Menu" data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
       		</div>
 
 			<div class="md-padding" layout="row" layout-align="center center" style="z-index:99;">

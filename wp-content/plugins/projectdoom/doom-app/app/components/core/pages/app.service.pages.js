@@ -157,7 +157,7 @@ define( function ( require, exports, module ) {
 					/***/
 					MemCache.dataGet( 'dmapp-pages', 'localstorage' ).then( function( results ) { 
 
-							console.log('[PAGES]from localstorage:', results);
+							console.log('[PAGES]from localstorage:');
 
 							//_self._collection_pages.length = 0;
 						

@@ -306,9 +306,11 @@ define( function ( require, exports, module ) {
 				})
 				.success( function(data, status) {
 
-					//console.log("Request insect:", data);
+					//console.log("Request insect:", $filter('orderBy')( data, 'post_date', false ) );
+
+					//data = $filter('orderBy')( data, 'post_date', true );
 				
-					deferred.resolve( data );
+					deferred.resolve( $filter('orderBy')( data, 'post_date', false ) );
 				
 				})
 				.error( function(data, status) {
