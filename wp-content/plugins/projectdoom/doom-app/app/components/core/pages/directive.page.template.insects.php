@@ -161,14 +161,13 @@
                         </li>
                     </ul>
                 </div>
-                
-                
-            </div>
-            <div class="insect-controller-buttons">
+                <div class="insect-controller-buttons">
                     <button class="icon-chevron-left" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
                     <button class="icon-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
                 </div>
-            <?php /**/?>
+            </div>
+                
+            <?php /** /?>
              <!-- 
             <div layout="row" layout-md="column" layout-align="start start">
                 <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
@@ -241,8 +240,8 @@
                 </div>
             </div>
             -->
-
-            <div layout="row" layout-md="column" layout-align="center start" layout-align-md="center center">
+            <?php /**/?>
+            <div layout="row" layout-md="column" layout-align="space-between start" layout-align-md="center center" style="position:relative;top:-100px;">
                 <!-- PEST LINKS -->
                 <div layout="column" flex="50" flex-md="100" layout-align-md="center center">
                     <h3 flex="100" class="page-title" style="">{{pageContent.post_title}}</h3>

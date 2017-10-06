@@ -11,6 +11,7 @@
 ?>
 <md-toolbar class="md-hue-1 toolbar-filter" data-ng-if="showFilter">
 	<div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #14A774;">
+		<?php /*
 		<md-button 
 			class="md-primary md-hue-3 btn-filter active-filter" 
 			aria-label=""
@@ -18,6 +19,7 @@
 			data-ng-click="filter( $event, 'all' )">
 				ALL
 		</md-button>
+		*/?>
 		<md-button 
 			md-no-ink
 			class="md-primary md-hue-2 btn-filter" 
@@ -25,6 +27,7 @@
 			data-filter-id="{{value.term_id}}"
 			data-ng-click="filter($event, value.term_id)"
 			data-ng-if="contentType == 'insect'"
+			data-ng-class="{active: $first == true}"
 			data-ng-if="value.name == 'Flying' || value.name == 'Crawling'"
 			data-ng-repeat="(key, value) in insectFilterCategories">
 				{{value.name}}

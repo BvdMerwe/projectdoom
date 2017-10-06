@@ -1027,6 +1027,10 @@ define( function ( require, exports, module ) {
                     is404                   = ( renderPath[ 0 ] == "404" );
 	
 					if( isProducts ) {
+
+                        if( $route.current.pathParams.ID ) {
+                            $rootScope.isPathSlug 	= $route.current.pathParams.ID;
+                        }
 				
                         var isProductPage		= ( renderPath[ 1 ] == "single" );
                         var isProductCategory	= ( renderPath[ 2 ] == "taxonomy" );
@@ -1037,6 +1041,10 @@ define( function ( require, exports, module ) {
 					}
 
 					if( isInsects ) {
+
+                        if( $route.current.pathParams.ID ) {
+                            $rootScope.isPathSlug 	= $route.current.pathParams.ID;
+                        }
 						
                         var isInsectPage		= ( renderPath[ 1 ] == "single" );
                         var isInsectCategory		= ( renderPath[ 1 ] == "taxonomy" );
@@ -1047,6 +1055,10 @@ define( function ( require, exports, module ) {
                     }
                     
                     if( isProfile ) {
+
+                        if( $route.current.pathParams.ID ) {
+                            $rootScope.isPathSlug 	= $route.current.pathParams.ID;
+                        }
 						
                         var isProfilePage		= ( renderPath[ 1 ] == "single" );
 						
@@ -1066,6 +1078,7 @@ define( function ( require, exports, module ) {
 					$rootScope.isContact 		= isContact;
                     $rootScope.isProducts 		= isProducts;
                     $rootScope.isInsects		= isInsects;
+                    $rootScope.isProfile	    = isProfile;
                     $rootScope.isProfilePage	= isProfilePage;
                     $rootScope.isProductCategory	= isProductCategory;
 					$rootScope.isInsectCategory	    = isInsectCategory;
@@ -1096,7 +1109,11 @@ define( function ( require, exports, module ) {
 				
 							window.document.title = 'Product Info - ' + MainWindowTitle;
 				
-							window.document.body.classList.add('page-products-single');
+                            window.document.body.classList.add('page-products-single');
+                            
+                            if( $rootScope.isPathSlug ) {
+                                window.document.body.classList.add( 'page-products-single-' + $rootScope.isPathSlug );
+                            }
 				
 						} else {
 				
@@ -1112,7 +1129,11 @@ define( function ( require, exports, module ) {
 							
 							window.document.title = 'Insect Info - ' + MainWindowTitle;
 							
-							window.document.body.classList.add('page-insects-single');
+                            window.document.body.classList.add('page-insects-single');
+                            
+                            if( $rootScope.isPathSlug ) {
+                                window.document.body.classList.add( 'page-insects-single-' + $rootScope.isPathSlug );
+                            }
 							
 						} else {
 							
@@ -1128,7 +1149,11 @@ define( function ( require, exports, module ) {
 							
 							window.document.title = 'Insect Profile - ' + MainWindowTitle;
 							
-							window.document.body.classList.add('page-insects-profile');
+                            window.document.body.classList.add('page-insects-profile');
+                            
+                            if( $rootScope.isPathSlug ) {
+                                window.document.body.classList.add( 'page-insects-profile-' + $rootScope.isPathSlug );
+                            }
 							
 						} else {
 							
