@@ -255,7 +255,7 @@
                         </div>
                         <div class="flex">
                            
-                            <md-button class="md-primary primary-tag" data-ng-click="browseBycategory( 'products', pageContent.post_name)">
+                            <md-button class="md-primary primary-tag" data-ng-click="browseBycategory( 'products', pageContent.insect_categories[0].slug)">
                                 <span class="icon icon-"><i class="icon-zap"></i></span>
                                 {{pageContent.post_title}}<br />Killers
                             </md-button>
@@ -283,7 +283,7 @@
                         gutter          = "175px"
                         displayName     = "true"
                         insectType      = ""
-                        productType     = ""
+                        productType     = "spray"
                         showFilter      = "true"
                         filterBy        = "product_types"
                         contentType="product"></div>

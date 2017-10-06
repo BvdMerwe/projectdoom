@@ -27,7 +27,7 @@
 
     <div flex="grow" class=" page-content-copy">
 
-        <p flex="100">{{pageContent.post_content}}</p>
+        <p flex="100" ng-bind-html="pageContent.post_content | trustAsHtml"></p>
                         
     </div>
 
