@@ -10,7 +10,7 @@
                 </div>
             </div>
             
-            <div layout="row" layout-md="column" layout-align="center start" style="position:relative;top:-100px;">
+            <div layout="row" layout-md="column" layout-align="center start" class="insect-profile-content-holder">
                 <div layout="column" flex="47" flex-md="100" flex-md="100">
                     <div class="profile-box" layout-fill>
                         <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> About me</h3>

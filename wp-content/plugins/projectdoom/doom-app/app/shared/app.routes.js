@@ -281,7 +281,7 @@ define( function ( require, exports, module ) {
                                         }
                                         return $q.all([
                                             pagesManager.getPages({
-                                                'type': 'home',
+                                                'type': 'products',
                                                 'method': 'GET'
                                             }),
                                             productsManager.getProducts({
@@ -426,6 +426,78 @@ define( function ( require, exports, module ) {
                                         return $q.all([
                                             pagesManager.getPages({
                                                 'type': 'home',
+                                                'method': 'GET'
+                                            }),
+                                            productsManager.getProducts({
+                                                'type': 'product',
+                                                'method': 'GET'
+                                            }),
+                                            insectsManager.getInsects({
+                                                'type': 'insect',
+                                                'method': 'GET'
+                                            }),
+                                            faqsManager.getFAQs({
+                                                'type': 'faq',
+                                                'method': 'GET'
+                                            }),
+                                            retailersManager.getRetailers({
+                                                'type': 'retailer',
+                                                'method': 'GET'
+                                            }),
+                                            MemCache.dataTaxonomy(),
+                                            SessionService.checkSession()
+                                        ])
+                                        .then( function(results){
+    
+                                                //console.log('route data-products:', results);   
+    
+                                                var firstVisit = new Date(results[6].firstVisit);
+                                                var lastVisit = new Date(results[6].lastVisit);
+                                                //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
+     
+                                                return {
+                                                    faqs 	    : results[3],
+                                                    insects 	: results[2],
+                                                    products 	: results[1],
+                                                    pagecontent : results[0],
+                                                    retailers   : results[4],
+                                                    taxonomy    : results[5],
+                                                    session     : results[6]
+                                                }; 
+    
+                                            }, function(e){
+    
+                                                //Utils.toggleClass( document.getElementById('main-dashboard'), 'splash' );
+    
+                                                console.error('No bootUp(products): ', e); 
+    
+                                                return e;
+    
+                                            }
+                                        );
+                                    }, function(data){
+                                        return deferred.promise;
+                                    });
+
+                                }] 
+                            }
+
+                        }
+                    )
+                    .when(
+                        '/products/category/:ID/:TYPE',
+                        {
+                            action: 	'products.filter.taxonomy.insecttype',
+                            resolve: {
+                                app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                                    
+									return SessionService.checkExp().then(function(expired){
+                                        if (expired) {
+                                            MemCache.dataReset('localstorage');
+                                        }
+                                        return $q.all([
+                                            pagesManager.getPages({
+                                                'type': 'products',
                                                 'method': 'GET'
                                             }),
                                             productsManager.getProducts({
@@ -1115,11 +1187,13 @@ define( function ( require, exports, module ) {
                             $rootScope.isPathSlug 	= $route.current.pathParams.ID;
                         }
 				
-                        var isProductPage		= ( renderPath[ 1 ] == "single" );
-                        var isProductCategory	= ( renderPath[ 2 ] == "taxonomy" );
+                        var isProductPage		    = ( renderPath[ 1 ] == "single" );
+                        var isProductCategory	    = ( renderPath[ 2 ] == "taxonomy" );
+                        var isProductCategoryInsect	= ( renderPath[ 3 ] == "insecttype" );
 				
-                        $rootScope.isProductPage 	    = isProductPage;
-                        $rootScope.isProductCategory 	= isProductCategory;
+                        $rootScope.isProductPage 	        = isProductPage;
+                        $rootScope.isProductCategory 	    = isProductCategory;
+                        $rootScope.isProductCategoryInsect 	= isProductCategoryInsect;
 				
 					}
 
@@ -1162,11 +1236,6 @@ define( function ( require, exports, module ) {
                     $rootScope.isProducts 		= isProducts;
                     $rootScope.isInsects		= isInsects;
                     $rootScope.isProfile	    = isProfile;
-                    $rootScope.isProfilePage	= isProfilePage;
-                    $rootScope.isProductCategory	= isProductCategory;
-					$rootScope.isInsectCategory	    = isInsectCategory;
-					$rootScope.isProductPage	    = isProductPage;
-					$rootScope.isInsectPage		    = isInsectPage;
 				
 					// update body classes
 					_updateBodyClass();
@@ -1182,13 +1251,25 @@ define( function ( require, exports, module ) {
 				var _updateBodyClass = function() 
 				{
 				
-					var MainWindowTitle = "MAKE THEM STOP";
+					var MainWindowTitle = "MAKE THEM STOP | Fast Deadly DOOM";
 				
 					_resetBodyClass();
 				
 					if( $rootScope.isProducts === true ) {
+
+                        if( $rootScope.isProductCategoryInsect ) {
+
+                            window.document.title = 'Product Category - ' +  $route.current.pathParams.TYPE + ' - ' + MainWindowTitle;
+                            
+                            window.document.body.classList.add('page-products-taxonomy-insecttype-' + $route.current.pathParams.TYPE );
+
+                        } else if( $rootScope.isProductCategory ) {
+
+                            window.document.title = 'Product Category - ' + MainWindowTitle;
+                            
+                            window.document.body.classList.add('page-products-taxonomy');
 				
-						if( $rootScope.isProductPage ) {
+						} else if( $rootScope.isProductPage ) {
 				
 							window.document.title = 'Product Info - ' + MainWindowTitle;
 				

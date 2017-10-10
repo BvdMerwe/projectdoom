@@ -255,9 +255,9 @@
                         </div>
                         <div class="flex">
                            
-                            <md-button class="md-primary primary-tag" data-ng-click="browseBycategory( 'products', pageContent.insect_categories[0].slug)">
+                            <md-button class="md-primary primary-tag" data-ng-click="browseBycategoryInsect( 'products', pageContent.insect_categories[0].slug, pageContent.post_name)">
                                 <span class="icon icon-"><i class="icon-zap"></i></span>
-                                {{pageContent.post_title}}<br />Killers
+                                {{pageContent.post_title}}<br />Solutions
                             </md-button>
 
                         </div>

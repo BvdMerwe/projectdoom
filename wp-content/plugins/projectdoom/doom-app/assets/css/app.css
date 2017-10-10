@@ -911,6 +911,18 @@ h3.page-title {
 }
 
 /***PROFILE*/
+.insect-profile-content-holder {
+	position: relative;
+	top:-70vh;
+}
+
+@media (max-width: 1279px) and (min-width: 960px) {
+	.insect-profile-content-holder {
+		position: relative;
+		top:-20vh;
+	}
+}
+
 .profile-box {
 	border:5px solid #14A774;
 	/* padding:20px; */

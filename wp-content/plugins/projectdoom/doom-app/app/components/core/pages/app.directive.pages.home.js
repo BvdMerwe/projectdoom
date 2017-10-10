@@ -64,6 +64,7 @@ define( function ( require, exports, module ) {
 
 		$scope.pageContent = {};
 		$scope.productsPageFilter = '';
+		$scope.productsPageInsectFilter = '';
 
 		$scope.$on( '$destroy', function(evt, data) {
 
@@ -75,6 +76,8 @@ define( function ( require, exports, module ) {
 		$scope.$on( "$routeChangeStart", function( ev, to, toParams, from, fromParams ){
 			
 			$scope.pageContent = {};
+			$scope.productsPageFilter = '';
+			$scope.productsPageInsectFilter = '';
 			
 		});
 
@@ -85,17 +88,31 @@ define( function ( require, exports, module ) {
 
 		$scope.viewProfile = function (path) {
 
+			Utils._strict( [ String ], arguments );
+
 			$location.path( '/profile/' + path );
 
 		}
 
-		$scope.browseBycategory = function (type, path) {
+		$scope.browseBycategory = function (type, taxonomy) {
 
-			$location.path( '/' + type + '/category/' + path );
+			Utils._strict( [ String, String ], arguments );
+
+			$location.path( '/' + type + '/category/' + taxonomy );
+
+		}
+
+		$scope.browseBycategoryInsect = function (type, taxonomy, insect) {
+
+			Utils._strict( [ String, String, String ], arguments );
+
+			$location.path( '/' + type + '/category/' + taxonomy + '/' + insect );
 
 		}
 
 		$scope.scrollTo = function(id) {
+
+			Utils._strict( [ String ], arguments );
 				// console.log(document.querySelector(id));
 			var to = document.querySelector(id).offsetTop;
 			// Utils.scrollTo(document,to, 300);
@@ -184,9 +201,9 @@ define( function ( require, exports, module ) {
 					}
 				);
 
-			} else if( $rootScope.isProducts === true && angular.isDefined($route.current.locals.app_data) ) {
+			} else if( ($rootScope.isProducts === true || $rootScope.isProductCategory === true || $rootScope.isProductCategoryInsect === true) && angular.isDefined($route.current.locals.app_data) ) {
 
-				//console.log('Products Filter');
+				console.log('Products Filter', category);
 
 				if( category == "all") {
 
@@ -464,7 +481,7 @@ define( function ( require, exports, module ) {
 
 			for (var index = 0; index < cola.length; index++) {
 				
-				if( $rootScope.isProductPage || $rootScope.isInsectPage || $rootScope.isProfilePage ) {
+				if( $rootScope.isProductPage || $rootScope.isProfilePage ) {
 
 					if( cola[index].post_name == $route.current.pathParams.ID ) {
 
@@ -475,17 +492,62 @@ define( function ( require, exports, module ) {
 					}
 
 				} else if( $rootScope.isProducts && $route.current.pathParams.ID ) {
-					
+
 					if( cola[index].post_name == 'products' ) {
 
-						//console.log('Yo!', cola[index]);
+						console.warn('category filter this bitch:', $route.current.pathParams.ID,  $route.current.pathParams.TYPE);
 
-						console.info('filter thsis bitch');
-						
-						
 						return cola[index];
 
 					}
+
+					/*** /
+					if( $route.current.pathParams.TYPE ) {
+
+						if( cola[index].post_name == 'products' ) {
+
+							console.warn('category+insect filter theis bitch', $route.current.pathParams.ID,  $route.current.pathParams.TYPE);
+							
+							return cola[index];
+
+						}
+
+					} else {
+
+						if( cola[index].post_name == 'products' ) {
+
+							//console.log('Yo!', cola[index]);
+
+							console.warn('category filter theis bitch');
+							
+							return cola[index];
+
+						}
+					
+					}
+					/**/
+
+				} else if( $rootScope.isProducts ) {
+
+					if( cola[index].post_name == 'products' ) {
+
+						console.log('products!', cola[index]);
+							
+						return cola[index];
+
+					} else {
+						console.log('nope!', cola[index]);
+					}
+				/**/
+				} else if( $rootScope.isInsectPage ) {
+
+					if( cola[index].post_name == $route.current.pathParams.ID ) {
+
+						//console.log('Yo!', cola[index]);
+						
+						return cola[index];
+
+					}/***/
 
 				} else { 
 
@@ -509,7 +571,6 @@ define( function ( require, exports, module ) {
 
 			if( angular.isDefined($route.current.locals.app_data) ) {
 
-
 				if( $rootScope.isProductPage ) {
 
 					$scope.productsPageFilter = $route.current.pathParams.ID;
@@ -518,11 +579,20 @@ define( function ( require, exports, module ) {
 
 				} else if( $rootScope.isProducts ) {
 
-					//console.info('products page');
+					if( $route.current.pathParams.TYPE ) {
 
-					$scope.productsPageFilter = $route.current.pathParams.ID;
+						//$scope.productsPageFilter = $route.current.pathParams.ID;
+						$scope.productsPageInsectFilter = $route.current.pathParams.TYPE;
+					}
+					if( $route.current.pathParams.ID ) {
+
+						$scope.productsPageFilter = $route.current.pathParams.ID;
+
+					}
 
 					$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent );
+
+					console.warn('products page', $scope.productsPageFilter, $scope.productsPageInsectFilter, getPageContent( $route.current.locals.app_data.pagecontent ));
 
 				} else if( $rootScope.isInsectPage || $rootScope.isProfilePage ) {
 
@@ -540,9 +610,12 @@ define( function ( require, exports, module ) {
 
 				//console.log('Activity Data: ', $scope.pageContent );
 
-				console.log('Activity Data: ', $rootScope.productsPageFilter, $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams.ID );
+				console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams );
 					
 					
+			} else {
+
+				throw '$route.current.locals.app_data undefined!';
 			}
 
 		}
