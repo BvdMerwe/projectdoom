@@ -991,7 +991,7 @@ define( function ( require, exports, module ) {
                     .otherwise({
                         action: 	'404',
                         resolve: {
-                            app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
+                            app_data: [ '$location', '$q', 'pagesManager', 'productsManager', 'insectsManager', 'retailersManager', 'faqsManager', 'MemCache', 'SessionService', function( $location, $q, pagesManager, productsManager, insectsManager, retailersManager, faqsManager, MemCache, SessionService ) {
                                 
                                 return SessionService.checkExp().then(function(expired){
                                     if (expired) {

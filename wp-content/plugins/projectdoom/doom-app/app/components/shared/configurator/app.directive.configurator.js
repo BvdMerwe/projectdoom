@@ -118,6 +118,7 @@ define( function ( require, exports, module ) {
           if ($scope.step1State == 'active') {
             $scope.step1State = 'inactive';
             $scope.step2State = 'active';
+            $location.path('/insects/'+$scope.config.pest.post_name);
           } else if ($scope.step2State == 'active') {
             $scope.step2State = 'inactive';
             $scope.step3State = 'active';
