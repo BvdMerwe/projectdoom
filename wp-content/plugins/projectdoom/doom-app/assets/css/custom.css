@@ -43,7 +43,7 @@ md-backdrop {
 }
 
 md-select-menu {
-  border: 5px solid #14A774;
+  border: 3px solid #14A774;
 }
 
 md-select-menu md-option {
@@ -259,17 +259,17 @@ div[data-ui-carousel][single='true'] {
   -o-transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   outline: none;
-  border: 5px solid #14A774;
+  border: 3px solid #14A774;
   color: #14A774;
 }
 
 .carousel-container .controls .carousel-control.left {
-  right: calc(100% - 5px);
+  right: calc(100% - 3px);
   padding: 5px 4px 5px 6px !important;
 }
 
 .carousel-container .controls .carousel-control.right {
-  left: calc(100% - 5px);
+  left: calc(100% - 3px);
   padding: 5px 4px 5px 4px !important;
 }
 
@@ -328,7 +328,7 @@ div[data-ui-carousel][single='true'] {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 5px solid #14A774;
+  border: 3px solid #14A774;
   z-index: 0;
 }
 
@@ -757,7 +757,7 @@ END slider style
   -o-transform: translateX(250px);
   transform: translateX(250px);
   background-color: #fff;
-  border: 5px solid #14A774;
+  border: 3px solid #14A774;
   margin: 0 15%;
   width: 70%;
   position: absolute;
@@ -792,7 +792,7 @@ END slider style
 }
 
 #configurator .step-1 .revert .number, #configurator .step-2 .revert .number, #configurator .step-3 .revert .number {
-  border: 5px solid #555;
+  border: 3px solid #555;
   display: block;
   width: 60px;
   height: 60px;
@@ -818,7 +818,7 @@ END slider style
 #configurator .step-1.inactive, #configurator .step-2.inactive, #configurator .step-3.inactive {
   pointer-events: all;
   opacity: 1;
-  border: 5px solid #000;
+  border: 3px solid #000;
   pointer-events: all;
   min-height: 300px;
   max-width: 750px;
@@ -874,7 +874,7 @@ END slider style
   height: 1em;
   display: inline-block;
   font-size: 3em;
-  border: 5px solid transparent;
+  border: 3px solid transparent;
   border-radius: 100%;
   padding: 0.2em 0;
   /* box-sizing: border-box; */
@@ -1111,7 +1111,7 @@ END slider style
   position: absolute;
   top: 45%;
   background-color: #FF510B;
-  border: 5px solid #FF510B;
+  border: 3px solid #FF510B;
   padding: 10px 11px 9px;
   left: 9px;
   color: #fff;
@@ -1119,7 +1119,7 @@ END slider style
 }
 
 #configurator .final .final-container {
-  border: 5px solid #14A774;
+  border: 3px solid #14A774;
   margin: 0px -30px 0 30px;
   margin-top: 100px;
   box-sizing: border-box;
@@ -1177,6 +1177,30 @@ END slider style
   color: #FF510B;
   text-shadow: none;
 }
- 
 
- /*# sourceMappingURL= custom.css.map */
+/***********************************************
+* preloader STYLE
+***********************************************/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #14A774;
+  color: #fff;
+  z-index: 999;
+}
+
+#preloader.ng-animate {
+  /* The finishing CSS styles for the enter animation */
+}
+
+#preloader.ng-animate.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+
+#preloader.ng-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}

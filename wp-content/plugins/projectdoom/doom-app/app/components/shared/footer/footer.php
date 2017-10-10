@@ -19,13 +19,13 @@
       <md-nav-item md-nav-click="setPage('about')" name="about" layout-align="end center">
           ABOUT
       </md-nav-item>
-      <md-nav-item md-nav-click="setPage('legal')" name="about" layout-align="end center">
+      <md-nav-item md-nav-click="setPage('legal')" name="legal" layout-align="end center">
           LEGAL
       </md-nav-item>
-      <md-nav-item md-nav-click="setPage('faq')" name="about" layout-align="end center">
+      <md-nav-item md-nav-click="setPage('faq')" name="faq" layout-align="end center">
           FAQ
       </md-nav-item>
-      <md-nav-item md-nav-click="setPage('contact')" name="about" layout-align="end center">
+      <md-nav-item md-nav-click="setPage('contact')" name="contact" layout-align="end center">
           CONTACT
       </md-nav-item>
     </md-nav-bar>

@@ -4,7 +4,7 @@
 
 $green: #14A774; 
 $orange: #FF510B;
-$keyline-width: 5px;
+$keyline-width: 3px;
 $keyline: $keyline-width solid $green;
 
 /***********************************************
@@ -958,4 +958,27 @@ END slider style
     color: $orange;
     text-shadow: none;
   }
+}
+
+/***********************************************
+* preloader STYLE
+***********************************************/
+#preloader {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: $green;
+  color: #fff;
+  z-index: 999;
+  &.ng-animate {
+    &.ng-enter {
+      transition:0.5s linear all;
+      opacity:0;
+    }
+    
+    /* The finishing CSS styles for the enter animation */
+    &.ng-enter.ng-enter-active {
+      opacity:1;
+    }
+  }
+
 }

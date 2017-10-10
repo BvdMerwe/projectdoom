@@ -110,6 +110,7 @@ function post_type_retailer() {
   	$meta_boxes = doom_retailer_meta_boxes(); ?>
 
   	<?php echo '<link rel="stylesheet" href="'.get_bloginfo('template_url').'/inc/css/meta.css" type="text/css" media="screen" />'; ?>
+  	<?php echo '<link rel="stylesheet" href="'.get_bloginfo('template_url').'/inc/css/admin.css" type="text/css" media="screen" />'; ?>
 
   	<?php foreach ( $meta_boxes as $meta ) :
   		$value = get_post_meta( $post->ID, $meta['name'], true );
