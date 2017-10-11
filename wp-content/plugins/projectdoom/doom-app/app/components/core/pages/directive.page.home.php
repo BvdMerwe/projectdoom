@@ -33,21 +33,21 @@
 
 					<!-- /HOME PAGE TEMPLATE HERE -->
 
-					<!-- ABOUT PAGE TEMPLATE HERE 
+					<!-- ABOUT PAGE TEMPLATE HERE  -->
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="about">
 
-						<div data-ui-app-page-about page-name="about" class="page-content" flex-xs="100" flex="100" style="padding-bottom:0;"></div>
+						<!-- <div data-ui-app-page-about page-name="about" class="page-content" flex-xs="100" flex="100" style="padding-bottom:0;"></div> -->
 
 					</div>
-					/ABOUT PAGE TEMPLATE HERE -->
+					<!-- /ABOUT PAGE TEMPLATE HERE -->
 
-					<!-- LEGAL PAGE TEMPLATE HERE 
+					<!-- LEGAL PAGE TEMPLATE HERE  -->
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="legal">
 
-						<div data-ui-app-page-legal page-name="legal" class="page-content" flex-xs="100" flex="100"></div>
+						<!-- <div data-ui-app-page-legal page-name="legal" class="page-content" flex-xs="100" flex="100"></div> -->
 
 					</div>
-					/LEGAL PAGE TEMPLATE HERE -->
+					<!-- /LEGAL PAGE TEMPLATE HERE -->
 
 					<!-- PRODUCTS PAGE TEMPLATE HERE -->
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="products">
@@ -73,21 +73,21 @@
 					</div>
 					<!-- /INSECTS PROFILE PAGE TEMPLATE HERE -->
 
-					<!-- FAQ PAGE TEMPLATE HERE 
+					<!-- FAQ PAGE TEMPLATE HERE  -->
 					<div layout="column" class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="faq">
 
-						<div data-ui-app-page-content page-name="faq" class="page-content" flex="100" class=""></div>
+						<!-- <div data-ui-app-page-content page-name="faq" class="page-content" flex="100" class=""></div> -->
 
 					</div>
-					/FAQ PAGE TEMPLATE HERE -->
+					<!-- /FAQ PAGE TEMPLATE HERE -->
 
-					<!-- CONTACT PAGE TEMPLATE HERE
+					<!-- CONTACT PAGE TEMPLATE HERE -->
 					<div layout="column" class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-when="contact">
 
-						<div data-ui-app-page-contact page-name="contact" class="page-content" flex-xs="100" flex="100"></div>
+						<!-- <div data-ui-app-page-contact page-name="contact" class="page-content" flex-xs="100" flex="100"></div> -->
 
 					</div>
-					/CONTACT PAGE TEMPLATE HERE -->
+					<!-- /CONTACT PAGE TEMPLATE HERE -->
 					<!-- INSECTS PROFILE PAGE TEMPLATE HERE -->
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="404">
 
