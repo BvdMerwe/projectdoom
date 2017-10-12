@@ -911,6 +911,14 @@ END slider style
   max-width: 100%;
 }
 
+#configurator .step-1 .content-inner {
+  overflow-y: visible !important;
+  overflow-x: auto;
+  max-width: none;
+  width: auto;
+  left: 0;
+}
+
 #configurator .step-1.active.inactive {
   border-color: #000;
   width: 70%;
@@ -922,8 +930,6 @@ END slider style
 }
 
 #configurator .step-1.active {
-  overflow-y: visible !important;
-  overflow-x: auto;
   border-color: transparent;
   padding: 0;
   width: 100%;
@@ -1203,4 +1209,61 @@ END slider style
 
 #preloader.ng-animate.ng-enter.ng-enter-active {
   opacity: 1;
+}
+
+/***********************************************
+* Media Queries
+***********************************************/
+@media screen and (max-width: 959px) {
+  /***********************************************
+  * Insect Page
+  ***********************************************/
+  .page-insects .main-container {
+    padding: 0 15px;
+  }
+  .page-insects .super-hero-bg {
+    max-height: 100%;
+  }
+  .page-insects .super-hero-bg + [layout-gt-sm] {
+    top: 0 !important;
+  }
+  .page-insects .super-bug-image {
+    top: 0;
+  }
+  .page-insects .primary-tag {
+    padding: 0 10px;
+  }
+  /***********************************************
+  * Configurator
+  ***********************************************/
+  #configurator .step-1 .content-inner::after {
+    content: "";
+    min-width: 30px;
+    height: 30px;
+    display: block;
+    position: relative;
+  }
+  #configurator .step-1 .insect-selector {
+    border: 3px solid #14A774 !important;
+    margin: 0 10px;
+  }
+  #configurator .step-1 .insect-selector:first-child {
+    margin-left: 40px;
+  }
+  #configurator .step-1 .insect-selector .thumbnail i {
+    color: #14A774 !important;
+    border-color: #14A774 !important;
+  }
+  #configurator .step-1 .insect-selector .desc, #configurator .step-1 .insect-selector .start-button {
+    opacity: 1 !important;
+  }
+  #configurator .step-3 .map-container {
+    width: 100%;
+  }
+  #configurator .final .final-container .stats-container {
+    min-height: 400px;
+  }
+  #configurator .final .final-container .product img {
+    max-width: 100%;
+  }
 }

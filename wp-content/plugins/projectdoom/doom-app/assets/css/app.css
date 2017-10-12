@@ -790,6 +790,7 @@ h3.page-title {
 	top:12%; /*fallback*/
 	top:35vh;
 	
+	max-width: none;
 	width: 104%;
     left: -2%;
 }

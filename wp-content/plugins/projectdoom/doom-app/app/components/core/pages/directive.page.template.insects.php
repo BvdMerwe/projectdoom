@@ -96,13 +96,13 @@
         <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default >
             
             <?php /**/?>
-            <div layout="row" layout-md="column" layout-align="center start" layout-align-md="center center" class="super-hero-bg" md-swipe-left="prevInsect()" md-swipe-right="nextInsect()">
-                <div flex="50" flex-md="100" flex-md="100" style="margin-top: -49px;">
+            <div layout-gt-sm="row" layout="column" layout-align="center center" layout-align-gt-sm="center start" class="super-hero-bg" md-swipe-left="prevInsect()" md-swipe-right="nextInsect()">
+                <div flex-gt-sm="50" flex="100" style="margin-top: -49px;">
                     <!--<div class="super-bug-image-bg" style="background-image:url('{{pageContent.image}}');"></div>-->
                     <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
                 </div>
                 
-                <div flex="40" flex-offset="10" flex-md="100" class="" layout-align="center start" layout-align-md="center start">
+                <div flex="100" flex-offset-gt-sm="10" flex-gt-sm="40" class="" layout-align="center start" layout-align-gt-sm="center start">
                     <div data-ng-switch="pageContent.post_name">
                         <div data-ng-switch-when="flea">
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can suck</p>
@@ -241,12 +241,12 @@
             </div>
             -->
             <?php /**/?>
-            <div layout="row" layout-md="column" layout-align="space-between start" layout-align-md="center center" style="position:relative;top:-100px;">
+            <div layout-gt-sm="row" layout="column" layout-align="space-between start" layout-align-gt-sm="center center" style="position:relative;top:-100px;">
                 <!-- PEST LINKS -->
-                <div layout="column" flex="50" flex-md="100" layout-align-md="center center">
+                <div layout="column" layout-gt-sm="column" flex-gt-sm="50" flex="100" layout-align="center center" layout-align-gt-sm="start start">
                     <h3 flex="100" class="page-title" style="">{{pageContent.post_title}}</h3>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
-                    <div class="insect-buttons-cta" flex="100" layout="row" layout-align="space-between stretch" layout-align-md="space-between stretch">
+                    <div class="insect-buttons-cta" flex="100" layout="row" layout-align="space-between stretch">
                         <div class="flex">
                             <md-button class="md-primary primary-tag" data-ng-click="viewProfile(pageContent.post_name)">
                                 <span class="icon "><i class="icon-{{pageContent.post_name}}"></i></span>
@@ -272,10 +272,11 @@
                     
                 </div>
                 <!-- RELATED PRODU|CTS -->
-                <div layout="column" layout-fill flex="40" flex-offset="10" flex-md="100" layout-align="start start" layout-align-md="center center">
+                <div layout="column" layout-fill flex-gt-sm="40" flex-offset-gt-sm="10" flex="100" layout-align-gt-sm="start start" layout-align="center center">
                     <h3 flex="100" class="page-title">Products</h3>
-                    <div layout="row" layout-fill>
-                    <div data-ui-carousel
+                    <div layout="row" flex="100" layout-fill>
+                    <div flex="100" 
+                        data-ui-carousel
                         single          = "true"
                         cta             = "true"
                         maxHeight       = "550px"
@@ -292,13 +293,13 @@
             </div>
 
             <!-- CONFIGURATOR -->
-            <div layout="column" layout-md="column" layout-align="start start" layout-align-md="center center">
+            <div layout="column" layout-align-gt-sm="start start" layout-align="center center">
                 <!-- <br /><br /> -->
                 <h3 id="makethemstop" flex="100" class="page-title" style="">Make Them Stop</h3>
                 <p flex="100" class="page-description" style="margin-bottom:0;">Get the right {{pageContent.post_name}} killer for your {{pageContent.post_name}} problem.</p>
                 <!-- <br /><br /> -->
             </div>
-            <div layout="row" layout-md="column" layout-align="center center">
+            <div layout-gt-sm="row" layout="column" layout-align="center center">
 
                 <div data-ui-configurator style="" pest="{{pageContent.post_name}}" flex="100"></div>
 

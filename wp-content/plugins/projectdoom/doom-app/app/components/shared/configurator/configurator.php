@@ -24,11 +24,11 @@
     
     <div class="step-1 {{step1State}} {{step3State}}">
       
-      <div class="content" layout="column" layout-align="space-around center">
-        <div class="content" layout="row" layout-align="space-around center">
+      <div class="content" layout="column" layout-fill>
+        <div class="content" layout="row">
           <h3 class="carousel-title" flex="100" style="text-align:center;margin:1em auto;">Select your bug</h3>
         </div>
-        <div class="content-inner" layout="row" layout-align="space-around center">
+        <div class="content-inner" layout="row" layout-align="start center" layout-align-gt-sm="space-around center">
           <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
             <div class="thumbnail">
               <i class="icon-{{insect.post_name}}"></i>
@@ -145,7 +145,7 @@
         <span class="icon-chevron-left"></span>
       </div>
       <div class="final-container" layout="row" layout-fill layout-align="center start" layout-wrap>
-        <div class="stats-container" flex="33">
+        <div class="stats-container" flex="100" flex-gt-sm="33">
           <h2>In your home</h2>
           <p ng-bind-html="selectedStat.formatted"></p>
           <div class="stat-controls">
@@ -156,12 +156,12 @@
             </div>
           </div>
         </div>
-        <div class="product-container" flex="33">
+        <div class="product-container" flex="19" flex-gt-sm="33">
           <div class="product" layout="row" layout-fill layout-align="center end">
             <img ng-src="{{result.product.image}}" alt="{{result.product.post_name}}" />
           </div>
         </div>
-        <div class="solution-container" flex="33">
+        <div class="solution-container" flex="80" flex-offset="1" flex-gt-sm="33" flex-offset-gt-sm="0">
           <h2>Your results and solution</h2>
           <p class="page-description">{{result.product.post_content}}</p>
           <div class="">
