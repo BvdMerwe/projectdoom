@@ -276,41 +276,62 @@ define(function (require, exports, module) {
 								insectsManager.getInsects(requestObj).then($scope.success, $scope.error);
 								break;
 							case 'product':
-								if (angular.isDefined($route.current.locals.app_data) && $scope.productType != "") {
+								if (angular.isDefined($route.current.locals.app_data) && $scope.productType !== "") {
 									$scope.items = [];
 
-									//console.info('scoping...');
+									//console.warn('scoping...', $scope.productType);
+
+									var results = $route.current.locals.app_data.products;
+
+									if( $rootScope.isProducts ) {
+
+										loopTroop:
+										for (var index = 0; index < results.length; index++) {
+											var element = results[index];
+
+											loopFull:
+											for (var key in element.product_types) {
+												if (element.product_types.hasOwnProperty(key)) {
+													
+													//var element = $scope.pageContent.product_types[key];
+													if( element.product_types[key].slug.toLowerCase() == $scope.productType.toLowerCase() ) {
+														
+														results[index].product_type = $scope.productType;
+														
+														break loopFull;
+
+													}
+
+													//console.log('nazo');
+								
+												}
+											}
+											
+										}
+									
+									}
+
+									_getUniqueCategories( results );
+									_initiateLayout(results);
+									
+
+									/* C|ORRECT
 									var results = $route.current.locals.app_data.products;
 									_getUniqueCategories( results );
 
-									// _initiateLayout();
-									/** /
-									var asdf = results;
-									asdf = jlinq.from(asdf)
-										.equals("insect_categories", ja)
-										.select();
-									// asdf = jlinq.from(asdf)
-									// .equals("product_types.slug", $scope.productType)
-									// .select();
-									console.log(asdf);
-
-									/**/
-									/**/
 									var productTypes = _returnUniqueCategories($route.current.locals.app_data.products);
 									var insectTypes = _returnUniqueCategories($route.current.locals.app_data.insects);
 									var final = [];
-									// for (var i = 0; i < productTypes.length; i++) {
-									// 	if (productTypes[i].name == $scope.productType) {
-												for (var j = 0; j < results.length; j++) {
-													for (var i = 0; i < results[j].insect_categories.length; i++) {
-														if (results[j].insect_categories[i].slug == $scope.insectType) {
-															final.push(results[j]);
-															break;
-														}
-													}
-												}
-									// 	}
-									// }
+									
+									for (var j = 0; j < results.length; j++) {
+										for (var i = 0; i < results[j].insect_categories.length; i++) {
+											if (results[j].insect_categories[i].slug == $scope.insectType) {
+												final.push(results[j]);
+												break;
+											}
+										}
+									}
+									
 									for (var j = 0; j < results.length; j++) {
 										for (var i = 0; i < results[j].product_types.length; i++) {
 											if (results[j].product_types[i].slug == $scope.productType) {
@@ -320,48 +341,32 @@ define(function (require, exports, module) {
 										}
 									}
 									_initiateLayout(final);
+									*/
+									
 									break;
 
-									/** /
-
-									var taxes = $route.current.locals.app_data.taxonomy;
-									//console.log('GARR[]:', $scope.insectType, $route.current.locals.app_data);
-									
-									// for (var index = 0; index < productTypes.length; index++) {
-									// 	var element = productTypes[index];
-									// }
-									// go through all insect categories (Flying / Crawling)
-									//loop1:
-									//for (var index = 0; index < taxes.length; index++) {
-									angular.forEach(taxes.insect_categories, function (val, key) {
-										//var insectArray = val.insect;
-										//console.log('trying['+key+']:', val );
-										switch (val.name.toLowerCase()) {
-											case 'flying':
-											case 'crawling':
-												//console.log('trying:', taxes[index].toLowerCase(), $scope.insectType );
-												loop2:
-												for (var indey = 0; indey < val.insect.length; indey++) {
-													var element = val.insect[indey];
-													if (val.insect[indey].post_name == $scope.insectType) {
-														//gallaryProducts.push( array[index.product] );
-														//console.log('Got Em!');
-														_initiateLayout(val.product);
-														break loop2;
-													}
-												}
-												break;
-											default:
-												//continue;
-												break;
-										}
-									});
-									/**/
 									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
 								} else {
 									var results = $route.current.locals.app_data.products;
 
-									//console.info('scoping...');
+									for (var index = 0; index < results.length; index++) {
+										var element = results[index];
+
+										for (var key in element.product_types) {
+											if (element.product_types.hasOwnProperty(key)) {
+												
+												//var element = $scope.pageContent.product_types[key];
+												
+												results[index].product_type = $scope.productType;
+
+												//console.log('nazo');
+							
+											}
+										}
+										
+									}
+
+									
 									_initiateLayout(results);
 									_getUniqueCategories( results );
 									$scope.success(results);
@@ -427,9 +432,12 @@ define(function (require, exports, module) {
 
 								if( results[index].product_categories[index2].name.toLowerCase() == $scope.insectType ) {
 
-									console.log('isProducts', results[index].post_name, $scope.insectType );
+									//console.log('isProducts', results[index], $scope.insectType, $scope.productType );
 
-									out.push(results[index]);
+									if( results[index].product_type.toLowerCase() == $scope.productType.toLowerCase() ) {
+										out.push(results[index]);
+										//console.log('isProducts', results[index].post_name, results[index].product_type, $scope.insectType, $scope.productType );
+									}
 
 									break loop4;
 
