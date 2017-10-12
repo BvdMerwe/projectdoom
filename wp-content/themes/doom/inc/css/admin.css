@@ -1,3 +1,12 @@
 #wpfooter {
     position: relative !important;
 }
+
+.meta-group {
+    margin-bottom: 2em;
+}
+
+.meta-group strong {
+    display: block;
+    margin-top: 2em;
+}

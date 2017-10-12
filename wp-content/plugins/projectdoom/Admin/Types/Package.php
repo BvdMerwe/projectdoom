@@ -107,7 +107,22 @@ function post_type_package() {
   		'doom_service-city' => array( 'name' => 'doom_service-city', 'title' => __('City', 'doom'), 'desc' => '', 'type' => 'text'),
 
   		'doom_service-venue_name' => array( 'name' => 'doom_service-venue_name', 'title' => __('Venue name', 'doom'), 'desc' => '', 'type' => 'text'),
+		  
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('Social Media Copy', 'doom'), 'desc' => ''),
 
+		'doom_social_media_title' => array( 'name' => 'doom_social_media_title', 'title' => __('Title', 'doom'), 'desc' => 'Title for Social Media', 'std' => '', 'type' => 'text_small'),
+		'doom_social_media_description' => array( 'name' => 'doom_social_media_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for Social Media', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('SEO Meta Details', 'doom'), 'desc' => ''),
+	
+		'doom_meta_keywords' => array( 'name' => 'doom_meta_keywords', 'title' => __('Keywords', 'doom'), 'desc' => 'Keywords for SEO', 'std' => '', 'type' => 'textarea'),
+		'doom_meta_description' => array( 'name' => 'doom_meta_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for SEO', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
   	array('type' => 'close'),
 
   	array('type' => 'clear'),

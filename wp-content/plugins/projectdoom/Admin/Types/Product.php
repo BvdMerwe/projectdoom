@@ -88,6 +88,8 @@ function post_type_product() {
 
   	$meta_boxes = array(
 
+		  
+	'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Product Details', 'doom')),
   		// 'format_settings' => array('name' => 'format_settings', 'type' => 'open', 'title' => __('', 'doom')),
 
   		// 'doom_product-status' => array( 'name' => 'doom_product-status', 'title' => __('Product Availability', 'doom'), 'desc' => 'Choose the option that describes the availability of this product', 'options' => array('in stock', 'out of stock'), 'type' => 'select'),
@@ -105,8 +107,22 @@ function post_type_product() {
   		'doom_product_directions' => array( 'name' => 'doom_product_directions', 'title' => __('Directions', 'doom'), 'desc' => 'e.g -Use only as directed', 'type' => 'richtext'),
   		'doom_product_storage_disposal' => array( 'name' => 'doom_product_storage_disposal', 'title' => __('Storage and disposal', 'doom'), 'desc' => 'e.g - Store in a cool, dry place', 'type' => 'richtext'),
   		'doom_product_precautions' => array( 'name' => 'doom_product_precautions', 'title' => __('Precautions', 'doom'), 'desc' => 'e.g - Avoid excessive inhalation', 'type' => 'richtext'),
+		  
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('Social Media Copy', 'doom'), 'desc' => ''),
 
-  	array('type' => 'close'),
+		'doom_social_media_title' => array( 'name' => 'doom_social_media_title', 'title' => __('Title', 'doom'), 'desc' => 'Title for Social Media', 'std' => '', 'type' => 'text_small'),
+		'doom_social_media_description' => array( 'name' => 'doom_social_media_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for Social Media', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('SEO Meta Details', 'doom'), 'desc' => ''),
+	
+		'doom_meta_keywords' => array( 'name' => 'doom_meta_keywords', 'title' => __('Keywords', 'doom'), 'desc' => 'Keywords for SEO', 'std' => '', 'type' => 'textarea'),
+		'doom_meta_description' => array( 'name' => 'doom_meta_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for SEO', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
 
   	array('type' => 'clear'),
 

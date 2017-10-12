@@ -742,6 +742,13 @@ END slider style
     }
   }
   .step-1 {
+    .content-inner {
+      overflow-y: visible !important;
+      overflow-x: auto;
+      max-width: none;
+      width: auto;
+      left: 0;
+    }
     // height: 420px;
     max-width: 100%;
     &.active.inactive {
@@ -757,8 +764,6 @@ END slider style
       }
     }
     &.active {
-      overflow-y: visible !important;
-      overflow-x: auto;
       border-color: transparent;
       padding: 0;
       width: 100%;
@@ -984,4 +989,82 @@ END slider style
     }
   }
 
+}
+
+
+/***********************************************
+* Media Queries
+***********************************************/
+
+@media screen and (max-width: 959px){ //everything under small (layout-sm)
+
+  /***********************************************
+  * Insect Page
+  ***********************************************/
+  .page-insects {
+    .main-container {
+      padding: 0 15px;
+    }
+    .super-hero-bg {
+      max-height: 100%;
+
+      &+[layout-gt-sm] {
+        top: 0 !important;
+      }
+    }
+    .super-bug-image {
+      top: 0;
+    }
+    .primary-tag {
+      padding: 0 10px;
+    }
+
+  }
+
+  /***********************************************
+  * Configurator
+  ***********************************************/
+  #configurator {
+    .step-1 {
+      .content-inner {
+        &::after {
+          content: "";
+          min-width: 30px;
+          height: 30px;
+          display: block;
+          position: relative;
+        }
+      }
+      .insect-selector {
+        border: $keyline !important;
+        margin: 0 10px;
+
+        &:first-child {
+          margin-left: 40px;
+        }
+        .thumbnail i {
+          color: $green !important;
+          border-color: $green !important; 
+        }
+        .desc, .start-button {
+          opacity: 1 !important;
+        }
+      }
+    }
+    .step-3 {
+      .map-container {
+        width: 100%;
+      }
+    }
+    .final {
+      .final-container {
+        .stats-container {
+          min-height: 400px;
+        }
+        .product img {
+          max-width: 100%;
+        }
+      }
+    }
+  }
 }

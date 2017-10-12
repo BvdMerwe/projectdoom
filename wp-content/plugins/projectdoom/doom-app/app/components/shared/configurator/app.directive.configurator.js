@@ -248,6 +248,7 @@ define( function ( require, exports, module ) {
               $scope.step2State = 'inactive';
               $scope.step3State = 'active';
               $scope.finalPage = '';
+              $scope.scrollTo("#makethemstop");
               break;
             case 4:
               if ($scope.config.location.length < 1) {
@@ -488,7 +489,14 @@ define( function ( require, exports, module ) {
           $scope.scrollToTop();
           $location.path(path);
         }
-        
+        $scope.scrollTo = function(id) {
+
+          Utils._strict( [ String ], arguments );
+            // console.log(document.querySelector(id));
+          var to = document.querySelector(id).offsetTop;
+          // Utils.scrollTo(document,to, 300);
+          window.scrollTo(0, to)
+        }
         $scope.scrollToTop = function() {
           window.scrollTo(0, 0)
         }

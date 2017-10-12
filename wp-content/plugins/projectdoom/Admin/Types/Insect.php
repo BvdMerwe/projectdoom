@@ -91,33 +91,36 @@ function insect_custom_columns($column){
 		'doom_insect_hobbies' => array( 'name' => 'doom_insect_hobbies', 'title' => __('Interests/hobbies', 'doom'), 'desc' => 'Interests/hobbies copy', 'std' => '', 'type' => 'richtext'),
 		array('type' => 'divider'),
 
-		'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Insect Configurator Details', 'doom')),
+	  
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('Insect Configurator Details', 'doom'), 'desc' => 'Text that goes into the Solution Configurator'),
+	// 'caption_position' => array('name' => 'caption_position', 'type' => 'open', 'title' => __('Insect Configurator Details', 'doom')),
 		'doom_insect_config_description' => array( 'name' => 'doom_insect_config_description', 'title' => __('Short Description', 'doom'), 'desc' => 'Configurator insect copy', 'std' => '', 'type' => 'textarea'),
-		array('type' => 'divider'),
+		// array('type' => 'divider'),
 		  
   		'doom_insect_egg' => array( 'name' => 'doom_insect_egg', 'title' => __('Eggs per day', 'doom'), 'desc' => 'Amount of eggs layed per day', 'std' => '', 'type' => 'text_small'),
   		'doom_insect_egg_copy' => array( 'name' => 'doom_insect_egg_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat. Use #STAT# to delimit where the stat should be. E.g, This has happened in your house #STAT# times.', 'std' => '', 'type' => 'textarea'),
-		  array('type' => 'divider'),
+		//   array('type' => 'divider'),
 
   		'doom_insect_molt' => array( 'name' => 'doom_insect_molt', 'title' => __('Molts per day', 'doom'), 'desc' => 'Times the pest molts per day', 'std' => '', 'type' => 'text_small'),
   		'doom_insect_molt_copy' => array( 'name' => 'doom_insect_molt_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'std' => '', 'type' => 'textarea'),
-		  array('type' => 'divider'),
+		//   array('type' => 'divider'),
 
   		'doom_insect_mate' => array( 'name' => 'doom_insect_mate', 'title' => __('Mate per day', 'doom'), 'desc' => 'Times the pest mates per day', 'type' => 'text_small'),
   		'doom_insect_mate_copy' => array( 'name' => 'doom_insect_mate_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'type' => 'textarea'),
-		  array('type' => 'divider'),
+		//   array('type' => 'divider'),
 
   		'doom_insect_life' => array( 'name' => 'doom_insect_life', 'title' => __('Life span', 'doom'), 'desc' => 'How long the pest lives', 'std' => '', 'type' => 'text_small'),
   		'doom_insect_life_copy' => array( 'name' => 'doom_insect_life_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'std' => '', 'type' => 'textarea'),
-		  array('type' => 'divider'),
+		//   array('type' => 'divider'),
 
   		'doom_insect_poop' => array( 'name' => 'doom_insect_poop', 'title' => __('Poops per day', 'doom'), 'desc' => 'Times the pest poops per day', 'std' => '', 'type' => 'text_small'),
   		'doom_insect_poop_copy' => array( 'name' => 'doom_insect_poop_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'std' => '', 'type' => 'textarea'),
-		  array('type' => 'divider'),
+		//   array('type' => 'divider'),
 
   		'doom_insect_vomit' => array( 'name' => 'doom_insect_vomit', 'title' => __('Vomits per day', 'doom'), 'desc' => 'Times the pest vomits per day', 'type' => 'text_small'),
   		'doom_insect_vomit_copy' => array( 'name' => 'doom_insect_vomit_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'type' => 'textarea'),
-		  array('type' => 'divider'),
+		//   array('type' => 'divider'),
 
       'doom_insect_sucks' => array( 'name' => 'doom_insect_sucks', 'title' => __('Blood sucks per day', 'doom'), 'desc' => 'Times the pest sucks blood per day', 'type' => 'text_small'),
       'doom_insect_sucks_copy' => array( 'name' => 'doom_insect_sucks_copy', 'title' => __('Copy', 'doom'), 'desc' => 'Copy to accompany above stat', 'type' => 'textarea'),
@@ -125,8 +128,22 @@ function insect_custom_columns($column){
 
 
   		//'doom_thumbnail_align' => array( 'name' => 'doom_thumbnail_align', 'title' => __('Featured Image alignment', 'doom'), 'desc' => 'Choose your Featured Image alignment.', 'options' => array('center top', 'center bottom', 'center center'), 'type' => 'select'),
+  
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('Social Media Copy', 'doom'), 'desc' => ''),
 
-  	array('type' => 'close'),
+		'doom_social_media_title' => array( 'name' => 'doom_social_media_title', 'title' => __('Title', 'doom'), 'desc' => 'Title for Social Media', 'std' => '', 'type' => 'text_small'),
+		'doom_social_media_description' => array( 'name' => 'doom_social_media_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for Social Media', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	  
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('SEO Meta Details', 'doom'), 'desc' => ''),
+	
+		'doom_meta_keywords' => array( 'name' => 'doom_meta_keywords', 'title' => __('Keywords', 'doom'), 'desc' => 'Keywords for SEO', 'std' => '', 'type' => 'textarea'),
+		'doom_meta_description' => array( 'name' => 'doom_meta_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for SEO', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	  
+	array('type' => 'close'),
 
   	array('type' => 'clear'),
 

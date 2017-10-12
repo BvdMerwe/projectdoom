@@ -34,9 +34,24 @@ function post_type_page() {
 
   		array('type' => 'divider'),
 
-  		'doom_top_content' => array( 'name' => 'doom_top_content', 'title' => __('Top Content', 'doom'), 'desc' => 'Add any content, including shortcodes, that you want to insert above your main content and sidebar.', 'size' => 'large', 'type' => 'textarea'),
+		  'doom_top_content' => array( 'name' => 'doom_top_content', 'title' => __('Top Content', 'doom'), 'desc' => 'Add any content, including shortcodes, that you want to insert above your main content and sidebar.', 'size' => 'large', 'type' => 'textarea'),
+		  
+	
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('Social Media Copy', 'doom'), 'desc' => ''),
 
-  	array('type' => 'close'),
+		'doom_social_media_title' => array( 'name' => 'doom_social_media_title', 'title' => __('Title', 'doom'), 'desc' => 'Title for Social Media', 'std' => '', 'type' => 'text_small'),
+		'doom_social_media_description' => array( 'name' => 'doom_social_media_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for Social Media', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('SEO Meta Details', 'doom'), 'desc' => ''),
+	
+		'doom_meta_keywords' => array( 'name' => 'doom_meta_keywords', 'title' => __('Keywords', 'doom'), 'desc' => 'Keywords for SEO', 'std' => '', 'type' => 'textarea'),
+		'doom_meta_description' => array( 'name' => 'doom_meta_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for SEO', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
 
   	array('type' => 'clear'),
 

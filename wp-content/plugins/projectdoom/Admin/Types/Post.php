@@ -15,6 +15,22 @@ function post_type_post() {
   		'doom_custom_url' => array( 'name' => 'doom_custom_url', 'title' => __('Video URL', 'doom'), 'desc' => 'A video url (Youtube/Vimeo) which your image links to (used for your lightbox URL).', 'type' => 'text'),
 
   		'doom_thumbnail_filter' => array( 'name' => 'doom_thumbnail_filter', 'title' => __('Featured Image Filter', 'doom'), 'desc' => 'Choose your Featured Image Filter.', 'options' => array('none', 'blur', 'grayscale', 'hue','invert', 'saturate','sepia'), 'type' => 'select'),
+		  
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('Social Media Copy', 'doom'), 'desc' => ''),
+
+		'doom_social_media_title' => array( 'name' => 'doom_social_media_title', 'title' => __('Title', 'doom'), 'desc' => 'Title for Social Media', 'std' => '', 'type' => 'text_small'),
+		'doom_social_media_description' => array( 'name' => 'doom_social_media_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for Social Media', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
+	array('type' => 'open', 'title' => __('SEO Meta Details', 'doom'), 'desc' => ''),
+	
+		'doom_meta_keywords' => array( 'name' => 'doom_meta_keywords', 'title' => __('Keywords', 'doom'), 'desc' => 'Keywords for SEO', 'std' => '', 'type' => 'textarea'),
+		'doom_meta_description' => array( 'name' => 'doom_meta_description', 'title' => __('Description', 'doom'), 'desc' => 'Description for SEO', 'std' => '', 'type' => 'textarea'),
+		array('type' => 'divider'),
+	
+	array('type' => 'close'),
 
   	array('type' => 'close'),
 
