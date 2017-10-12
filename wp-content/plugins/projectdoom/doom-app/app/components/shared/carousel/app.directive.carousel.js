@@ -388,9 +388,75 @@ define(function (require, exports, module) {
 					// $scope.managerGet(requestObj).then(success, error);
 				}
 				function _initiateLayout(results) {
+					
+					var out = [];
+					var i =0;
+					loopScope:
+					for ( var index in results ) {
+
+						if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
+
+							//console.log( 'Finding',results[index], index );
+
+							loop4:
+							for ( i in results[index].product_categories ) {
+
+								//console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
+
+								if( results[index].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
+
+									out.push(results[index]);
+
+									//console.log( 'Got Em!', results[index] );
+
+									break loop4;
+
+								}
+
+							}
+
+						} else if( $rootScope.isProducts ) {
+
+							//console.log('isProducts', results[index], $scope.insectType, index );
+							/**/
+							
+							loop4:
+							for ( var index2 in results[index].product_categories ) {
+
+								//console.log('isProducts', index, index2 );
+
+								if( results[index].product_categories[index2].name.toLowerCase() == $scope.insectType ) {
+
+									console.log('isProducts', results[index].post_name, $scope.insectType );
+
+									out.push(results[index]);
+
+									break loop4;
+
+								}
+
+							}/**/
+
+							//console.log('isProducts', out );
+
+							//out.push(results[index]);
+
+						} else {
+
+							//
+
+							//console.log('GENERIC FINDINGS',results[index]);
+
+							out.push(results[index]);
+
+						}
+					}
+					
+
+					/** * /
+					// ALL BELOW WORKS!!!
 					// $scope.items = [];
 					// var results = $route.current.locals.app_data.products;
-					var out = [];
 					loop1:
 					for (var index = 0; index < results.length; index++) {
 						var taxi = $route.current.locals.app_data.taxonomy.product_types;
@@ -409,7 +475,31 @@ define(function (require, exports, module) {
 											if (results[index].image == undefined) {
 												results[index].image = "https://unsplash.it/240/215";
 											}
-											out.push(results[index]);
+
+											if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
+												var i =0;
+												loop4:
+												for ( i in results[index].insect_categories ) {
+
+													if( results[index].insect_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
+														
+														out.push(results[index]);
+
+														console.log('Got Em!', results[index], taxi[indie]);
+
+														break loop2;
+
+													}
+
+												}
+
+											} else {
+
+												out.push(results[index]);
+
+											}
+
+											//console.log('Got Em!', results[index], taxi[indie]);
 										}
 										//console.log('Got Em!', taxi[indie].name, $scope.productType);
 										break loop2;
@@ -420,9 +510,19 @@ define(function (require, exports, module) {
 						//});
 					}
 					//$scope.gridItems = results;
+					/***/
+
 					$scope.success(out);
 				}
 				$scope.success = function (data) {
+
+					if( angular.isDefined(!data) || data.length == 0 ) {
+
+						console.warn('No results to filter/Show');
+						//$scope.$broadcast("items-loaded");
+						//return;
+					}
+
 					$scope.items = $filter('unique')(data);
 					$scope.itemLength = $scope.items.length;
 					// $scope.$digest();
@@ -452,13 +552,22 @@ define(function (require, exports, module) {
 				});
 
 				$scope.filter = function ($ev, key) {
-					console.log('Filtering...', key, $ev);
-					_filterBtnClasses(key);
+					
+					//console.log('Filtering...', key, $scope.contentType, $scope.filterBy, $ev);
+					//_filterBtnClasses(key);
+					
 					var newItems = [];
+					
 					if (key == "all") {
+						
+						_filterBtnClasses(key);
+
 						$scope.success($route.current.locals.app_data.products);
 						return;
 					} else {
+
+						//_filterBtnClasses(key);
+
 						switch ($scope.contentType) {
 							case 'insect':
 								for (var index = 0; index < $scope.items.length; index++) {
@@ -486,6 +595,118 @@ define(function (require, exports, module) {
 										}
 										break;
 									case "product_types":
+
+										//get
+										var fallbackItems = [];
+										if( $rootScope.isProductPage ) {
+											
+											var prodLength = $route.current.locals.app_data.products.length;
+											var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
+											
+											console.info('Check the product category', key, currentProduct, $route.current.pathParams.ID );
+											/*** /
+											// go through active product product types
+											loop1:
+											for (var indexPTypes = 0; indexPTypes < currentProduct.product_types.length; indexPTypes++) {
+
+												// go all through products
+												loop2:
+												for (var index = 0; index < prodLength; index++) {
+
+													var compareProduct = $route.current.locals.app_data.products[index];
+
+													// go through comparison products product types
+													loop3:
+													for (var index = 0; index < compareProduct.product_types.length; index++) {
+
+														if ( (currentProduct.product_types[indexPTypes].term_id == compareProduct.product_types[index].term_id) ) {
+
+															if( compareProduct.product_types[index].term_id == key ) {
+
+																console.log('BammmmBAH!', compareProduct, key );
+																newItems.push(compareProduct);
+
+															} else {
+
+																fallbackItems.push(compareProduct);
+															}
+
+															break loop2;
+
+														}
+													
+													}
+
+												}
+											}
+
+											if( newItems.length == 0 ) {
+												newItems = fallbackItems;
+											}/***/
+										
+										} else {
+
+											$scope.items = $route.current.locals.app_data.products;
+											for (var index = 0; index < $scope.items.length; index++) {
+												//var element = $scope.gridItems[index];
+												for (var index2 = 0; index2 < $scope.items[index].product_types.length; index2++) {
+													//var element = $scope.gridItems[index].product_categories[index2];
+													if ($scope.items[index].product_types[index2].term_id == key) {
+														//console.log('BammmmBAH!', $scope.items[index].product_types[index2].term_id, key, $scope.items[index]);
+														newItems.push($scope.items[index]);
+
+													}
+												}
+											}
+
+										}
+
+										/** /
+										$scope.items = $route.current.locals.app_data.products;
+										for (var index = 0; index < $scope.items.length; index++) {
+											//var element = $scope.gridItems[index];
+											for (var index2 = 0; index2 < $scope.items[index].product_types.length; index2++) {
+												//var element = $scope.gridItems[index].product_categories[index2];
+												if ($scope.items[index].product_types[index2].term_id == key) {
+
+													//is it product categories the same:
+													
+
+													if( $rootScope.isProductPage ) {
+
+														console.info('Check the product category', key, currentProduct, $route.current.pathParams.ID );
+
+														/** /
+														var i, indice = 0;
+														for ( i in $scope.items[indice].product_categories ) {
+
+															console.log('FilterFinding',$scope.items[indice].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
+
+															if( $scope.items[indice].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
+
+																out.push($scope.items[indice]);
+
+																console.log( 'GotFilterEm!', $scope.items[indice] );
+
+																break;
+
+															}
+
+														}
+														/*** /
+
+													} else {
+														console.log('BammmmBAH!', $scope.items[index].product_types[index2].term_id, key, $scope.items[index]);
+														newItems.push($scope.items[index]);
+													}
+
+												}
+											}
+										}
+										/**/
+
+										break;
+
 									default:
 										$scope.items = $route.current.locals.app_data.products;
 										for (var index = 0; index < $scope.items.length; index++) {
@@ -506,7 +727,23 @@ define(function (require, exports, module) {
 								break;
 						}
 					}
-					$scope.success(newItems);
+
+					if( newItems.length == 0 ) {
+
+						alert('No Items available');
+
+						return;
+
+						//$scope.success($route.current.locals.app_data.products);
+
+					} else {
+
+						_filterBtnClasses(key);
+					
+						$scope.success(newItems);
+					
+					}
+
 				}
 
 				$scope.goto = function (type, name) {
@@ -685,7 +922,7 @@ define(function (require, exports, module) {
 
 						default:
 
-							throw 'Invalid Content Type for Gallery';
+							throw 'Invalid Content Type for Carousel';
 
 							break;
 
@@ -700,9 +937,11 @@ define(function (require, exports, module) {
 					filterCategories = $filter('flatten')(cats);
 					filterCategories = $filter('unique')(filterCategories, 'term_id');
 
+					//console.log( 'categories['+$scope.contentType.toLowerCase()+']:', $scope.filterCategories, $scope.insectFilterCategories );
+
 					return filterCategories;
 
-					//console.log( 'categories:', $scope.filterCategories, $scope.insectFilterCategories );
+					
 
 				}
 			}],

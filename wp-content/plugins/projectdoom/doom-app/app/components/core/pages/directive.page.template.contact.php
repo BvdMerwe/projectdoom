@@ -14,7 +14,7 @@
 <div class="animate-page-switch-container" layout-fill>
 
     <!-- [HERO SECTION] -->
-    <div layout="row">
+    <div layout="row" flex-order="2" flex-order-gt-sm="1">
         <div flex="grow" class="">
             <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
             <p flex="100"  class="page-content-copy">{{pageContent.post_content}}</p>
@@ -25,7 +25,7 @@
 
     <!-- [BODY SECTION] -->
 
-    <div flex="grow" layout-fill>
+    <div flex="grow" layout-fill  flex-order="1" flex-order-gt-sm="2">
 
         <div data-ui-form-contact layout-fill flex="100 md-whiteframe-7dp"></div>
                         

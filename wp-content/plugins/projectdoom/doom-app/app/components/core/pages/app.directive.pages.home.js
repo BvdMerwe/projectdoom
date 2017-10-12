@@ -495,7 +495,7 @@ define( function ( require, exports, module ) {
 
 					if( cola[index].post_name == 'products' ) {
 
-						console.warn('category filter this bitch:', $route.current.pathParams.ID,  $route.current.pathParams.TYPE);
+						//console.warn('category filter this bitch:', $route.current.pathParams.ID,  $route.current.pathParams.TYPE);
 
 						return cola[index];
 
@@ -531,12 +531,12 @@ define( function ( require, exports, module ) {
 
 					if( cola[index].post_name == 'products' ) {
 
-						console.log('products!', cola[index]);
+						//console.log('products!', cola[index]);
 							
 						return cola[index];
 
 					} else {
-						console.log('nope!', cola[index]);
+						//console.log('nope!', cola[index]);
 					}
 				/**/
 				} else if( $rootScope.isInsectPage ) {
@@ -565,6 +565,94 @@ define( function ( require, exports, module ) {
 
 		}
 
+		function _updateInsectClasses() {
+
+
+			/** /
+			var domElems = document.querySelectorAll('.product-insects li');
+
+			if( angular.isDefined(domElems) && domElems.length > 0 ) {
+
+				for (var key in $scope.pageContent.product_categories) {
+					if ($scope.pageContent.product_categories.hasOwnProperty(key)) {
+						var element = $scope.pageContent.product_categories[key];
+						var domElem = document.querySelectorAll('.product-insects li.icon-insect-' + element.slug );
+						console.log('domElem:', domElem );
+					}
+				}
+
+			} else {
+				console.error('domElems:', domElems);
+			}/**/
+
+			$scope.pageContent.insect_ant = false;
+			$scope.pageContent.insect_fly = false;
+			$scope.pageContent.insect_flea = false;
+			$scope.pageContent.insect_fishmoth = false;
+			$scope.pageContent.insect_mosquito = false;
+			$scope.pageContent.insect_cockroach = false;
+
+			for (var key in $scope.pageContent.product_categories) {
+				if ($scope.pageContent.product_categories.hasOwnProperty(key)) {
+					
+					var element = $scope.pageContent.product_categories[key];
+					
+					switch( element.slug ) {
+
+						case 'ant':
+
+							$scope.pageContent.insect_ant = true;
+
+							break;
+						
+						case 'fly':
+
+							$scope.pageContent.insect_fly = true;
+
+							break;
+						
+						case 'flea':
+
+							$scope.pageContent.insect_flea = true;
+
+							break;
+
+						case 'fishmoth':
+
+							$scope.pageContent.insect_fishmoth = true;
+
+							break;
+						
+						case 'mosquito':
+
+							$scope.pageContent.insect_mosquito = true;
+
+							break;
+
+						case 'cockroach':
+
+							$scope.pageContent.insect_cockroach = true;
+
+							break;
+
+						
+					}
+
+				}
+			}
+
+			for (var key in $scope.pageContent.product_types) {
+				if ($scope.pageContent.product_categories.hasOwnProperty(key)) {
+					
+					var element = $scope.pageContent.product_types[key];
+					
+					$scope.pageContent.product_type = element.slug;
+
+				}
+			}
+
+		}
+
 		function _ini() {
 
 			//$rootScope.productsPageFilter = $route.current.pathParams.ID;
@@ -575,7 +663,11 @@ define( function ( require, exports, module ) {
 
 					$scope.productsPageFilter = $route.current.pathParams.ID;
 
+					console.log('productsPageFilter', $scope.productsPageFilter);
+
 					$scope.pageContent = getPageContent( $route.current.locals.app_data.products ); //$route.current.locals.app_data.pagecontent[0];
+					
+					_updateInsectClasses();
 
 				} else if( $rootScope.isProducts ) {
 

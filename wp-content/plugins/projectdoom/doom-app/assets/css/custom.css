@@ -18,7 +18,7 @@ md-toolbar {
 md-toolbar .md-toolbar-tools {
   height: auto;
   padding: 0 8px;
-  color: #FF510B;
+  color: #ff510b;
 }
 
 md-toolbar .md-toolbar-tools .md-button {
@@ -196,7 +196,7 @@ md-sidenav ul li {
   content: ' ';
   height: 33px;
   width: 2px;
-  background-color: #333;
+  background-color: #fff;
 }
 
 .close::before {
@@ -259,8 +259,8 @@ div[data-ui-carousel][single='true'] {
   -o-transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   transition: 0.3s cubic-bezier(0.42, -0.37, 0.55, 1.43);
   outline: none;
-  border: 3px solid #14A774;
-  color: #14A774;
+  border: 3px solid #ff510b;
+  color: #ff510b;
 }
 
 .carousel-container .controls .carousel-control.left {
@@ -380,6 +380,7 @@ md-autocomplete-wrap input {
 }
 
 #search-takeover.open .search-button {
+  color: #14A774;
   -webkit-animation: spin 0.5s 1;
   -moz-animation: spin 0.5s 1;
   -o-animation: spin 0.5s 1;
@@ -387,6 +388,7 @@ md-autocomplete-wrap input {
 }
 
 #search-takeover.open .search-button::before {
+  color: #14A774;
   content: '\e879' !important;
 }
 
@@ -787,7 +789,7 @@ END slider style
   height: 100%;
   padding: 90px 30px;
   text-align: center;
-  color: #FF510B;
+  color: #ff510b;
   cursor: pointer;
 }
 
@@ -1110,8 +1112,8 @@ END slider style
   display: block;
   position: absolute;
   top: 45%;
-  background-color: #FF510B;
-  border: 3px solid #FF510B;
+  background-color: #ff510b;
+  border: 3px solid #ff510b;
   padding: 10px 11px 9px;
   left: 9px;
   color: #fff;
@@ -1174,7 +1176,7 @@ END slider style
 }
 
 .page-faq ::selection, .page-contact ::selection, .page-legal ::selection, .page-about ::selection, .super-menu-open ::selection, .super-search-open ::selection {
-  color: #FF510B;
+  color: #ff510b;
   text-shadow: none;
 }
 

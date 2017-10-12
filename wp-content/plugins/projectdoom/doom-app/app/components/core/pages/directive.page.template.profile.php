@@ -11,7 +11,7 @@
             </div>
             
             <div layout="row" layout-md="column" layout-align="center start" class="insect-profile-content-holder">
-                <div layout="column" flex="47" flex-md="100" flex-md="100">
+                <div layout="column" flex="100" flex-md="100">
                     <div class="profile-box" layout-fill>
                         <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> About me</h3>
                         <br />
@@ -89,11 +89,16 @@
                     </div>
 
                 </div>
-                <div layout="column" flex="47" flex-offset="5" flex-md="100" flex-md="100" flex-md-offset="0" layout-align-md="center center" layout-align="center start">
+                <div layout="column" flex="100" flex-md="100" layout-align-md="center center" layout-align="center start">
                     <div class="profile-box" layout-fill>
                         <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> Interests / hobbies</h3>
                         <br />
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_hobbies}}</p>
+                    </div>
+                    <div class="profile-box" layout-fill>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> I'm best known for</h3>
+                        <br />
+                        <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_best_known}}</p>
                     </div>
                     <div class=""> 
                         <h3 flex="100" class="carousel-title" style="margin-bottom:0;">Most vulnerable when</h3>

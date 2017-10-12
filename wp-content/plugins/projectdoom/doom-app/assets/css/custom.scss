@@ -3,7 +3,7 @@
 @import "flex.mixin.scss";
 
 $green: #14A774; 
-$orange: #FF510B;
+$orange: #ff510b;
 $keyline-width: 3px;
 $keyline: $keyline-width solid $green;
 
@@ -186,7 +186,7 @@ md-sidenav {
     content: ' ';
     height: 33px;
     width: 2px;
-    background-color: #333;
+    background-color: #fff;
   }
   &::before {
     @include transform(rotate(45deg));
@@ -240,8 +240,9 @@ div[data-ui-carousel][single='true'] {
       // border-radius: 100%;
       // background: rgba(#fff, 0.5);
       // padding: 5px;
-      border: $keyline;
-      color: $green;
+      // border: $keyline;
+      border: 3px solid #ff510b;
+      color: $orange;
       // z-index: 1;
 
       &.left {
@@ -352,8 +353,10 @@ div[data-ui-carousel][single='true'] {
     }
     .search-button {
       // position: absolute;
+      color:#14A774;
       @include animation('spin 0.5s 1');
       &::before {
+        color: #14A774;
         content: '\e879' !important;
       }
     }

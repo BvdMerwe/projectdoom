@@ -39,8 +39,8 @@
 			data-filter-id="{{value.term_id}}"
 			data-ng-click="filter($event, value.term_id)"
 			data-ng-if="contentType == 'product'"
-			data-ng-class="{'active-filter': $middle == true }"
-			data-ng-repeat="(key, value) in filterCategories">
+			data-ng-class="{'active-filter': $first == true }"
+			data-ng-repeat="(key, value) in filterCategories | orderBy: 'term_id'">
 				{{value.name}}
 		</md-button>
 	</div>

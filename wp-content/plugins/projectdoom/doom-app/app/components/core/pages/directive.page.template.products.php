@@ -36,19 +36,19 @@
                         <md-button
                             class="md-button primary-tag"
                             data-ng-click="filterProducts('spray')"
-                            data-ng-class="{active: pageContent.product_type == 'Spray'}">
+                            data-ng-class="{active: pageContent.product_type == 'spray'}">
                             Spray
                         </md-button>
                         <md-button
                             class="md-button primary-tag "
                             data-ng-click="filterProducts('coil')"
-                            data-ng-class="{active: pageContent.product_type == 'Coil'}">
+                            data-ng-class="{active: pageContent.product_type == 'coil'}">
                             Coil
                         </md-button>
                         <md-button
                             class="md-button primary-tag "
                             data-ng-click="filterProducts('electric')"
-                            data-ng-class="{active: pageContent.product_type == 'Electric'}">
+                            data-ng-class="{active: pageContent.product_type == 'electric'}">
                             Electric
                         </md-button>
                         
@@ -79,26 +79,28 @@
                     
                 </div>
                 <div flex="40" flex-offset="10" flex-offset-md="0" flex-md="100" layout-align-md="center start" class="" style="">
-                    <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
-                    <span class="hr-divider"></span>
-                    <p flex="100" class="page-description">{{pageContent.post_content}}</p>
+                    <div class="product-meta-info">
+                        <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
+                        <span class="hr-divider"></span>
+                        <p flex="100" class="page-description">{{pageContent.post_content}}</p>
+                    </div>
                     <ul class="product-insects">
-                        <li data-ng-class="{active: pageContent.post_name == 'ant'}" class="icon-insect-ant" title="Ants">
+                        <li data-ng-class="{active: pageContent.insect_ant == true}" class="icon-insect-ant" title="Ants">
                             <i class="icon-ant"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
+                        <li data-ng-class="{active: pageContent.insect_cockroach == true}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
+                        <li data-ng-class="{active: pageContent.insect_fishmoth == true}" class="icon-insect-fishmoth" title="Fishmoths">
                             <i class="icon-fishmoth"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
+                        <li data-ng-class="{active: pageContent.insect_flea == true}" class="icon-insect-flea" title="Fleas">
                             <i class="icon-flea"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
+                        <li data-ng-class="{active: pageContent.insect_fly == true}" class="icon-insect-fly" title="Flies">
                             <i class="icon-fly"></i>
                         </li>
-                        <li data-ng-class="{active: pageContent.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
+                        <li data-ng-class="{active: pageContent.insect_mosquito == true}" class="icon-insect-mosquito" title="Mosquitoes">
                             <i class="icon-mosquito"></i>
                         </li>
                         <!--
@@ -146,23 +148,26 @@
                             </div>
 						</collapsible-item>
 
-					</ang-accordion>
-					<br/>
-                    <h3 class="page-title">Similar Products</h3>
-                    <br />
-                    <div layout="row">
-                        <div data-ui-carousel
-                            single          = "true"
-                            cta             = "true"
-                            maxHeight       = "300px"
-                            maxWidth        = "250px"
-                            gutter          = "10px"
-                            displayName     = "true"
-                            insectType      = ""
-                            productType     = ""
-                            showFilter      = "true"
-                            filterBy        = "product_types"
-                            contentType="product"></div>
+                    </ang-accordion>
+                    
+                    <div class="products-widget"> 
+                        <br/>
+                        <h3 class="page-title">Similar Products</h3>
+                        <br />
+                        <div layout="row" layout-align-md="center center">
+                            <div data-ui-carousel
+                                single          = "true"
+                                cta             = "true"
+                                maxHeight       = "300px"
+                                maxWidth        = "250px"
+                                gutter          = "10px"
+                                displayName     = "true"
+                                insectType      = ""
+                                productType     = ""
+                                showFilter      = "true"
+                                filterBy        = "product_types"
+                                contentType="product"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -192,15 +197,15 @@
 
             <!-- [HERO SECTION]  -->
             <div layout="row" layout-md="column" layout-align="center center">
-                <div flex="60" flex-md="100" class="">
+                <div flex="100" flex-gt-sm="60" flex-md="100" class="">
                     <div class="bg-box">
                         <!--<img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption">-->
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex="40" flex-md="100" class="" layout-align-md="center center">
+                <div flex="100" flex-gt-sm="40" class="center-content" layout-align="center center" layout-align-gt-sm="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
-                    <span class="hr-divider"></span>
+                    <span class="hr-divider"></span> 
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                 </div>
             </div>
@@ -765,14 +770,14 @@
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex="40" flex-md="100" class="" layout-align-md="center center">
+                <div flex="40" flex-md="100" class="center-content" layout-align-md="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                 </div>
             </div>
             <!-- [/HERO SECTION] -->
-            <div class="product-filter-categories">
+            <div class="product-filter-categories center-content mobile-padding">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"

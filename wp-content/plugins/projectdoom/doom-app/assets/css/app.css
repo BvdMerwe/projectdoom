@@ -286,6 +286,10 @@ md-nav-ink-bar {
 	list-style: none;
 }
 
+.mobi-menu-list {
+	margin-bottom:100px;
+}
+
 .super-menu ul li {
 	position: relative;
 	padding: 20px 0;
@@ -433,6 +437,11 @@ md-nav-ink-bar {
 	top:-50px;
 }
 
+.copy-cta-description {
+	font-size: 14px;
+	margin-top:50px;
+}
+
 .page-insects-single-ant .app-dashboard,
 .page-insects-single-fly .app-dashboard,
 .page-insects-single-flea .app-dashboard,
@@ -516,6 +525,15 @@ h3.page-title {
     line-height: 1.625em;
 }
 
+@media (max-width: 1280px) { 
+	.center-content {
+		text-align: center;
+	}
+	.mobile-padding {
+		margin:2em auto;
+	}
+}
+
 .page-about .page-content-copy,
 .page-legal .page-content-copy,
 .page-contact .page-content-copy {
@@ -524,7 +542,7 @@ h3.page-title {
 
 .hr-divider {
 	position: relative;
-	display: block;
+	display: inline-block;
 	height: 5px;
     width: 50%;
     background-color: #14A774;
@@ -738,11 +756,6 @@ h3.page-title {
 	min-width: 200px;
 }
 
-
-
-
-
-
 .insect-buttons-cta div {
 	border-left:1px solid #cccccc;
 	padding: 60px 0;
@@ -826,22 +839,30 @@ h3.page-title {
 	font-size: 2em;
 	border:none;
 	background:none;
+	color:#ff510b;
 }
 
 .product-controller-buttons .icon-chevron-left,
 .product-controller-buttons .icon-chevron-right {
-	background:#14A774;
+	background:#ff510b;
 	color:#fff;
 	padding:20px;
 }
 
 .insect-controller-buttons .icon-chevron-left,
 .product-controller-buttons .icon-chevron-left {
-	left:0;
+	left:2px;
 }
 .insect-controller-buttons .icon-chevron-right,
 .product-controller-buttons .icon-chevron-right {
-	right:0;
+	right:2px;
+}
+
+.insect-controller-buttons .icon-chevron-left {
+	left:-40px;
+}
+.insect-controller-buttons .icon-chevron-right {
+	right:-40px;
 }
 
 .product-filter-categories .primary-tag {
@@ -858,6 +879,24 @@ h3.page-title {
 	border:none;
 	background:#14A774;
 	color:#fff;
+}
+
+@media (max-width: 1280px) {
+	.product-meta-info {
+		text-align: center;
+	}
+	.product-insects {
+		text-align: center;
+	}
+	.product-insects li{
+		text-align: left;
+	}
+
+	.products-widget {
+		text-align: center;
+		position: relative;
+		display: block;
+	}
 }
 
 /** /
@@ -980,6 +1019,7 @@ h3.page-title {
 	padding: 20px 40px;
 	border-bottom:1px solid #ccc;
 	padding-bottom: 30px;
+	margin: 0 auto;
 	
 }
 /** /
@@ -991,7 +1031,8 @@ h3.page-title {
 .profile-pin-descriptions p.active i,
 .profile-pin-descriptions p:hover,
 .profile-pin-descriptions p:hover i{
-	color:#14A774;
+	color:#fff;
+	background-color:#14A774;
 }
 
 .profile-pin-descriptions i{
@@ -1004,6 +1045,10 @@ h3.page-title {
 
 .profile-pin-descriptions p:last-child{
 	border-bottom:none;
+}
+
+.md-slider .md-track-ticks {
+	display: none;
 }
 /**
 * 
@@ -1124,6 +1169,16 @@ md-card md-card-content {
 	height: auto;
 }
 
+@media (max-width: 1280px) {
+	.bg-box {
+		margin:0 auto;
+	}
+
+	.product-filter-categories {
+		margin:0 auto;
+		width:90%;
+	}
+}
 
 
 /* ==|== non-semantic helper classes ========================================

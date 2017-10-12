@@ -1415,6 +1415,31 @@ define( function ( require, exports, module ) {
 				};
 				
 				$rootScope.$on( "$routeChangeStart", function( ev, to, toParams, from, fromParams ){
+
+
+                    $rootScope.renderAction 	= '';
+					$rootScope.renderPath 		= '';
+					
+					$rootScope.isHome 			= '';
+					$rootScope.isAbout 			= '';
+					$rootScope.isLegal 			= '';
+                    $rootScope.isFAQ 			= '';
+                    $rootScope.is404		    = '';
+					$rootScope.isContact 		= '';
+                    $rootScope.isProducts 		= '';
+                    $rootScope.isInsects		= '';
+                    $rootScope.isProfile	    = '';
+
+                    $rootScope.isProfilePage 	= '';
+
+                    $rootScope.isProductPage 	        = '';
+                    $rootScope.isProductCategory 	    = '';
+                    $rootScope.isProductCategoryInsect 	= '';
+
+                    $rootScope.isInsectPage 	= '';
+                    $rootScope.isInsectCategory = '';
+
+                    $rootScope.isPathSlug 	= '';
 				
                     ngProgress.start();
                     
