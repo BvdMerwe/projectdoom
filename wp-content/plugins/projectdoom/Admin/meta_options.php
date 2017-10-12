@@ -360,8 +360,8 @@ extract( $args ); ?>
 <?php } function get_meta_richtext( $args = array(), $value = false ) {
 extract( $args ); ?>
 	<div class="meta-box">
-		<h1><?php echo $title;?></h1> <br/>
-		<?php echo $desc; ?>
+		<strong><?php echo $title;?></strong>
+		<div class="meta-desc"><?php echo $desc; ?></div>
 		<?php wp_editor( $value, $name, array(
 			'wpautop'       => true,
 			'media_buttons' => false,
