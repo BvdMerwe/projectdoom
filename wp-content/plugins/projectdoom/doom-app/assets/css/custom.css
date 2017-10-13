@@ -1,4 +1,17 @@
 /***********************************************
+* Products STYLE
+***********************************************/
+.product-filter-categories {
+  max-width: 54%;
+}
+
+@media only screen and (max-width: 959px) {
+  .product-filter-categories {
+    max-width: 100%;
+  }
+}
+
+/***********************************************
 * General STYLE
 ***********************************************/
 * {
@@ -651,6 +664,7 @@ md-autocomplete-wrap input {
 
 #footer div[data-ui-form-contact] input, #footer div[data-ui-form-contact] textarea {
   border-bottom: 1px solid #7B7B7A;
+  max-height: 200px;
 }
 
 /***********************************************

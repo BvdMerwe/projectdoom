@@ -81,8 +81,8 @@
                         <textarea 
                             name="message"
                             required
-                            
-                            data-ng-model="formInputs.message" md-maxlength="150" 
+                            maxlength="255"
+                            data-ng-model="formInputs.message" md-maxlength="255" 
                             rows="5" md-select-on-focus>
                         </textarea>
                     </md-input-container>

@@ -783,7 +783,7 @@
                 </div>
             </div>
             <!-- [/HERO SECTION] -->
-            <div class="product-filter-categories center-content mobile-padding">
+            <div class="product-filter-categories center-content mobile-padding" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"

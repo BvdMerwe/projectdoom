@@ -6,7 +6,17 @@ $green: #14A774;
 $orange: #ff510b;
 $keyline-width: 3px;
 $keyline: $keyline-width solid $green;
+$mobile-break: 959px;
+/***********************************************
+* Products STYLE
+***********************************************/
+.product-filter-categories {
+  max-width: 54%;
 
+  @media only screen and (max-width: $mobile-break) {
+    max-width: 100%;
+  }
+}
 /***********************************************
 * General STYLE
 ***********************************************/
@@ -526,7 +536,8 @@ div[data-ui-carousel][single='true'] {
     div[data-ui-form-contact] {
       color: #000;
       input, textarea {
-        border-bottom: 1px solid#7B7B7A;;
+        border-bottom: 1px solid#7B7B7A;
+        max-height: 200px;
       }
     }
 }

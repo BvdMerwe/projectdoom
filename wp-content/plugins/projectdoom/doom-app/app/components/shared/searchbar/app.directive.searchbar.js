@@ -83,7 +83,16 @@ define( function ( require, exports, module ) {
             if(event.which === 13) {
                 var searchtext = element[0].querySelector('input').value;
                 scope.querySearch(searchtext, true);
-                event.preventDefault();
+                // event.preventDefault();
+                // var elm = element[0].querySelector('input');
+                // elm.blur();
+                scope.results[0] = {
+                  post_title: "Searching",
+                  post_content: "..."
+                }
+                var autoChild = document.querySelector('md-autocomplete').firstElementChild;
+                var el = angular.element(autoChild);
+                el.scope().$mdAutocompleteCtrl.hidden = true;
             }
           });
 
