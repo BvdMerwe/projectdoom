@@ -6,6 +6,7 @@ add_action('wp_enqueue_scripts', 'custom_scripts');
 
 function custom_scripts(){
     wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCUubwYmWvP0p9PQihrWIas7qrSqHpam9w' );
+    wp_enqueue_script( 'modernizr', plugins_url( '../doom-app/assets/libs/modernizr.js', __FILE__ ) );
     // wp_dequeue_script( 'wp-emoji-release.min.js' );
 }
 
