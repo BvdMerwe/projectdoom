@@ -67,14 +67,18 @@ require.config({
 		"domReady": 				'../libs/domready',
 		"classie": 					'../libs/classie',
 		'imagesloaded': 			'../libs/imagesloaded.pkgd.min',
-		'jlinq': 					'../libs/jlinq/jlinq'
+		'jlinq': 					'../libs/jlinq/jlinq',
+		"ie-hustle": 				'../libs/ie-hustle'
 	},
     shim: {
 		'modernizr': {
 			exports: 'Modernizr'
 		},
-		'app': {
+		'ie-hustle': {
 			deps: ["modernizr", "isMobile"]
+		},
+		'app': {
+			deps: ["ie-hustle"]
 		},
 		'Utils': {
         	//deps: ["sjcl"],
@@ -141,52 +145,12 @@ define( function ( require, exports, module ) {
 
 	"use strict";
 
-	Date.prototype.addDays = function(days) {
-	    var dat = new Date(this.valueOf());
-		dat.setDate(dat.getDate() + days);
-		return dat;
-	};
-
-	// This script is released to the public domain and may be used, modified and
-	// distributed without restrictions. Attribution not necessary but appreciated.
-	// Source: http://weeknumber.net/how-to/javascript
-
-	// Returns the ISO week of the date.
-	Date.prototype.getWeek = function() {
-		var date = new Date(this.getTime());
-		date.setHours(0, 0, 0, 0);
-		// Thursday in current week decides the year.
-		date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-		// January 4 is always in week 1.
-		var week1 = new Date(date.getFullYear(), 0, 4);
-		// Adjust to Thursday in week 1 and count number of weeks from date to week1.
-		return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
-	};
-
-	/* EXTEND ARRAY OBJ for IE8 < */
-	if(!Array.prototype.indexOf) {
-		Array.prototype.indexOf = function(needle) {
-			var lenny = this.length;
-			for(var i = 0; i < lenny; i++) {
-				if(this[i] === needle) {
-					return i;
-				}
-			}
-			return -1;
-		};
-	}
-	// Array Remove - By John Resig (MIT Licensed)
-	if(!Array.prototype.remove) {
-		Array.prototype.remove = function(from, to) {
-			var rest = this.slice((to || from) + 1 || this.length);
-			this.length = from < 0 ? this.length + from : from;
-			return this.push.apply(this, rest);
-		};
-	}
+	//require("modernizr");
 
     // Load dependent non-module scripts
 	require("app");
-//Temporarily disabling this for dev TODO: Re-enable
+	
+	//Temporarily disabling this for dev TODO: Re-enable
 	// if ( window.addEventListener ) {
 	//
 	// 	window.document.body.addEventListener("contextmenu", function (e) {
