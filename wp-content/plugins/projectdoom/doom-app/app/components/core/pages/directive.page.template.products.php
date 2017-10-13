@@ -118,31 +118,37 @@
 					<br /><br /> -->
 
 					<ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">
-						<collapsible-item title="01 Ideal For">
+						<collapsible-item title="More Info" ng-if="pageContent.doom_product_more_info">
+							<div>
+								<p ng-bind-html="pageContent.doom_product_more_info | trustAsHtml"></p>
+							</div>
+                        </collapsible-item>
+
+						<collapsible-item title="Ideal For" ng-if="pageContent.doom_product_ideal_for">
 							<div>
 								<p ng-bind-html="pageContent.doom_product_ideal_for | trustAsHtml"></p>
 							</div>
                         </collapsible-item>
                         
-						<collapsible-item title="02 Benefits">
+						<collapsible-item title="Benefits" ng-if="pageContent.doom_product_benefits">
 							<div>
 								<p ng-bind-html="pageContent.doom_product_benefits | trustAsHtml"></p>
 							</div>
 						</collapsible-item>
 
-						<collapsible-item title="03 Direction for use">
+						<collapsible-item title="Direction for use" ng-if="pageContent.doom_product_directions">
 							<div>
                                 <p ng-bind-html="pageContent.doom_product_directions | trustAsHtml"></p>
                             </div>
 						</collapsible-item>
 
-						<collapsible-item title="04 Storage &amp; Disposal">
+						<collapsible-item title="Storage &amp; Disposal" ng-if="pageContent.doom_product_storage_disposal">
 							<div>
                                 <p ng-bind-html="pageContent.doom_product_storage_disposal | trustAsHtml"></p>
                             </div>
 						</collapsible-item>
 
-						<collapsible-item title="05 Precautions">
+						<collapsible-item title="Precautions" ng-if="pageContent.doom_product_precautions">
 							<div>
                                 <p ng-bind-html="pageContent.doom_product_precautions | trustAsHtml"></p>
                             </div>
