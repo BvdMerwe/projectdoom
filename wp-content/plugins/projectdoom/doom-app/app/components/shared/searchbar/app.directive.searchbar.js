@@ -70,7 +70,7 @@ define( function ( require, exports, module ) {
 					scope.placeholderOnly = attrs.placeholderonly;
           // scope.contentType = attrs.contenttype;
           if (!scope.placeholderOnly) {
-            scope.searchText = scope.placeholder.replace("...", " ");
+            // scope.searchText = scope.placeholder.replace("...", " ");
           }
           scope.states  = scope.getData;
 					var thisElem = element;

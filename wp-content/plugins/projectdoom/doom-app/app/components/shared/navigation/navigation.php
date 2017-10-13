@@ -110,7 +110,7 @@
 				</div>
             </div>
             <div class="md-padding" layout="row" layout-align="center center" style="width:80px;height80px;">
-				<div data-ui-search id="search-takeover"></div>
+				<div data-ui-search id="search-takeover" layout-fill></div>
             </div>
         </div>
 	</div>

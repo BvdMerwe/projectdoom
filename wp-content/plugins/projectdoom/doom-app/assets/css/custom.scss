@@ -46,6 +46,7 @@ md-toolbar {
   .md-track-fill {
     background-color: $green;
   }
+  .md-track-ticks canvas { display: none; }
 }
 
 md-backdrop {
@@ -349,7 +350,7 @@ div[data-ui-carousel][single='true'] {
   color: #fff;
   &.open {
     .search-container.layout-fill {
-      right: 0%;
+      left: 0%;
     }
     .search-button {
       // position: absolute;
@@ -401,6 +402,7 @@ div[data-ui-carousel][single='true'] {
 
 .searchbar-container {
   // width: 100%;
+  max-width: 1250px;
   .search-bar {
     position: relative;
     // width: 100%;
@@ -439,10 +441,22 @@ div[data-ui-carousel][single='true'] {
   @include transition(0.4s cubic-bezier(.25,.8,.25,1));
   position: fixed;
   top: 0;
-  right: -100%;
+  left: 100%;
   background: #fff;
   z-index: 9;
-  overflow: auto;
+  padding: 20px;
+  padding-top: 80px;
+  // overflow: auto;
+  box-sizing: border-box;
+  height: calc(100% - 80px - 48px);
+
+  .inner-container {
+    max-width: 1200px;
+    margin: 0 auto;    
+    min-height: auto;
+    box-sizing: border-box;
+    height: calc(100% - 80px - 40px);
+  }
 }
 
 @include keyframes(spin) {

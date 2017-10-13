@@ -38,6 +38,10 @@ md-toolbar .md-toolbar-tools .md-button {
   background-color: #14A774;
 }
 
+.md-track-container .md-track-ticks canvas {
+  display: none;
+}
+
 md-backdrop {
   background-color: rgba(255, 255, 255, 0);
 }
@@ -376,7 +380,7 @@ md-autocomplete-wrap input {
 }
 
 #search-takeover.open .search-container.layout-fill {
-  right: 0%;
+  left: 0%;
 }
 
 #search-takeover.open .search-button {
@@ -443,6 +447,10 @@ md-autocomplete-wrap input {
   z-index: 7;
 }
 
+.searchbar-container {
+  max-width: 1250px;
+}
+
 .searchbar-container .search-bar {
   position: relative;
 }
@@ -485,10 +493,21 @@ md-autocomplete-wrap input {
   transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: fixed;
   top: 0;
-  right: -100%;
+  left: 100%;
   background: #fff;
   z-index: 9;
-  overflow: auto;
+  padding: 20px;
+  padding-top: 80px;
+  box-sizing: border-box;
+  height: calc(100% - 80px - 48px);
+}
+
+.search-container.layout-fill .inner-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: auto;
+  box-sizing: border-box;
+  height: calc(100% - 80px - 40px);
 }
 
 @-webkit-keyframes spin {
