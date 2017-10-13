@@ -424,12 +424,14 @@ define( function ( require, exports, module ) {
             if (typeof dataPoints[key] !== 'function') {
               if (!isNaN(dataPoints[key]) && dataPoints[key] != undefined ) {
                 var resultedAmount = Math.floor(projectedAmount * (dataPoints[key] * days));
-                var copy = statCopy[key];
-                results.push({
-                  type: key,
-                  copy: copy,
-                  stat: resultedAmount
-                });
+                if (resultedAmount > 1) {  
+                  var copy = statCopy[key];
+                  results.push({
+                    type: key,
+                    copy: copy,
+                    stat: resultedAmount
+                  });
+                }
                 // results[key]= resultedAmount;
               }
             }

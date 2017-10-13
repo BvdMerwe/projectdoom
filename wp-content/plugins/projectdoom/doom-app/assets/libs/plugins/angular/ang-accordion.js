@@ -9,17 +9,40 @@
 
     angular
       .module('angAccordion', ['collapsibleItem'])
-      .controller('angAccordionController', ['$scope', function($scope){
+      .controller('angAccordionController', ['$scope', '$q', '$timeout', function($scope, $q, $timeout){
         var collapsibleItems = [];
           
           this.openCollapsibleItem = function(collapsibleItemToOpen) {
+            var prom = [];
             if( $scope.oneAtATime ) {
               angular.forEach(collapsibleItems, function(collapsibleItem) {
-                collapsibleItem.isOpenned = false;
-                collapsibleItem.icon = collapsibleItem.closeIcon;
+                prom.push( function() {
+                  var def = $q.defer();
+                  collapsibleItem.isOpenned = false;
+                  collapsibleItem.icon = collapsibleItem.closeIcon;
+                  def.resolve();
+                  return def.promise;
+                }());
               });
             }
-            collapsibleItemToOpen.isOpenned = true;
+
+            $q.all(prom).then(function () {
+              //jump to open accordion
+              $timeout(function(){
+
+                collapsibleItemToOpen.isOpenned = true;
+                var elem = document.querySelector('.collapsible-item[title="'+collapsibleItemToOpen.title+'"]');
+                var to = elem.offsetTop;
+                // console.log(document.querySelector(".collapsible-item[title='"+collapsibleItemToOpen.title+"']"));
+                window.scrollTo(0, to);
+                //additional jump for parent scrollable search result container
+                var containers = document.querySelectorAll(".search-results._md");
+                var contTo = elem.offsetParent.offsetTop;
+                angular.forEach(containers, function(elem, key){
+                  elem.scrollTop = contTo;
+                });
+              }, 100);
+            });
           };
 
           this.addCollapsibleItem = function(collapsibleItem) {
