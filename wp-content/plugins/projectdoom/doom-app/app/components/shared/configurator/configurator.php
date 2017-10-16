@@ -151,7 +151,7 @@
           <div class="stat-controls">
             <div class="stat-selector" ng-click="showStat(stat)" ng-repeat="stat in result.stats">
               <!-- <i class="icon lnr lnr-{{stat.type}}"></i> -->
-              <i class="icon icon-{{stat.type == 'molts' ? result.pest.post_name : stat.type}}"></i>
+              <i class="icon icon-{{stat.type == 'molts' ? result.pest.post_name : stat.type}}" data-ng-class="{active: $first == true}"></i>
               <span>{{stat.type}}</span>
             </div>
           </div>
@@ -170,11 +170,19 @@
             <br/> -->
             <!-- <md-button class="primary-cta fill-width">Where can I get it?</md-button> -->
           </div>
+          <!--
+          <p>
+            <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
+          </p>
+          -->
+        </div>
+        <div class="" layout="column" layout-align="center center">
           <p>
             <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
           </p>
         </div>
       </div>
+      
       <!--
       <div class="retailers" flex="100">
         <h2>Where to buy</h2>

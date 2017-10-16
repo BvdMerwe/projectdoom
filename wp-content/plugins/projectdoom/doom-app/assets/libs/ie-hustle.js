@@ -205,7 +205,8 @@
 
         yepnope({
 			load:	{
-				'flexbox-polyfill':		'flexie.min.js'
+                'ieselector'        :	'ielt9!' + window.location.protocol + '//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js',
+				'flexbox-polyfill'  :	'flexie.min.js'
 			}
 		});
 

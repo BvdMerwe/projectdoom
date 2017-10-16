@@ -40,7 +40,7 @@
                                 data-ng-model="formInputs.emailAddress"
                                 minlength="10"  data-ng-pattern="/^.+@.+\..+$/" >
                             <div ng-messages="formContact.emailAddress.$error">
-                                <div ng-message="required">Please provide us with an email address.</div>
+                                <div ng-message="required">Please provide your an email address.</div>
                                 <!--<div ng-message="md-email">Please provide us with a valid email address.</div>-->
                             </div>
                         </md-input-container>
@@ -55,11 +55,11 @@
                                 name="phone"
                                 type="tel"
                                 required
-                                
+                                data-ng-patterm="^(\+27|27)?(\()?0?[87][23467](\))?( |-|\.|_)?(\d{3})( |-|\.|_)?(\d{4})"
                                 data-ng-model="formInputs.phone"
                                 minlength="10" maxlength="100">
                             <div ng-messages="formContact.phone.$error">
-                                <div ng-message="required">Please provide us with a contact number.</div>
+                                <div ng-message="required">Please provide your contact number.</div>
                             </div>
                         </md-input-container>
 

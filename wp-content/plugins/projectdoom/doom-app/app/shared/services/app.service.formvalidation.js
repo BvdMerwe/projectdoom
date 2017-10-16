@@ -63,6 +63,8 @@ define( function ( require, exports, module ) {
 	    this._validateName = function ( firstName ) {
 			
 			//Utils._strict( [ String ], arguments );
+
+			console.log('Chief', firstName);
 			
 			var deferred = $q.defer();
 			

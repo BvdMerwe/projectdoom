@@ -1089,6 +1089,19 @@ h3.page-title {
 	top:0;
 } */
 
+.md-dialog-backdrop {
+	background: #14a774;
+    opacity: 0.9 !important;
+}
+
+.md-dialog-content p {
+	color:#fff;
+	font-size: 20px;
+}
+
+.stat-selector .icon.active {
+	color: #FF510B;
+}
 /**
 * 
 * Gallery UI Component CSS 

@@ -169,9 +169,12 @@ define( function ( require, exports, module ) {
 
 									var form = document.getElementById('formContact');
 
+									//console.log('form results', results);
+
+									/**/
 									$http({
 										method: 'POST', 
-										url: Application.Constants.constant.general.api,
+										url: appConfig.general.api,
 										transformRequest: transformRequestAsFormPost,
 										params: {
 												action: 'ajax_contact'
@@ -181,10 +184,10 @@ define( function ( require, exports, module ) {
 											'lastName' 			:	results[1],
 											'contact'			:	results[2],
 											'email'				:	results[3],
-											'msg'				:	results[4],
-											'veryNB'			: 	document.getElementById('contact-veryNB').value,
-											'security'			: 	document.getElementById('security').value, 
-											'_wp_http_referer'	: 	form.querySelector('input[name="_wp_http_referer"]').value
+											'msg'				:	results[4]
+											//'veryNB'			: 	document.getElementById('contact-veryNB').value,
+											//'security'			: 	document.getElementById('security').value, 
+											//'_wp_http_referer'	: 	form.querySelector('input[name="_wp_http_referer"]').value
 										}
 									})
 									.success( function(data, status) {
@@ -193,7 +196,7 @@ define( function ( require, exports, module ) {
 
 											//_formFeedBack ( true, data.message );
 
-											Utils.fadeIn( form );
+											//Utils.fadeIn( form );
 
 										} else {
 
@@ -201,9 +204,19 @@ define( function ( require, exports, module ) {
 
 											//_formFeedBack ( false, data.message );
 
-											form.reset();
+											//form.reset();
 										
 										}
+
+										$mdDialog.show(
+											$mdDialog.alert()
+											  .clickOutsideToClose(true)
+											  .textContent( 'Your message was sent successfully.' )
+											  .ariaLabel('Contact Form validation message')
+											  
+										);
+
+										form.reset();
 
 										ngProgress.complete();		
 										
@@ -216,13 +229,38 @@ define( function ( require, exports, module ) {
 
 										console.error("Request failed:", data);
 
-										Utils.fadeIn( form );
+										$mdDialog.show(
+											$mdDialog.alert()
+											  //.parent(angular.element(document.querySelector('#popupContainer')))
+											  .clickOutsideToClose(true)
+											  //.title('This is an alert title')
+											  .textContent('Sending your message failed.  Please contact the administrator.')
+											  .ariaLabel('Contact Form validation message')
+											  //.ok('Got it!')
+											  //.targetEvent(ev)
+										  );
+
+										//Utils.fadeIn( form );
 												
 									});
+									/**/
 
 								}, function(e){
 
 									ngProgress.complete();
+
+									console.log('form failure', e);
+
+									$mdDialog.show(
+										$mdDialog.alert()
+										  //.parent(angular.element(document.querySelector('#popupContainer')))
+										  .clickOutsideToClose(true)
+										  //.title('This is an alert title')
+										  .textContent(e)
+										  .ariaLabel('Contact Form validation message')
+										  //.ok('Got it!')
+										  //.targetEvent(ev)
+									  );
 
 									//_formFeedBack ( true, e );
 
@@ -313,7 +351,7 @@ define( function ( require, exports, module ) {
 
 					}
 
-					console.warn('siyabagena!');
+					//console.warn('siyabagena!');
     
                 }]
             };
