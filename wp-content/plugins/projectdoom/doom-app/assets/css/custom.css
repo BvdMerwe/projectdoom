@@ -1,10 +1,6 @@
 /***********************************************
 * Products STYLE
 ***********************************************/
-.product-filter-categories {
-  max-width: 54%;
-}
-
 @media only screen and (max-width: 959px) {
   .product-filter-categories {
     max-width: 100%;

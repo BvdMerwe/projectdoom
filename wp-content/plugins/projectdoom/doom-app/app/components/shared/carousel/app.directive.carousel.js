@@ -235,7 +235,7 @@ define(function (require, exports, module) {
 					angular.element(element[0]).addClass("hide");
 				}
 			},
-			controller: ['$filter', '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $rootScope, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
+			controller: ['$filter', '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', '$mdDialog', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $rootScope, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $mdDialog, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
 				//init data
 				$scope.contentType;
 				$scope.insectType;
@@ -256,6 +256,14 @@ define(function (require, exports, module) {
 				} else {
 					$scope.itemLength = 0;
 				}
+
+				$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
+					
+					//console.info('new route');
+
+					_initiateLayout( $route.current.locals.app_data.products );
+		
+				});
 				// $scope.cta = false;
 				// $scope.displayName = false;
 				// $scope.isSingle = false;
@@ -272,7 +280,7 @@ define(function (require, exports, module) {
 					if ($scope.itemLength < 1) {
 						switch ($scope.contentType) {
 							case 'insect':
-								console.warn('The fuck dude?!?');
+								//console.warn('The fuck dude?!?');
 								insectsManager.getInsects(requestObj).then($scope.success, $scope.error);
 								break;
 							case 'product':
@@ -297,6 +305,8 @@ define(function (require, exports, module) {
 													if( element.product_types[key].slug.toLowerCase() == $scope.productType.toLowerCase() ) {
 														
 														results[index].product_type = $scope.productType;
+
+														//console.log('nazo');
 														
 														break loopFull;
 
@@ -347,6 +357,8 @@ define(function (require, exports, module) {
 
 									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
 								} else {
+
+									/*
 									var results = $route.current.locals.app_data.products;
 
 									for (var index = 0; index < results.length; index++) {
@@ -359,15 +371,20 @@ define(function (require, exports, module) {
 												
 												results[index].product_type = $scope.productType;
 
-												//console.log('nazo');
+												console.log('nazo:', $scope.productType);
 							
 											}
 										}
 										
 									}
+									*/
 
-									
+									if( !angular.isDefined(results) ) {
+										results = $route.current.locals.app_data.products;
+									}
+
 									_initiateLayout(results);
+									
 									_getUniqueCategories( results );
 									$scope.success(results);
 									$scope.productType = "22";
@@ -384,7 +401,9 @@ define(function (require, exports, module) {
 								throw ("Please provide a content type.");
 						}
 					} else if ($scope.items.length > 0) {
+	
 						$scope.success($scope.items);
+
 					} else {
 						$scope.error();
 					}
@@ -393,6 +412,22 @@ define(function (require, exports, module) {
 					// $scope.managerGet(requestObj).then(success, error);
 				}
 				function _initiateLayout(results) {
+
+					if( $rootScope.isProductPage ) {
+						var activeFilter;
+						var prodLength = results.length;
+						var currentProduct = $filter('pick')( results, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
+						/*
+						if( angular.isDefined(results) ) {
+							var prodLength = results.length;
+							var currentProduct = $filter('pick')( results, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
+						} else {
+							results = $route.current.locals.app_data.products;
+							var prodLength = results.length;
+							var currentProduct = $filter('pick')( results, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
+						}*/
+
+					}
 					
 					var out = [];
 					var i =0;
@@ -401,20 +436,36 @@ define(function (require, exports, module) {
 
 						if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
 
-							//console.log( 'Finding',results[index], index );
+							//console.log( 'Finding',results[index], index, $rootScope.isPathSlug.toLowerCase() );
 
 							loop4:
 							for ( i in results[index].product_categories ) {
 
-								if( angular.isDefined(!results[index].product_categories[i].name) || angular.isDefined(!$rootScope.isPathSlug) ) {
+								//if( angular.isDefined(!results[index].product_categories[i].name) || angular.isDefined(!$rootScope.isPathSlug) ) {
 
-									continue;
-								}
+								//	continue;
+								//}
 
 								console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
 
 								if( results[index].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
-
+									/** */
+									for (var keyes in results[index].product_types) {
+										if (results[index].product_types.hasOwnProperty(keyes)) {
+											var elen = results[index].product_types[keyes];
+		
+											//console.log('elen', elen, currentProduct.product_type);
+		
+											//if( elen.slug == currentProduct.product_type ) {
+		
+												activeFilter = elen.term_id;
+		
+												out.push(results[index]);
+		
+											//}
+											
+										}
+									}/**/
 									out.push(results[index]);
 
 									//console.log( 'Got Em!', results[index] );
@@ -424,6 +475,50 @@ define(function (require, exports, module) {
 								}
 
 							}
+						
+						} else if( $rootScope.isProductPage ) {
+							
+							//console.info('initialise carousel for Single Product Page', currentProduct);
+
+							for (var keyes in results[index].product_types) {
+								if (results[index].product_types.hasOwnProperty(keyes)) {
+									var elen = results[index].product_types[keyes];
+
+									//console.log('elen', elen, currentProduct.product_type);
+
+									if( elen.slug == currentProduct.product_type ) {
+
+										activeFilter = elen.term_id;
+
+										out.push(results[index]);
+
+									}
+									
+								}
+							}
+							/*
+							var prodLength = $route.current.locals.app_data.products.length;
+							var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
+							
+							// check if current product has the same product type as the requested filter
+							bigCheck:
+							for (var keyes in currentProduct.product_types) {
+								//console.info('check filter relevance');
+								if (currentProduct.product_types.hasOwnProperty(keyes)) {
+									var productType = currentProduct.product_types[keyes];
+									if( productType.term_id.toLowerCase() == key.toLowerCase() ) {
+										//newItems.push(currentProduct);
+										console.info('same product type...please continue');
+									} else {
+
+										// BIG ASSUMPTION: one product type per product...so why you're looping(bigCheck)?
+
+										return;
+									}
+									
+								}
+							}
+							*/
 
 						} else if( $rootScope.isProducts ) {
 
@@ -458,7 +553,7 @@ define(function (require, exports, module) {
 
 							//
 
-							//console.log('GENERIC FINDINGS',results[index]);
+							//console.log('GENERIC FINDINGS',results[index], $rootScope.isProductPage);
 
 							out.push(results[index]);
 
@@ -524,6 +619,11 @@ define(function (require, exports, module) {
 					}
 					//$scope.gridItems = results;
 					/***/
+					if( $rootScope.isProductPage || $rootScope.isInsectPage ) {
+						$timeout(function () {
+							_filterBtnClasses(activeFilter);
+						}, 250);						
+					}
 
 					$scope.success(out);
 				}
@@ -531,7 +631,7 @@ define(function (require, exports, module) {
 
 					if( angular.isDefined(!data) || data.length == 0 ) {
 
-						console.warn('No results to filter/Show');
+						//console.warn('No results to filter/Show[data]');
 						//$scope.$broadcast("items-loaded");
 						//return;
 					}
@@ -616,7 +716,57 @@ define(function (require, exports, module) {
 											var prodLength = $route.current.locals.app_data.products.length;
 											var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
 											
-											console.info('Check the product category', key, currentProduct, $route.current.pathParams.ID );
+											// check if current product has the same product type as the requested filter
+											bigCheck:
+											for (var keyes in currentProduct.product_types) {
+												//console.info('check filter relevance');
+												if (currentProduct.product_types.hasOwnProperty(keyes)) {
+													var productType = currentProduct.product_types[keyes];
+													if( productType.term_id.toLowerCase() == key.toLowerCase() ) {
+														//newItems.push(currentProduct);
+														console.info('same product type...please continue');
+													} else {
+
+														// BIG ASSUMPTION: one product type per product...so why you're looping(bigCheck)?
+
+														$mdDialog.show(
+															$mdDialog.alert()
+															  .clickOutsideToClose(true)
+															  .textContent( 'No Items available' )
+															  .ariaLabel('carousel validation message')
+														);
+
+														return;
+													}
+													
+												}
+											}
+
+											//console.info('Check the product type(category)', key, currentProduct, $route.current.pathParams.ID );
+
+											for (var index = 0; index < prodLength; index++) {
+												var productLoop = $route.current.locals.app_data.products[index];
+
+												//console.log('checking:', productLoop.post_name);
+
+												for (var keye in productLoop.product_types) {
+													if (productLoop.product_types.hasOwnProperty(keye)) {
+														var productType = productLoop.product_types[keye];
+
+														//console.log('productType', productType.term_id, key, currentProduct.post_name, $route.current.pathParams.ID );
+
+														if( currentProduct.post_name == productLoop.post_name ) {} else {
+
+															if( productType.term_id == key ) {
+																newItems.push(productLoop);
+															}
+														}
+														
+													}
+												}
+												
+											}
+
 											/*** /
 											// go through active product product types
 											loop1:
@@ -656,6 +806,90 @@ define(function (require, exports, module) {
 											if( newItems.length == 0 ) {
 												newItems = fallbackItems;
 											}/***/
+
+										} else if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
+
+											var prodLength = $scope.items;//$route.current.locals.app_data.products.length;
+											var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
+
+											for (var index = 0; index < prodLength; index++) {
+												var element = $route.current.locals.app_data.products[index];//$scope.items[index];//$route.current.locals.app_data.products[index];
+									
+												loop4:
+												for ( var i in element.product_categories ) {
+					
+													//if( angular.isDefined(!element.product_categories[i].name) || angular.isDefined(!$rootScope.isPathSlug) ) {
+					
+													//	continue;
+													//}
+					
+													console.log('Finding',element.product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
+					
+													if( element.product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
+					
+														newItems.push(element);
+					
+														console.log( 'Got Em!', element );
+					
+														break loop4;
+					
+													}
+					
+												}
+
+											}
+											/*
+											// check if current product has the same product type as the requested filter
+											bigCheck:
+											for (var keyes in currentProduct.product_types) {
+												//console.info('check filter relevance');
+												if (currentProduct.product_types.hasOwnProperty(keyes)) {
+													var productType = currentProduct.product_types[keyes];
+													if( productType.term_id.toLowerCase() == key.toLowerCase() ) {
+														//newItems.push(currentProduct);
+														console.info('same product type...please continue');
+													} else {
+
+														// BIG ASSUMPTION: one product type per product...so why you're looping(bigCheck)?
+
+														$mdDialog.show(
+															$mdDialog.alert()
+															  .clickOutsideToClose(true)
+															  .textContent( 'No Items available' )
+															  .ariaLabel('carousel validation message')
+														);
+
+														return;
+													}
+													
+												}
+											}
+
+											//console.info('Check the product type(category)', key, currentProduct, $route.current.pathParams.ID );
+
+											for (var index = 0; index < prodLength; index++) {
+												var productLoop = $route.current.locals.app_data.products[index];
+
+												//console.log('checking:', productLoop.post_name);
+
+												for (var keye in productLoop.product_types) {
+													if (productLoop.product_types.hasOwnProperty(keye)) {
+														var productType = productLoop.product_types[keye];
+
+														//console.log('productType', productType.term_id, key, currentProduct.post_name, $route.current.pathParams.ID );
+
+														if( currentProduct.post_name == productLoop.post_name ) {} else {
+
+															if( productType.term_id == key ) {
+																newItems.push(productLoop);
+															}
+														}
+														
+													}
+												}
+												
+											}
+											*/
 										
 										} else {
 
@@ -743,7 +977,18 @@ define(function (require, exports, module) {
 
 					if( newItems.length == 0 ) {
 
-						alert('No Items available');
+						//alert('No Items available');
+
+						//if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
+						//	_filterBtnClasses(key);
+						//}
+
+						$mdDialog.show(
+							$mdDialog.alert()
+							  .clickOutsideToClose(true)
+							  .textContent( 'No Items available' )
+							  .ariaLabel('carousel validation message')
+						);
 
 						return;
 
@@ -839,9 +1084,9 @@ define(function (require, exports, module) {
 
 					}
 
-					var activeFilter = document.querySelector('[data-filter-id="' + key + '"]');
+					var activeFilter = document.querySelector('[data-filter-id="' + parseInt(key) + '"]');
 
-					console.log('activeFilter:', activeFilter);
+					//console.log('activeFilter:', activeFilter, key);
 
 					Utils.addClass(activeFilter, 'active-filter');
 
