@@ -292,8 +292,12 @@ define( function ( require, exports, module ) {
 					transformRequest: transformRequestAsFormPost
 				})
 				.success( function(data, status) {
-				
+
+					//data = $filter('unique')( data, 'ID', false );
+					//data = $filter('orderBy')( data, 'post_title', false );
+
 					deferred.resolve( $filter('orderBy')( data, 'post_title', false ) );
+					//deferred.resolve( data );
 				
 				})
 				.error( function(data, status) {

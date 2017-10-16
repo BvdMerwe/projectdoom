@@ -81,7 +81,7 @@ define( function ( require, exports, module ) {
         });
 
 			},
-			controller:  	[ '$scope', '$sce', '$filter', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'insectsManager','productsManager', function ( $scope, $sce, $filter, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, insectsManager, productsManager ) {
+			controller:  	[ '$scope', '$sce', '$filter', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$mdDialog', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'insectsManager','productsManager', function ( $scope, $sce, $filter, $http, $q, $route, $location, $timeout, $mdSidenav, $mdDialog, $log, transformRequestAsFormPost, Utils, ngProgress, insectsManager, productsManager ) {
 
         $scope.config = {
           pest: "",
@@ -126,7 +126,16 @@ define( function ( require, exports, module ) {
             // $scope.step3State = 'inactive';
             // step2State = 'active';
             if ($scope.config.location.length < 1) {
-              alert("Please select at least one location");
+              
+              //alert("Please select at least one location");
+
+              $mdDialog.show(
+                $mdDialog.alert()
+                  .clickOutsideToClose(true)
+                  .textContent("Please select at least one location")
+                  .ariaLabel('Configurator validation result')
+              );
+
             } else {
               $scope.result = $scope.evaluate($scope.config);
               $scope.showStat($scope.result.stats[0]);
@@ -457,6 +466,10 @@ define( function ( require, exports, module ) {
         $scope.showStat = function (stat) {
           stat.formatted = $scope.outputCopy(stat);
           $scope.selectedStat = stat;
+
+          //console.log('.icon-' + stat.type);
+          //document.querySelector('.icon-' + stat.type ).classList.toggle('active');
+
         }
 
         $scope.outputCopy = function (stat) {

@@ -211,8 +211,8 @@ define( function ( require, exports, module ) {
 										$mdDialog.show(
 											$mdDialog.alert()
 											  .clickOutsideToClose(true)
-											  .textContent(e)
-											  .ariaLabel('Your message was sent successfully.')
+											  .textContent( 'Your message was sent successfully.' )
+											  .ariaLabel('Contact Form validation message')
 											  
 										);
 
