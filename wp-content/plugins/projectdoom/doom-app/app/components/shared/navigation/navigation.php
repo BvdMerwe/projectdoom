@@ -25,16 +25,16 @@
 					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">
 					</md-button>
 				</div>-->
-				<div flex="100" layout="row" layout-fill layout-align="space-around start" style="padding:50px 100px">
+				<div flex="100" layout="row" layout-fill layout-align="space-around start" class="side-nav-container">
 
 					<!-- <div flex="70" layout-fill>
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
 					</div> -->
 					<!-- <div data-ui-randomstat ></div> -->
-					<div data-ui-randomstat duration="300" ></div>
+					<div hide-xs data-ui-randomstat duration="300" ></div>
 					
 					
-					<div flex="30" layout-fill>
+					<div flex="100" flex-gt-sm="30" layout-fill>
 						<ul class="sm-padding mobi-menu-list">
 							<li>
 								<a href="javascript:;" title="" data-ng-click="goto('about')" name="about">About</a>
@@ -73,7 +73,7 @@
 
 		</md-sidenav>
 	</div>
-	<div layout="column" class="nav-nav in md-primary">
+	<div layout="column" class="nav-nav in clear md-primary">
 		<div layout="row" layout-align="space-between center" flex-xs="100">
 
 			<div class="md-padding" style="text-align:center;background-color:#00833D;width: 80px;height: 80px;">
