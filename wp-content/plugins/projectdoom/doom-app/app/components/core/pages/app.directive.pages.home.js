@@ -663,7 +663,7 @@ define( function ( require, exports, module ) {
 
 					$scope.productsPageFilter = $route.current.pathParams.ID;
 
-					console.log('productsPageFilter', $scope.productsPageFilter);
+					//console.log('productsPageFilter', $scope.productsPageFilter);
 
 					$scope.pageContent = getPageContent( $route.current.locals.app_data.products ); //$route.current.locals.app_data.pagecontent[0];
 					
