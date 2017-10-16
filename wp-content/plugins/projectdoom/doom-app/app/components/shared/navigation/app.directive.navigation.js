@@ -67,7 +67,7 @@ define( function ( require, exports, module ) {
 
 					Utils._strict( [ String ], arguments );
 
-					//console.log( 'open page:', page );
+					console.log( 'open page:', page );
 
 					switch( page ) {
 
@@ -76,6 +76,29 @@ define( function ( require, exports, module ) {
 							// var rand = Utils.getRandomInt(0,pests.length-1);
 							// $location.path("/insects/"+pests[rand].post_name);
 							// $location.path('/');
+							 
+
+							break;
+
+						case 'pests':
+							//var pests = $route.current.locals.app_data.insects;
+							//var rand = Utils.getRandomInt(0,pests.length-1);
+							//$location.path("/insects/"+pests[rand].post_name);
+							$location.path('/');
+
+							break;
+
+						case 'insects':
+
+							//if ($location.$$path == "/") {
+
+								
+								var pests = $route.current.locals.app_data.insects;
+								var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
+
+								console.log('pests:', pests);
+								$location.path("/insects/"+pests[rand].post_name);
+							//}
 
 							break;
 

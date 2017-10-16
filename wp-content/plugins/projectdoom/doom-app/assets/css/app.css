@@ -495,6 +495,10 @@ md-nav-ink-bar {
 	font-size:50px;
 }
 
+.page-404-description {
+	color:#ffffff;
+}
+
 .page-title {
 	margin: 0;
 	margin-top: 100px;
@@ -733,6 +737,148 @@ h3.page-title {
 	left: 7px;
     top: 14px;
 }
+
+.insect-filter-categories {
+	text-align:center;width:100%;
+}
+
+.insect-filter-categories .primary-tag {
+	border:none;
+	border-bottom:1px solid #00833D;
+	font-weight: bold;
+	font-size:0.8em;
+	text-transform: uppercase;
+	color:#ff510b;
+	margin: 0;
+	padding:6px 30px;
+}
+.insect-filter-categories .primary-tag.active {
+	background:#00833D;
+	color:#fff;
+}
+
+.product-insects.home-activity li {
+	margin-left:35px;
+	border:3px solid #666666;
+	text-transform: uppercase;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	margin-top:20px;
+}
+
+@media (max-width: 680px) {
+	.product-insects.home-activity li {
+		margin-left:10px;	
+	}
+	.product-insects.home-activity li p{
+		font-size: 10px;
+	}
+}
+
+.home-copy-content .page-title{
+	margin-top:50px;text-align:left;font-size:35pt;
+}
+
+@media (max-width: 1280px) {
+	.home-copy-content {
+		position: relative;
+		top:-100px;
+		z-index: 1;
+	}
+	.home-copy-content .page-title{
+		font-size:25pt !important;
+	}
+}
+
+.product-insects.home-activity li.active {
+	border:3px solid #ff510b;
+	color: #ff510b;
+}
+.product-insects.home-activity li.active i{
+	color: #ff510b;
+}
+
+.product-insects.home-activity li.active.stat {
+	border:3px solid #00833D;
+	background-color: #00833D;
+}
+
+.product-insects.home-activity li.active.stat i{
+	color: #fff;
+}
+
+.product-insects.home-activity li:first-child {
+	margin-left:0;
+}
+
+.product-insects.home-activity li i{
+	left: 0;
+    top: 0;
+    display: block;
+    color: #666;
+    font-size: 40px;
+	
+}
+.product-insects.home-activity li.icon-insect-fishmoth i{
+	left:0;
+}
+.product-insects.home-activity li.icon-insect-fly i{
+	left:-5px;
+}
+
+.product-insects.home-activity li p{
+	left: -25px;
+    position: relative;
+}
+
+.product-insects.home-activity li.icon-insect-ant p{
+	left: 0;
+}
+.product-insects.home-activity li.icon-insect-cockroach p{
+	
+}
+.product-insects.home-activity li.icon-insect-flea p{
+	left: 0;
+}
+.product-insects.home-activity li.icon-insect-fishmoth p{
+	left: -15px;
+}
+.product-insects.home-activity li.icon-insect-fly p{
+	left: 0;
+}
+.product-insects.home-activity li.icon-insect-mosquito p{
+	left: -15px;
+}
+
+.md-btn {
+	position: relative;
+	background:none;
+	border: none;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+	font-size:12px;
+	color: #666666;
+	width:100%;
+}
+
+.product-insects.home-activity li.active:hover {
+	border:3px solid #00833D;
+}
+.product-insects.home-activity li.active:hover i {
+	opacity:0.8;
+	color:#00833D;
+}
+.product-insects.home-activity li.active.stat:hover i {
+	color:#fff;
+}
+
+#home-page-stat {
+
+}
+/*
+
 /** /
 .icon-insect-cockroach {
 
@@ -1132,6 +1278,7 @@ h3.page-title {
 .stat-selector .icon.active {
 	color: #FF510B;
 }
+
 /**
 * 
 * Gallery UI Component CSS 

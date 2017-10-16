@@ -94,7 +94,7 @@
 					md-selected-nav-item="currentNavItem"
 					nav-bar-aria-label="navigation links">
 
-						<md-nav-item hide-xs md-nav-click="goto('insects')" name="insects" aria-label="Insects">
+						<md-nav-item hide-xs md-nav-click="goto('pests')" name="insects" aria-label="Insects">
 							PESTS
 						</md-nav-item>
 						<md-nav-item md-nav-click="" md-no-ink-bar="true" disabled="true" name="home" style="z-index:9;" aria-label="DOOM Home">

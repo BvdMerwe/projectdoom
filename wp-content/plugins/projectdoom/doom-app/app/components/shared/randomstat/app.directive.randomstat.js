@@ -58,8 +58,15 @@ define( function ( require, exports, module ) {
 	    },
 			link: function (scope, element, attrs, controller) {
 
+        //console.log('ishome:', attrs);
+
+        scope.ishome = attrs.ishome;
+        scope.activeinsect = attrs.activeInsect;
+
+        scope.init();
+
 			},
-			controller:  	[ '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$interval',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'insectsManager', function ( $scope, $http, $q, $route, $location, $timeout, $interval, $mdSidenav, $log, transformRequestAsFormPost, Utils, insectsManager ) {
+			controller:  	[ '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout',	'$interval',	'$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'insectsManager', function ( $rootScope, $scope, $http, $q, $route, $location, $timeout, $interval, $mdSidenav, $log, transformRequestAsFormPost, Utils, insectsManager ) {
         if ($scope.duration == undefined) {
           $scope.duration = 1500;
         }
@@ -75,17 +82,17 @@ define( function ( require, exports, module ) {
           {
             insect: "cockroach",
             stats: [
-              { name: "eggs", stat: 2.35, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
+              { name: "eggs", stat: 2.35, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"}
               // { name: "poops", stat: -30, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
-              { name: "molt", stat: 0.09, firstPart: "molt", secondPart: "times", pastFirst: "molted", pastSecond: "times"},
+              //{ name: "molt", stat: 0.09, firstPart: "molt", secondPart: "times", pastFirst: "molted", pastSecond: "times"},
             ]
           },
           {
             insect: "fishmoth",
             stats: [
-              { name: "eggs", stat: 2.5, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"},
+              { name: "eggs", stat: 2.5, firstPart: "lay", secondPart: "eggs", pastFirst: "layed", pastSecond: "eggs"}
               // { name: "poops", stat: -120, firstPart: "poop", secondPart: "times", pastFirst: "pooped", pastSecond: "times"},
-              { name: "molt", stat: 0.02, firstPart: "molt", secondPart: "times", pastFirst: "molted", pastSecond: "times"},
+              //{ name: "molt", stat: 0.02, firstPart: "molt", secondPart: "times", pastFirst: "molted", pastSecond: "times"},
             ]
           },
           {
@@ -131,7 +138,30 @@ define( function ( require, exports, module ) {
             var randIndex = Utils.getRandomInt(0, $scope.stats.length-1);
             var randDays = Utils.getRandomInt(10, 28);
             // var randDays = timePassed / 86400;
-            var stat = $scope.stats[randIndex];
+
+            if( $scope.ishome == 'true' ) {
+
+              $scope.show = [];
+
+              for (var index = 0; index < $scope.stats.length; index++) {
+                var element = $scope.stats[index];
+
+                if( element.insect == $scope.activeinsect ) {
+                  var stat = element;
+
+                  console.log('yurp', $scope.activeinsect);
+                  break;
+                } else {
+                  //console.log(element);
+                }
+                
+              }
+
+            } else {
+              console.log('nope', $scope.activeinsect, $scope.ishome);
+              var stat = $scope.stats[randIndex];
+            }
+
             for (var i = 0; i < stat.stats.length; i++) {
               stat.time = randDays;
               stat.stats[i].stat *= randDays;
@@ -213,8 +243,22 @@ define( function ( require, exports, module ) {
           };
           return timer;
         }
+
+        $rootScope.$on( "home-filter", function( type, data ){
+
+          if( $scope.ishome == 'true' ) {
+
+            //console.log('RANDOM STAT home-filter LISTENER:', data );
+          
+            $scope.activeinsect = data.type;
+
+            $scope.init();
+          
+          }
+
+				});
         // $scope.$on('$routeChangeSuccess', function (){
-          $scope.init();
+          //$scope.init();
         // });
 			}],
       // controllerAs: 'vm',

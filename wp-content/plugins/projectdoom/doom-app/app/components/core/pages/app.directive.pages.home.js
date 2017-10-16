@@ -60,7 +60,8 @@ define( function ( require, exports, module ) {
 		var inputMsgTimeout,
 		inputValidationTimeout;
 
-		$scope.currentInsect;
+		$scope.currentInsect; //who dis nigga here & what is he here?
+		$scope.activeInsect = {}; //used on homepage insect filter
 
 		$scope.pageContent = {};
 		$scope.productsPageFilter = '';
@@ -82,8 +83,29 @@ define( function ( require, exports, module ) {
 		});
 
 		$scope.goto = function (path) {
+			
 			$scope.scrollToTop();
-			$location.path(path);
+			
+			switch( path ) {
+
+				case 'ant':
+				case 'fly':
+				case 'flea':
+				case 'fishmoth':
+				case 'mosquito':
+				case 'cockroach':
+
+					$location.path('insects/' + path);
+
+					break;
+
+				default:
+
+				$location.path(path);
+
+					break;
+
+			}
 		}
 
 		$scope.viewProfile = function (path) {
@@ -125,12 +147,15 @@ define( function ( require, exports, module ) {
 
 		/***/
 		$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
+			/*
 			if (to.$$route.action == "home") {
 				// var pests = $route.current.locals.app_data.insects;
 				// var rand = Utils.getRandomInt(0,pests.length-1);
 				// $location.path("/insects/"+pests[rand].post_name);
 			}
 			
+			_ini();
+			*/
 			_ini();
 
 		});
@@ -160,6 +185,120 @@ define( function ( require, exports, module ) {
 
 		};
 
+		$scope.whatsBuggin = function( pest ) {
+
+			Utils._strict( [ String ], arguments );
+
+			$scope.activeInsect = $filter('pick')( $route.current.locals.app_data.insects, 'post_name == "' + pest + '"' )[0];
+
+			$rootScope.$broadcast( "home-filter", {
+					type: $scope.activeInsect.post_name 
+				}
+			);
+			//_showdefaultStat($route.current.locals.app_data.insects);
+			// = 
+
+		}
+
+		$scope.filterInsects = function( pestType ) {
+			
+			Utils._strict( [ String ], arguments );
+
+			//$scope.currentPest = $filter('pick')( $route.current.locals.app_data.insects, 'post_name == "' + pestType + '"' )[0];
+			if( pestType == "all") {
+
+				$scope.pageContent.filter_type = 'all';
+				$scope.pageContent.insect_ant = true;
+				$scope.pageContent.insect_fly = true;
+				$scope.pageContent.insect_flea = true;
+				$scope.pageContent.insect_fishmoth = true;
+				$scope.pageContent.insect_mosquito = true;
+				$scope.pageContent.insect_cockroach = true;
+
+				return;
+
+			};
+
+			insectsManager.getByInsectType(pestType).then( function(results) {
+
+					$scope.pageContent.insect_ant = false;
+					$scope.pageContent.insect_fly = false;
+					$scope.pageContent.insect_flea = false;
+					$scope.pageContent.insect_fishmoth = false;
+					$scope.pageContent.insect_mosquito = false;
+					$scope.pageContent.insect_cockroach = false;
+
+					for (var index = 0; index < results.length; index++) {
+
+						//var element = results[index];
+						switch( results[index].post_name.toLowerCase() ) {
+
+							case 'ant':
+
+								$scope.pageContent.insect_ant = true;
+
+								break;
+
+							case 'fly':
+
+								$scope.pageContent.insect_fly = true;
+
+								break;
+
+							case 'cockroach':
+
+								$scope.pageContent.insect_cockroach = true;
+
+								break;
+
+							case 'mosquito':
+
+								$scope.pageContent.insect_mosquito = true;
+
+								break;
+
+							case 'fishmoth':
+
+								$scope.pageContent.insect_fishmoth = true;
+
+								break;
+
+							case 'flea':
+
+								$scope.pageContent.insect_flea = true;
+
+								break;
+		
+						}
+						
+					}
+
+					$scope.pageContent.filter_type = pestType;
+
+					_showdefaultStat(results);
+
+				}, function(error) {
+
+				}
+			);
+
+		}
+
+		function _showdefaultStat( data ) {
+
+			Utils._strict( [ Array ], arguments );
+
+			$scope.activeInsect = data[Utils.getRandomInt(0,data.length-1)];
+
+			//console.log('Active Insect', $scope.activeInsect);
+
+			$rootScope.$broadcast( "home-filter", {
+					type: $scope.activeInsect.post_name 
+				}
+			);
+
+		}
+
 		$scope.nextProduct = function () {
 
 			//var currentSect = getCurrentNextInsect();
@@ -174,9 +313,13 @@ define( function ( require, exports, module ) {
 
 		$scope.prevProduct = function () {
 
+			//console.log( 'open prev product page:', $scope.pageContent );
+
 			getCurrentPrevProduct();
 
-			//console.log( 'open prev product page:', $scope.currentInsect );
+			//console.log( 'open prev product page:', $scope.pageContent );
+
+			
 
 			//$location.path( '/products/' + $scope.pageContent.post_name );
 
@@ -203,7 +346,7 @@ define( function ( require, exports, module ) {
 
 			} else if( ($rootScope.isProducts === true || $rootScope.isProductCategory === true || $rootScope.isProductCategoryInsect === true) && angular.isDefined($route.current.locals.app_data) ) {
 
-				console.log('Products Filter', category);
+				//console.log('Products Filter', category);
 
 				if( category == "all") {
 
@@ -391,12 +534,11 @@ define( function ( require, exports, module ) {
 			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
 
 				var ProductCount = 0;
-				var i;
 				var stop = false;
 
 				// get current product type;
-				var i;
-				for ( i in $scope.pageContent.product_types ) {
+				
+				for ( var i in $scope.pageContent.product_types ) {
 
 					if( angular.isDefined( $scope.pageContent.product_types[parseInt(i)] ) ) {
 
@@ -417,11 +559,11 @@ define( function ( require, exports, module ) {
 
 											
 				
-										} else if( angular.isDefined( results[0]) ) {
+										} else if( angular.isDefined( results[(results.length - index)]) ) {
 				
-											$scope.pageContent = results[0];
+											$scope.pageContent = results[(results.length - index)]; //results[0];
 				
-											//console.log('last product:', $scope.pageContent);
+											console.log('last product:', $scope.pageContent);
 				
 										}
 				
@@ -429,14 +571,24 @@ define( function ( require, exports, module ) {
 				
 									}
 
+									console.info('going to cali:',  $scope.pageContent);
+
 									$location.path( '/products/' + $scope.pageContent.post_name );
 									
 								}
 
 							}, function(err){
 
+								console.error('Eh!?!', err );
+
 							}
 						);
+					} else {
+
+						//console.error(i);
+
+						//throw 'in the air!';
+
 					}
 
 				}
@@ -549,13 +701,24 @@ define( function ( require, exports, module ) {
 
 					}/***/
 
+				} else if( $rootScope.isHome ) {
+
+					if( cola[index].post_name == 'pests' ) {
+
+						//console.log('Yo!', cola[index]);
+						
+						return cola[index];
+
+					}/***/
+
 				} else { 
 
 					if( cola[index].post_name == $route.current.$$route.action ) {
+
 						
 						return cola[index];
 						//$scope.pageContent =cola[index];
-						//console.log('Activity Data: ', $scope.pageContent );
+						
 						//break;
 					}
 
@@ -691,6 +854,20 @@ define( function ( require, exports, module ) {
 					$scope.currentInsect = $route.current.pathParams.ID;
 
 					$scope.pageContent = getPageContent( $route.current.locals.app_data.insects ); //$route.current.locals.app_data.pagecontent[0];
+				
+				} else if( $rootScope.isHome ) {
+
+					$scope.pageContent = getPageContent( $route.current.locals.app_data.pagecontent ); //$route.current.locals.app_data.pagecontent[0];
+					// default filtered state of "All"
+					$scope.pageContent.filter_type = 'all';
+					$scope.pageContent.insect_ant = true;
+					$scope.pageContent.insect_fly = true;
+					$scope.pageContent.insect_flea = true;
+					$scope.pageContent.insect_fishmoth = true;
+					$scope.pageContent.insect_mosquito = true;
+					$scope.pageContent.insect_cockroach = true;
+
+					_showdefaultStat($route.current.locals.app_data.insects);
 
 				} else {
 
@@ -1415,6 +1592,17 @@ define( function ( require, exports, module ) {
 			/**/
 		}
 
+	};
+
+	Application.Directives.uiAppPagePestProblem = function () {
+
+		return {
+			restrict: 		'AE',
+			//scope: 			{},
+			transclude: 	true,
+			controller:		Application.Controllers.pagesController,
+			templateUrl: 	appConfig.general.path+'app/components/core/pages/directive.page.template.pestproblem.php'
+		}
 	};
 
 	Application.Directives.uiAppPageProducts = function () {

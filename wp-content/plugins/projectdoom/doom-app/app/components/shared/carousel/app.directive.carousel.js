@@ -260,8 +260,9 @@ define(function (require, exports, module) {
 				$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
 					
 					//console.info('new route');
-
-					_initiateLayout( $route.current.locals.app_data.products );
+					if ($scope.contentType === "retailer") {} else {
+						_initiateLayout( $route.current.locals.app_data.products );
+					}
 		
 				});
 				// $scope.cta = false;
@@ -395,6 +396,7 @@ define(function (require, exports, module) {
 								packagesManager.getPackages(requestObj).then($scope.success, $scope.error);
 								break;
 							case 'retailer':
+								console.info('getting retailers')
 								retailersManager.getRetailers(requestObj).then($scope.success, $scope.error);
 								break;
 							default:
@@ -446,7 +448,7 @@ define(function (require, exports, module) {
 								//	continue;
 								//}
 
-								console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
+								//console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
 
 								if( results[index].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
 									/** */
@@ -545,7 +547,7 @@ define(function (require, exports, module) {
 
 							}/**/
 
-							//console.log('isProducts', out );
+							//console.log('isProducts['+$scope.contentType+']', out );
 
 							//out.push(results[index]);
 

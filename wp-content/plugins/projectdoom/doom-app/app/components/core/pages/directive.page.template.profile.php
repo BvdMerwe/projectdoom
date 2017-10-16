@@ -22,7 +22,7 @@
                         <br />
                         <div class="map-container" style="position:relative;" flex>
                             <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475" >
                                 <!-- <defs><style>.cls-1{fill:#fff;stroke:#231f20;stroke-width:5px;}.cls-10,.cls-2{font-size:12px;font-family:MyriadPro-Regular, Myriad Pro;}.cls-3{letter-spacing:0em;}.cls-4{letter-spacing:0em;}.cls-5{letter-spacing:-0.01em;}.cls-6{letter-spacing:0em;}.cls-7{letter-spacing:-0.01em;}.cls-8{letter-spacing:0.01em;}.cls-9{letter-spacing:-0.01em;}.cls-10{letter-spacing:-0.03em;}.cls-11{letter-spacing:0em;}</style></defs> -->
                                 <g id="bedroom" ng-mouseover="setProfileLocation('bedroom')" ng-mouseleave="removeProfileLocation('bedroom')" class="area {{config.location.indexOf('bedroom') > -1}}">
                                     <rect class="cls-1" x="2.5" y="2.5" width="195" height="299"/>

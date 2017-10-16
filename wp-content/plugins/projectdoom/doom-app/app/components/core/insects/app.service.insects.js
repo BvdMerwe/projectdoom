@@ -261,6 +261,55 @@ define( function ( require, exports, module ) {
 				return deferred.promise;
 		
 			},
+			getByInsectType: function( term ) {
+
+				Utils._strict( [ String ], arguments );
+		
+				var _self 		= this,
+					deferred 	= $q.defer(),
+					dataHolder	= [];
+
+					//console.log('geting', term);
+
+				_self.getInsects({
+					'type': 'insect',
+					'method': 'GET'
+				}).then( function(results){
+						
+						for (var index = 0; index < results.length; index++) {
+							
+							var element = results[index];
+
+							var i;
+							for ( i in element.insect_categories ) {
+
+								//console.log('i', i);
+
+							
+								if( element.insect_categories[i].slug == term ) {
+
+									
+									
+									dataHolder.push(element);
+
+								}
+
+							}
+							
+						}
+		
+						deferred.resolve(dataHolder );
+
+					},function(error){
+
+						deferred.reject( error );
+
+					}
+				);
+		
+				return deferred.promise;
+		
+			},
 			flush: function() {
 		
 				var _self 		= this,

@@ -85,15 +85,17 @@ define( function ( require, exports, module ) {
                                         ])
                                         .then( function(results){
     
-                                                //console.log('route data-products:', results);   
+                                                //console.log('route data-home:', results);    
     
                                                 var firstVisit = new Date(results[6].firstVisit);
                                                 var lastVisit = new Date(results[6].lastVisit);
-                                                // if ($location.$$path == "/") {
+                                                /*
+                                                //if ($location.$$path == "/") {
                                                     var pests = results[2];
                                                     var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
                                                     $location.path("/insects/"+pests[rand].post_name);
                                                 // }
+                                                */
                                                 //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
      
                                                 return {
@@ -1170,7 +1172,7 @@ define( function ( require, exports, module ) {
 					// of simplicity, I am not exerting any finer logic around it.
 															
 					// Reset the booleans used to set the class for the navigation.
-					isHome 					= ( renderPath[ 0 ] == "dashboard" ),
+					isHome 					= ( renderPath[ 0 ] == "home" ),
 					isAbout 				= ( renderPath[ 0 ] == "about" ),
 					isLegal 				= ( renderPath[ 0 ] == "legal" ),
 					isFAQ 					= ( renderPath[ 0 ] == "faq" ),
