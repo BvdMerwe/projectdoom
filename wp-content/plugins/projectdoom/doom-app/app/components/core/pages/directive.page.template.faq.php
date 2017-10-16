@@ -13,7 +13,9 @@
 
 <div layout="column" layout-fill class="animate-page-switch-container" flex="100" data-ng-switch="renderPath[1]">
 
-<h1>Frequently asked questions</h1>
+<h1 class="page-title">Frequently asked questions</h1>
+<br/>
+<br/>
 <div layout="column" data-ui-search-bar placeholder="I was wondering..." placeholderOnly="true" contenttype="faq"></div>
   <!-- <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100">
     <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">

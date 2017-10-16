@@ -10,8 +10,8 @@
                 </div>
             </div>
             
-            <div layout="row" layout-md="column" layout-align="center start" class="insect-profile-content-holder">
-                <div layout="column" flex="100" flex-md="100">
+            <div layout-gt-sm="row" layout="column" layout-align="center start" class="insect-profile-content-holder">
+                <div layout="column" flex="100" flex-gt-sm="100">
                     <div class="profile-box" layout-fill>
                         <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> About me</h3>
                         <br />
@@ -58,38 +58,38 @@
                         </div>
                         <div class="map-container" style="position:relative;" flex layout="column" data-ng-switch="pageContent.post_name">
                             <div class="profile-pin-descriptions" flex data-ng-switch-when="ant">
-                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; In your sugar and Mrs Balls bottle.</p>
-                                <p flex="100" id="location-bedroom" class="page-description location-bedroom" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Under your bed for our weekly ‘Breakfast in Bed’ get-together.</p>
-                                <p flex="100" id="location-living" class="page-description location-living" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Under the couch in your lounge for a game of pool with some mates.</p>
+                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>In your sugar and Mrs Balls bottle.</p>
+                                <p flex="100" id="location-bedroom" class="page-description location-bedroom" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Under your bed for our weekly ‘Breakfast in Bed’ get-together.</p>
+                                <p flex="100" id="location-living" class="page-description location-living" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Under the couch in your lounge for a game of pool with some mates.</p>
                             </div>
                             <div class="profile-pin-descriptions" flex data-ng-switch-when="cockroach">
-                                <p flex="100" id="location-bedroom" class="page-description location-bedroom" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; On your face while you’re asleep.</p>
-                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; In your spice rack with my boys.</p>
-                                <p flex="100" id="location-living" class="page-description location-living" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; In your lounge for our weekly ‘Netflix & Chill’ Fridays. The popcorn is always amazing.</p>
+                                <p flex="100" id="location-bedroom" class="page-description location-bedroom" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>On your face while you’re asleep.</p>
+                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>In your spice rack with my boys.</p>
+                                <p flex="100" id="location-living" class="page-description location-living" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>In your lounge for our weekly ‘Netflix &amp; Chill’ Fridays. The popcorn is always amazing.</p>
                             </div>
                             <div class="profile-pin-descriptions" flex data-ng-switch-when="fly">
-                                <p flex="100" id="location-bathroom" class="page-description location-bathroom" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Sweet love between the bristles of your toothbrush.</p>
-                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Family lunch in your kitchen bin.</p>
-                                <p flex="100" id="location-living" class="page-description location-living" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; On your glass of juice. I just forgot what side I sat on.</p>
+                                <p flex="100" id="location-bathroom" class="page-description location-bathroom" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Sweet love between the bristles of your toothbrush.</p>
+                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Family lunch in your kitchen bin.</p>
+                                <p flex="100" id="location-living" class="page-description location-living" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>On your glass of juice. I just forgot what side I sat on.</p>
                             </div>
                             <div class="profile-pin-descriptions" flex data-ng-switch-when="flea">
-                                <p flex="100" id="location-outside" class="page-description location-outside" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; On your pets back for a chill session.</p>
-                                <p flex="100" id="location-living" class="page-description location-living" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; On the carpet to see some old friends.</p>
-                                <p flex="100" id="location-outside" class="page-description location-outside" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Back on your pet where I live.</p>
+                                <p flex="100" id="location-outside" class="page-description location-outside" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>On your pets back for a chill session.</p>
+                                <p flex="100" id="location-living" class="page-description location-living" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>On the carpet to see some old friends.</p>
+                                <p flex="100" id="location-outside" class="page-description location-outside" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Back on your pet where I live.</p>
                             </div>
                             <div class="profile-pin-descriptions" flex data-ng-switch-when="fishmoth">
-                                <p flex="100" id="location-living" class="page-description location-living" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; 60’s Theme party in your bookshelf with my crew.</p>
-                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Dinner date with a milf in your basin last week.</p>
-                                <p flex="100" id="location-bedroom" class="page-description location-bedroom" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>&nbsp; Booked the presidential suite in your sock-drawer with the milf.</p>
+                                <p flex="100" id="location-living" class="page-description location-living" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>60’s Theme party in your bookshelf with my crew.</p>
+                                <p flex="100" id="location-kitchen" class="page-description location-kitchen" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Dinner date with a milf in your basin last week.</p>
+                                <p flex="100" id="location-bedroom" class="page-description location-bedroom" layout="row" layout-align="start center" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>Booked the presidential suite in your sock-drawer with the milf.</p>
                             </div>
                             <div class="profile-pin-descriptions" flex data-ng-switch-when="mosquito">
-                                <p flex="100" class="page-description" style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>On someone’s legs. Smelly feet drive me crazy.</p>
+                                <p flex="100" class="page-description" layout="row" layout-align="start center"  style="padding-left:40px;padding-right:40px;"><i class="icon-pin"></i>On someone’s legs. Smelly feet drive me crazy.</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div layout="column" flex="100" flex-md="100" layout-align-md="center center" layout-align="center start">
+                <div layout="column" flex="100" flex-gt-sm="100" flex-offset-gt-sm="5" layout-align="center center" layout-align-gt-sm="center start">
                     <div class="profile-box" layout-fill>
                         <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> Interests / hobbies</h3>
                         <br />
@@ -102,7 +102,7 @@
                     </div>
                     <div class=""> 
                         <h3 flex="100" class="carousel-title" style="margin-bottom:0;">Most vulnerable when</h3>
-                        <div layout="row">
+                        <div layout="row" layout-align="center center">
                         <div data-ui-carousel
                             single          = "true"
                             cta             = "true"

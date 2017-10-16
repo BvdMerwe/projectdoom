@@ -14,10 +14,10 @@
 <div layout="column" layout-fill class="animate-page-switch-container" flex="100" layout-fill>
 
     <div layout="row" layout-fill layout-align="start start" layout-align-gt-sm="center center">
-        <div flex="60" layout-fill hide-md style="text-align:center;">
+        <div flex="60" layout-fill hide show-gt-sm style="text-align:center;">
             <img data-ng-click="showImage()" layout-fill data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image" alt="" style="width:auto;" />
         </div>
-        <div flex="40" flex-md="100">
+        <div flex="100" flex-gt-sm="40">
             <!-- [HERO SECTION] -->
             <div layout="row">
                 <div flex="grow" class="">

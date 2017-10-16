@@ -1,21 +1,4 @@
 /***********************************************
-* Products STYLE
-***********************************************/
-.product-filter-categories {
-  max-width: 54%;
-}
-
-.product-filter-categories.full-width {
-  max-width: 90%;
-}
-
-@media only screen and (max-width: 959px) {
-  .product-filter-categories {
-    max-width: 100%;
-  }
-}
-
-/***********************************************
 * General STYLE
 ***********************************************/
 * {
@@ -25,6 +8,10 @@
 
 .inline {
   display: inline-block !important;
+}
+
+.fill-width {
+  width: 100%;
 }
 
 md-toolbar {
@@ -40,6 +27,10 @@ md-toolbar .md-toolbar-tools {
 
 md-toolbar .md-toolbar-tools .md-button {
   font-weight: bold !important;
+}
+
+md-dialog {
+  pointer-events: none;
 }
 
 .md-track-container {
@@ -111,6 +102,10 @@ h3.green-bold {
   margin: 1.625em 0 0 0;
 }
 
+.hr-divider {
+  height: 3px;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -145,6 +140,10 @@ div[data-ui-navigation] md-backdrop {
 
 .super-menu {
   z-index: 10;
+}
+
+.super-menu .side-nav {
+  padding: 50px 100px;
 }
 
 .super-menu-open div[data-ui-navigation],
@@ -194,6 +193,14 @@ div[data-ui-navigation] md-backdrop {
 .page-faq .animate-page-switch-container,
 .page-contact .animate-page-switch-container {
   padding: 0;
+}
+
+.super-menu-open .page-title,
+.page-about .page-title,
+.page-legal .page-title,
+.page-faq .page-title,
+.page-contact .page-title {
+  color: #fff;
 }
 
 .super-search-open .footer-nav {
@@ -273,6 +280,17 @@ md-sidenav ul li {
   -ms-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
+}
+
+/***********************************************
+* Products STYLE
+***********************************************/
+.product-filter-categories {
+  max-width: 54%;
+}
+
+.product-filter-categories.full-width {
+  max-width: 90%;
 }
 
 /***********************************************
@@ -570,9 +588,15 @@ md-autocomplete-wrap input {
   background: #fff;
   z-index: 9;
   padding: 20px;
+  padding-bottom: 80px;
   padding-top: 80px;
   box-sizing: border-box;
   height: calc(100% - 80px - 48px);
+}
+
+.search-container.layout-fill .page-title {
+  color: #fff;
+  font-size: 50px;
 }
 
 .search-container.layout-fill .inner-container {
@@ -813,6 +837,44 @@ END slider style
 #configurator .breadcrumbs {
   max-width: 350px;
   margin: 0 auto;
+  position: relative;
+  pointer-events: all;
+}
+
+#configurator .breadcrumbs md-slider {
+  pointer-events: none;
+}
+
+#configurator .breadcrumbs .breadcrumb-buttons {
+  position: absolute;
+  top: -6px;
+  left: -0.5%;
+  width: 102%;
+  max-width: none;
+  z-index: 0;
+}
+
+#configurator .breadcrumbs .breadcrumb-buttons span {
+  -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -ms-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -o-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: inline-block;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  background-color: #ff510b;
+  cursor: pointer;
+}
+
+#configurator .breadcrumbs .breadcrumb-buttons span.active {
+  background-color: #444;
+}
+
+#configurator .breadcrumbs .breadcrumb-buttons span:last-child {
+  background-color: #444;
+  cursor: auto;
 }
 
 #configurator .configurator-steps {
@@ -947,7 +1009,7 @@ END slider style
   text-align: center !important;
   padding: 20px;
   vertical-align: top;
-  border: 5px solid transparent;
+  border: 3px solid transparent;
   max-width: 200px;
 }
 
@@ -994,7 +1056,7 @@ END slider style
 }
 
 #configurator .insect-selector.selected {
-  border: 5px solid #00833D;
+  border: 3px solid #00833D;
 }
 
 #configurator .insect-selector.selected .thumbnail i {
@@ -1135,7 +1197,6 @@ END slider style
 
 #configurator .step-3 .map-container .map {
   max-height: 300px;
-  height: 300px;
 }
 
 #configurator .step-3 .map-container button {
@@ -1334,12 +1395,39 @@ END slider style
 * Media Queries
 ***********************************************/
 @media screen and (max-width: 959px) {
+  .main-container {
+    padding: 0 15px;
+    max-width: 500px !important;
+    margin: 0 auto;
+  }
+  h1.page-title {
+    font-size: 28pt !important;
+    margin-top: 1em !important;
+  }
+  h1.page-title.main {
+    font-size: 40pt !important;
+  }
+  h3.page-title {
+    font-size: 25pt !important;
+    margin-top: 50px !important;
+  }
+  .animate-page-switch-container {
+    padding-top: 80px;
+  }
+  /***********************************************
+  * Green Pages
+  ***********************************************/
+  .super-menu-open .page-content,
+  .page-about .page-content,
+  .page-legal .page-content,
+  .page-faq .page-content,
+  .page-contact .page-content {
+    padding: 0px 15px;
+    max-width: 500px;
+  }
   /***********************************************
   * Insect Page
   ***********************************************/
-  .page-insects .main-container {
-    padding: 0 15px;
-  }
   .page-insects .super-hero-bg {
     max-height: 100%;
   }
@@ -1349,8 +1437,16 @@ END slider style
   .page-insects .super-bug-image {
     top: 0;
   }
+  .page-insects .primary-cta.main {
+    padding: 5px 15px;
+    font-size: 27px;
+  }
   .page-insects .primary-tag {
     padding: 0 10px;
+  }
+  .page-insects .insect-insects {
+    width: 100%;
+    text-align: center;
   }
   .page-insects .insect-insects [class^='icon'] {
     position: relative;
@@ -1369,7 +1465,7 @@ END slider style
     left: 5px;
   }
   .page-insects .insect-insects [class^='icon'].icon-fishmoth {
-    left: 11px;
+    left: 4px;
   }
   .page-insects .insect-insects [class^='icon'].icon-ant {
     left: 7px;
@@ -1381,6 +1477,7 @@ END slider style
     left: 7px;
   }
   .page-insects .insect-insects li {
+    text-align: left;
     position: relative;
     margin-left: 5px;
     display: inline-block;
@@ -1388,6 +1485,100 @@ END slider style
     width: 35px;
     height: 35px;
     margin-left: 5px;
+  }
+  .page-insects .insect-buttons-cta {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .page-insects .insect-buttons-cta div {
+    padding: 0;
+    border: 1px solid #cccccc;
+    border-left: 0;
+    border-right: 0;
+    margin: 0;
+  }
+  .page-insects .insect-buttons-cta div:last-child {
+    border-top: 0;
+  }
+  .page-insects .insect-buttons-cta div .md-button {
+    padding: 10px;
+    max-width: auto;
+    margin: 0;
+    width: 100%;
+  }
+  .page-insects .insect-buttons-cta div .md-button .icon {
+    display: none;
+  }
+  .page-insects .insect-controller-buttons, .page-insects .product-controller-buttons {
+    top: 12%;
+    top: 15vh;
+  }
+  .page-insects .insect-controller-buttons .icon-chevron-left-thin, .page-insects .product-controller-buttons .icon-chevron-left-thin {
+    left: 0;
+  }
+  .page-insects .insect-controller-buttons .icon-chevron-right-thin, .page-insects .product-controller-buttons .icon-chevron-right-thin {
+    right: 0;
+  }
+  /***********************************************
+  * Carousel
+  ***********************************************/
+  .carousel-container {
+    display: inline-block !important;
+  }
+  [data-ui-carousel].single .carousel-container, [data-ui-carousel].single .carousel-container .carousel {
+    max-width: 100%;
+  }
+  .carousel-container, .carousel-container .carousel {
+    max-width: 200px;
+  }
+  .retailer-carousel .carousel-container, .retailer-carousel .carousel-container .carousel {
+    max-width: 100%;
+  }
+  /***********************************************
+  * Products
+  ***********************************************/
+  .page-products .product-filter-categories {
+    border-bottom: 3px solid #00833D;
+  }
+  .page-products-single .product-filter-categories {
+    border-bottom: none;
+  }
+  .product-filter-categories {
+    max-width: 100%;
+    margin: 0;
+  }
+  .product-filter-categories .primary-tag {
+    font-size: 0.6em;
+    padding: 5px 10px;
+  }
+  .product-filter-categories.full-width {
+    margin: 0 auto;
+  }
+  .product-controller-buttons {
+    width: 110%;
+    left: -5%;
+  }
+  .product-controller-buttons .icon-chevron-right-thin, .product-controller-buttons .icon-chevron-left-thin {
+    padding: 10px;
+  }
+  .md-button.primary-tag {
+    padding: 5px 10px;
+    line-height: 1;
+  }
+  /***********************************************
+  * Navigation
+  ***********************************************/
+  md-sidenav .side-nav-container {
+    padding: 15px 20px;
+  }
+  md-sidenav .side-nav-container ul {
+    margin: 0;
+    padding: 0;
+  }
+  .footer-nav .md-button {
+    font-size: 12px;
+    max-width: none;
+    min-width: auto;
   }
   /***********************************************
   * Configurator
@@ -1423,13 +1614,41 @@ END slider style
   #configurator .step-1 .insect-selector .desc, #configurator .step-1 .insect-selector .start-button {
     opacity: 1 !important;
   }
+  #configurator .step-2 {
+    font-size: 0.7em !important;
+  }
+  #configurator .step-2.active {
+    width: calc(100% - 96px);
+  }
+  #configurator .step-3.active {
+    width: calc(100% - 36px);
+  }
   #configurator .step-3 .map-container {
     width: 100%;
+    text-align: center;
+  }
+  #configurator .step-3 .map-container img {
+    max-height: none !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 400px !important;
   }
   #configurator .final .final-container .stats-container {
     min-height: 400px;
   }
+  #configurator .final .final-container .stats-container, #configurator .final .final-container .solution-container {
+    padding: 15px;
+  }
   #configurator .final .final-container .product img {
     max-width: 100%;
+  }
+  /***********************************************
+  * Search
+  ***********************************************/
+}
+
+@media screen and (max-width: 350px) {
+  .product-filter-categories .primary-tag {
+    font-size: 8px;
   }
 }

@@ -10,9 +10,9 @@
 
 ?>
 	<div layout="column" layout-align="center center" flex="100"> 
-		<div layout="row" layout-fill layout-md="column" >
+		<div layout="column" layout-fill layout-gt-sm="row" >
 
-			<div class="md-padding" flex-md="100" flex="60" flex-order-xs="2" style="background-color:#ffffff;">
+			<div class="md-padding" flex-md="100" flex="60" flex-order="2" flex-order-gt-sm="1" style="background-color:#ffffff;">
 
                 <form id="formContact" name="userForm" novalidate>
 
@@ -99,7 +99,7 @@
                 <div data-ng-transclude></div>
 
             </div>
-            <div class="" flex-md="100" flex="40" flex-order-xs="1" style="background-color:#7B7B7A;color:#ffffff;">
+            <div class="" flex-md="100" flex="40" flex-order="1" flex-order-gt-sm="2" style="background-color:#7B7B7A;color:#ffffff;">
                 <div data-ui-google-map
                     data-map
 					zoom="10" 

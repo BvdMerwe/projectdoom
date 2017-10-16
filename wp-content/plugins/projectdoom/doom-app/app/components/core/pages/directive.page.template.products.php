@@ -15,7 +15,7 @@
 
         <div layout="column" <?php //layout-fill (removed to test layout in FF) ?> class="md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
             <!-- -->
-            <div layout="row" layout-md="column" layout-align="start start" layout-align-md="center center">
+            <div layout-gt-sm="row" layout="column" layout-align="start start" layout-align-md="center center">
                 <div flex="50" flex-md="100"  class="" style=""> 
                     <div class="bg-box product-image-holder">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
@@ -24,7 +24,7 @@
                             <button class="icon-chevron-right-thin" data-ui-hero-product data-nav-direction="forward" data-ng-click="nextProduct()"></button>
                         </div>
                     </div>
-                    <div class="product-filter-categories full-width" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
+                    <div class="product-filter-categories full-width" layout="row" layout-align="space-between space-between">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"
@@ -78,7 +78,7 @@
                     </div>
                     
                 </div>
-                <div flex="40" flex-offset="10" flex-offset-md="0" flex-md="100" layout-align-md="center start" class="" style="">
+                <div flex="40" flex-offset-gt-sm="10" flex-offset="0" flex-md="100" layout-align-gt-sm="center start" class="" style="">
                     <div class="product-meta-info">
                         <h1 flex="100" class="page-title"  style="font-size: 24pt;">{{pageContent.post_title}}</h1>
                         <span class="hr-divider"></span>
@@ -160,7 +160,7 @@
                         <br/>
                         <h3 class="page-title">Similar Products</h3>
                         <br />
-                        <div layout="row" layout-align-md="center center">
+                        <div layout="row" layout-align="center center">
                             <div data-ui-carousel
                                 single          = "true"
                                 cta             = "true"
@@ -202,21 +202,21 @@
         <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="filter" >
 
             <!-- [HERO SECTION]  -->
-            <div layout="row" layout-md="column" layout-align="center center">
+            <div  layout-gt-sm="row" layout="column" layout-align="center center">
                 <div flex="100" flex-gt-sm="60" flex-md="100" class="">
                     <div class="bg-box">
                         <!--<img data-ng-click="showImage()" data-ng-src="https://via.placeholder.com/500" class="md-card-image" alt="image caption">-->
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex="100" flex-gt-sm="40" class="center-content" layout-align="center center" layout-align-gt-sm="center center">
+                <div flex="100" flex-gt-sm="40" <?php //class="center-content" (removed for responsive text)  ?> layout-align="center center" layout-align-gt-sm="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span> 
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                 </div>
             </div>
 
-            <div class="product-filter-categories" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
+            <div class="product-filter-categories" layout="row" layout-align="space-between space-between">
                 <!--
                 <md-button
                     ng-repeat="productType in pageContent.product_types"
@@ -500,7 +500,7 @@
                 </div>
 
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
-                    <div class="product-filter-categories" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
+                    <div class="product-filter-categories"  layout="row" layout-align="space-between space-between">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"
@@ -770,20 +770,20 @@
         <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
 
             <!-- [HERO SECTION]  -->
-            <div layout="row" layout-md="column" layout-align="center center">
-                <div flex="60" flex-md="100" class="">
+            <div layout-gt-sm="row" layout="column" layout-align="center center">
+                <div flex-gt-sm="60" flex="100" class="">
                     <div class="bg-box">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex="40" flex-md="100" class="center-content" layout-align-md="center center">
+                <div flex-gt-sm="40" flex="100" <?php //class="center-content" (removed for responsive text)  ?> layout-align-md="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                 </div>
             </div>
             <!-- [/HERO SECTION] -->
-            <div class="product-filter-categories center-content mobile-padding" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
+            <div class="product-filter-categories mobile-padding" layout="row" layout-align="space-between space-between">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"

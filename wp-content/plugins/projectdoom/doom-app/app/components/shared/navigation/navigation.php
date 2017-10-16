@@ -76,7 +76,7 @@
 	<div layout="column" class="nav-nav in clear md-primary">
 		<div layout="row" layout-align="space-between center" flex-xs="100">
 
-			<div class="md-padding" style="text-align:center;background-color:#00833D;width: 80px;height: 80px;">
+			<div class="" style="padding:16px;text-align:center;background-color:#00833D;width: 80px;height: 80px;">
 				<md-button ng-click="toggleLeft()" aria-label="Open Menu"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:10px;">

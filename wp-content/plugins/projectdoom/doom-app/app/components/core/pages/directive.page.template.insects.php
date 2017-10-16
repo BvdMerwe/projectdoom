@@ -116,7 +116,7 @@
                             <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go</p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}><br /-->1 week<sup>*</sup></h1>
-                            <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your pj’s while you sleep tonight.</p>
+                            <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your PJs while you sleep tonight.</p>
                         </div>
                         <div data-ng-switch-when="ant" class="insect-fact">
                             <h1 flex="100" class="page-title main"><br/>Ants</h1>
@@ -149,7 +149,7 @@
                         
                     </div>
                     <!-- <br /><br /> -->
-                    <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta" style="padding:10px 45px;font-size:30px;margin: 10px 0;">Make Them Stop</md-button>
+                    <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta main">Make Them Stop</md-button>
                     <!-- <br /><br /> -->
                     <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Solution for you.</p>
                     <ul class="insect-insects">
@@ -258,14 +258,14 @@
                 <div layout="column" layout-gt-sm="column" flex-gt-sm="50" flex="100" layout-align="center center" layout-align-gt-sm="start start">
                     <h3 flex="100" class="page-title" style="">{{pageContent.post_title}}</h3>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
-                    <div class="insect-buttons-cta" flex="100" layout="row" layout-align="space-between stretch">
-                        <div class="flex">
+                    <div class="insect-buttons-cta" layout="column" layout-align="start start" flex="100" layout-gt-sm="row" layout-align-gt-sm="space-between stretch">
+                        <div flex-gt-sm flex="100" class="fill-width">
                             <md-button class="md-primary primary-tag" data-ng-click="viewProfile(pageContent.post_name)">
                                 <span class="icon "><i class="icon-{{pageContent.post_name}}"></i></span>
                                 {{pageContent.post_title}}<br />Profile
                             </md-button>
                         </div>
-                        <div class="flex">
+                        <div flex-gt-sm flex="100" class="fill-width">
                            
                             <md-button class="md-primary primary-tag" data-ng-click="browseBycategoryInsect( 'products', pageContent.insect_categories[0].slug, pageContent.post_name)">
                                 <span class="icon icon-"><i class="icon-zap"></i></span>

@@ -90,9 +90,9 @@ define( function ( require, exports, module ) {
                                                 var firstVisit = new Date(results[6].firstVisit);
                                                 var lastVisit = new Date(results[6].lastVisit);
                                                 // if ($location.$$path == "/") {
-                                                    var pests = results[2];
-                                                    var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
-                                                    $location.path("/insects/"+pests[rand].post_name);
+                                                    // var pests = results[2];
+                                                    // var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
+                                                    // $location.path("/insects/"+pests[rand].post_name);
                                                 // }
                                                 //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
      
