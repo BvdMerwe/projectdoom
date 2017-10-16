@@ -148,7 +148,7 @@ define( function ( require, exports, module ) {
             var perTick = difference / duration * 10;
             $timeout(function () {
                 stat.stats[$scope.randStat].dummy = stat.stats[$scope.randStat].dummy + perTick;
-                stat.stats[$scope.randStat].show = Utils.numberWithCommas(Math.round(stat.stats[$scope.randStat].dummy));
+                stat.stats[$scope.randStat].show = Math.round(stat.stats[$scope.randStat].dummy);
                 if (stat.stats[$scope.randStat].dummy == to) return;
                 numberClimb(to, duration - 10);
             }, 10);
