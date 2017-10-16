@@ -56,7 +56,7 @@
       <br />
       <div flex="100" class="content" layout="row" layout-wrap layout-align="center center">
           <div flex="100">
-            <p>How long have they been bugging you for?</p>
+            <h3 class="green-bold">How long have they been bugging you for?</h3>
             <md-slider-container layout="row" layout-align="space-between center">
               <span flex="15"></span>
               <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.duration" step="1" min="1" max="4" aria-label="duration"></md-slider>
@@ -70,7 +70,7 @@
             </div>
           </div>
           <div flex="100">
-            <p>How many bugs did you see?</p>
+            <h3 class="green-bold">How many bugs did you see?</h3>
             <md-slider-container layout="row" layout-align="space-between center">
               <span flex="15">A few</span>
               <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.amount" step="1" min="1" max="2" aria-label="amount"></md-slider>
@@ -127,7 +127,7 @@
           </svg>
         </div>
         <div class="text" flex>
-          <h3>Where have the goggas invaded?</h3>
+          <h3 class="green-bold">Where have the goggas invaded?</h3>
           <p>Drop pin on location or select an option below</p>
           <md-select ng-model="config.location" multiple aria-label="locations">
               <md-option ng-value="'bedroom'">Bedroom</md-option>
@@ -146,7 +146,7 @@
       </div>
       <div class="final-container" layout="row" layout-fill layout-align="center start" layout-wrap>
         <div class="stats-container" flex="100" flex-gt-sm="33">
-          <h2>In your home</h2>
+          <h3 class="page-title">In your home</h3>
           <p ng-bind-html="selectedStat.formatted"></p>
           <div class="stat-controls">
             <div class="stat-selector" ng-click="showStat(stat)" ng-repeat="stat in result.stats">
@@ -162,7 +162,7 @@
           </div>
         </div>
         <div class="solution-container" flex="80" flex-offset="1" flex-gt-sm="33" flex-offset-gt-sm="0">
-          <h2>Your results and solution</h2>
+          <h3 class="page-title">Your results and solution</h3>
           <p class="page-description">{{result.product.post_content}}</p>
           <div class="">
             <md-button class="primary-cta fill-width" data-ng-click="goto('/products/'+result.product.post_name)">View more</md-button>

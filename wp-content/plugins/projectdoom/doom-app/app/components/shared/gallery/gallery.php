@@ -14,7 +14,7 @@
 			<md-content flex="100" class="">
                 
                 <md-toolbar class="md-hue-1 toolbar-filter" data-ng-if="showFilter == 'true'">
-                    <div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #14A774;">
+                    <div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #00833D;">
                         
                         
                         <md-button 
@@ -112,7 +112,7 @@
                             <?php /**/?>
                             
                             <md-card-content>
-                                <p style="text-align:center;color:#14A774;font-size:14px;font-weight:bold;">
+                                <p style="text-align:center;color:#00833D;font-size:14px;font-weight:bold;">
                                     <span class="">{{value.post_title}}</span><!--{{value.post_content | trunk8:100}}-->
                                 </p>
                             </md-card-content>

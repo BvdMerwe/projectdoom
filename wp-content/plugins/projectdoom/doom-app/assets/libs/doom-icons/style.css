@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'doom-icons';
-  src:  url('fonts/doom-icons.eot?z3yx9k');
-  src:  url('fonts/doom-icons.eot?z3yx9k#iefix') format('embedded-opentype'),
-    url('fonts/doom-icons.ttf?z3yx9k') format('truetype'),
-    url('fonts/doom-icons.woff?z3yx9k') format('woff'),
-    url('fonts/doom-icons.svg?z3yx9k#doom-icons') format('svg');
+  src:  url('fonts/doom-icons.eot?rk1cd8');
+  src:  url('fonts/doom-icons.eot?rk1cd8#iefix') format('embedded-opentype'),
+    url('fonts/doom-icons.ttf?rk1cd8') format('truetype'),
+    url('fonts/doom-icons.woff?rk1cd8') format('woff'),
+    url('fonts/doom-icons.svg?rk1cd8#doom-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,40 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-star:before {
+  content: "\e91a";
+}
+.icon-chevron-down-compressed:before {
+  content: "\e91b";
+}
+.icon-chevron-left-thin:before {
+  content: "\e91c";
+}
+.icon-chevron-right-compressed:before {
+  content: "\e91d";
+}
+.icon-chevron-right-thin:before {
+  content: "\e91e";
+}
+.icon-cross:before {
+  content: "\e91f";
+}
+.icon-fb:before {
+  content: "\e920";
+}
+.icon-life-span:before {
+  content: "\e921";
+  color: #000;
+}
+.icon-minus:before {
+  content: "\e922";
+}
+.icon-plus:before {
+  content: "\e923";
+}
+.icon-twitter:before {
+  content: "\e924";
+}
 .icon-blood:before {
   content: "\e918";
 }

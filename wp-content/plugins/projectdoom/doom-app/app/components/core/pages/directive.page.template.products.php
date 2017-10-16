@@ -20,8 +20,8 @@
                     <div class="bg-box product-image-holder">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                         <div class="product-controller-buttons">
-                            <button class="icon-chevron-left" data-ui-hero-product data-nav-direction="back" data-ng-click="prevProduct()"></button>
-                            <button class="icon-chevron-right" data-ui-hero-product data-nav-direction="forward" data-ng-click="nextProduct()"></button>
+                            <button class="icon-chevron-left-thin" data-ui-hero-product data-nav-direction="back" data-ng-click="prevProduct()"></button>
+                            <button class="icon-chevron-right-thin" data-ui-hero-product data-nav-direction="forward" data-ng-click="nextProduct()"></button>
                         </div>
                     </div>
                     <div class="product-filter-categories full-width" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
@@ -80,7 +80,7 @@
                 </div>
                 <div flex="40" flex-offset="10" flex-offset-md="0" flex-md="100" layout-align-md="center start" class="" style="">
                     <div class="product-meta-info">
-                        <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
+                        <h1 flex="100" class="page-title"  style="font-size: 24pt;">{{pageContent.post_title}}</h1>
                         <span class="hr-divider"></span>
                         <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                     </div>
@@ -117,7 +117,7 @@
                     <!-- <md-button class="md-primary primary-cta">Get Product Coupon</md-button>
 					<br /><br /> -->
 
-					<ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">
+					<ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-plus" open-icon-class="icon-minus">
 						<collapsible-item title="More Info" ng-if="pageContent.doom_product_more_info">
 							<div>
 								<p ng-bind-html="pageContent.doom_product_more_info | trustAsHtml"></p>

@@ -10,7 +10,7 @@
 
 ?>
 <md-toolbar class="md-hue-1 toolbar-filter" data-ng-if="showFilter">
-	<div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #14A774;">
+	<div class="md-toolbar-tools" layout-align="start start" style="border-bottom:2px solid #00833D;">
 		<?php /*
 		<md-button 
 			class="md-primary md-hue-3 btn-filter active-filter" 
@@ -48,8 +48,8 @@
 <div ng-transclude></div>
 <div layout="column" class="carousel-container" style="display: {{isSingle ? 'inline-block' : 'block'}};">
 	<div class="controls" ng-if="itemLength > 0">
-		<span class="carousel-control left icon-chevron-left" ng-click="goLeft($event)"></span>
-		<span class="carousel-control right icon-chevron-right" ng-click="goRight($event)"></span>
+		<span class="carousel-control left icon-chevron-left-thin" ng-click="goLeft($event)"></span>
+		<span class="carousel-control right icon-chevron-right-thin" ng-click="goRight($event)"></span>
 	</div>
 	<div class="carousel">
 		<div class="list" style="<?php //height:{{maxHeight}};?>width:1000%;width:calc(({{maxWidth}} * {{itemLength}}) + ({{gutter}} * {{itemLength -1}}));">

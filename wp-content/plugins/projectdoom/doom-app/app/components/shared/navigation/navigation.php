@@ -25,7 +25,7 @@
 					<md-button data-ng-click="close()" class="md-primary close" style="color:#ffffff;">
 					</md-button>
 				</div>-->
-				<div flex="100" layout="row" layout-fill layout-align="center start" style="padding:50px 100px">
+				<div flex="100" layout="row" layout-fill layout-align="space-around start" style="padding:50px 100px">
 
 					<!-- <div flex="70" layout-fill>
 						<p>The <strong>fishmoths</strong> mutilating<br />the backside of your<br />undergarments are laying<span style="font-size:100px;"><br />2.5<br />EGGS<br /></span>a day in your home.</p>
@@ -76,7 +76,7 @@
 	<div layout="column" class="nav-nav in md-primary">
 		<div layout="row" layout-align="space-between center" flex-xs="100">
 
-			<div class="md-padding" style="text-align:center;background-color:#14A774;width: 80px;height: 80px;">
+			<div class="md-padding" style="text-align:center;background-color:#00833D;width: 80px;height: 80px;">
 				<md-button ng-click="toggleLeft()" aria-label="Open Menu"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:10px;">

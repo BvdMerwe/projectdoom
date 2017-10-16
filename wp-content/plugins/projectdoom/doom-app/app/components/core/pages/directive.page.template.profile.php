@@ -5,8 +5,8 @@
             <div layout="column" layout-md="column" layout-align="center center">
                 <img data-ng-click="showImage()" flex="100" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="" style="position:relative;left:0;" />
                 <div class="insect-controller-buttons">
-                    <button class="icon-chevron-left" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
-                    <button class="icon-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
+                    <button class="icon-chevron-left-thin" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
+                    <button class="icon-chevron-right-thin" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
                 </div>
             </div>
             

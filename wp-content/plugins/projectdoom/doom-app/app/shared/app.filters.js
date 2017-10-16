@@ -266,7 +266,7 @@ define( function ( require, exports, module ) {
 				  return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
 				}
 			  }
-			  return num.toFixed(digits).replace(rx, "$1");
+			  return parseFloat(num).toFixed(digits).replace(rx, "$1");
 		};
 
 	};

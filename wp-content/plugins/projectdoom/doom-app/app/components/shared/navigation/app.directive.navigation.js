@@ -217,6 +217,11 @@ define( function ( require, exports, module ) {
 					} else {
 						elm.addClass("in");
 					}
+					if (newPos < 81) {
+						elm.addClass("clear");
+					} else {
+						elm.removeClass("clear");
+					}
 					oldPos = newPos;
 				}
 				function cleanUp() {

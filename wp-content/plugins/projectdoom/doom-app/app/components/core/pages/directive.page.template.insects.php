@@ -104,32 +104,44 @@
                 
                 <div flex="100" flex-offset-gt-sm="10" flex-gt-sm="40" class="" layout-align="center start" layout-align-gt-sm="center start">
                     <div data-ng-switch="pageContent.post_name">
-                        <div data-ng-switch-when="flea">
+                        <div data-ng-switch-when="flea" class="insect-fact">
+                            <h1 flex="100" class="page-title main"><br/>FLEAS</h1>
+                            <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can suck</p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}-->15 times<sup>*</sup></h1>
                             <p flex="100" class="page-description">their bodyweight in blood a day. Their fave drinking spot is covered in fur and answers to the name, Scruffles.</p>
                         </div>
-                        <div data-ng-switch-when="cockroach">
+                        <div data-ng-switch-when="cockroach" class="insect-fact">
+                            <h1 flex="100" class="page-title main">Cock<br/>roaches</h1>
+                            <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can go</p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}><br /-->1 week<sup>*</sup></h1>
                             <p flex="100" class="page-description">without a head. That means a headless hedonistic roach could be making its way up your pj’s while you sleep tonight.</p>
                         </div>
-                        <div data-ng-switch-when="ant">
+                        <div data-ng-switch-when="ant" class="insect-fact">
+                            <h1 flex="100" class="page-title main"><br/>Ants</h1>
+                            <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
                             <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> vomit every</p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->second<sup>*</sup></h1>
                             <p flex="100" style="max-width:90%;" class="page-description">That includes the ones currently hijacking the sandwich in your skaftin. </p>
                         </div>
-                        <div data-ng-switch-when="fly"> 
+                        <div data-ng-switch-when="fly" class="insect-fact"> 
+                            <h1 flex="100" class="page-title main"><br/>Flies</h1>
+                            <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
                             <p flex="100" class="page-description"><strong><!--{{pageContent.post_title}}-->Flies</strong> poop once every </p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->10 seconds<sup>*</sup></h1>
                             <p flex="100" class="page-description">while feeding. Good to know for next time you spot a fly snacking on your Sunday seven colours.</p>
                         </div>
-                        <div data-ng-switch-when="mosquito">
-                            <p flex="100" class="page-description">Only female <strong>{{pageContent.post_title}}s</strong> bite and they can lay up to </p>
+                        <div data-ng-switch-when="mosquito" class="insect-fact">
+                            <h1 flex="100" class="page-title main">Mos<br/>quitoes</h1>
+                            <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can lay up to </p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->150 eggs<sup>*</sup></h1>
-                            <p flex="100" class="page-description">at a time. They’re particularly fond of pungent odours, like your smelly feet. </p>
+                            <p flex="100" class="page-description">at a time. Only females bite, and they’re particularly fond of pungent odours, like your smelly feet. </p>
                         </div> 
-                        <div data-ng-switch-when="fishmoth">
+                        <div data-ng-switch-when="fishmoth" class="insect-fact">
+                            <h1 flex="100" class="page-title main">Fish<br/>moths</h1>
+                            <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
                             <p flex="100" class="page-description">The <strong>{{pageContent.post_title}}s</strong> eating holes through the private bits of your underwear are laying</p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->2.5 eggs<sup>*</sup></h1>
                             <p flex="100" class="page-description">a day, in your home.</p>
@@ -137,9 +149,9 @@
                         
                     </div>
                     <!-- <br /><br /> -->
-                    <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta fill-width" style="padding:10px 45px;font-size:30px;margin: 44px 0;">Make Them Stop</md-button>
+                    <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta" style="padding:10px 45px;font-size:30px;margin: 10px 0;">Make Them Stop</md-button>
                     <!-- <br /><br /> -->
-                    <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you.</p>
+                    <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Solution for you.</p>
                     <ul class="insect-insects">
                         <li data-ng-click="goto('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>
@@ -162,8 +174,8 @@
                     </ul>
                 </div>
                 <div class="insect-controller-buttons">
-                    <button class="icon-chevron-left" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
-                    <button class="icon-chevron-right" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
+                    <button class="icon-chevron-left-thin" data-ui-hero-insect data-nav-direction="back" data-ng-click="prevInsect()"></button>
+                    <button class="icon-chevron-right-thin" data-ui-hero-insect data-nav-direction="forward" data-ng-click="nextInsect()"></button>
                 </div>
             </div>
                 
@@ -210,7 +222,7 @@
                     <br /><br />
                     <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta" style="padding:10px 45px;font-size:30px;margin:0;">Make Them Stop</md-button>
                     <br /><br />
-                    <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Killer for you.</p>
+                    <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Solution for you.</p>
                     <ul class="insect-insects">
                         <li data-ng-click="goto('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>
@@ -296,7 +308,7 @@
             <div layout="column" layout-align-gt-sm="start start" layout-align="center center">
                 <!-- <br /><br /> -->
                 <h3 id="makethemstop" flex="100" class="page-title" style="">Make Them Stop</h3>
-                <p flex="100" class="page-description" style="margin-bottom:0;">Get the right {{pageContent.post_name}} killer for your {{pageContent.post_name}} problem.</p>
+                <p flex="100" class="page-description" style="margin-bottom:0;">Get the right {{pageContent.post_name}} Solution for your {{pageContent.post_name}} problem.</p>
                 <!-- <br /><br /> -->
             </div>
             <div layout-gt-sm="row" layout="column" layout-align="center center">

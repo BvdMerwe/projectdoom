@@ -38,7 +38,7 @@
       <span>{{result.post_content}}</span>
     </div> -->
     <md-list class="search-results">
-      <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">  
+      <ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-plus" open-icon-class="icon-minus">  
         <md-list-item class="md-3-line result" ng-repeat="result in results">
           <div ng-click="navigate(result.post_type, result.post_name)" layout="row" flex="100" class="search-result" ng-if="result.post_type !== 'faq'">
             <img ng-if="result.image" ng-src="{{result.image}}" class="md-avatar" >

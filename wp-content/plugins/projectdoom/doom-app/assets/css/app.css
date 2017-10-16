@@ -24,7 +24,7 @@ body:after {
 }
 
 ::selection 	{
-	color: #14A774;
+	color: #00833D;
 	text-shadow: none;
 }
 
@@ -62,8 +62,9 @@ body:after {
     margin: 0;
     padding: 0;
     z-index: 99998;
-    background-color: #14A774 !important;
-    color: #14A774 !important;
+    background-color: #00833D !important;
+    box-shadow: 0 0 10px 0; /* Inherits the font color */
+    color: #00833D !important;
     box-shadow: 0 0 10px 0; /* Inherits the font color */
     height: 2px;
     opacity: 0;
@@ -266,7 +267,7 @@ body.super-search-open {
 }
 
 md-nav-ink-bar {
-	background-color: #14A774 !important;
+	background-color: #00833D !important;
 }
 
 /**
@@ -292,8 +293,9 @@ md-nav-ink-bar {
 
 .super-menu ul li {
 	position: relative;
-	padding: 20px 0;
-	border-bottom:1px solid #ffffff;
+    padding: 10px 0;
+    border-bottom: 01px solid rgba(255,255,255, 0.6);
+    font-size: 14px;
 }
 
 .super-menu ul li:first-child {
@@ -301,7 +303,7 @@ md-nav-ink-bar {
 }
 
 .super-menu ul li:first-child {
-	padding-top:20px;
+	padding-top:0px;
 }
 
 .super-menu ul li:last-child {
@@ -343,7 +345,7 @@ md-nav-ink-bar {
 .page-faq .app-dashboard, */
 .super-search-open .app-dashboard .search-container,
 .super-menu-open .app-dashboard .md-sidenav-left {
-	background-color:#14A774;
+	background-color:#00833D;
 }
 
 
@@ -458,7 +460,7 @@ md-nav-ink-bar {
 	background-repeat: no-repeat;
 }
 
-.page-insects-single-ant .app-dashboard {
+/* .page-insects-single-ant .app-dashboard {
 	background-image: url('../images/ANT_bg.jpg');
 }
 .page-insects-single-fly .app-dashboard {
@@ -475,7 +477,7 @@ md-nav-ink-bar {
 }
 .page-insects-single-cockroach .app-dashboard {
 	background-image: url('../images/COCKROACH_bg.png');
-}
+} */
 /**
 * 
 * General Page Structure
@@ -495,14 +497,20 @@ md-nav-ink-bar {
 
 .page-title {
 	margin: 0;
-	margin-top: 1em;
+	margin-top: 100px;
 	line-height: 1.1em;
 	text-transform: uppercase;
-	color:#14A774;
+	color:#00833D;
 }
 
 h1.page-title {
 	font-size: 44pt;
+}
+
+h1.page-title.main {
+    font-size: 60pt;
+    line-height: 0.9;
+    margin: 0;
 }
 
 h3.page-title {
@@ -542,11 +550,11 @@ h3.page-title {
 
 .hr-divider {
 	position: relative;
-	display: inline-block;
+	display: block;
 	height: 5px;
     width: 50%;
-    background-color: #14A774;
-    margin: 2em 0;
+    background-color: #00833D;
+    margin: 1em 0;
 }
 
 /**
@@ -587,15 +595,16 @@ h3.page-title {
 * 
 **/
 .carousel-title {
-	color:#14A774;
+	color:#00833D;
 	font-size: 30px;
 	text-transform: uppercase;
 }
 
 .product-insects,
 .insect-insects {
+	display: inline-block;
 	position: relative;
-	margin: 2.5em auto;
+	margin: 10px auto;
 	padding: 0;
 }
 
@@ -607,29 +616,32 @@ h3.page-title {
 
 	margin-left: 10px;
 
-	border:2px solid #14A774;
+	border:1px solid #00833D;
 	display: inline-block;
 
 	color:#000000;
 	cursor: initial !important;
 }
 
-.product-insects li.active,
+.product-insects li.active {
+	display: inline-block;
+
+}
 .insect-insects li.active {
 	/** /
-	background-color:#14A774;
-	border:2px solid #14A774;
+	background-color:#00833D;
+	border:2px solid #00833D;
 	/**/
 	color:#ffffff;
-	background-color:#14A774;
-	border:2px solid #14A774;
+	background-color:#00833D;
+	border:1px solid #00833D;
 }
 
 /* .product-insects li:hover, */
 .insect-insects li:hover {
 	color:#fff;
 	background-color:#ff510b;
-	border:2px solid #ff510b;
+	border:1px solid #ff510b;
 }
 
 .product-insects li:first-child,
@@ -650,7 +662,7 @@ h3.page-title {
 
 	margin-left: 5px;
 
-	border:2px solid #ff510b;
+	border:1px solid #ff510b;
 	display: inline-block;
 	/**/
 	color:#000000;
@@ -660,8 +672,9 @@ h3.page-title {
 	color:#ff510b;
 }
 .product-insects li {
-	color:#14A774;
-	border:2px solid #14A774;
+	display: none;
+	color:#00833D;
+	border:1px solid #00833D;
 }
 
 .insect-insects li i,
@@ -687,6 +700,18 @@ h3.page-title {
 
 .insect-insects li.icon-insect-cockroach i{
 	
+}
+
+.insect-insects li.icon-insect-cockroach i,
+.product-insects li.icon-insect-cockroach i{
+	left: 9px;
+    top: 13px;
+}
+
+.insect-insects li.icon-insect-flea i,
+.product-insects li.icon-insect-flea i{
+	left:11px;
+	top:14px;
 }
 
 .insect-insects li.icon-insect-fly i,
@@ -743,7 +768,7 @@ h3.page-title {
 }
 
 .primary-cta:hover {
-	background-color: #ffffff;
+	background-color: transparent;
 	color:#ff510b;
 }
 
@@ -832,10 +857,10 @@ h3.page-title {
 	z-index: 1;
 }
 
-.insect-controller-buttons .icon-chevron-left,
-.insect-controller-buttons .icon-chevron-right,
-.product-controller-buttons .icon-chevron-left,
-.product-controller-buttons .icon-chevron-right {
+.insect-controller-buttons .icon-chevron-left-thin,
+.insect-controller-buttons .icon-chevron-right-thin,
+.product-controller-buttons .icon-chevron-left-thin,
+.product-controller-buttons .icon-chevron-right-thin {
 	position: absolute;
 	font-size: 2em;
 	border:none;
@@ -843,26 +868,26 @@ h3.page-title {
 	color:#ff510b;
 }
 
-.product-controller-buttons .icon-chevron-left,
-.product-controller-buttons .icon-chevron-right {
+.product-controller-buttons .icon-chevron-left-thin,
+.product-controller-buttons .icon-chevron-right-thin {
 	background:#ff510b;
 	color:#fff;
 	padding:20px;
 }
 
-.insect-controller-buttons .icon-chevron-left,
-.product-controller-buttons .icon-chevron-left {
+.insect-controller-buttons .icon-chevron-left-thin,
+.product-controller-buttons .icon-chevron-left-thin {
 	left:2px;
 }
-.insect-controller-buttons .icon-chevron-right,
-.product-controller-buttons .icon-chevron-right {
+.insect-controller-buttons .icon-chevron-right-thin,
+.product-controller-buttons .icon-chevron-right-thin {
 	right:2px;
 }
 
-.insect-controller-buttons .icon-chevron-left {
+.insect-controller-buttons .icon-chevron-left-thin {
 	left:-40px;
 }
-.insect-controller-buttons .icon-chevron-right {
+.insect-controller-buttons .icon-chevron-right-thin {
 	right:-40px;
 }
 
@@ -878,7 +903,7 @@ h3.page-title {
 .product-filter-categories .primary-tag.active {
 	margin:0;
 	border:none;
-	background:#14A774;
+	background:#00833D;
 	color:#fff;
 }
 
@@ -964,7 +989,7 @@ h3.page-title {
 }
 
 .profile-box {
-	border:5px solid #14A774;
+	border:5px solid #00833D;
 	/* padding:20px; */
 	padding:1.625em;
 	margin: 2em auto;
@@ -1012,7 +1037,7 @@ h3.page-title {
 .page-profile-container .map-container #living.true .pin,
 .page-profile-container .map-container #kitchen.true .pin,
 .page-profile-container .map-container #bathroom.true .pin {
-	fill:#14A774;
+	fill:#00833D;
 	opacity: 1;	
 }
 
@@ -1025,7 +1050,7 @@ h3.page-title {
 }
 /** /
 .area.true .pin {
-	fill:#14A774;
+	fill:#00833D;
 }/**/
 
 .profile-pin-descriptions p.active,
@@ -1033,7 +1058,7 @@ h3.page-title {
 .profile-pin-descriptions p:hover,
 .profile-pin-descriptions p:hover i{
 	color:#fff;
-	background-color:#14A774;
+	background-color:#00833D;
 }
 
 .profile-pin-descriptions i{
@@ -1059,9 +1084,14 @@ h3.page-title {
 *
 * 
 **/
+
 .animate-page-switch-container {
 	position:relative;
 	padding-top: 40px
+}
+
+.page-insects-single .animate-page-switch-container {
+	padding-top: 27px; 
 }
 
 /* .animate-page-switch {
@@ -1090,7 +1120,7 @@ h3.page-title {
 } */
 
 .md-dialog-backdrop {
-	background: #14a774;
+	background: #00833D;
     opacity: 0.9 !important;
 }
 
@@ -1125,7 +1155,7 @@ h3.page-title {
 
 .active-filter.btn-filter  {
 	color:#ffffff;
-	background-color:#14A774;
+	background-color:#00833D;
 }
 
 .gallery-card {
@@ -1167,7 +1197,7 @@ md-card md-card-content {
     left: 0;
     right: 0;
     bottom: 0;
-    border: 5px solid #14A774;
+    border: 5px solid #00833D;
     z-index: -1;
 }
 
