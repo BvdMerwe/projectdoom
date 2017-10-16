@@ -11,9 +11,9 @@
 
 
 
-    <div layout="column" layout-fill class="" flex="100" data-ng-switch="renderPath[1]">
+    <div layout="column" <?php //layout-fill (removed to test layout in FF) ?> class="" flex="100" data-ng-switch="renderPath[1]">
 
-        <div layout="column" layout-fill class="md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
+        <div layout="column" <?php //layout-fill (removed to test layout in FF) ?> class="md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
             <!-- -->
             <div layout="row" layout-md="column" layout-align="start start" layout-align-md="center center">
                 <div flex="50" flex-md="100"  class="" style=""> 
@@ -24,7 +24,7 @@
                             <button class="icon-chevron-right" data-ui-hero-product data-nav-direction="forward" data-ng-click="nextProduct()"></button>
                         </div>
                     </div>
-                    <div class="product-filter-categories">
+                    <div class="product-filter-categories full-width" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"
@@ -216,7 +216,7 @@
                 </div>
             </div>
 
-            <div class="product-filter-categories">
+            <div class="product-filter-categories" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
                 <!--
                 <md-button
                     ng-repeat="productType in pageContent.product_types"
@@ -249,7 +249,7 @@
 
             <!-- [BODY SECTION] -->
 
-            <div layout="column" layout-fill class="" flex="100" data-ng-switch="renderPath[2]">
+            <div layout="column" <?php //layout-fill (removed to test layout in FF) ?> class="" flex="100" data-ng-switch="renderPath[2]">
 
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="taxonomy">
 
@@ -500,7 +500,7 @@
                 </div>
 
                 <div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>
-                    <div class="product-filter-categories">
+                    <div class="product-filter-categories" layout-gt-md="layout-row" layout-align-gt-md="space-between space-between">
                         <!--
                         <md-button
                             ng-repeat="productType in pageContent.product_types"
@@ -1044,7 +1044,7 @@
 
         </div>
         
-        <div flex="grow">
+        <div layout-fill>
             <h3 class="page-title">Where to buy</h3>
             <div data-ui-carousel
                 buttonBorders="false"
