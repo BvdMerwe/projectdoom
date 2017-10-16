@@ -1098,6 +1098,10 @@ h3.page-title {
 	color:#fff;
 	font-size: 20px;
 }
+
+.stat-selector .icon.active {
+	color: #FF510B;
+}
 /**
 * 
 * Gallery UI Component CSS 

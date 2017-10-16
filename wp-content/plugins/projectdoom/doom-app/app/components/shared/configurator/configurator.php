@@ -151,7 +151,7 @@
           <div class="stat-controls">
             <div class="stat-selector" ng-click="showStat(stat)" ng-repeat="stat in result.stats">
               <!-- <i class="icon lnr lnr-{{stat.type}}"></i> -->
-              <i class="icon icon-{{stat.type == 'molts' ? result.pest.post_name : stat.type}}"></i>
+              <i class="icon icon-{{stat.type == 'molts' ? result.pest.post_name : stat.type}}" data-ng-class="{active: $first == true}"></i>
               <span>{{stat.type}}</span>
             </div>
           </div>

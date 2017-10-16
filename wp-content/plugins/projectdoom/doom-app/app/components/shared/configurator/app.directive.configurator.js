@@ -467,8 +467,25 @@ define( function ( require, exports, module ) {
           stat.formatted = $scope.outputCopy(stat);
           $scope.selectedStat = stat;
 
-          //console.log('.icon-' + stat.type);
-          //document.querySelector('.icon-' + stat.type ).classList.toggle('active');
+          if( $scope.finalPage == "active" ) {
+            //console.log('.icon-' + stat.type);
+
+            var allStats =  document.querySelectorAll('.stat-selector .icon' );
+
+            for (var index = 0; index < allStats.length; index++) {
+                
+                var element = allStats[index];
+
+                if( element.classList.contains('active') ) {
+                  element.classList.remove('active');
+                  break;
+                }
+
+            }
+
+            document.querySelector('.stat-selector .icon-' + stat.type ).classList.toggle('active');
+
+          }
 
         }
 
