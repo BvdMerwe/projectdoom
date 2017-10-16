@@ -13,6 +13,9 @@ $mobile-break: 959px;
 .product-filter-categories {
   
 
+  &.full-width {
+    max-width: 90%;
+  }
   @media only screen and (max-width: $mobile-break) {
     max-width: 100%;
   }
@@ -85,6 +88,10 @@ md-select-menu {
   margin-bottom: 0 !important;
 }
 
+.home #ngProgress {
+  background-color: $orange !important;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -111,7 +118,11 @@ div[data-ui-navigation] {
 .super-menu-open {
   // height: 100%;
   .site-content, .app-dashboard {
+    padding-bottom: 0px;
     height: 100%;
+  }
+  #footer .footer-nav {
+    display: none;
   }
 }
 
@@ -127,7 +138,6 @@ div[data-ui-navigation] {
   div[data-ui-navigation] {
     background-color: $green;
     color: #fff !important;
-    // border-bottom: 1px solid #fff;
 
     li {
       color: #fff !important;
@@ -138,6 +148,7 @@ div[data-ui-navigation] {
   .nav-nav {
     @include transition(none !important);
     background-color: transparent !important; 
+    border-bottom: 1px solid transparent !important;
   }
 
   .page-content {
@@ -486,6 +497,7 @@ div[data-ui-carousel][single='true'] {
   &.open {
     .footer-content{
       top: 80px;
+      left: 0;
     }
   }
   .footer-nav {
@@ -507,6 +519,7 @@ div[data-ui-carousel][single='true'] {
       @include transition(0.4s cubic-bezier(.25,.8,.25,1));
       position: fixed;
       top: 100%;
+      left: 0;
       // min-height: 100%;
       height: calc(100% - 80px - 48px);
       width: 100%;
@@ -854,10 +867,12 @@ END slider style
     }
     .map-container {
       position: relative;
+      text-align: left;
       .map {
         width: 100%;
         // height: 70%;
         max-height: 260px;
+        max-width: 330px;
       }
       button {
         background-color: rgba(0, 0, 0, 0.07);

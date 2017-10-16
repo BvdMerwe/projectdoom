@@ -97,7 +97,7 @@
 						<md-nav-item hide-xs md-nav-click="goto('insects')" name="insects" aria-label="Insects">
 							PESTS
 						</md-nav-item>
-						<md-nav-item md-nav-click="goto('')" md-no-ink-bar="true" disabled="true" name="home" style="z-index:9;" aria-label="DOOM Home">
+						<md-nav-item md-nav-click="" md-no-ink-bar="true" disabled="true" name="home" style="z-index:9;" aria-label="DOOM Home">
 							<img data-ng-src="https://www.tbwa-cdn.co.za/projectdoom/logo.png" class="" style="width:80px;" alt="DOOM" />
 						</md-nav-item>
 						<md-nav-item hide-xs md-nav-click="goto('products')" name="products" aria-label="Products">

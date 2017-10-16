@@ -1,6 +1,14 @@
 /***********************************************
 * Products STYLE
 ***********************************************/
+.product-filter-categories {
+  max-width: 54%;
+}
+
+.product-filter-categories.full-width {
+  max-width: 90%;
+}
+
 @media only screen and (max-width: 959px) {
   .product-filter-categories {
     max-width: 100%;
@@ -78,6 +86,10 @@ md-select-menu md-option {
   margin-bottom: 0 !important;
 }
 
+.home #ngProgress {
+  background-color: #ff510b !important;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -102,7 +114,12 @@ div[data-ui-navigation] md-backdrop {
 }
 
 .super-menu-open .site-content, .super-menu-open .app-dashboard {
+  padding-bottom: 0px;
   height: 100%;
+}
+
+.super-menu-open #footer .footer-nav {
+  display: none;
 }
 
 .super-menu {
@@ -137,6 +154,7 @@ div[data-ui-navigation] md-backdrop {
   -o-transition: none !important;
   transition: none !important;
   background-color: transparent !important;
+  border-bottom: 1px solid transparent !important;
 }
 
 .super-menu-open .page-content,
@@ -596,6 +614,7 @@ md-autocomplete-wrap input {
 
 #footer.open .footer-content {
   top: 80px;
+  left: 0;
 }
 
 #footer .footer-nav {
@@ -620,6 +639,7 @@ md-autocomplete-wrap input {
   transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: fixed;
   top: 100%;
+  left: 0;
   height: calc(100% - 80px - 48px);
   width: 100%;
   background-color: #14A774;
@@ -1051,11 +1071,13 @@ END slider style
 
 #configurator .step-3 .map-container {
   position: relative;
+  text-align: left;
 }
 
 #configurator .step-3 .map-container .map {
   width: 100%;
   max-height: 260px;
+  max-width: 330px;
 }
 
 #configurator .step-3 .map-container button {

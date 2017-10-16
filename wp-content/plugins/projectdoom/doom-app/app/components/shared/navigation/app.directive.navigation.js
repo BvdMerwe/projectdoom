@@ -203,7 +203,7 @@ define( function ( require, exports, module ) {
 				}
 
 				function onScroll($event) {
-					var newPos = document.body.scrollTop;
+					var newPos = window.scrollY;
 					var goingDown = false;
 					if (newPos > oldPos) {
 						goingDown = true;
