@@ -89,18 +89,11 @@ define( function ( require, exports, module ) {
     
                                                 var firstVisit = new Date(results[6].firstVisit);
                                                 var lastVisit = new Date(results[6].lastVisit);
-<<<<<<< HEAD
                                                 /*
                                                 //if ($location.$$path == "/") {
                                                     var pests = results[2];
                                                     var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
                                                     $location.path("/insects/"+pests[rand].post_name);
-=======
-                                                // if ($location.$$path == "/") {
-                                                    // var pests = results[2];
-                                                    // var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
-                                                    // $location.path("/insects/"+pests[rand].post_name);
->>>>>>> d6e899f2cafc19817bd3356d8b76411eab32b992
                                                 // }
                                                 */
                                                 //console.log('usersession:', results[6], firstVisit.toTimeString(), lastVisit.toTimeString());
