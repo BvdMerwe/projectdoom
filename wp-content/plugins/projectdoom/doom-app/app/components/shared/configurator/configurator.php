@@ -18,6 +18,12 @@
     -->
     <div class="breadcrumbs">
       <md-slider flex class="md-primary configurator-progress" md-discrete data-ng-model="breadcrumbState" step="1" min="1" max="4" aria-label="state-slider" ng-change="setState(breadcrumbState)"></md-slider>
+      <div class="breadcrumb-buttons" layout="row" layout-align="space-between center">
+        <span ng-click="setState(1)" ng-class="{active: breadcrumbState == 1}"></span>
+        <span ng-click="setState(2)" ng-class="{active: breadcrumbState == 2}"></span>
+        <span ng-click="setState(3)" ng-class="{active: breadcrumbState == 3}"></span>
+        <span ng-click=""></span>
+      </div>
     </div>
   </div>
   <div class="configurator-steps">
@@ -90,7 +96,7 @@
     <div class="step-3 {{step3State}}" layout-fill layout="column" layout-align="center center">
       
       <div class="content" layout-fill layout="column" layout-gt-sm="row" layout-align="space-between center">
-        <div class="map-container" flex>
+        <div class="map-container" flex-gt-sm="50">
           <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475">
             <!-- <defs><style>.cls-1{fill:#fff;stroke:#231f20;stroke-width:5px;}.cls-10,.cls-2{font-size:12px;font-family:MyriadPro-Regular, Myriad Pro;}.cls-3{letter-spacing:0em;}.cls-4{letter-spacing:0em;}.cls-5{letter-spacing:-0.01em;}.cls-6{letter-spacing:0em;}.cls-7{letter-spacing:-0.01em;}.cls-8{letter-spacing:0.01em;}.cls-9{letter-spacing:-0.01em;}.cls-10{letter-spacing:-0.03em;}.cls-11{letter-spacing:0em;}</style></defs> -->
@@ -126,7 +132,7 @@
           	</g>
           </svg>
         </div>
-        <div class="text" flex>
+        <div class="text" flex-gt-sm="50">
           <h3 class="green-bold">Where have the goggas invaded?</h3>
           <p>Drop pin on location or select an option below</p>
           <md-select ng-model="config.location" multiple aria-label="locations">
@@ -142,7 +148,7 @@
     </div>
     <div class="final {{finalPage}}">
       <div class="final-backbutton" ng-click="setState(3)">
-        <span class="icon-chevron-left"></span>
+        <span class="icon-chevron-left-thin"></span>
       </div>
       <div class="final-container" layout="row" layout-fill layout-align="center start" layout-wrap>
         <div class="stats-container" flex="100" flex-gt-sm="33">
@@ -161,7 +167,7 @@
             <img ng-src="{{result.product.image}}" alt="{{result.product.post_name}}" />
           </div>
         </div>
-        <div class="solution-container" flex="80" flex-offset="1" flex-gt-sm="33" flex-offset-gt-sm="0">
+        <div class="solution-container" flex="100" flex-gt-sm="33" flex-offset-gt-sm="0">
           <h3 class="page-title">Your results and solution</h3>
           <p class="page-description">{{result.product.post_content}}</p>
           <div class="">
@@ -177,7 +183,7 @@
           -->
         </div>
         <div class="" layout="column" layout-align="center center">
-          <p>
+          <p style="margin: 1em;">
             <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
           </p>
         </div>

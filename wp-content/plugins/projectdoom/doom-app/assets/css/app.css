@@ -537,7 +537,7 @@ h3.page-title {
     line-height: 1.625em;
 }
 
-@media (max-width: 1280px) { 
+@media (max-width: 959px) { 
 	.center-content {
 		text-align: center;
 	}
@@ -729,7 +729,7 @@ h3.page-title {
 
 .insect-insects li.icon-insect-fishmoth i,
 .product-insects li.icon-insect-fishmoth i{
-	left:13px;
+	left:4px;
 }
 
 .insect-insects li.icon-insect-mosquito i,
@@ -908,7 +908,11 @@ h3.page-title {
 	font-weight: bold;
 	margin: 0;
 }
-
+.primary-cta.main {
+	padding: 10px 45px;
+    font-size: 30px;
+    margin: 10px 0;
+}
 .primary-cta.fill-width {
 	width: 100%;
 }
@@ -1053,19 +1057,19 @@ h3.page-title {
 	color:#fff;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 959px) {
 	.product-meta-info {
-		text-align: center;
+		/* text-align: center; */
 	}
 	.product-insects {
-		text-align: center;
+		/* text-align: center; */
 	}
 	.product-insects li{
 		text-align: left;
 	}
 
 	.products-widget {
-		text-align: center;
+		/* text-align: center; */
 		position: relative;
 		display: block;
 	}
@@ -1130,7 +1134,7 @@ h3.page-title {
 @media (max-width: 1279px) and (min-width: 960px) {
 	.insect-profile-content-holder {
 		position: relative;
-		top:-20vh;
+		/* top:-20vh; */
 	}
 }
 
@@ -1194,6 +1198,9 @@ h3.page-title {
 	margin: 0 auto;
 	
 }
+.profile-pin-descriptions i {
+	display: block;
+}
 /** /
 .area.true .pin {
 	fill:#00833D;
@@ -1207,10 +1214,10 @@ h3.page-title {
 	background-color:#00833D;
 }
 
-.profile-pin-descriptions i{
+.profile-pin-descriptions [class^="icon-"]{
 	font-size: 24pt;
 	position: relative;
-	top:10px;
+	/* top:10px; */
 	margin-right: 20px;
 	
 }
@@ -1360,14 +1367,14 @@ md-card md-card-content {
 	height: auto;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 959px) {
 	.bg-box {
 		margin:0 auto;
 	}
 
 	.product-filter-categories {
 		margin:0 auto;
-		width:90%;
+		/* width:90%; */
 	}
 }
 
