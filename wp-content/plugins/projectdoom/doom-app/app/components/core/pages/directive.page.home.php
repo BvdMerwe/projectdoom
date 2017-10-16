@@ -103,8 +103,11 @@
 					<!-- DEFAULT PAGE TEMPLATE HERE -->
 					<div layout="column" layout-align="center center" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default>
 						<div id="preloader" class="ng-animate" layout="row">
-							<div layout-fill style="padding-top: 90px;" layout="row">
+							<div layout-fill style="" layout="column" layout-align="center center">
 								<ui-randomstat duration="3000"></ui-randomstat>
+								<br/>
+								<br/>
+								<h3>Loading...</h3>
 							</div>
 						</div>
 					</div>

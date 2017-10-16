@@ -10,7 +10,7 @@
 
 ?>
 
-<div layout="column" class="searchbar-container">
+<div layout="column" class="searchbar-container" layout-fill>
   <div class="search-bar">
     <md-autocomplete
           flex="100"
