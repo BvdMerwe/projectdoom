@@ -72,9 +72,9 @@ define( function ( require, exports, module ) {
 					switch( page ) {
 
 						case 'home':
-							var pests = $route.current.locals.app_data.insects;
-							var rand = Utils.getRandomInt(0,pests.length-1);
-							$location.path("/insects/"+pests[rand].post_name);
+							// var pests = $route.current.locals.app_data.insects;
+							// var rand = Utils.getRandomInt(0,pests.length-1);
+							// $location.path("/insects/"+pests[rand].post_name);
 							// $location.path('/');
 
 							break;
