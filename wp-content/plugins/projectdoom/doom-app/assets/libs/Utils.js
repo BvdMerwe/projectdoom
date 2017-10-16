@@ -263,9 +263,14 @@ define( function ( require, exports, module ) {
 
         },
 
-        isPhone: function ( phone ) {
+       isPhone: function ( phone ) {
 
-            return true;
+            this._strict( [ String ], arguments );
+            
+            var pattern = new RegExp(/^(\+27|27)?(\()?0?[876][123467](\))?( |-|\.|_)?(\d{3})( |-|\.|_)?(\d{4})/g);
+            
+            return pattern.test( phone );
+
 
         },
 

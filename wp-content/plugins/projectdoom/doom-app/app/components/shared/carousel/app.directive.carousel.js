@@ -406,7 +406,12 @@ define(function (require, exports, module) {
 							loop4:
 							for ( i in results[index].product_categories ) {
 
-								//console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
+								if( angular.isDefined(!results[index].product_categories[i].name) || angular.isDefined(!$rootScope.isPathSlug) ) {
+
+									continue;
+								}
+
+								console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
 
 								if( results[index].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
 
