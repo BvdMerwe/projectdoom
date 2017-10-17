@@ -9,7 +9,7 @@
 //define( function ( require, exports, module ) {
 
     "use strict";
-    
+    var path = "/wp-content/plugins/projectdoom/doom-app/assets/libs/";
     Date.prototype.addDays = function(days) {
 	    var dat = new Date(this.valueOf());
 		dat.setDate(dat.getDate() + days);
@@ -44,6 +44,58 @@
 			return -1;
 		};
 	}
+
+	/* Add Includes to old browsers */
+	if (!Array.prototype.includes) {
+		Object.defineProperty(Array.prototype, 'includes', {
+		  value: function(searchElement, fromIndex) {
+	  
+			// 1. Let O be ? ToObject(this value).
+			if (this == null) {
+			  throw new TypeError('"this" is null or not defined');
+			}
+	  
+			var o = Object(this);
+	  
+			// 2. Let len be ? ToLength(? Get(O, "length")).
+			var len = o.length >>> 0;
+	  
+			// 3. If len is 0, return false.
+			if (len === 0) {
+			  return false;
+			}
+	  
+			// 4. Let n be ? ToInteger(fromIndex).
+			//    (If fromIndex is undefined, this step produces the value 0.)
+			var n = fromIndex | 0;
+	  
+			// 5. If n ≥ 0, then
+			//  a. Let k be n.
+			// 6. Else n < 0,
+			//  a. Let k be len + n.
+			//  b. If k < 0, let k be 0.
+			var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+	  
+			function sameValueZero(x, y) {
+			  return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+			}
+	  
+			// 7. Repeat, while k < len
+			while (k < len) {
+			  // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+			  // b. If SameValueZero(searchElement, elementK) is true, return true.
+			  // c. Increase k by 1. 
+			  if (sameValueZero(o[k], searchElement)) {
+				return true;
+			  }
+			  k++;
+			}
+	  
+			// 8. Return false
+			return false;
+		  }
+		});
+	  }
 	// Array Remove - By John Resig (MIT Licensed)
 	/*
 	if(!Array.prototype.remove) {
@@ -182,13 +234,13 @@
 
     yepnope({
 		load: {
-			'ievport':	'ielt10!prefixfree.viewport-units.js'
+			'ievport':	'ielt10!'+path+'prefixfree.viewport-units.js'
 		}
     });
     
     yepnope({
 		load: {
-			'ievport':	'ielt10!classList.js'
+			'ievport':	'ielt10!'+path+'classList.js'
 		}
 	});
 
@@ -196,7 +248,7 @@
 
 		yepnope({
 			load:	{
-				'placeholders':		'placeholders.min.js'
+				'placeholders':		path+'placeholders.min.js'
 			}
 		});
 
@@ -207,11 +259,11 @@
         yepnope({
 			load:	{
                 'ieselector'        :	'ielt9!' + window.location.protocol + '//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js',
-				'flexbox-polyfill'  :	'flexie.min.js'
+				'flexbox-polyfill'  :	path+'flexie.min.js'
 			}
 		});
 
-    }
+	}
 
     if ( Modernizr.input.localstorage === false ) {
 
@@ -221,7 +273,13 @@
 			}
 		});
 
-    }
+
+	}
+        yepnope({
+			load:	{
+				'flex-fix':		path+'../css/flex.fix.css'
+			}
+		});
 
 	/** /
 	if( isMobile.iOS() ) {

@@ -279,7 +279,7 @@ div[data-ui-carousel][single='true'] {
 }
 .retailer-carousel {
   .item .bg-box::before{
-    content: initial !important;
+    content: none !important;
   }
 }
 .no-border {
@@ -643,7 +643,7 @@ div[data-ui-configurator][pest='ant'] .configurator-steps {
 div[data-ui-configurator][pest='fishmoth'] .configurator-steps {
   .md-thumb::after {
     content: "\e907";
-    top: 0px;
+    top: -18px;
     font-size: 55px;
   }
 }
