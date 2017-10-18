@@ -111,6 +111,10 @@ h3.green-bold {
 .hr-divider {
   height: $keyline-width;
 }
+
+.tag-group .primary-tag {
+  font-weight: normal;
+}
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -619,6 +623,17 @@ div[data-ui-carousel][single='true'] {
         max-height: 200px;
       }
     }
+}
+
+/***********************************************
+* contact STYLE
+***********************************************/
+
+div[data-ui-form-contact] {
+  .layout-fill {
+    max-height: none;
+    min-height: auto;
+  }
 }
 
 /***********************************************

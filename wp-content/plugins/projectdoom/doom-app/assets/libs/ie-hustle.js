@@ -275,11 +275,28 @@
 
 
 	}
-        yepnope({
+		yepnope({
 			load:	{
 				'flex-fix':		path+'../css/flex.fix.css'
 			}
 		});
+
+		/***************************
+		*	Check For IE
+		****************************/
+		if ( !Modernizr.smil ) {
+			yepnope({
+				load:	{
+					'ie-style-fix':		path+'../css/ie.fix.css',
+					// 'jquery': "https://code.jquery.com/jquery-3.2.1.min.js",
+					// 'ie-pointer-events' : window.location.protocol + "//code.jquery.com/pep/0.4.3/pep.js",
+					// 'ie-pointer-events-1' : path + "pointer.events.min.js",
+					'init-ie-stuff' : path+'initIe.js'
+				}
+			});
+
+		}
+		
 
 	/** /
 	if( isMobile.iOS() ) {

@@ -12,9 +12,9 @@
 	<div layout="column" layout-align="center center" flex="100"> 
 		<div layout="column" layout-fill layout-gt-sm="row" >
 
-			<div class="md-padding" flex-md="100" flex="60" flex-order="2" flex-order-gt-sm="1" style="background-color:#ffffff;">
+			<div class="md-padding" layout-fill flex-md="100" flex="60" flex-order="2" flex-order-gt-sm="1" style="background-color:#ffffff;">
 
-                <form id="formContact" name="userForm" novalidate>
+                <form id="formContact" name="userForm" novalidate style="background-color:#ffffff;">
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
@@ -99,7 +99,7 @@
                 <div data-ng-transclude></div>
 
             </div>
-            <div class="" flex-md="100" flex="40" flex-order="1" flex-order-gt-sm="2" style="background-color:#7B7B7A;color:#ffffff;">
+            <div class="" flex-md="100" layout-fill flex="40" flex-order="1" flex-order-gt-sm="2" style="background-color:#7B7B7A;color:#ffffff;">
                 <div data-ui-google-map
                     data-map
 					zoom="10" 
@@ -118,7 +118,7 @@
                     flex-order-xs="2"
                     style="color:#444;text-align:center;padding:0;"
                     map-type-id="ROADMAP"></div>
-                <div class="md-padding" flex-order-xs="1">
+                <div class="md-padding" flex-order-xs="1" style="background-color:#7B7B7A;">
                     <h3 style="margin-top:5px;">CONTACT INFORMATION</h3>
 
                     <p><i class="lnr lnr-map-marker"></i>&nbsp;&nbsp;Tiger Brands Limited,<br />3010 William Nicol Drive, Bryanston<br />2021.</p>

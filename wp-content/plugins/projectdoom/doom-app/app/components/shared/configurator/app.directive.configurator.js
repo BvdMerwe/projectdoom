@@ -128,7 +128,8 @@ define( function ( require, exports, module ) {
             if ($scope.config.location.length < 1) {
               
               //alert("Please select at least one location");
-
+              $scope.state--;
+              $scope.breadcrumbState--;
               $mdDialog.show(
                 $mdDialog.alert()
                   .clickOutsideToClose(true)
@@ -482,8 +483,11 @@ define( function ( require, exports, module ) {
                 }
 
             }
-
-            document.querySelector('.stat-selector .icon-' + stat.type ).classList.toggle('active');
+            if (stat.type != 'molts') {
+              document.querySelector('.stat-selector .icon-' + stat.type ).classList.toggle('active');
+            } else {
+              document.querySelector('.stat-selector .icon-' + $scope.config.pest.post_name ).classList.toggle('active');
+            }
 
           }
 

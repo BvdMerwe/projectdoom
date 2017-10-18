@@ -28,7 +28,7 @@
   </div>
   <div class="configurator-steps">
     
-    <div class="step-1 {{step1State}} {{step3State}}">
+    <div class="step-1 {{step1State}} {{step3State}}" data-ng-class="{off: state < 1}">
       
       <div class="content" layout="column" layout-fill>
         <div class="content" layout="row">
@@ -58,7 +58,7 @@
         </a>
       </div>
     </div>
-    <div class="step-2 {{step2State}}" flex="100" layout="row" style="padding: 0 45px;">
+    <div class="step-2 {{step2State}}" data-ng-class="{off: state < 2}" flex="100" layout="row" style="padding: 0 45px;">
       <br />
       <div flex="100" class="content" layout="row" layout-wrap layout-align="center center">
           <div flex="100">
@@ -93,7 +93,7 @@
         </a>
       </div>
     </div>
-    <div class="step-3 {{step3State}}" layout-fill layout="column" layout-align="center center">
+    <div class="step-3 {{step3State}}" data-ng-class="{off: state < 3}" layout-fill layout="column" layout-align="center center">
       
       <div class="content" layout-fill layout="column" layout-gt-sm="row" layout-align="space-between center">
         <div class="map-container" flex-gt-sm="50">
@@ -146,7 +146,7 @@
         </div>
       </div>
     </div>
-    <div class="final {{finalPage}}">
+    <div class="final {{finalPage}}" data-ng-class="{off: state < 4}">
       <div class="final-backbutton" ng-click="setState(3)">
         <span class="icon-chevron-left-thin"></span>
       </div>

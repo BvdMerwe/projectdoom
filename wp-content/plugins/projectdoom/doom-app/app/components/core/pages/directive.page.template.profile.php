@@ -96,7 +96,7 @@
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_hobbies}}</p>
                     </div>
                     <div class="profile-box" layout-fill>
-                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> I'm best known for</h3>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-star"></i> I'm best known for</h3>
                         <br />
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_best_known}}</p>
                     </div>

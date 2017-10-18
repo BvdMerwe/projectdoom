@@ -106,6 +106,10 @@ h3.green-bold {
   height: 3px;
 }
 
+.tag-group .primary-tag {
+  font-weight: normal;
+}
+
 /***********************************************
 * Body container STYLE
 ***********************************************/
@@ -751,6 +755,14 @@ md-autocomplete-wrap input {
 #footer div[data-ui-form-contact] input, #footer div[data-ui-form-contact] textarea {
   border-bottom: 1px solid #7B7B7A;
   max-height: 200px;
+}
+
+/***********************************************
+* contact STYLE
+***********************************************/
+div[data-ui-form-contact] .layout-fill {
+  max-height: none;
+  min-height: auto;
 }
 
 /***********************************************

@@ -21,7 +21,7 @@
 					<!-- HOME PAGE TEMPLATE HERE -->
 					<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-when="home">
 
-						<div data-ui-app-page-pest-problem page-name="home" layout="column" layout-gt-md="row" layout-align-gt-md="start start" flex="100" class="page-content"></div>
+						<div data-ui-app-page-pest-problem page-name="home" layout="column" layout-gt-sm="row" layout-align-gt-sm="start start" flex="100" class="page-content"></div>
 
 					</div>
 
@@ -106,7 +106,7 @@
 						<div id="preloader" flex="100" class="ng-animate" layout="row">
 							<div flex style="text-align:center;" layout="column" layout-align="center center">
 								<br /><br /><br /><br />
-								<ui-randomstat flex="100" layout="column" layout-align="center center" duration="3000"></ui-randomstat>
+								<ui-randomstat flex="100" layout="column" layout-align="center center" duration="1000"></ui-randomstat>
 								
 								<h3 flex="100">Loading...</h3>
 							</div>
