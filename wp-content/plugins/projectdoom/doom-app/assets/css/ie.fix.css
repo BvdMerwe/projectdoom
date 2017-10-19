@@ -1,0 +1,58 @@
+html, body {
+    /* background-color: yellow; */
+}
+
+
+/* Flex resets */
+* {
+    flex: none !important;
+}
+span.layout-gt-sm-row, span.layout-gt-sm-column, span.layout-row, span.layout-column {
+    display: inline-block;
+}
+div.layout-gt-sm-row, div.layout-gt-sm-column, div.layout-row, div.layout-column,
+{
+    display: block;
+}
+/*  */
+.footer-nav  {
+    position: fixed !important;
+}
+
+.nav-nav {
+    background-color: #fff !important;
+}
+.insect-buttons-cta div.fill-width {
+    width: 50%;
+}
+.nav-nav .overlay {
+
+    display: none;
+}
+.step-2 .content .flex-100 {
+    display: block;
+    width: 100%;
+}
+.step-2 .content .flex-70 {
+    width: 70%;
+}
+.step-2 .content .flex-15 {
+    width: 15%;
+}
+div[data-ui-configurator] {
+    width: 100%;
+}
+#configurator .final.off, 
+#configurator .step-1.off, 
+#configurator .step-2.off, 
+#configurator .step-3.off {
+    display: none;
+}
+#configurator .final.active, 
+#configurator .step-1.active, 
+#configurator .step-2.active, 
+#configurator .step-3.active {
+    /* display: block; */
+    /* width: 100%; */
+    /* display: flex; */
+}
