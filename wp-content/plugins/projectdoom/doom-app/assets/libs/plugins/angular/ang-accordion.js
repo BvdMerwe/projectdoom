@@ -9,7 +9,7 @@
 
     angular
       .module('angAccordion', ['collapsibleItem'])
-      .controller('angAccordionController', ['$scope', '$q', '$timeout', function($scope, $q, $timeout){
+      .controller('angAccordionController', ['$scope', '$q', '$timeout', 'Utils', function($scope, $q, $timeout, Utils){
         var collapsibleItems = [];
           
           this.openCollapsibleItem = function(collapsibleItemToOpen) {
@@ -34,12 +34,13 @@
                 var elem = document.querySelector('.collapsible-item[title="'+collapsibleItemToOpen.title+'"]');
                 var to = elem.offsetTop;
                 // console.log(document.querySelector(".collapsible-item[title='"+collapsibleItemToOpen.title+"']"));
-                window.scrollTo(0, to);
+                // window.scrollTo(0, to);
+                Utils.scrollWithEase(to);
                 //additional jump for parent scrollable search result container
                 var containers = document.querySelectorAll(".search-results._md");
                 var contTo = elem.offsetParent.offsetTop;
                 angular.forEach(containers, function(elem, key){
-                  elem.scrollTop = contTo;
+                  Utils.scrollTo(elem, contTo-10, 300);
                 });
               }, 100);
             });

@@ -531,10 +531,12 @@ define( function ( require, exports, module ) {
             // console.log(document.querySelector(id));
           var to = document.querySelector(id).offsetTop;
           // Utils.scrollTo(document,to, 300);
-          window.scrollTo(0, to)
+          // window.scrollTo(0, to)
+          Utils.scrollWithEase(to);
         }
+        
         $scope.scrollToTop = function() {
-          window.scrollTo(0, 0)
+          Utils.scrollWithEase(0);
         }
 			}],
       // controllerAs: 'vm',

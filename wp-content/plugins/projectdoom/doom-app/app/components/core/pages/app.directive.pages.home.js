@@ -138,11 +138,12 @@ define( function ( require, exports, module ) {
 				// console.log(document.querySelector(id));
 			var to = document.querySelector(id).offsetTop;
 			// Utils.scrollTo(document,to, 300);
-			window.scrollTo(0, to);
+			// window.scrollTo(0, to);
+			Utils.scrollWithEase(to, null, 500);
 		}
 
 		$scope.scrollToTop = function() {
-			window.scrollTo('body', 0);
+			Utils.scrollWithEase(0);
 		}
 
 		/***/
@@ -450,9 +451,9 @@ define( function ( require, exports, module ) {
 
 							console.log('prev insect:', $scope.pageContent);
 
-						} else if( angular.isDefined( array[(index.length) - 1]) ) {
+						} else if( angular.isDefined( array[(array.length) - 1]) ) {
 
-							$scope.pageContent = array[(index.length) - 1];
+							$scope.pageContent = array[(array.length) - 1];
 
 							console.log('last insect:', $scope.pageContent);
 
@@ -559,19 +560,21 @@ define( function ( require, exports, module ) {
 
 											
 				
-										} else if( angular.isDefined( results[(results.length - index)]) ) {
+										} else if( angular.isDefined( results[(results.length - 1)]) ) {
 				
-											$scope.pageContent = results[(results.length - index)]; //results[0];
+											$scope.pageContent = results[(results.length - 1)]; //results[0];
 				
 											console.log('last product:', $scope.pageContent);
 				
 										}
 				
+										console.info('going to cali:',  $scope.pageContent);
+										
+										$location.path( '/products/' + $scope.pageContent.post_name );
+										
 										break;
 				
 									}
-
-									console.info('going to cali:',  $scope.pageContent);
 
 									$location.path( '/products/' + $scope.pageContent.post_name );
 									

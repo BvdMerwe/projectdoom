@@ -15,7 +15,7 @@
 
         <div layout="column" <?php //layout-fill (removed to test layout in FF) ?> class="md-accent" layout-xs="column" flex="100" data-ng-switch-when="single" >
             <!-- -->
-            <div layout-gt-sm="row" layout="column" layout-align="start start" layout-align-md="center center">
+            <div layout-gt-sm="row" layout="column" layout-align-gt-sm="start start" layout-align="center center">
                 <div flex="50" flex-md="100"  class="" style=""> 
                     <div class="bg-box product-image-holder">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
@@ -776,7 +776,7 @@
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex-gt-sm="40" flex="100" <?php //class="center-content" (removed for responsive text)  ?> layout-align-md="center center">
+                <div flex-gt-sm="40" flex="100" <?php //class="center-content" (removed for responsive text)  ?> layout-align="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>

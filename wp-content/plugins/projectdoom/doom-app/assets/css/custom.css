@@ -177,7 +177,7 @@ div[data-ui-navigation] md-backdrop {
   -ms-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
-  background-color: transparent !important;
+  background-color: #00833D !important;
   border-bottom: 1px solid transparent !important;
 }
 
@@ -215,7 +215,7 @@ div[data-ui-navigation] {
   position: fixed;
   width: 100%;
   z-index: 1;
-  height: 80px;
+  height: 20px;
 }
 
 div[data-ui-navigation] .nav-nav {
@@ -367,6 +367,13 @@ div[data-ui-carousel][single='true'] {
   border-color: #00833D;
 }
 
+.carousel-container .controls .carousel-control.inactive {
+  pointer-events: none;
+  border-color: #00833D;
+  color: #00833D;
+  background-color: none !important;
+}
+
 .carousel-container .carousel {
   overflow-x: hidden !important;
 }
@@ -431,7 +438,7 @@ div[data-ui-carousel][single='true'] {
 
 .carousel-container .carousel .carousel-item-name {
   margin: 1em 0;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: bold;
   color: #00833D;
   text-transform: capitalize;
@@ -691,6 +698,15 @@ md-autocomplete-wrap input {
   left: 0;
 }
 
+#footer.open .footer-control {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 42px;
+  cursor: pointer;
+}
+
 #footer .footer-nav {
   color: #fff;
   z-index: 1;
@@ -746,6 +762,10 @@ md-autocomplete-wrap input {
   -o-transform: translateY(0%);
   transform: translateY(0%);
   opacity: 1;
+}
+
+#footer .footer-control {
+  display: none;
 }
 
 #footer div[data-ui-form-contact] {
@@ -1022,7 +1042,8 @@ END slider style
   padding: 20px;
   vertical-align: top;
   border: 3px solid transparent;
-  max-width: 200px;
+  max-width: 16%;
+  min-width: 190px;
 }
 
 #configurator .insect-selector .start-button {
@@ -1427,6 +1448,15 @@ END slider style
     padding-top: 80px;
   }
   /***********************************************
+  * Home Pages
+  ***********************************************/
+  .home-copy-content {
+    top: -500px;
+  }
+  .home-image {
+    opacity: 0.1;
+  }
+  /***********************************************
   * Green Pages
   ***********************************************/
   .super-menu-open .page-content,
@@ -1440,6 +1470,9 @@ END slider style
   /***********************************************
   * Insect Page
   ***********************************************/
+  .page-insects .insect-fact {
+    max-width: none;
+  }
   .page-insects .super-hero-bg {
     max-height: 100%;
   }
@@ -1487,6 +1520,9 @@ END slider style
   }
   .page-insects .insect-insects [class^='icon'].icon-cockroach {
     left: 7px;
+  }
+  .page-insects .insect-insects [class^='icon-insect'] {
+    left: auto;
   }
   .page-insects .insect-insects li {
     text-align: left;
@@ -1628,9 +1664,6 @@ END slider style
   }
   #configurator .step-2 {
     font-size: 0.7em !important;
-  }
-  #configurator .step-2.active {
-    width: calc(100% - 96px);
   }
   #configurator .step-3.active {
     width: calc(100% - 36px);

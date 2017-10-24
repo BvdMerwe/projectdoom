@@ -96,7 +96,7 @@
         <div layout="column" layout-fill class="animate-page-switch md-accent" layout-xs="column" flex="100" data-ng-switch-default >
             
             <?php /**/?>
-            <div layout-gt-sm="row" layout="column" layout-align="center center" layout-align-gt-sm="center start" class="super-hero-bg" md-swipe-left="prevInsect()" md-swipe-right="nextInsect()">
+            <div layout-gt-sm="row" layout="column" layout-align="center center" layout-align-gt-sm="center start" class="super-hero-bg" <?php //md-swipe-left="prevInsect()" md-swipe-right="nextInsect()" ?>>
                 <div flex-gt-sm="50" flex="100" style="margin-top: -49px;">
                     <!--<div class="super-bug-image-bg" style="background-image:url('{{pageContent.image}}');"></div>-->
                     <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />

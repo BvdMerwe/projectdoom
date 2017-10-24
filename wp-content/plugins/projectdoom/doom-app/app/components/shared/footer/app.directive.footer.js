@@ -66,11 +66,8 @@ define(function (require, exports, module) {
         scope.addClose = function(){
           angular.element(element[0].querySelector("#footer")).removeClass('open');
         }
-        scope.close = function () {
-          //console.log("Hiding footer page");
-          element.removeClass('open');
-        }
         scope.checkPath();
+        scope.lastPage = "";
       },
       controller: ['$rootScope', '$scope', '$sce', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'pagesManager', function ($rootScope, $scope, $sce, $http, $q, $route, $location, $timeout, $mdSidenav, $log, transformRequestAsFormPost, Utils, ngProgress, pagesManager) {
         $scope.open = function (page) {
@@ -110,11 +107,21 @@ define(function (require, exports, module) {
         // });
         $scope.setPage = function (page) {
           $location.path("/" + page);
+          // $location.replace();
           // console.log("navigate to ",page);
         }
 
         $scope.$on("$routeChangeStart", function () {
-          $scope.close();
+          // $scope.close();
+          switch ($location.$$path) {
+            case '/faq':
+            case '/contact':
+            case '/about':
+            case '/legal':
+              break;
+            default:
+              $scope.lastPage = $location.$$path;
+          }
         });
 
         $scope.$on("$routeChangeSuccess", function (ev, to, toParams, from, fromParams) {
@@ -133,6 +140,12 @@ define(function (require, exports, module) {
               break;
             default:
           }
+        }
+
+        $scope.close = function () {
+          console.log("Footer close button clicked");
+          $location.path($scope.lastPage)
+          $scope.addClose();
         }
       }],
       // controllerAs: 'vm',

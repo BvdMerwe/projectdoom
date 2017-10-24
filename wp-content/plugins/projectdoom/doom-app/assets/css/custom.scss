@@ -174,7 +174,7 @@ div[data-ui-navigation] {
   //add thing for navbar
   .nav-nav {
     @include transition(none !important);
-    background-color: transparent !important; 
+    background-color: $green !important; 
     border-bottom: 1px solid transparent !important;
   }
 
@@ -201,7 +201,7 @@ div[data-ui-navigation] {
   position: fixed;
   width: 100%;
   z-index: 1;
-  height: 80px;
+  height: 20px;
 
   .nav-nav {
     @include transition(0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19));
@@ -337,6 +337,13 @@ div[data-ui-carousel][single='true'] {
         background-color: $green;
         border-color: $green;
       }
+      &.inactive {
+        pointer-events: none;
+        border-color: $green;
+        color: $green;
+        background-color: none !important;
+
+      }
     }
   }
   .carousel {
@@ -382,7 +389,7 @@ div[data-ui-carousel][single='true'] {
     }
     .carousel-item-name {
       margin: 1em 0;
-      font-size: 10px;
+      font-size: 13px;
       font-weight: bold;
       color: $green;
       text-transform: capitalize;
@@ -569,6 +576,14 @@ div[data-ui-carousel][single='true'] {
       top: 80px;
       left: 0;
     }
+    .footer-control {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 42px;
+      cursor: pointer;
+    }
   }
   .footer-nav {
     color: #fff;
@@ -614,6 +629,10 @@ div[data-ui-carousel][single='true'] {
         @include transform(translateY(0%));
         opacity: 1;
       }
+    }
+
+    .footer-control {
+      display: none;
     }
 
     div[data-ui-form-contact] {
@@ -844,7 +863,8 @@ END slider style
     padding: 20px;
     vertical-align: top;
     border: $keyline-width solid transparent;    
-    max-width: 200px;
+    max-width: 16%;
+    min-width: 190px;
 
     .start-button {
       opacity: 0;
@@ -1193,6 +1213,15 @@ END slider style
   }
 
   /***********************************************
+  * Home Pages
+  ***********************************************/
+  .home-copy-content {
+    top: -500px;
+  }
+  .home-image {
+    opacity: 0.1;
+  }
+  /***********************************************
   * Green Pages
   ***********************************************/
 
@@ -1210,6 +1239,9 @@ END slider style
   * Insect Page
   ***********************************************/
   .page-insects {
+    .insect-fact {
+      max-width: none;
+    }
     .super-hero-bg {
       max-height: 100%;
 
@@ -1264,6 +1296,9 @@ END slider style
           &.icon-cockroach {
             left: 7px;
           }
+      }
+      [class^='icon-insect'] {
+        left: auto;
       }
       li {
         text-align: left;
@@ -1436,7 +1471,7 @@ END slider style
       font-size: 0.7em !important;
 
       &.active {
-        width: calc(100% - 96px);
+        // width: calc(100% - 96px);
       }
     }
     .step-3 {

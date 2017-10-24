@@ -31,9 +31,9 @@
     </md-nav-bar>
   </div>
   <div class="footer-content" data-ng-switch="renderPath[0]" >
-    <!-- <div class="footer-control">
-      <i class="lnr lnr-cross close-footer" ng-click="close()"></i>
-    </div> -->
+    <div class="footer-control">
+      <i class="icon-cross close-footer" ng-click="close()"></i>
+    </div>
     <!-- <div ng-if="current">
       <div layout="row">
         <h1>{{current.post_title}}</h1>

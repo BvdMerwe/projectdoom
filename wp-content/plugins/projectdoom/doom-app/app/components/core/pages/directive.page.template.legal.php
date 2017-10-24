@@ -12,7 +12,7 @@
 			
         
 <div layout="column" class="animate-page-switch-container" flex="100">
-
+<div style="max-width: 800px; margin: 0 auto;text-align: justify;">
     <!-- [HERO SECTION] -->
     <div layout="row">
         <div flex="grow" class="">
@@ -37,4 +37,5 @@
 
 </div>
 			
-		
+
+</div>

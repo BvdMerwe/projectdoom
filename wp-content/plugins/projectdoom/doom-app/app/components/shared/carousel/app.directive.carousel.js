@@ -79,6 +79,9 @@ define(function (require, exports, module) {
 				scope.insectType = attr.insecttype;
 				scope.productType = attr.producttype;
 
+				scope.showLeft = false;
+				scope.showRight = true;
+
 				if (scope.contentType === "retailer") {
 					angular.element(element).addClass("retailer-carousel");
 				}
@@ -134,6 +137,16 @@ define(function (require, exports, module) {
 						to = Math.floor((elem.scrollLeft + direction) / (amount + gutter)) * (amount + gutter);
 					}
 					scope.moving = true;
+
+					//enable and disable controls for start and end of list
+					scope.showLeft = true;
+					scope.showRight = true;
+					console.log(to , (amount + gutter) * (scope.itemLength -1));
+					if (to <= 1){
+						scope.showLeft = false;
+					} else if (to >= (amount + gutter) * (scope.itemLength -1)) {
+						scope.showRight = false;
+					}
 					horizontalScrollTo(elem, to, 300);
 					setTimeout(function () {
 						scope.moving = false;
@@ -187,7 +200,7 @@ define(function (require, exports, module) {
 							if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
 								controls.style.display = "none";
 							} else {
-								controls.style.display = "initial";
+								controls.style.display = "";
 							}
 						}
 					}
@@ -403,11 +416,14 @@ define(function (require, exports, module) {
 								throw ("Please provide a content type.");
 						}
 					} else if ($scope.items.length > 0) {
-	
 						$scope.success($scope.items);
 
 					} else {
 						$scope.error();
+					}
+					if ($scope.itemLength == 1){
+						$scope.showLeft = false;
+						$scope.showRight = false;
 					}
 					//console.log('Quickturn update', $scope.itemLength, $scope.contentType, $scope.productType);
 
@@ -659,7 +675,7 @@ define(function (require, exports, module) {
 						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
 							controls.style.display = "none";
 						} else {
-							controls.style.display = "initial";
+							controls.style.display = "";
 						}
 					} else {
 						angular.element($scope.thisElem[0]).addClass("hide");
@@ -1007,7 +1023,8 @@ define(function (require, exports, module) {
 				}
 
 				$scope.goto = function (type, name) {
-					window.scrollTo('body', 0)
+					// window.scrollTo('body', 0)
+					Utils.scrollWithEase(0);
 					switch (type) {
 						case 'insect':
 						case 'product':
