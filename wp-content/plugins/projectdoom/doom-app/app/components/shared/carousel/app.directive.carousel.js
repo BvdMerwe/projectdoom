@@ -144,7 +144,7 @@ define(function (require, exports, module) {
 					console.log(to , (amount + gutter) * (scope.itemLength -1));
 					if (to <= 1){
 						scope.showLeft = false;
-					} else if (to >= (amount + gutter) * (scope.itemLength -1)) {
+					} else if (to + elem.offsetWidth >= (amount + gutter) * (scope.itemLength)) {
 						scope.showRight = false;
 					}
 					horizontalScrollTo(elem, to, 300);
@@ -675,7 +675,9 @@ define(function (require, exports, module) {
 						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
 							controls.style.display = "none";
 						} else {
-							controls.style.display = "";
+							if( angular.isDefined(controls) || controls !== null  ) {
+								controls.style.display = "";
+							}
 						}
 					} else {
 						angular.element($scope.thisElem[0]).addClass("hide");
@@ -745,14 +747,15 @@ define(function (require, exports, module) {
 														console.info('same product type...please continue');
 													} else {
 
-														// BIG ASSUMPTION: one product type per product...so why you're looping(bigCheck)?
-
+														///* BIG ASSUMPTION: one product type per product...so why you're looping(bigCheck)?
+														/*
 														$mdDialog.show(
 															$mdDialog.alert()
 															  .clickOutsideToClose(true)
 															  .textContent( 'No Items available' )
 															  .ariaLabel('carousel validation message')
 														);
+														*/
 
 														return;
 													}

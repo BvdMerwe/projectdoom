@@ -1373,8 +1373,198 @@ define( function ( require, exports, module ) {
                         window.document.body.classList.add('page-404');
                         
                     }
-					
+                    
+                    _bodyClassBrowser();
+
                 };
+
+                var _bodyClassBrowser = function() {
+
+                    /**
+                     * detect IE
+                     * returns version of IE or false, if browser is not Internet Explorer
+                     * /
+
+                    (function detectIE() {
+                        var ua = window.navigator.userAgent;
+
+                        var msie = ua.indexOf('MSIE ');
+                        if (msie > 0) {
+                            // IE 10 or older => return version number
+                            var ieV = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                            document.querySelector('body').className += ' IE';
+                        }
+
+                        var trident = ua.indexOf('Trident/');
+                        if (trident > 0) {
+                            // IE 11 => return version number
+                            var rv = ua.indexOf('rv:');
+                            var ieV = parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+                            document.querySelector('body').className += ' IE';
+                        }
+
+                        var edge = ua.indexOf('Edge/');
+                        if (edge > 0) {
+                        // IE 12 (aka Edge) => return version number
+                        var ieV = parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+                            document.querySelector('body').className += ' IE';
+                        }
+
+                        // other browser
+                        return false;
+                    })();
+                    */
+                    // browser detect
+                    window.BrowserDetect = {
+                            init: function() {
+                            this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+                            this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "an unknown version";
+                            this.OS = this.searchString(this.dataOS) || "an unknown OS";
+                        },
+                        searchString: function(data) {
+                            for (var i = 0; i < data.length; i++) {
+                                var dataString = data[i].string;
+                                var dataProp = data[i].prop;
+                                this.versionSearchString = data[i].versionSearch || data[i].identity;
+                                if (dataString) {
+                                    if (dataString.indexOf(data[i].subString) != -1) return data[i].identity;
+                                } else if (dataProp) return data[i].identity;
+                            }
+                        },
+                        searchVersion: function(dataString) {
+                            var index = dataString.indexOf(this.versionSearchString);
+                            if (index == -1) return;
+                            return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+                        },
+                        dataBrowser: [{
+                            string: navigator.userAgent,
+                            subString: "Chrome",
+                            identity: "Chrome"
+                        }, {
+                            string: navigator.userAgent,
+                            subString: "OmniWeb",
+                            versionSearch: "OmniWeb/",
+                            identity: "OmniWeb"
+                        }, {
+                            string: navigator.vendor,
+                            subString: "Apple",
+                            identity: "Safari",
+                            versionSearch: "Version"
+                        }, {
+                            prop: window.opera,
+                            identity: "Opera",
+                            versionSearch: "Version"
+                        }, {
+                            string: navigator.vendor,
+                            subString: "iCab",
+                            identity: "iCab"
+                        }, {
+                            string: navigator.vendor,
+                            subString: "KDE",
+                            identity: "Konqueror"
+                        }, {
+                            string: navigator.userAgent,
+                            subString: "Firefox",
+                            identity: "Firefox"
+                        }, {
+                            string: navigator.vendor,
+                            subString: "Camino",
+                            identity: "Camino"
+                        }, { // for newer Netscapes (6+)
+                            string: navigator.userAgent,
+                            subString: "Netscape",
+                            identity: "Netscape"
+                        }, {
+                            string: navigator.userAgent,
+                            subString: "MSIE",
+                            identity: "Explorer",
+                            versionSearch: "MSIE"
+                        }, {
+                            string: navigator.userAgent,
+                            subString: "Gecko",
+                            identity: "Mozilla",
+                            versionSearch: "rv"
+                        }, { // for older Netscapes (4-)
+                            string: navigator.userAgent,
+                            subString: "Mozilla",
+                            identity: "Netscape",
+                            versionSearch: "Mozilla"
+                        }],
+                        dataOS: [{
+                            string: navigator.platform,
+                            subString: "Win",
+                            identity: "Windows"
+                        }, {
+                            string: navigator.platform,
+                            subString: "Mac",
+                            identity: "Mac"
+                        }, {
+                            string: navigator.userAgent,
+                            subString: "iPhone",
+                            identity: "iPhone/iPod"
+                        }, {
+                            string: navigator.platform,
+                            subString: "Linux",
+                            identity: "Linux"
+                        }]
+                    };
+                    
+                    window.BrowserDetect.init();
+
+                    console.log('BrowserDetect', window.BrowserDetect);
+
+                    ///// mobile
+                    window.isMobile = {
+                        Android: function() {
+                            return navigator.userAgent.match(/Android/i);
+                        },
+                        BlackBerry: function() {
+                            return navigator.userAgent.match(/BlackBerry/i);
+                        },
+                        iOS: function() {
+                            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                        },
+                        Opera: function() {
+                            return navigator.userAgent.match(/Opera Mini/i);
+                        },
+                        Windows: function() {
+                            return navigator.userAgent.match(/IEMobile/i);
+                        },
+                        any: function() {
+                            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                        }
+                    };
+                    /*
+                    // adds mobile browser class to html tag. Special thanks to @ctcherry on github!
+                    (function(){
+                        var ua = navigator.userAgent.toLowerCase().replace(/\s+/,'');
+                    
+                        var matchers = {
+                            ios: /(iphone|ipod|ipad)/,
+                            ipad: /ipad/,
+                            iphone: /(iphone|ipod)/,
+                            android: 'android',
+                            android2: 'android2',
+                            android4: 'android4'
+                        };
+                    
+                        var h = document.getElementsByTagName('body')[0];//$('html');
+                    
+                        for (var i in matchers) {
+                            var m = matchers[i];
+                            if ((typeof(m) == "string" && ua.indexOf(m) > -1) || (typeof(m) == "object" && ua.match(m))) {
+                                //h.addClass(i)
+                                h.className+=' '+i;
+
+                                //document.getElementsByTagName('body')[0].className+=' '+(/(Firefox|MSIE|Chrome|Safari|Opera)[\/\s](\d+)/);
+                            }
+                        };
+                    
+                    })();
+                    */
+                    //try{document.getElementsByTagName('body')[0].className+=' '+(/(Firefox|MSIE|Chrome|Safari|Opera)[\/\s](\d+)/).exec(navigator.userAgent).splice(1,2).join('').toLowerCase();}catch(e){};
+
+                }
                 
                 /**
 				 * @private
@@ -1413,7 +1603,8 @@ define( function ( require, exports, module ) {
 				var _resetBodyClass = function () 
 				{
 				
-					window.document.body.setAttribute( 'class', 'page ui-fontSize-default ui-lang-en' );
+                    window.document.body.setAttribute( 'class', 'page ui-fontSize-default ui-lang-en' );
+                    
 				
 				};
 				

@@ -76,7 +76,7 @@
 	<div layout="column" class="nav-nav in clear md-primary">
 		<div layout="row" layout-align="space-between center" flex-xs="100">
 
-			<div class="" style="padding:16px;text-align:center;background-color:#00833D;width: 80px;height: 80px;">
+			<div class="navigation-menu-button" style="">
 				<md-button ng-click="toggleLeft()" aria-label="Open Menu"
 					class="md-primary md-icon-button hamburger-menu" aria-label="Site Menu">
 					<md-icon style="padding-top:10px;">
@@ -88,7 +88,7 @@
 				<md-button aria-label="Close Menu" data-ng-click="close()" class="md-primary close" style="color:#ffffff;"></md-button>
       		</div>
 
-			<div class="md-padding" layout="row" layout-align="center center" style="z-index:99;">
+			<div class="md-padding navigation-menu-logo" layout="row" style="">
 				<md-nav-bar 
 					class="primary-navigation"
 					md-selected-nav-item="currentNavItem"
@@ -109,7 +109,7 @@
 					
 				</div>
             </div>
-            <div class="md-padding" layout="row" layout-align="center center" style="width:80px;height80px;">
+            <div class="md-padding navigation-menu-search" layout="row" style="">
 				<div data-ui-search id="search-takeover" layout-fill></div>
             </div>
         </div>

@@ -199,6 +199,17 @@ button, html, input, select, textarea {
 * Header Navigation
 * 
 **/
+.navigation-menu-button{
+	padding:16px;text-align:center;background-color:#00833D;width: 80px;height: 80px;
+}
+.navigation-menu-logo {
+	z-index:99;
+}
+
+.navigation-menu-search {
+	width:80px;height:80px;
+}
+
 .hamburger-menu span{
 	position:relative;
 	height:2px;

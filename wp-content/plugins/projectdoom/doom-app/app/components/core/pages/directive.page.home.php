@@ -106,9 +106,11 @@
 						<div id="preloader" flex="100" class="ng-animate" layout="row">
 							<div flex style="text-align:center;" layout="column" layout-align="center center">
 								<br /><br /><br /><br />
+								<!--
 								<ui-randomstat flex="100" layout="column" layout-align="center center" duration="1000"></ui-randomstat>
 								
 								<h3 flex="100">Loading...</h3>
+								-->
 							</div>
 						</div>
 					</div>
