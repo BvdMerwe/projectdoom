@@ -71,7 +71,7 @@
     <!-- CONTACT PAGE TEMPLATE HERE -->
     <div class="animate-page-switch md-accent" layout-fill layout-xs="column" flex="100" data-ng-switch-when="contact">
 
-      <div data-ui-app-page-contact layout-fill page-name="contact" class="page-content" flex-xs="100" layout="column" layout-align="center center"></div>
+      <div data-ui-app-page-contact page-name="contact" class="page-content" flex-xs="100" layout="column" layout-align="center center"></div>
 
     </div>
     <!-- /CONTACT PAGE TEMPLATE HERE -->

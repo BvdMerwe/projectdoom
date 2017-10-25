@@ -158,6 +158,10 @@ div[data-ui-navigation] {
     padding:50px 100px;
   }
 }
+
+.site-logo ._md-nav-button {
+  pointer-events: none;
+}
 //green pages open
 .super-menu-open,
 .page-about,
@@ -203,7 +207,7 @@ div[data-ui-navigation] {
   position: fixed;
   width: 100%;
   z-index: 1;
-  height: 20px;
+  height: 80px;
 
   .nav-nav {
     @include transition(0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19));
@@ -277,6 +281,7 @@ md-sidenav {
 div[data-ui-carousel] {
 	position: relative;
   max-width: calc(100% - 30px);
+  min-width: 300px;
   margin-left: 16px;
   text-align: center;
 }
@@ -641,7 +646,7 @@ div[data-ui-carousel][single='true'] {
       color: #000;
       input, textarea {
         border-bottom: 1px solid#7B7B7A;
-        max-height: 200px;
+        max-height: 135px;
       }
     }
 }

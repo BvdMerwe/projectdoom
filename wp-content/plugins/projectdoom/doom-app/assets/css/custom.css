@@ -154,6 +154,10 @@ div[data-ui-navigation] md-backdrop {
   padding: 50px 100px;
 }
 
+.site-logo ._md-nav-button {
+  pointer-events: none;
+}
+
 .super-menu-open div[data-ui-navigation],
 .page-about div[data-ui-navigation],
 .page-legal div[data-ui-navigation],
@@ -219,7 +223,7 @@ div[data-ui-navigation] {
   position: fixed;
   width: 100%;
   z-index: 1;
-  height: 20px;
+  height: 80px;
 }
 
 div[data-ui-navigation] .nav-nav {
@@ -307,6 +311,7 @@ md-sidenav ul li {
 div[data-ui-carousel] {
   position: relative;
   max-width: calc(100% - 30px);
+  min-width: 300px;
   margin-left: 16px;
   text-align: center;
 }
@@ -778,7 +783,7 @@ md-autocomplete-wrap input {
 
 #footer div[data-ui-form-contact] input, #footer div[data-ui-form-contact] textarea {
   border-bottom: 1px solid #7B7B7A;
-  max-height: 200px;
+  max-height: 135px;
 }
 
 /***********************************************

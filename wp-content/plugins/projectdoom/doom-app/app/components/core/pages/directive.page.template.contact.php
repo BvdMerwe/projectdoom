@@ -27,7 +27,7 @@
 
     <!-- [BODY SECTION] -->
 
-    <div flex="grow" layout-fill  flex-order="1" flex-order-gt-sm="2">
+    <div flex="grow" flex-order="1" flex-order-gt-sm="2">
 
         <div data-ui-form-contact layout-fill flex="100 md-whiteframe-7dp"></div>
                         

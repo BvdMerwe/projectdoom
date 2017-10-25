@@ -284,23 +284,23 @@
                     
                 </div>
                 <!-- RELATED PRODU|CTS -->
-                <div layout="column" layout-fill flex-gt-sm="40" flex-offset-gt-sm="10" flex="100" layout-align-gt-sm="start start" layout-align="center center">
+                <div layout="column" flex-gt-sm="40" flex-offset-gt-sm="10" flex="100" layout-align-gt-sm="start start" layout-align="center center">
                     <h3 flex="100" class="page-title">Products</h3>
-                    <div layout="row" flex="100" layout-fill>
-                    <div flex="100" 
-                        data-ui-carousel
-                        single          = "true"
-                        cta             = "true"
-                        maxHeight       = "550px"
-                        maxWidth        = "200px"
-                        gutter          = "175px"
-                        displayName     = "true"
-                        insectType      = ""
-                        productType     = "spray"
-                        showFilter      = "true"
-                        filterBy        = "product_types"
-                        contentType="product"></div>
-                </div>
+                    <div layout="row" flex="100">
+                        <div flex="100" 
+                            data-ui-carousel
+                            single          = "true"
+                            cta             = "true"
+                            maxHeight       = "550px"
+                            maxWidth        = "200px"
+                            gutter          = "175px"
+                            displayName     = "true"
+                            insectType      = ""
+                            productType     = "spray"
+                            showFilter      = "true"
+                            filterBy        = "product_types"
+                            contentType="product"></div>
+                    </div>
                 </div>
             </div>
 

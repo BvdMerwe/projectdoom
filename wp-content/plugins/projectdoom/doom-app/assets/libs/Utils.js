@@ -452,7 +452,7 @@ define( function ( require, exports, module ) {
                     change = to - start,
                     currentTime = 0,
                     increment = 20;
-                duration = (typeof(duration) === 'undefined') ? 500 : duration;
+                duration = (typeof(duration) === 'undefined') ? 800 : duration;
                 var animateScroll = function() {
                     // increment the time
                     currentTime += increment;

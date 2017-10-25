@@ -133,7 +133,7 @@
           </svg>
         </div>
         <div class="text" flex-gt-sm="50">
-          <h3 class="green-bold">Where have the goggas invaded?</h3>
+          <h3 class="green-bold">Where have the bugs invaded?</h3>
           <p>Drop pin on location or select an option below</p>
           <md-select ng-model="config.location" multiple aria-label="locations">
               <md-option ng-value="'bedroom'">Bedroom</md-option>
@@ -182,11 +182,6 @@
           </p>
           -->
         </div>
-        <div class="" layout="column" layout-align="center center">
-          <p style="margin: 1em;">
-            <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
-          </p>
-        </div>
       </div>
       
       <!--
@@ -196,5 +191,10 @@
       </div>
       -->
     </div>
+  </div>
+  <div class="" layout="column" layout-align="center center">
+    <p style="margin: 1em;">
+      <small>*Please note that the insect stats and data provided would vary depending on circumstance, time, season, weather, or any other variance that could affect this information.</small>
+    </p>
   </div>
 </div>

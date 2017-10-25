@@ -13,7 +13,7 @@
             <div layout-gt-sm="row" layout="column" layout-align="center start" class="insect-profile-content-holder">
                 <div layout="column" flex="100" flex-gt-sm="100">
                     <div class="profile-box" layout-fill>
-                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> About me</h3>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-{{pageContent.post_name}}"></i> About me</h3>
                         <br />
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_about}}</p>
                     </div>

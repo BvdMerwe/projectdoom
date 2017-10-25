@@ -520,6 +520,7 @@ h1.page-title.main {
 
 h3.page-title {
 	font-size: 24pt;
+
 }
 
 .page-title.stat {
@@ -601,7 +602,7 @@ h3.page-title {
 **/
 .carousel-title {
 	color:#00833D;
-	font-size: 30px;
+	font-size: 24pt;
 	text-transform: uppercase;
 }
 

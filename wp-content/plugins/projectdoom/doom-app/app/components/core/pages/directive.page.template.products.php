@@ -160,7 +160,7 @@
                         <br/>
                         <h3 class="page-title">Similar Products</h3>
                         <br />
-                        <div layout="row" layout-align="center center">
+                        <div layout="row" <?php //layout-align="center center" ?>>
                             <div data-ui-carousel
                                 single          = "true"
                                 cta             = "true"
