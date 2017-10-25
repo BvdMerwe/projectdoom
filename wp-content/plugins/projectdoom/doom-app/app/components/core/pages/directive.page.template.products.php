@@ -771,12 +771,12 @@
 
             <!-- [HERO SECTION]  -->
             <div layout-gt-sm="row" layout="column" layout-align="center center">
-                <div flex-gt-sm="60" flex="100" class="">
+                <div flex-gt-sm="60" flex="100" class="page-products-carousel">
                     <div class="bg-box">
                         <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
                     </div>
                 </div>
-                <div flex-gt-sm="40" flex="100" <?php //class="center-content" (removed for responsive text)  ?> layout-align="center center">
+                <div class="page-product-hero-info" flex-gt-sm="40" flex="100" <?php //class="center-content" (removed for responsive text)  ?> layout-align="center center">
                     <h1 flex="100" class="page-title">{{pageContent.post_title}}</h1>
                     <span class="hr-divider"></span>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>

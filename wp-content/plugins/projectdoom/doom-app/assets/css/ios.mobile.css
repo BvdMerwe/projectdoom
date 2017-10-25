@@ -1,0 +1,41 @@
+body::after {
+    content: none;
+}
+
+.layout, 
+.layout-column, 
+.layout-row,
+.layout-xs, 
+.layout-xs-column, 
+.layout-xs-row {
+    display: initial;
+}
+
+ div[data-ui-navigation] .nav-nav.in{
+    top:-16px !important;
+}
+
+.nav-nav {
+
+}
+
+.navigation-menu-button,
+.navigation-menu-logo,
+.navigation-menu-search {
+    display: inline-block;
+    height:auto;
+}
+
+.nav-nav .navigation-menu-logo{
+    top:10px;
+    position: relative;
+}
+
+div.main-container {
+    position: relative;
+    top:100px;
+}
+
+#footer .footer-nav {
+    position:fixed;
+}
