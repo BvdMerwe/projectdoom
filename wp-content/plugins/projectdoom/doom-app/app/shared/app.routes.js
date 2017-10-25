@@ -1210,6 +1210,7 @@ define( function ( require, exports, module ) {
 						
                         $rootScope.isInsectPage 	= isInsectPage;
                         $rootScope.isInsectCategory = isInsectCategory;
+                        $rootScope.lastInsect       = $route.current.pathParams.ID;
 						
                     }
                     

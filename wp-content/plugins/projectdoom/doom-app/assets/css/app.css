@@ -334,7 +334,7 @@ md-nav-ink-bar {
 .app-dashboard {
 	position: relative;
 	/**/
-	min-height: 120vh;
+	min-height: 100vh;
 	/**/
 }
 

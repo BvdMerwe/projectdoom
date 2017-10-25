@@ -50,7 +50,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="javascript:;" title="" data-ng-click="goto('home')" name="insects">Pests</a>
+								<a href="javascript:;" title="" data-ng-click="goto('pests')" name="insects">Pests</a>
 								<ul>
 									<li><a href="javascript:;" title="" data-ng-click="goto('ant')" name="insects-ants">Ants</a></li>
 									<li><a href="javascript:;" title="" data-ng-click="goto('cockroach')" name="insects-cockroaches">Cockroaches</a></li>

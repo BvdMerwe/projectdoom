@@ -4,6 +4,10 @@
 * {
   outline: none !important;
   box-shadow: none !important;
+  -webkit-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -ms-flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .inline {
@@ -702,7 +706,7 @@ md-autocomplete-wrap input {
   display: block;
   position: absolute;
   z-index: 1;
-  top: 0;
+  top: 5px;
   right: 42px;
   cursor: pointer;
 }

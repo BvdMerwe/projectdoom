@@ -449,7 +449,7 @@
                                     gutter = "175px"
                                     displayName ="true"
                                     insectType     	= "fishmoth"
-                                    productType     = "oil"
+                                    productType     = "coil"
                                     contentType="product"
                                     data-ng-if="productsPageInsectFilter =='fishmoth' || productsPageInsectFilter ==''"></div>
 
@@ -1043,7 +1043,7 @@
                     </div>
 
         </div>
-        
+        <!-- <button ng-click="filterProductsByPest()">Fitler Test</button> -->
         <div layout-fill>
             <h3 class="page-title">Where to buy</h3>
             <div data-ui-carousel
