@@ -56,3 +56,17 @@ div[data-ui-configurator] {
     /* width: 100%; */
     /* display: flex; */
 }
+/*
+.carousel-container .carousel .carousel-item-name,
+.carousel-container .carousel .carousel-item-name, .carousel-container .carousel .cta {
+    width:200px;
+}*/
+
+.carousel-container .carousel .item {
+    width:300px;
+    display: inline-block;
+}
+
+.bg-box {
+    width:300px;
+}
