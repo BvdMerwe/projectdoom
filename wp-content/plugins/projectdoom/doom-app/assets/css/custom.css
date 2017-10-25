@@ -371,15 +371,17 @@ div[data-ui-carousel][single='true'] {
 }
 
 .carousel-container .controls .carousel-control:hover {
-  color: #fff;
-  background-color: #00833D;
-  border-color: #00833D;
+  color: #00833D;
+  background-color: #ff510b;
+  border-color: #ff510b;
 }
 
 .carousel-container .controls .carousel-control.inactive {
   pointer-events: none;
   border-color: #00833D;
   color: #00833D;
+  border-color: #888;
+  color: #888;
   background-color: none !important;
 }
 

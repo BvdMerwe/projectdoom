@@ -340,14 +340,16 @@ div[data-ui-carousel][single='true'] {
       }
       &:hover {
         // transform:  scale(1.5);
-        color: #fff;
-        background-color: $green;
-        border-color: $green;
+        color: $green;
+        background-color: $orange;
+        border-color: $orange;
       }
       &.inactive {
         pointer-events: none;
         border-color: $green;
         color: $green;
+        border-color: #888;
+        color: #888;
         background-color: none !important;
 
       }
