@@ -30,12 +30,32 @@ body::after {
     top:10px;
     position: relative;
 }
+.navigation-menu-search {
+    position: relative;
+    right: -80px;
+}
+
+.site-logo {
+    left: 40px;
+    position: relative;
+}
 
 div.main-container {
     position: relative;
     top:100px;
 }
 
+.page-app-home .main-container {
+    margin-top: 450px !important;
+}
+
 #footer .footer-nav {
     position:fixed;
 }
+
+.page-insects .insect-controller-buttons, .page-insects .product-controller-buttons {
+    position: relative;;
+    top:-800px;
+}
+
+.home-image { display: none;}

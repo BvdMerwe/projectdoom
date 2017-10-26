@@ -675,7 +675,7 @@ define(function (require, exports, module) {
 						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
 							controls.style.display = "none";
 						} else {
-							if( angular.isDefined(controls) || controls !== null  ) {
+							if( angular.isDefined(controls) || controls.style !== null  ) {
 								controls.style.display = "";
 							}
 						}
@@ -738,6 +738,7 @@ define(function (require, exports, module) {
 											
 											// check if current product has the same product type as the requested filter
 											bigCheck:
+											/*
 											for (var keyes in currentProduct.product_types) {
 												//console.info('check filter relevance');
 												if (currentProduct.product_types.hasOwnProperty(keyes)) {
@@ -748,20 +749,21 @@ define(function (require, exports, module) {
 													} else {
 
 														///* BIG ASSUMPTION: one product type per product...so why you're looping(bigCheck)?
-														/*
+														
 														$mdDialog.show(
 															$mdDialog.alert()
 															  .clickOutsideToClose(true)
 															  .textContent( 'No Items available' )
 															  .ariaLabel('carousel validation message')
 														);
-														*/
+														
 
 														return;
 													}
 													
 												}
 											}
+											*/
 
 											//console.info('Check the product type(category)', key, currentProduct, $route.current.pathParams.ID );
 
@@ -995,7 +997,7 @@ define(function (require, exports, module) {
 								break;
 						}
 					}
-
+					/*
 					if( newItems.length == 0 ) {
 
 						//alert('No Items available');
@@ -1016,12 +1018,12 @@ define(function (require, exports, module) {
 						//$scope.success($route.current.locals.app_data.products);
 
 					} else {
-
+					*/
 						_filterBtnClasses(key);
 					
 						$scope.success(newItems);
 					
-					}
+					//}
 
 				}
 
