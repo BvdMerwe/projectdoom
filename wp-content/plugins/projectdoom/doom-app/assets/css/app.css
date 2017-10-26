@@ -1151,7 +1151,9 @@ h3.page-title {
 /***PROFILE*/
 .insect-profile-content-holder {
 	position: relative;
-	top:-70vh;
+	/* top:-70vh; */
+
+    margin-top: -480px;
 }
 
 @media (max-width: 1279px) and (min-width: 960px) {

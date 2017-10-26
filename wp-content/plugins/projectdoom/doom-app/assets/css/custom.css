@@ -711,7 +711,7 @@ md-autocomplete-wrap input {
 }
 
 #footer.open .footer-control {
-  display: block;
+  display: none;
   position: absolute;
   z-index: 1;
   top: 5px;
