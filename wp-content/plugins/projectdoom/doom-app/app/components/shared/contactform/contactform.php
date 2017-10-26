@@ -118,7 +118,7 @@
                     flex-order-xs="2"
                     style="color:#444;text-align:center;padding:0;"
                     map-type-id="ROADMAP"></div>
-                <div class="md-padding" flex-order-xs="1" style="background-color:#7B7B7A;padding:30px;">
+                <div class="md-padding" flex-order-xs="1" style="background-color:#7B7B7A;padding:28px;">
                     <h3 style="margin-top:5px;">CONTACT INFORMATION</h3>
 
                     <p><i class="lnr lnr-map-marker"></i>&nbsp;&nbsp;Tiger Brands Limited,<br />3010 William Nicol Drive, Bryanston<br />2021.</p>

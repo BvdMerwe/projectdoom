@@ -278,9 +278,7 @@ define( function ( require, exports, module ) {
 								//console.log('i', i);
 
 							
-								if( element.product_types[i].slug == term ) {
-
-									
+								if( element.product_types[i].slug == term || element.product_types[i].term_id == term  ) {
 									
 									dataHolder.push(element);
 

@@ -686,7 +686,7 @@ define(function (require, exports, module) {
 
 				$scope.filter = function ($ev, key) {
 					
-					//console.log('Filtering...', key, $scope.contentType, $scope.filterBy, $ev);
+					console.log('Filtering...', key, $scope.contentType, $scope.filterBy, $ev);
 					//_filterBtnClasses(key);
 					
 					var newItems = [];
@@ -731,7 +731,7 @@ define(function (require, exports, module) {
 
 										//get
 										var fallbackItems = [];
-										if( $rootScope.isProductPage ) {
+										if( $rootScope.isProductPage) {
 											
 											var prodLength = $route.current.locals.app_data.products.length;
 											var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
@@ -831,7 +831,10 @@ define(function (require, exports, module) {
 											}/***/
 
 										} else if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
-
+											
+											
+											
+											/*
 											var prodLength = $scope.items;//$route.current.locals.app_data.products.length;
 											var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
 
@@ -861,6 +864,8 @@ define(function (require, exports, module) {
 												}
 
 											}
+
+											//console.log('looking:!', currentProduct, $route.current.locals.app_data.products, $rootScope.isPathSlug, $route.current.pathParams.ID);
 											/*
 											// check if current product has the same product type as the requested filter
 											bigCheck:
@@ -913,6 +918,23 @@ define(function (require, exports, module) {
 												
 											}
 											*/
+
+											//var currentProduct = $filter('pick')( $route.current.locals.app_data.taxonomy.product_types, 'term_id == "' + $route.current.pathParams.ID + '"' )[0];
+											
+											productsManager.getByProductType( key ).then(function(results) {
+
+													console.warn('Guckl', results, key);
+
+													newItems = results;
+
+													_filterBtnClasses(key);
+													
+													$scope.success(newItems);
+
+												}, function(error) {
+
+												}
+											);
 										
 										} else {
 
@@ -930,6 +952,8 @@ define(function (require, exports, module) {
 											}
 
 										}
+
+										console.log('newitens:', newItems,  $rootScope.isInsectPage,  $rootScope.isPathSlug);
 
 										/** /
 										$scope.items = $route.current.locals.app_data.products;
