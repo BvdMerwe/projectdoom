@@ -899,8 +899,12 @@ define( function ( require, exports, module ) {
 					$window.document.getElementsByName('description')[0].content =
 						"Enough is enough. Make pesky bugs stop with fast, deadly DOOM.";
 				} else {
-					$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
-					$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
+					if( angular.isDefined($scope.pageContent.doom_meta_keywords) ) {
+						$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
+					}
+					if( angular.isDefined($scope.pageContent.doom_meta_description) ) {
+						$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
+					}
 				}
 
 				console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams );
