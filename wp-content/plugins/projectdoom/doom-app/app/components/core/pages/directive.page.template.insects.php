@@ -149,9 +149,10 @@
                         
                     </div>
                     <!-- <br /><br /> -->
+                    <p flex="100" class="page-description">Click here to get the right {{pageContent.post_title}} Solution for you.</p>
                     <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta main">Make Them Stop</md-button>
                     <!-- <br /><br /> -->
-                    <p flex="100" class="page-description">Get the right {{pageContent.post_title}} Solution for you.</p>
+                    
                     <ul class="insect-insects">
                         <li data-ng-click="goto('/insects/cockroach')" data-ng-class="{active: pageContent.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
                             <i class="icon-cockroach"></i>

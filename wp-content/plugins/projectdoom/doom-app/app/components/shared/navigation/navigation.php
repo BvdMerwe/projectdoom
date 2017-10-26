@@ -94,10 +94,10 @@
 					md-selected-nav-item="currentNavItem"
 					nav-bar-aria-label="navigation links">
 
-						<md-nav-item hide-xs md-nav-click="goto('pests')" name="insects" aria-label="Insects">
+						<md-nav-item hide-xs md-nav-click="goto('insects')" name="insects" aria-label="Insects">
 							PESTS
 						</md-nav-item>
-						<md-nav-item class="site-logo" md-nav-click="" md-no-ink-bar="true" disabled="true" name="home" style="z-index:9;" aria-label="DOOM Home">
+						<md-nav-item class="site-logo" md-nav-click="goto('pests')" md-no-ink-bar="true" disabled="true" name="home" style="z-index:9;" aria-label="DOOM Home">
 							<img data-ng-src="https://www.tbwa-cdn.co.za/projectdoom/logo.png" class="" style="width:80px;" alt="DOOM" />
 						</md-nav-item>
 						<md-nav-item hide-xs md-nav-click="goto('products')" name="products" aria-label="Products">

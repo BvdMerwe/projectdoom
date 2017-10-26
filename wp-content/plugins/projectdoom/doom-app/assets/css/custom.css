@@ -155,7 +155,9 @@ div[data-ui-navigation] md-backdrop {
 }
 
 .site-logo ._md-nav-button {
+  /*
   pointer-events: none;
+  */
 }
 
 .super-menu-open div[data-ui-navigation],
@@ -1493,6 +1495,7 @@ END slider style
   .insect-profile-content-holder {
     position: relative;
     top: -40vh;
+    margin-top: 0;
   }
   .page-insects .insect-fact {
     max-width: none;

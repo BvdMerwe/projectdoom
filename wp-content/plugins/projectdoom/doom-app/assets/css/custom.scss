@@ -160,7 +160,9 @@ div[data-ui-navigation] {
 }
 
 .site-logo ._md-nav-button {
+  /*
   pointer-events: none;
+  */
 }
 //green pages open
 .super-menu-open,
@@ -1259,6 +1261,7 @@ END slider style
   .insect-profile-content-holder {
     position: relative;
     top: -40vh;
+    margin-top:0;
   }
   .page-insects {
     .insect-fact {

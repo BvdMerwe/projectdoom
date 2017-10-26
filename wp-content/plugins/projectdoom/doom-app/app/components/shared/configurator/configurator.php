@@ -62,7 +62,7 @@
     </div>
     <div class="step-2 {{step2State}}" data-ng-class="{off: state < 2}" flex="100" layout="row" style="padding: 0 45px;">
       <br />
-      <div flex="100" class="content" layout="row" layout-wrap layout-align="center center">
+      <div flex="100" class="content" layout="column" layout-wrap layout-align="center center">
         <div class="desktop-selector">
           <div flex="100">
             <h3 class="green-bold">How long have they been bugging you for?</h3>
@@ -105,7 +105,7 @@
             </md-select>
           </div>
         </div>
-        <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
+        <md-button data-ng-click="next()" class="primary-cta" style="margin-top:20px;">NEXT STEP</md-button>
       </div>
       <div class="revert" data-ng-click="setState(2)">
         <a>

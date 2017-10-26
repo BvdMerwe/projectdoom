@@ -13,22 +13,19 @@
 
 	</div><!-- #content -->
 
-	<!-- <footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'doom' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'doom' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'doom' ), 'doom', '<a href="http://underscores.me/">Underscores.me</a>' );
-			?>
-		</div>
-	</footer> -->
+	
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108662075-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  //gtag('js', new Date());
+  //gtag('config', 'UA-108662075-1');
+</script>
 
 </body>
 </html>

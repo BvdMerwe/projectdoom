@@ -675,7 +675,7 @@ define(function (require, exports, module) {
 						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
 							controls.style.display = "none";
 						} else {
-							if( angular.isDefined(controls) || controls.style !== null  ) {
+							if( controls !== null ) {
 								controls.style.display = "";
 							}
 						}
