@@ -42,6 +42,9 @@
   .layout-gt-sm-row .flex-10 {
     width: 10%;
   }
+}
+
+@media only screen and (min-width: 960px) and (min-width: 960px) {
   .layout-gt-sm-row .flex-gt-sm-100 {
     width: 100%;
   }
@@ -75,6 +78,9 @@
   .layout-gt-sm-row .flex-gt-sm-10 {
     width: 10%;
   }
+}
+
+@media only screen and (min-width: 960px) {
   .layout-gt-sm-column > * {
     display: block;
     box-sizing: border-box;
@@ -130,48 +136,40 @@
   width: 10%;
 }
 
-.layout-row .flex-gt-sm-100 {
-  width: 100%;
-}
-
-.layout-row .flex-gt-sm-90 {
-  width: 90%;
-}
-
-.layout-row .flex-gt-sm-80 {
-  width: 80%;
-}
-
-.layout-row .flex-gt-sm-70 {
-  width: 70%;
-}
-
-.layout-row .flex-gt-sm-60 {
-  width: 60%;
-}
-
-.layout-row .flex-gt-sm-50 {
-  width: 50%;
-}
-
-.layout-row .flex-gt-sm-40 {
-  width: 40%;
-}
-
-.layout-row .flex-gt-sm-30 {
-  width: 30%;
-}
-
-.layout-row .flex-gt-sm-25 {
-  width: 25%;
-}
-
-.layout-row .flex-gt-sm-20 {
-  width: 20%;
-}
-
-.layout-row .flex-gt-sm-10 {
-  width: 10%;
+@media only screen and (min-width: 960px) {
+  .layout-row .flex-gt-sm-100 {
+    width: 100%;
+  }
+  .layout-row .flex-gt-sm-90 {
+    width: 90%;
+  }
+  .layout-row .flex-gt-sm-80 {
+    width: 80%;
+  }
+  .layout-row .flex-gt-sm-70 {
+    width: 70%;
+  }
+  .layout-row .flex-gt-sm-60 {
+    width: 60%;
+  }
+  .layout-row .flex-gt-sm-50 {
+    width: 50%;
+  }
+  .layout-row .flex-gt-sm-40 {
+    width: 40%;
+  }
+  .layout-row .flex-gt-sm-30 {
+    width: 30%;
+  }
+  .layout-row .flex-gt-sm-25 {
+    width: 25%;
+  }
+  .layout-row .flex-gt-sm-20 {
+    width: 20%;
+  }
+  .layout-row .flex-gt-sm-10 {
+    width: 10%;
+  }
 }
 
 .layout-column > * {
@@ -180,7 +178,6 @@
 }
 
 .navigation-menu-logo {
-  width: 54%;
   text-align: center;
 }
 
@@ -231,5 +228,25 @@
 }
 
 .insect-selector {
+  display: inline-block;
+}
+
+.insect-insects li i, .product-insects li i {
+  padding: 10px 5px;
+}
+
+.super-menu-open .animate-page-switch-container,
+.page-about .animate-page-switch-container,
+.page-legal .animate-page-switch-container,
+.page-faq .animate-page-switch-container,
+.page-contact .animate-page-switch-container {
+  padding: 0 15px;
+}
+
+.profile-pin-descriptions p {
+  display: block;
+}
+
+.profile-pin-descriptions i {
   display: inline-block;
 }
