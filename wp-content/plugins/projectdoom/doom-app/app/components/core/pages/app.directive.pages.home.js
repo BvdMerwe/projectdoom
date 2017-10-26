@@ -55,7 +55,7 @@ define( function ( require, exports, module ) {
 
 	
 
-	Application.Controllers.pagesController =  [ '$rootScope', '$scope', '$http', '$q', '$route', '$filter', '$location', '$timeout', 'transformRequestAsFormPost', 'Utils', 'MemCache', 'productsManager', 'insectsManager', function ( $rootScope, $scope, $http, $q, $route, $filter, $location, $timeout, transformRequestAsFormPost, Utils, MemCache, productsManager, insectsManager ) {
+	Application.Controllers.pagesController =  [ '$rootScope', '$window', '$scope', '$http', '$q', '$route', '$filter', '$location', '$timeout', 'transformRequestAsFormPost', 'Utils', 'MemCache', 'productsManager', 'insectsManager', function ( $rootScope, $window, $scope, $http, $q, $route, $filter, $location, $timeout, transformRequestAsFormPost, Utils, MemCache, productsManager, insectsManager ) {
 
 		var inputMsgTimeout,
 		inputValidationTimeout;
