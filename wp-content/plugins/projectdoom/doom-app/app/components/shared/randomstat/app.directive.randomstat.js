@@ -130,10 +130,15 @@ define( function ( require, exports, module ) {
         // lastTime.setHours(now.getHours() - (2));
         var timePassed = (now.getTime() - lastTime.getTime()) / 1000;
 
+        $scope.reset = function(){
+          $scope.show = [];
+          window.clearInterval($scope.timeout);
+        }
         $scope.init = function(){
+          var stat = {};
           if ($scope.timer) {
             $scope.show = $scope.show.concat($scope.stats);
-            startTimer(timePassed, $scope.duration);
+            $scope.timerObj = startTimer(timePassed, $scope.duration);
           } else {
             var randIndex = Utils.getRandomInt(0, $scope.stats.length-1);
             var randDays = Utils.getRandomInt(10, 28);
@@ -147,9 +152,9 @@ define( function ( require, exports, module ) {
                 var element = $scope.stats[index];
 
                 if( element.insect == $scope.activeinsect ) {
-                  var stat = element;
+                  stat = JSON.parse(JSON.stringify(element));
 
-                  console.log('yurp', $scope.activeinsect);
+                  // console.log('yurp', $scope.activeinsect);
                   break;
                 } else {
                   //console.log(element);
@@ -158,8 +163,8 @@ define( function ( require, exports, module ) {
               }
 
             } else {
-              console.log('nope', $scope.activeinsect, $scope.ishome);
-              var stat = $scope.stats[randIndex];
+              // console.log('nope', $scope.activeinsect, $scope.ishome);
+              stat = JSON.parse(JSON.stringify($scope.stats[randIndex]));
             }
 
             for (var i = 0; i < stat.stats.length; i++) {
@@ -170,13 +175,13 @@ define( function ( require, exports, module ) {
             }
             $scope.show.push(stat);
             $scope.randStat = Utils.getRandomInt(0, stat.stats.length-1);
-            numberClimb(stat.stats[$scope.randStat].stat, $scope.duration);
+            $scope.timeout = numberClimb(stat.stats[$scope.randStat].stat, $scope.duration);
           }
 
           function numberClimb(to, duration) {
             var difference = to - stat.stats[$scope.randStat].dummy;
             var perTick = difference / duration * 10;
-            $timeout(function () {
+            return $timeout(function () {
                 stat.stats[$scope.randStat].dummy = stat.stats[$scope.randStat].dummy + perTick;
                 stat.stats[$scope.randStat].show = Math.round(stat.stats[$scope.randStat].dummy);
                 if (stat.stats[$scope.randStat].dummy == to) return;
@@ -249,7 +254,9 @@ define( function ( require, exports, module ) {
           if( $scope.ishome == 'true' ) {
 
             //console.log('RANDOM STAT home-filter LISTENER:', data );
-          
+            
+            $scope.reset();
+
             $scope.activeinsect = data.type;
 
             $scope.init();

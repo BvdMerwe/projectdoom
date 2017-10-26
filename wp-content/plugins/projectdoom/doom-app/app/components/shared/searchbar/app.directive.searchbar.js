@@ -197,8 +197,8 @@ define( function ( require, exports, module ) {
                   console.log(data);
                 }, function(data){
                   $scope.results[0] = {
-                    post_title: "You've killed our search",
-                    post_content: "There are no results to show. Try something else."
+                    post_title: "Dont get bugged out",
+                    post_content: "Your search has no results to show. Try something else."
                   }
                   console.log(data);
                 });

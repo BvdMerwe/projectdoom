@@ -882,6 +882,27 @@ define( function ( require, exports, module ) {
 
 				//console.log('Activity Data: ', $scope.pageContent );
 
+
+				/**
+				 * Meta tag stuff
+				 */
+				// if ($rootScope.isInsectPage || $rootScope.isProfilePage ) {
+				// 	$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
+				// 	$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
+				// } else if ($rootScope.isProductPage || $rootScope.isProducts || $rootScope.isProductCategoryInsect) {
+				// 	$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
+				// 	$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
+				// } else 
+				if ($rootScope.isHome) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"Insecticide, pesticide, insect repellent, get rid of insects, prevent insects, kill insects, kill bugs, kill flies, kill fishmoths, kill ants, kill mosquitoes, kill fleas, kill cockroaches, cockroach problem, fly problem, fishmoth problem, ant problem";
+					$window.document.getElementsByName('description')[0].content =
+						"Enough is enough. Make pesky bugs stop with fast, deadly DOOM.";
+				} else {
+					$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
+					$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
+				}
+
 				console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams );
 					
 					
