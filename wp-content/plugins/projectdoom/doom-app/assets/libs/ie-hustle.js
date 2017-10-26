@@ -331,7 +331,8 @@
 
 		yepnope({
 			load:	{
-				'ios-mobile-css':		path+'../css/ios.mobile.css'
+				'ios-mobile-css':		path+'../css/ios.mobile.css',
+				'ios-mobile-flex-css':		path+'../css/layout.fix.min.css'
 			}
 		});
 		

@@ -520,6 +520,7 @@ md-autocomplete-wrap input {
   outline: none !important;
   border: 0;
   background: transparent;
+  padding: 15px;
 }
 
 #search-takeover .search-button:hover {
@@ -799,6 +800,11 @@ div[data-ui-form-contact] .layout-fill {
 /***********************************************
 * configurator STYLE
 ***********************************************/
+.mobile-selector {
+  display: none !important;
+  text-align: center;
+}
+
 /*****
 slider style
 *****/
@@ -1481,6 +1487,10 @@ END slider style
   /***********************************************
   * Insect Page
   ***********************************************/
+  .insect-profile-content-holder {
+    position: relative;
+    top: -40vh;
+  }
   .page-insects .insect-fact {
     max-width: none;
   }

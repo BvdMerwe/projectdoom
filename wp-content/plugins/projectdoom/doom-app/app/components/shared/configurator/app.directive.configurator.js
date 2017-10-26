@@ -351,6 +351,9 @@ define( function ( require, exports, module ) {
           (amountCoefficient * (avg Of Time and Location Coefficients)) * (dataPoint * days) = resultedAmount
 
           ///////////////////////////////////////*/
+          //set values to int
+          if (typeof config.duration == "string") config.duration = parseInt(config.duration);
+          if (typeof config.amount == "string") config.amount = parseInt(config.amount);
           var pest = config.pest;
           var dataPoints = {
             eggs: parseFloat(pest.doom_insect_egg),

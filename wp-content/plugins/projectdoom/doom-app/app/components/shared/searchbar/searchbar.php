@@ -32,7 +32,7 @@
       </md-autocomplete>
     <!-- <span class="icon lnr lnr-magnifier"></span> -->
   </div>
-  <md-content class="search-results">
+  <md-content class="search-results" layout-fill>
     <!-- <div layout="column" class="result" data-ng-repeat="result in results">
       <span>{{result.post_title}}</span>
       <span>{{result.post_content}}</span>

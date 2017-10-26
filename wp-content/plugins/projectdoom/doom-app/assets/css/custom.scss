@@ -442,6 +442,7 @@ div[data-ui-carousel][single='true'] {
     }
     .search-button {
       // position: absolute;
+
       color:#fff;
       @include animation('spin 0.5s 1');
       &::before {
@@ -465,6 +466,7 @@ div[data-ui-carousel][single='true'] {
     outline: none !important;
     border: 0;
     background: transparent;
+    padding: 15px;
     &:hover {
       @include transform(scale(1.5));
     }
@@ -667,6 +669,10 @@ div[data-ui-form-contact] {
 /***********************************************
 * configurator STYLE
 ***********************************************/
+.mobile-selector {
+  display: none !important;
+  text-align: center;
+}
 /*****
 slider style
 *****/
@@ -1247,6 +1253,10 @@ END slider style
   /***********************************************
   * Insect Page
   ***********************************************/
+  .insect-profile-content-holder {
+    position: relative;
+    top: -40vh;
+  }
   .page-insects {
     .insect-fact {
       max-width: none;

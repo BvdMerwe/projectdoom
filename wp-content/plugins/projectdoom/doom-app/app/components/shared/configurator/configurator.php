@@ -35,18 +35,20 @@
           <h3 class="carousel-title" flex="100" style="text-align:center;margin:1em auto;">Select your bug</h3>
         </div>
         <div class="content-inner" layout="row" layout-align="start center" layout-align-gt-sm="space-around center">
-          <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
-            <div class="thumbnail">
-              <i class="icon-{{insect.post_name}}"></i>
-            </div>
-            <div class="name">
-              <h3>{{insect.post_title}}</h3>
-            </div>
-            <div class="desc">
-              <p>{{insect.doom_insect_config_description}}</p>
-            </div>
-            <div class="start-button">
-              <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
+          <div class="content-scroll" layout="row" layout-align="start center" layout-align-gt-sm="space-around center">
+            <div class="insect-selector {{insect.selected}}" data-ng-repeat="insect in insects">
+              <div class="thumbnail">
+                <i class="icon-{{insect.post_name}}"></i>
+              </div>
+              <div class="name">
+                <h3>{{insect.post_title}}</h3>
+              </div>
+              <div class="desc">
+                <p>{{insect.doom_insect_config_description}}</p>
+              </div>
+              <div class="start-button">
+                <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
+              </div>
             </div>
           </div>
         </div>
@@ -61,6 +63,7 @@
     <div class="step-2 {{step2State}}" data-ng-class="{off: state < 2}" flex="100" layout="row" style="padding: 0 45px;">
       <br />
       <div flex="100" class="content" layout="row" layout-wrap layout-align="center center">
+        <div class="desktop-selector">
           <div flex="100">
             <h3 class="green-bold">How long have they been bugging you for?</h3>
             <md-slider-container layout="row" layout-align="space-between center">
@@ -82,9 +85,27 @@
               <md-slider flex="70" class="md-primary configurator-progress" md-discrete data-ng-model="config.amount" step="1" min="1" max="2" aria-label="amount"></md-slider>
               <span flex="15">A lot</span>
             </md-slider-container>
-            <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
           </div>
-        
+        </div>
+        <div class="mobile-selector">
+          <div>
+            <h3 class="green-bold">How long have they been bugging you for?</h3>
+            <md-select ng-model="config.duration">
+              <md-option value="1">A&nbsp;day&nbsp;+</md-option>
+              <md-option value="2">A&nbsp;week&nbsp;+</md-option>
+              <md-option value="3">A&nbsp;month&nbsp;+</md-option>
+              <md-option value="4">More&nbsp;than&nbsp;a&nbsp;year</md-option>
+            </md-select>
+          </div>
+          <div>
+            <h3 class="green-bold">How many bugs did you see?</h3>
+            <md-select ng-model="config.amount">
+              <md-option value="1">A few</md-option>
+              <md-option value="2">A lot</md-option>
+            </md-select>
+          </div>
+        </div>
+        <md-button data-ng-click="next()" class="primary-cta">NEXT STEP</md-button>
       </div>
       <div class="revert" data-ng-click="setState(2)">
         <a>

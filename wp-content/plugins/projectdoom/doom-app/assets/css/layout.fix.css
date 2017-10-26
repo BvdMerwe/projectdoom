@@ -207,3 +207,29 @@
 .final-container {
   display: block;
 }
+
+.desktop-selector {
+  display: none;
+}
+
+.mobile-selector {
+  display: block !important;
+}
+
+.mobile-selector .md-select-value {
+  width: 100%;
+}
+
+.mobile-selector .md-select-icon {
+  position: absolute;
+  right: 0;
+}
+
+.content-scroll {
+  width: 1400px;
+  max-width: none;
+}
+
+.insect-selector {
+  display: inline-block;
+}
