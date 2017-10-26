@@ -1,78 +1,103 @@
 html, body {
-    /* background-color: yellow; */
+  /* background-color: yellow; */
 }
-
 
 /* Flex resets */
 * {
-    flex: none !important;
+  -webkit-box-flex: none;
+  -moz-box-flex: none;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
+
 span.layout-gt-sm-row, span.layout-gt-sm-column, span.layout-row, span.layout-column {
-    display: inline-block;
+  display: inline-block;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
-div.layout-gt-sm-row, div.layout-gt-sm-column, div.layout-row, div.layout-column,
-{
-    display: block;
+
+div.layout-gt-sm-row, div.layout-gt-sm-column, div.layout-row, div.layout-column {
+  display: block;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
+
 /*  */
-.footer-nav  {
-    position: fixed !important;
+.footer-nav {
+  position: fixed !important;
 }
 
 .nav-nav {
-    background-color: #fff !important;
+  background-color: #fff !important;
 }
-.insect-buttons-cta div.fill-width {
-    width: 50%;
-}
-.nav-nav .overlay {
 
-    display: none;
+.insect-buttons-cta div.fill-width {
+  width: 50%;
 }
+
+.nav-nav .overlay {
+  display: none;
+}
+
 .step-2 .content .flex-100 {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
+
 .step-2 .content .flex-70 {
-    width: 70%;
+  width: 70%;
 }
+
 .step-2 .content .flex-15 {
-    width: 15%;
+  width: 15%;
 }
+
 div[data-ui-configurator] {
-    width: 100%;
+  width: 100%;
 }
-#configurator .final.off, 
-#configurator .step-1.off, 
-#configurator .step-2.off, 
+
+#configurator .final.off,
+#configurator .step-1.off,
+#configurator .step-2.off,
 #configurator .step-3.off {
-    display: none;
+  display: none;
 }
-#configurator .final.active, 
-#configurator .step-1.active, 
-#configurator .step-2.active, 
+
+#configurator .final.active,
+#configurator .step-1.active,
+#configurator .step-2.active,
 #configurator .step-3.active {
-    /* display: block; */
-    /* width: 100%; */
-    /* display: flex; */ 
+  /* display: block; */
+  /* width: 100%; */
+  /* display: flex; */
 }
+
 /*
 .carousel-container .carousel .carousel-item-name,
 .carousel-container .carousel .carousel-item-name, .carousel-container .carousel .cta {
     width:200px;
 }*/
-
 .carousel-container .carousel .item {
-    width:300px;
-    display: inline-block;
+  width: 300px;
+  display: inline-block;
 }
+
 /** /
 .bg-box {
     width:300px;
 }
 /**/
 .carousel-container .carousel .list {
-   
-    width:100% !important; 
+  width: 100% !important;
 }
+
 /**/

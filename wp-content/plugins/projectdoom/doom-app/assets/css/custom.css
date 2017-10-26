@@ -939,6 +939,10 @@ END slider style
   max-width: 250px;
 }
 
+#configurator .configurator-steps md-select md-select-value {
+  max-width: 100%;
+}
+
 #configurator .step-1, #configurator .step-2, #configurator .step-3 {
   -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.1s;
   -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.1s;

@@ -1,3 +1,5 @@
+@import "flex.mixin.scss";
+
 /* Mixins */
 @mixin layout-row {
     &> * {
@@ -83,7 +85,7 @@
 
 /* Flex resets */
 * {
-    flex: none !important;
+    @include flex( none !important);
 }
 @media only screen and (min-width: 960px) {
     .layout-gt-sm-row {

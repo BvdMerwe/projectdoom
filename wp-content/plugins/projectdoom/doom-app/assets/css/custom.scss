@@ -796,6 +796,10 @@ END slider style
 
     md-select {
       max-width: 250px;
+
+      md-select-value {
+        max-width: 100%;
+      }
     }
   }
   .step-1, .step-2, .step-3 {
