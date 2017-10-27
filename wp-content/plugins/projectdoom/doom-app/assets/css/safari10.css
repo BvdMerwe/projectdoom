@@ -2,14 +2,12 @@ body::after {
     content: none;
 }
 
-
 .layout, 
 .layout-column, 
 .layout-row,
 .layout-xs, 
 .layout-xs-column, 
 .layout-xs-row {
-    
     display: -webkit-box;
     /* flex: initial; */
 }
@@ -37,48 +35,3 @@ body::after {
 .super-menu .layout-column {
     display: flex;
 } 
-
-/*
-.navigation-menu-button,
-.navigation-menu-logo,
-.navigation-menu-search {
-    display: inline-block;
-    height:auto;
-}
-*/
-
- 
-/*
-div[data-ui-navigation] .nav-nav.in{
-    top:-16px !important;
-}
-.nav-nav .navigation-menu-logo{
-    top:10px;
-    position: relative;
-}
-.navigation-menu-search {
-    position: relative;
-    right: -80px;
-}
-
-.site-logo {
-    left: 40px;
-    position: relative;
-}
-
-div.main-container {
-    position: relative;
-    top:100px;
-}
-
-.page-app-home .main-container {
-   
-}
-.page-insects .insect-controller-buttons, .page-insects .product-controller-buttons {
-    position: relative;;
-    top:-800px;
-}
-*/
-
-
-

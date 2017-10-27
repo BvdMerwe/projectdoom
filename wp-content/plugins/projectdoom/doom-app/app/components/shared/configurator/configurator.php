@@ -116,7 +116,7 @@
     </div>
     <div class="step-3 {{step3State}}" data-ng-class="{off: state < 3}" layout-fill layout="column" layout-align="center center">
       
-      <div class="content" layout-fill layout="column" layout-gt-sm="row" layout-align="space-between center">
+      <div class="content" layout="column" layout-gt-sm="row" layout-align="space-between center">
         <div class="map-container" flex-gt-sm="50">
           <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 665.75 475">
