@@ -13,12 +13,12 @@
             <div layout-gt-sm="row" layout="column" layout-align="center start" class="insect-profile-content-holder">
                 <div layout="column" flex="100" flex-gt-sm="100">
                     <div class="profile-box" layout-fill>
-                        <h3 flex="100" class="page-title no-margin"><i class="icon-{{pageContent.post_name}}"></i> About me</h3>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-{{pageContent.post_name}} profile-box-icon"></i> About me</h3> 
                         <br />
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_about}}</p>
                     </div>
                     <div class="profile-box" layout-fill style="padding-left:0;padding-right:0;padding-bottom:0;">
-                        <h3 flex="100" class="page-title no-margin" style="padding:0 40px;"><i class="icon-pin"></i>&nbsp;&nbsp;I Check in at</h3>
+                        <h3 flex="100" class="page-title no-margin" style="padding:0 40px;"><i class="icon-pin profile-box-icon"></i>&nbsp;&nbsp;I Check in at</h3>
                         <br />
                         <div class="map-container" style="position:relative;" flex>
                             <img class="map" src="wp-content/plugins/projectdoom/doom-app/assets/img/MAP.svg" alt="map"/>
@@ -91,12 +91,12 @@
                 </div>
                 <div layout="column" flex="100" flex-gt-sm="100" flex-offset-gt-sm="5" layout-align="center center" layout-align-gt-sm="center start">
                     <div class="profile-box" layout-fill>
-                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech"></i> Interests / hobbies</h3>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-speech profile-box-icon"></i> Interests / hobbies</h3>
                         <br />
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_hobbies}}</p>
                     </div>
                     <div class="profile-box" layout-fill>
-                        <h3 flex="100" class="page-title no-margin"><i class="icon-star"></i> I'm best known for</h3>
+                        <h3 flex="100" class="page-title no-margin"><i class="icon-star profile-box-icon"></i> I'm best known for</h3>
                         <br />
                         <p flex="100" class="page-description no-margin">{{pageContent.doom_insect_best_known}}</p>
                     </div>
