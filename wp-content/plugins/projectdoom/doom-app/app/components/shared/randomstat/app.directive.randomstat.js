@@ -182,10 +182,12 @@ define( function ( require, exports, module ) {
             var difference = to - stat.stats[$scope.randStat].dummy;
             var perTick = difference / duration * 10;
             return $timeout(function () {
-                stat.stats[$scope.randStat].dummy = stat.stats[$scope.randStat].dummy + perTick;
-                stat.stats[$scope.randStat].show = Math.round(stat.stats[$scope.randStat].dummy);
-                if (stat.stats[$scope.randStat].dummy == to) return;
-                numberClimb(to, duration - 10);
+                if( angular.isDefined(stat.stats[$scope.randStat]) ) {
+                  stat.stats[$scope.randStat].dummy = stat.stats[$scope.randStat].dummy + perTick;
+                  stat.stats[$scope.randStat].show = Math.round(stat.stats[$scope.randStat].dummy);
+                  if (stat.stats[$scope.randStat].dummy == to) return;
+                  numberClimb(to, duration - 10);
+                }
             }, 10);
           }
         }
