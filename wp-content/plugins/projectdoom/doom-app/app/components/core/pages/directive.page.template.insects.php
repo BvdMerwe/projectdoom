@@ -92,7 +92,15 @@
             <div layout-gt-sm="row" layout="column" layout-align="space-between start" layout-align-gt-sm="center center" style="position:relative;top:-100px;">
                 <!-- PEST LINKS -->
                 <div layout="column" layout-gt-sm="column" flex-gt-sm="50" flex="100" layout-align="center center" layout-align-gt-sm="start start">
-                    <h3 flex="100" class="page-title" style="">{{pageContent.post_title}}</h3>
+                    <div data-ng-switch="pageContent.post_name">
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-when="cockroach">The Serial Cuddler</h3>
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-when="fly">The Restless Romantic</h3>
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-when="fishmoth">Strict Diet</h3>
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-when="mosquito">The Itching Truth</h3>
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-when="ant">The Ant Factor</h3>
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-when="flea">Jumper</h3>
+                        <h3 flex="100" class="page-title" style="" data-ng-switch-default>{{pageContent.post_title}}</h3>
+                    </div>
                     <p flex="100" class="page-description">{{pageContent.post_content}}</p>
                     <div class="insect-buttons-cta" layout="column" layout-align="start start" flex="100" layout-gt-sm="row" layout-align-gt-sm="space-between stretch">
                         <div flex-gt-sm flex="100" class="fill-width">
