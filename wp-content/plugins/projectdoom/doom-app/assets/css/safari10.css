@@ -2,21 +2,42 @@ body::after {
     content: none;
 }
 
+
 .layout, 
 .layout-column, 
 .layout-row,
 .layout-xs, 
 .layout-xs-column, 
 .layout-xs-row {
-    /*
-    display: initial;
-    */
-    flex: initial;
+    
+    display: -webkit-box;
+    /* flex: initial; */
+}
+
+.breadcrumb-buttons,
+.desktop-selector .layout-row 
+ {
+    display: flex;
+    
+}
+
+.map {
+    max-width: 100%;
 }
 
 #footer .footer-nav {
     position:fixed;
 }
+
+.md-list-item-text {
+    margin: 0 !important;
+}
+
+.super-menu .layout-row, 
+.super-menu .layout-column {
+    display: flex;
+} 
+
 /*
 .navigation-menu-button,
 .navigation-menu-logo,

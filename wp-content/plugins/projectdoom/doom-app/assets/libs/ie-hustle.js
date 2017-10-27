@@ -266,11 +266,11 @@
 
 	}
 
-		yepnope({
-			load:	{
-				'flex-fix':		path+'../css/flex.fix.css'
-			}
-		});
+		// yepnope({
+		// 	load:	{
+		// 		'flex-fix':		path+'../css/flex.fix.css'
+		// 	}
+		// });
 
 		/***************************
 		*	Check For IE

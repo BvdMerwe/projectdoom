@@ -898,6 +898,42 @@ define( function ( require, exports, module ) {
 						"Insecticide, pesticide, insect repellent, get rid of insects, prevent insects, kill insects, kill bugs, kill flies, kill fishmoths, kill ants, kill mosquitoes, kill fleas, kill cockroaches, cockroach problem, fly problem, fishmoth problem, ant problem";
 					$window.document.getElementsByName('description')[0].content =
 						"Enough is enough. Make pesky bugs stop with fast, deadly DOOM.";
+				} else if ($rootScope.isFaq) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"";
+					$window.document.getElementsByName('description')[0].content =
+						"Frequently asked questions.";
+
+				} else if ($rootScope.isContact) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"";
+					$window.document.getElementsByName('description')[0].content =
+						"We’d love to hear from you. Send us a message or give us a call.";
+
+				} else if ($rootScope.isAbout) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"about DOOM, insecticide, tiger brands, how to get rid of insects, rid bugs, fly problem, fishmoth problem, ant problem, mosquito problem, cockroach problem, flea problem, pesticide";
+					$window.document.getElementsByName('description')[0].content =
+						"After generations of killing bugs, it’s proven that nothing makes them stop like fast, deadly DOOM.";
+
+				} else if ($rootScope.isLegal) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"";
+					$window.document.getElementsByName('description')[0].content =
+						"Your access to, and use of this site, is subject to the following terms and conditions and all applicable laws.";
+
+				}  else if ($rootScope.isFAQ) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"";
+					$window.document.getElementsByName('description')[0].content =
+						"Frequently Asked Questions.";
+
+				} else if ($rootScope.isProducts || $rootScope.isProductCategoryInsect) {
+					$window.document.getElementsByName('keywords')[0].content = 
+						"DOOM insecticide, insecticide, pesticide, insect repellent, aerosol, spray, plug-in unit, coil, mat, refill, liquid refill, repellent, protect, guard, all-night, get rid of insects, how to get rid of insects, how to get rid of bugs, kill flies, kill fishmoths, kill ants, kill mosquitos, kill fleas, kill cockroaches, kill insects, kill bugs";
+					$window.document.getElementsByName('description')[0].content =
+						"Kill them now, or deal with the consequences.";
+
 				} else {
 					if( angular.isDefined($scope.pageContent) && angular.isDefined($scope.pageContent.doom_meta_keywords) ) {
 						$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;

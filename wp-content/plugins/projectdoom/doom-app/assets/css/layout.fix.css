@@ -1,6 +1,10 @@
 /* Mixins */
 /* Flex resets */
 * {
+  -webkit-box-flex: none !important;
+  -moz-box-flex: none !important;
+  -webkit-flex: none !important;
+  -ms-flex: none !important;
   flex: none !important;
 }
 
