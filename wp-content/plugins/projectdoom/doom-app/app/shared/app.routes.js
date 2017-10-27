@@ -1552,13 +1552,21 @@ define( function ( require, exports, module ) {
 								
 				$rootScope.$on( '$routeChangeSuccess', function ( ev, to, toParams, from, fromParams ) {
 				
-					//console.log('success route: ', to , toParams);
+					//console.log( 'success route: ', $location );
 				
 					// _authorization();
 
 					_resetBodyClass();
 
-					_render();
+                    _render();
+                    
+                    if( angular.isDefined(window.ga) ) {
+
+                        console.log( 'Google analytics available: ', $location.path() );
+
+                        ga('send', 'pageview', $location.path());
+
+                    }
 
 					ngProgress.complete();
 
