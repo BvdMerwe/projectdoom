@@ -1,17 +1,18 @@
 ({
 	paths: {
 		"text":						'../libs/text/text',
-		"angular":					'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min',
-		"angular-animate":			'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min',
-		"angular-route": 			'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min',
-		'angular-aria':				'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min',
-		'angular-messages':			'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min',
-		'angular-material':			'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min',
+		"angular":					'../libs/angular-1.5.5/angular.min',
+		"angular-animate":			'../libs/angular-1.5.5/angular-animate.min',
+		"angular-route": 			'../libs/angular-1.5.5/angular-route.min', 
+		'angular-aria':				'../libs/angular-1.5.5/angular-aria.min',
+		'angular-messages':			'../libs/angular-1.5.5/angular-messages.min',
+		'angular-material':			'../libs/angular-material.min',
 		//ANGULAR PLUGINS
 		"angular-gmaps": 			'../libs/plugins/angular/ng-map.min',
 		"angular-filter":			'../libs/plugins/angular/angular-filter.min',
 		"angular-progress": 		'../libs/plugins/angular/ngProgress.min',
 		"bindonce": 				'../libs/plugins/angular/bindonce.min',
+		"angular-accordion": 		'../libs/plugins/angular/ang-accordion',
 		//APP FILES
 		"app": 						'../../app/app.module',
 		"app-routes": 				'../../app/shared/app.routes',
@@ -28,20 +29,31 @@
 		"app-product": 				'../../app/components/core/products/app.service.products',
 		"app-package": 				'../../app/components/core/packages/app.service.packages',
 		"app-retailer": 			'../../app/components/core/retailers/app.service.retailers',
+		"app-search": 			'../../app/components/shared/search/app.service.search',
 		// APP DIRECTIVES
 		"app-directives-preloader": '../../app/components/shared/app.directive.preloader',
 		"app-directives-scrolltotop": '../../app/components/shared/app.directive.scrolltotop',
 		"app-directives-navigation": '../../app/components/shared/navigation/app.directive.navigation',
 		"app-directives-gallery": 	'../../app/components/shared/gallery/app.directive.gallery',
+		"app-directives-contactform": 	'../../app/components/shared/contactform/app.directive.contactform',
+		"app-directives-carousel": '../../app/components/shared/carousel/app.directive.carousel',
+		"app-directives-searchbar": '../../app/components/shared/searchbar/app.directive.searchbar',
+		"app-directives-search": '../../app/components/shared/search/app.directive.search',
+		"app-directives-footer": '../../app/components/shared/footer/app.directive.footer',
+		"app-directives-configurator": '../../app/components/shared/configurator/app.directive.configurator',
+		"app-directives-randomstat": '../../app/components/shared/randomstat/app.directive.randomstat',
 		// 3rd Party
 		'isMobile': 				'../libs/isMobile',
 		'classie': 					'../libs/classie',
-		"localforage": 				'../libs/localforage.min',
+		//"localforage": 				'../libs/localforage.min',
 		"modernizr": 				'../libs/modernizr',
+		"sjcl": 					'../libs/sjcl',
 		"Utils": 					'../libs/Utils',
 		"domReady": 				'../libs/domready',
 		"classie": 					'../libs/classie',
-		'imagesloaded': 			'../libs/imagesloaded.pkgd.min'
+		'imagesloaded': 			'../libs/imagesloaded.pkgd.min',
+		'jlinq': 					'../libs/jlinq/jlinq',
+		"ie-hustle": 				'../libs/ie-hustle'
 	},
 	out: '../../app/app.production.min.js',
 	name: 'app',
@@ -49,8 +61,11 @@
 		'modernizr': {
 			exports: 'Modernizr'
 		},
-		'app': {
+		'ie-hustle': {
 			deps: ["modernizr", "isMobile"]
+		},
+		'app': {
+			deps: ["ie-hustle"]
 		},
 		'Utils': {
         	//deps: ["sjcl"],
@@ -58,6 +73,9 @@
 		},
 		'imagesloaded': {
 			exports: 'imagesLoaded'
+		},
+		'localforage': {
+			exports: 'localforage'
 		},
         // angular
 		'angular': {
@@ -75,6 +93,9 @@
 		'angular-progress': {
 			deps: ["angular"]
 		},
+		'angular-accordion': {
+			deps: ["angular"]
+		},
 		'angular-route': {
 			deps: ["angular"]
 		},
@@ -86,6 +107,9 @@
 		},
 		'angular-material': {
 			deps: ["angular", "angular-messages", "angular-aria", "angular-animate"]
+		},
+		'app-directives-gallery': {
+			deps: ["angular-material"]
 		},
 		'bindonce': {
 			deps: ["angular"]

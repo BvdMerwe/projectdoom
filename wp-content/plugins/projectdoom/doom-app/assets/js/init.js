@@ -16,12 +16,12 @@ require.config({
 	//urlArgs: "bust=" + (new Date()).getTime(),
 	paths: {
 		"text":						'../libs/text/text',
-		"angular":					'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min',
-		"angular-animate":			'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min',
-		"angular-route": 			'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min',
-		'angular-aria':				'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min',
-		'angular-messages':			'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min',
-		'angular-material':			'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min',
+		"angular":					'../libs/angular-1.5.5/angular.min',
+		"angular-animate":			'../libs/angular-1.5.5/angular-animate.min',
+		"angular-route": 			'../libs/angular-1.5.5/angular-route.min', 
+		'angular-aria':				'../libs/angular-1.5.5/angular-aria.min',
+		'angular-messages':			'../libs/angular-1.5.5/angular-messages.min',
+		'angular-material':			'../libs/angular-material.min',
 		//ANGULAR PLUGINS
 		"angular-gmaps": 			'../libs/plugins/angular/ng-map.min',
 		"angular-filter":			'../libs/plugins/angular/angular-filter.min',
