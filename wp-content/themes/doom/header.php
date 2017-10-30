@@ -13,6 +13,7 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
+	<base href="/">
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="description" content="">
 	<meta name="keywords" content="">

@@ -44,8 +44,9 @@ define( function ( require, exports, module ) {
 			.config( [ '$routeProvider', '$locationProvider', function ( $routeProvider, $locationProvider ) {
 
 				$locationProvider
-					.html5Mode( false )
-					.hashPrefix('!#');
+					.html5Mode({ enabled: true,
+                        requireBase: false });
+					// .hashPrefix('!#');
                     
                 // START ROUTES
 				$routeProvider
