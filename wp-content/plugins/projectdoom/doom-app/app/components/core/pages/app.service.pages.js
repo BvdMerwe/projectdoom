@@ -289,7 +289,7 @@ define( function ( require, exports, module ) {
 				
 				$http({
 					method: obj.method, 
-					url: appConfig.general.api + 'page?p=' + obj.type,
+					url: appConfig.general.api + 'page&p=' + obj.type,
 					transformRequest: transformRequestAsFormPost
 				})
 				.success( function(data, status) {

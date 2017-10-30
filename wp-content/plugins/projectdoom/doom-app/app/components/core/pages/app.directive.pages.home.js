@@ -139,7 +139,7 @@ define( function ( require, exports, module ) {
 			var to = document.querySelector(id).offsetTop;
 			// Utils.scrollTo(document,to, 300);
 			// window.scrollTo(0, to);
-			Utils.scrollWithEase(to, null, 500);
+			Utils.scrollWithEase(to);
 		}
 
 		$scope.scrollToTop = function() {
@@ -941,7 +941,10 @@ define( function ( require, exports, module ) {
 					if( angular.isDefined($scope.pageContent) && angular.isDefined($scope.pageContent.doom_meta_description) ) {
 						$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
 					}
+					// $window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
+					// $window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
 				}
+							
 
 				console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams );
 					

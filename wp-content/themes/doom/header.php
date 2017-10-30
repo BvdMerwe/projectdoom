@@ -13,7 +13,7 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-	<base href="/">
+	<base href="<?php $url_info = parse_url( home_url() ); echo trailingslashit( $url_info['path'] ); ?>">
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
