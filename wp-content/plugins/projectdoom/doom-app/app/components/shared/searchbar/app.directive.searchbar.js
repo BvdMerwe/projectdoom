@@ -186,10 +186,10 @@ define( function ( require, exports, module ) {
               // if (query == "") {
                 var requestObj = {
     							method: "GET",
-    							type: "search?q="+query
+    							type: "search&q="+query
                 };
                 if ($scope.contentType == "faq") {
-                  requestObj.type = "faq/search/?q="+query;
+                  requestObj.type = "faq/search/&q="+query;
                 }
                 searchManager.getSearch(requestObj).then(function(data){
                   $scope.results = jlinq.from(data.results).sort('-post_type').select();
