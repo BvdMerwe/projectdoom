@@ -58,7 +58,7 @@
                         
                     </div>
                     <!-- <br /><br /> -->
-                    <p flex="100" class="page-description">Click here to get the right {{pageContent.post_title}} Solution for you.</p>
+                    <p flex="100" class="page-description">Had enough? Hit Make Them Stop below to get the right {{pageContent.post_title}} Solution for you.</p>
                     <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta main">Make Them Stop</md-button>
                     <!-- <br /><br /> -->
                     
