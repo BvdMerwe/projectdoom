@@ -260,7 +260,7 @@
                         <!--<div layout="column" class="animate-page-switch md-accent" flex="100" data-ng-switch-default>-->
                         
                             <div flex="grow" data-ng-if="productsPageFilter == 'flying'">
-                                <h3 class="page-title" data-ng-if="productsPageInsectFilter =='mosquito' || productsPageInsectFilter ==''">Mosquitos</h3>
+                                <h3 class="page-title" data-ng-if="productsPageInsectFilter =='mosquito' || productsPageInsectFilter ==''">Mosquitoes</h3>
                                 <div data-ui-carousel
                                     flex="100"
                                     single = "false"

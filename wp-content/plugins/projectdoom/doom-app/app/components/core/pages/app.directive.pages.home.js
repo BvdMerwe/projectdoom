@@ -139,7 +139,7 @@ define( function ( require, exports, module ) {
 			var to = document.querySelector(id).offsetTop;
 			// Utils.scrollTo(document,to, 300);
 			// window.scrollTo(0, to);
-			Utils.scrollWithEase(to, null, 500);
+			Utils.scrollWithEase(to);
 		}
 
 		$scope.scrollToTop = function() {
@@ -895,7 +895,7 @@ define( function ( require, exports, module ) {
 				// } else 
 				if ($rootScope.isHome) {
 					$window.document.getElementsByName('keywords')[0].content = 
-						"Insecticide, pesticide, insect repellent, get rid of insects, prevent insects, kill insects, kill bugs, kill flies, kill fishmoths, kill ants, kill mosquitoes, kill fleas, kill cockroaches, cockroach problem, fly problem, fishmoth problem, ant problem";
+						"Insecticide, pesticide, insect repellent, get rid of insects, prevent insects, kill insects, kill bugs, kill flies, kill fishmoths, kill ants, kill mosquitos, kill mosquitoes, kill fleas, kill cockroaches, cockroach problem, fly problem, fishmoth problem, ant problem";
 					$window.document.getElementsByName('description')[0].content =
 						"Enough is enough. Make pesky bugs stop with fast, deadly DOOM.";
 				} else if ($rootScope.isFaq) {
@@ -930,7 +930,7 @@ define( function ( require, exports, module ) {
 
 				} else if ($rootScope.isProducts || $rootScope.isProductCategoryInsect) {
 					$window.document.getElementsByName('keywords')[0].content = 
-						"DOOM insecticide, insecticide, pesticide, insect repellent, aerosol, spray, plug-in unit, coil, mat, refill, liquid refill, repellent, protect, guard, all-night, get rid of insects, how to get rid of insects, how to get rid of bugs, kill flies, kill fishmoths, kill ants, kill mosquitos, kill fleas, kill cockroaches, kill insects, kill bugs";
+						"DOOM insecticide, insecticide, pesticide, insect repellent, aerosol, spray, plug-in unit, coil, mat, refill, liquid refill, repellent, protect, guard, all-night, get rid of insects, how to get rid of insects, how to get rid of bugs, kill flies, kill fishmoths, kill ants, kill mosquitos, kill mosquitoes, kill fleas, kill cockroaches, kill insects, kill bugs";
 					$window.document.getElementsByName('description')[0].content =
 						"Kill them now, or deal with the consequences.";
 
@@ -941,7 +941,10 @@ define( function ( require, exports, module ) {
 					if( angular.isDefined($scope.pageContent) && angular.isDefined($scope.pageContent.doom_meta_description) ) {
 						$window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
 					}
+					// $window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
+					// $window.document.getElementsByName('description')[0].content = $scope.pageContent.doom_meta_description;
 				}
+							
 
 				console.log('Activity Data: ', $route.current.locals.app_data, $scope.pageContent, $route.current.pathParams );
 					

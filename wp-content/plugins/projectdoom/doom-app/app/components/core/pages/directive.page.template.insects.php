@@ -44,7 +44,7 @@
                         <div data-ng-switch-when="mosquito" class="insect-fact">
                             <h1 flex="100" class="page-title main">Mos<br/>quitoes</h1>
                             <span class="hr-divider" style="margin: 1em 0; width: 96px;"></span>
-                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}s</strong> can lay up to </p>
+                            <p flex="100" class="page-description"><strong>{{pageContent.post_title}}es</strong> can lay up to </p>
                             <h1 flex="100" class="page-title stat" style="color:#000;"><!--{{pageContent.doom_insect_egg}}<br /-->150 eggs<sup>*</sup></h1>
                             <p flex="100" class="page-description">at a time. Only females bite, and they’re particularly fond of pungent odours, like your smelly feet. </p>
                         </div> 
@@ -58,7 +58,7 @@
                         
                     </div>
                     <!-- <br /><br /> -->
-                    <p flex="100" class="page-description">Click here to get the right {{pageContent.post_title}} Solution for you.</p>
+                    <p flex="100" class="page-description">Had enough? Hit Make Them Stop below to get the right {{pageContent.post_title}} Solution for you.</p>
                     <md-button ng-click="scrollTo('#makethemstop')" class="md-primary primary-cta main">Make Them Stop</md-button>
                     <!-- <br /><br /> -->
                     

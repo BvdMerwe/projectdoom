@@ -8,14 +8,14 @@ body::after {
 .layout-xs, 
 .layout-xs-column, 
 .layout-xs-row {
-    display: -webkit-box;
+    display: -webkit-box !important;
     /* flex: initial; */
 }
 
-.breadcrumb-buttons,
+#configurator .breadcrumb-buttons,
 .desktop-selector .layout-row 
  {
-    display: flex;
+    display: flex !important;
     
 }
 
@@ -33,5 +33,5 @@ body::after {
 
 .super-menu .layout-row, 
 .super-menu .layout-column {
-    display: flex;
+    display: flex !important;
 } 

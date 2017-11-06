@@ -710,6 +710,7 @@ md-autocomplete-wrap input {
 #footer.open .footer-content {
   top: 80px;
   left: 0;
+  position: absolute;
 }
 
 #footer.open .footer-control {
@@ -736,11 +737,11 @@ md-autocomplete-wrap input {
 }
 
 #footer .footer-content {
-  -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -ms-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  -o-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -moz-transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -ms-transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -o-transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: fixed;
   top: 100%;
   left: 0;
@@ -1244,6 +1245,7 @@ END slider style
 
 #configurator .step-3 .content {
   height: 100%;
+  width: 100%;
 }
 
 #configurator .step-3 .map-container {
@@ -1451,6 +1453,9 @@ END slider style
 * Media Queries
 ***********************************************/
 @media screen and (max-width: 959px) {
+  body, html {
+    min-height: 480px;
+  }
   .main-container {
     padding: 0 15px;
     max-width: 500px !important;
@@ -1477,7 +1482,7 @@ END slider style
   * Home Pages
   ***********************************************/
   .home-copy-content {
-    top: -500px;
+    margin-top: -350px;
   }
   .home-image {
     opacity: 0.1;
@@ -1721,6 +1726,12 @@ END slider style
   /***********************************************
   * Search
   ***********************************************/
+}
+
+@media only screen and (max-height: 480px) {
+  .app-dashboard {
+    min-height: 480px !important;
+  }
 }
 
 @media screen and (max-width: 350px) {
