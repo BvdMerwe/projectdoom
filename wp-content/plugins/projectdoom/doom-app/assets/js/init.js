@@ -29,8 +29,8 @@ require.config({
 		"bindonce": 				'../libs/plugins/angular/bindonce.min',
 		"angular-accordion": 		'../libs/plugins/angular/ang-accordion',
 		//APP FILES
-		"app": 						'../../app/app.module',
-		//"app": 						'../../app/app.production.min',
+		//"app": 						'../../app/app.module',
+		"app": 						'../../app/app.production.min',
 		"app-routes": 				'../../app/shared/app.routes',
 		"app-filters": 				'../../app/shared/app.filters',
 		"app-xhr": 					'../../app/shared/services/app.service.xhr',
@@ -278,9 +278,9 @@ define( function ( require, exports, module ) {
 			method = methods[length];
 
 			// Only stub undefined methods.
-			if (!console[method]) {
+			//if (!console[method]) {
 				console[method] = noop;
-			}
+			//}
 		}
 
 	}() );
