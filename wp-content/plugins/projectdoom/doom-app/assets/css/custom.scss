@@ -588,6 +588,7 @@ div[data-ui-carousel][single='true'] {
     .footer-content{
       top: 80px;
       left: 0;
+      position: absolute;
     }
     .footer-control {
       display: none;
@@ -614,7 +615,7 @@ div[data-ui-carousel][single='true'] {
     background-color: $green;
   }
   .footer-content {
-      @include transition(0.4s cubic-bezier(.25,.8,.25,1));
+      @include transition(top 0.4s cubic-bezier(.25,.8,.25,1));
       position: fixed;
       top: 100%;
       left: 0;
@@ -1028,6 +1029,7 @@ END slider style
     }
     .content {
       height: 100%;
+      width: 100%;
     }
     .map-container {
       position: relative;
@@ -1209,6 +1211,9 @@ END slider style
 * Media Queries
 ***********************************************/
 @media screen and (max-width: 959px){ //everything under small (layout-sm)
+  body, html {
+    min-height: 480px;
+  }
 
   .main-container {
     padding: 0 15px;
@@ -1240,7 +1245,7 @@ END slider style
   * Home Pages
   ***********************************************/
   .home-copy-content {
-    top: -500px;
+    margin-top: -350px;
   }
   .home-image {
     opacity: 0.1;
@@ -1545,6 +1550,12 @@ END slider style
   }
 }
 
+//screen shorter than 480px (when keyboard is open)
+@media only screen and (max-height: 480px) {
+  .app-dashboard {
+    min-height: 480px !important;
+  }
+}
 
 @media screen and (max-width: 350px){ //Smallest device
   .product-filter-categories .primary-tag {
