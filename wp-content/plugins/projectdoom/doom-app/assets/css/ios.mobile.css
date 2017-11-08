@@ -2,6 +2,10 @@ body::after {
     content: none;
 }
 
+body .app-dashboard {
+    overflow-x: visible;
+}
+
 .layout, 
 .layout-column, 
 .layout-row,
@@ -9,6 +13,18 @@ body::after {
 .layout-xs-column, 
 .layout-xs-row {
     display: initial;
+    display: -webkit-box !important;
+}
+#configurator .breadcrumb-buttons,
+.desktop-selector .layout-row,
+.configurator-steps .step-1 .content-inner .content-scroll
+ {
+    display: flex !important;
+    
+}
+
+#configurator .insect-selector .desc {
+    max-width: none;
 }
 
  div[data-ui-navigation] .nav-nav.in{
@@ -32,15 +48,16 @@ body::after {
 }
 .navigation-menu-search {
     position: relative;
-    right: -80px;
+    right: 0px;
+    top: 15px;
 }
 
 .site-logo {
-    left: 40px;
+    left: 0px;
     position: relative;
 }
 
-div.main-container {
+.page-app-home div.main-container {
     position: relative;
     top:100px;
 }
@@ -49,13 +66,34 @@ div.main-container {
    
 }
 
+.home-copy-content {
+    margin-top: -150px !important;
+    top: 0 !important;
+}
+
 #footer .footer-nav {
-    position:fixed;
+    position:fixed !important;
 }
 
 .page-insects .insect-controller-buttons, .page-insects .product-controller-buttons {
-    position: relative;;
-    top:-800px;
+    /* position: relative; */
+    /* top:-800px; */
 }
 
 .home-image { display: none;}
+
+.product-insects.home-activity li i {
+    left: -5px !important;
+}
+ 
+.product-insects.home-activity li.icon-insect-mosquito i {
+    left: -8px !important;
+}
+ 
+.product-insects.home-activity li.icon-insect-fly i {
+    left: -10px !important;
+}
+ 
+.product-insects.home-activity li.icon-insect-fishmoth i {
+    left: -11px !important;
+}

@@ -944,6 +944,10 @@ END slider style
   max-width: 100%;
 }
 
+#configurator .configurator-steps .off {
+  position: absolute;
+}
+
 #configurator .step-1, #configurator .step-2, #configurator .step-3 {
   -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.1s;
   -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.1s;
@@ -1667,6 +1671,12 @@ END slider style
   /***********************************************
   * Configurator
   ***********************************************/
+  #configurator .mobile-selector {
+    display: block !important;
+  }
+  #configurator .desktop-selector {
+    display: none !important;
+  }
   #configurator .step-1.active, #configurator .step-2.active, #configurator .step-3.active {
     margin: 0;
     width: auto;
