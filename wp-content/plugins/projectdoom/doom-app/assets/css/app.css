@@ -428,15 +428,44 @@ md-nav-ink-bar {
 
 .super-bug-image {
 	position: relative;
-    width: 100%;
+	width: 120%;
+	/* min-height: 100%; */
     top: -50px;
-	left: 5%;
+	/* left: -5%; */
+}
+
+.page-insects-profile .insect-fact {
+	margin-top: 100px;
+}
+.page-insects-profile .super-bug-image {
+	/* max-height: 400px; */
+	max-height: none !important;
+	max-width: none !important;
+	width: 150%;
+	left: -20%;
+	z-index: -1;
+	top: 0;
 }
 
 .super-hero-bg {
 	position: relative;
 	max-height: 700px;
+	min-height: 50%;
+	min-height: 50vh;
 }
+
+.page-insects-profile .super-hero-bg {
+	position: relative;
+    height: 270px;
+    /* max-height: 700px; */
+    min-height: auto !important;
+    width: 100%;
+}
+
+.profile-box h3.page-title {
+	font-size: 20px;
+}
+
 .super-hero-bg:before {
 	content: '';
 	position: relative;
@@ -954,14 +983,14 @@ h3.page-title {
 	min-width: 200px;
 }
 
-.insect-buttons-cta div {
+.insect-buttons-cta>div {
 	border-left:1px solid #cccccc;
-	padding: 60px 0;
+	/* padding: 60px 0; */
 	text-align: center;
 	margin-top: 1em;
 }
 
-.insect-buttons-cta div:last-child {
+.insect-buttons-cta>div:last-child {
 	border-right:1px solid #cccccc;
 }
 
@@ -970,6 +999,7 @@ h3.page-title {
 	color:#ff510b;
 	font-size: 20px;
 	line-height: 25px;
+	margin: 0;
 	text-transform: uppercase;
 	border:none;
 }
@@ -1010,6 +1040,14 @@ h3.page-title {
 
     width: 123%;
     left: -11.5%;
+}
+
+.page-insects-profile .page-title.main {
+	font-size: 50pt !important;
+}
+
+.page-insects-profile .insect-controller-buttons {
+	top:15vh;
 }
 
 .carousel-container.layout-column::after,
@@ -1153,7 +1191,7 @@ h3.page-title {
 	position: relative;
 	/* top:-70vh; */
 
-    margin-top: -480px;
+    /* margin-top: -480px; */
 }
 
 @media (max-width: 1279px) and (min-width: 960px) {
@@ -1172,6 +1210,24 @@ h3.page-title {
 	box-sizing: border-box;
 }
 
+.profile-box {
+	color: #00833D;
+}
+
+.profile-box-header {
+	display: block;
+	line-height: 2;
+}
+.profile-box-header h3 {
+	max-width: 70%;
+	margin-left: 5px !important;
+}
+.profile-box-header > * {
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
 .profile-box-icon {
 	border: 3px solid;
     border-radius: 50%;
@@ -1181,9 +1237,22 @@ h3.page-title {
     font-size: 25px;
 }
 
+.profile-box-icon.icon-fly
+{
+	padding-left: 11px;
+}
+.profile-box-icon.icon-mosquito
+{
+	padding-left: 12px;
+}
+.profile-box-icon.icon-flea 
+{
+	padding-left: 16px;
+}
 .profile-box-icon.icon-ant,
+.profile-box-icon.icon-cockroach,
 .profile-box-icon.icon-pin {
-	padding: 8px 12px;
+	padding: 8px 14px;
 }
 
 .page-profile-container .map-container {

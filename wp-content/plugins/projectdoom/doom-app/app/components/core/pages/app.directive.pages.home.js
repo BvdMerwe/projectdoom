@@ -36,11 +36,13 @@ define( function ( require, exports, module ) {
 	require("app-utils");
 	require("app-filters");
     require("app-memcache");
+    require("app-analyticsevents");
 	require("app-routes");
 	require("angular-route");
     require("angular-material");
 	require("app-sessionservice");
 	require("angular-gmaps");
+	require("angular-animate");
 
 	// Load dependent modules
 	var appDirectivePageHome,
@@ -55,7 +57,7 @@ define( function ( require, exports, module ) {
 
 	
 
-	Application.Controllers.pagesController =  [ '$rootScope', '$window', '$scope', '$http', '$q', '$route', '$filter', '$location', '$timeout', 'transformRequestAsFormPost', 'Utils', 'MemCache', 'productsManager', 'insectsManager', function ( $rootScope, $window, $scope, $http, $q, $route, $filter, $location, $timeout, transformRequestAsFormPost, Utils, MemCache, productsManager, insectsManager ) {
+	Application.Controllers.pagesController =  [ '$window', '$rootScope', '$scope', '$http', '$q', '$route', '$filter', '$location', '$timeout', '$interval', 'transformRequestAsFormPost', 'Utils', 'MemCache', 'productsManager', 'insectsManager', 'AnalyticsEvents', function ( $window, $rootScope, $scope, $http, $q, $route, $filter, $location, $timeout, $interval, transformRequestAsFormPost, Utils, MemCache, productsManager, insectsManager, AnalyticsEvents ) {
 
 		var inputMsgTimeout,
 		inputValidationTimeout;
@@ -84,6 +86,9 @@ define( function ( require, exports, module ) {
 
 		$scope.goto = function (path) {
 			
+			angular.element( document.querySelector('.super-hero-bg') ).removeClass('previous');
+			angular.element( document.querySelector('.super-hero-bg') ).removeClass('next');
+
 			$scope.scrollToTop();
 			
 			switch( path ) {
@@ -111,6 +116,7 @@ define( function ( require, exports, module ) {
 		$scope.viewProfile = function (path) {
 
 			Utils._strict( [ String ], arguments );
+			$scope.scrollToTop();
 
 			$location.path( '/profile/' + path );
 
@@ -133,7 +139,9 @@ define( function ( require, exports, module ) {
 		}
 
 		$scope.scrollTo = function(id) {
-
+			// if (id == "#makethemstop") {
+				AnalyticsEvents.send($route.current.$$route.action, "scroll_to_button", "clicked", id);
+			// }
 			Utils._strict( [ String ], arguments );
 				// console.log(document.querySelector(id));
 			var to = document.querySelector(id).offsetTop;
@@ -169,8 +177,14 @@ define( function ( require, exports, module ) {
 			getCurrentNextInsect();
 
 			console.log( 'open next insect page:', $scope.currentInsect );
+			
+			//check if profile page
+			var currAction = '/insects/';
+			if ($location.$$path.indexOf("profile") > -1) {
+				currAction = '/profile/';
+			}
 
-			$location.path( '/insects/' + $scope.pageContent.post_name );
+			$location.path( currAction + $scope.pageContent.post_name );
 			
 		};
 
@@ -179,17 +193,27 @@ define( function ( require, exports, module ) {
 			getCurrentPrevInsect();
 
 			console.log( 'open prev insect page:', $scope.currentInsect );
-
-			$location.path( '/insects/' + $scope.pageContent.post_name );
+			
+			//check if profile page
+			var currAction = '/insects/';
+			if ($location.$$path.indexOf("profile") > -1) {
+				currAction = '/profile/';
+			}
+			
+			$location.path( currAction + $scope.pageContent.post_name );
 
 			//$location.path( '/insects/' + page );
 
 		};
 
-		$scope.whatsBuggin = function( pest ) {
+		$scope.whatsBuggin = function( pest, isAuto ) {
 
-			Utils._strict( [ String ], arguments );
-
+			Utils._strict( [ String, Boolean ], arguments );
+			if (!isAuto) {
+				_stopHomeCarousel();
+				AnalyticsEvents.send("landing","select","insect",pest);
+			}
+			
 			$scope.activeInsect = $filter('pick')( $route.current.locals.app_data.insects, 'post_name == "' + pest + '"' )[0];
 
 			$rootScope.$broadcast( "home-filter", {
@@ -401,6 +425,9 @@ define( function ( require, exports, module ) {
  
 		function getCurrentNextInsect() {
 
+			angular.element( document.querySelector('.super-hero-bg') ).removeClass('previous');
+			angular.element( document.querySelector('.super-hero-bg') ).addClass('next');
+
 			if( angular.isDefined( $route.current.locals.app_data.insects ) ) {
 
 				var array = $route.current.locals.app_data.insects;
@@ -435,6 +462,9 @@ define( function ( require, exports, module ) {
 		}
 
 		function getCurrentPrevInsect() {
+
+			angular.element( document.querySelector('.super-hero-bg') ).removeClass('next');
+			angular.element( document.querySelector('.super-hero-bg') ).addClass('previous');
 
 			if( angular.isDefined( $route.current.locals.app_data.insects ) ) {
 
@@ -471,6 +501,9 @@ define( function ( require, exports, module ) {
 
 		function getCurrentNextProduct() {
 
+			angular.element( document.querySelector('.product-image-holder') ).removeClass('previous');
+			angular.element( document.querySelector('.product-image-holder') ).addClass('next');
+			
 			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
 
 				//var array = $route.current.locals.app_data.products;
@@ -478,15 +511,27 @@ define( function ( require, exports, module ) {
 				var ProductCount = 0;
 				var i;
 				var stop = false;
-
+				//set productfilter
+				var currentFilter = [];
+				if (angular.isDefined($rootScope.lastInsect) && $rootScope.lastInsect != "") {
+					currentFilter.push({slug: $rootScope.lastInsect});
+					console.warn("products related to",$rootScope.lastInsect);
+				} else if (angular.isDefined($rootScope.lastProduct) && $rootScope.lastProduct != "") {
+					currentFilter = currentFilter.concat($rootScope.lastProduct.product_categories);
+					console.warn("products related to",$rootScope.lastProduct);
+				} else {
+					$rootScope.lastProduct = $scope.pageContent;
+					currentFilter = currentFilter.concat($scope.pageContent.product_categories);
+					console.warn("products related to",$scope.pageContent.post_title);
+				}
 				// get current product type;
 				var i;
 				for ( i in $scope.pageContent.product_types ) {
 
 					if( angular.isDefined( $scope.pageContent.product_types[parseInt(i)] ) ) {
 
-						productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(results){
-
+						productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(initResults){
+							productsManager.filterProductsByPest(currentFilter, initResults).then(function(results){
 								//console.log('filtered list:', results );
 								
 								for (var index = 0; index < results.length; index++) {
@@ -520,8 +565,8 @@ define( function ( require, exports, module ) {
 
 							}, function(err){
 
-							}
-						);
+							});
+						});	
 					}
 
 				}
@@ -531,20 +576,35 @@ define( function ( require, exports, module ) {
 		}
 
 		function getCurrentPrevProduct() {
+			
+			angular.element( document.querySelector('.product-image-holder') ).addClass('previous');
+			angular.element( document.querySelector('.product-image-holder') ).removeClass('next');
 
 			if( angular.isDefined( $route.current.locals.app_data.products ) ) {
 
 				var ProductCount = 0;
 				var stop = false;
 
+				//set productfilter
+				var currentFilter = [];
+				if (angular.isDefined($rootScope.lastInsect) && $rootScope.lastInsect != "") {
+					currentFilter.push({slug: $rootScope.lastInsect});
+					console.warn("products related to",$rootScope.lastInsect);
+				} else if (angular.isDefined($rootScope.lastProduct) && $rootScope.lastProduct != "") {
+					currentFilter = currentFilter.concat($rootScope.lastProduct.product_categories);
+					console.warn("products related to",$rootScope.lastProduct);
+				} else {
+					$rootScope.lastProduct = $scope.pageContent;
+					currentFilter = currentFilter.concat($scope.pageContent.product_categories);
+					console.warn("products related to",$scope.pageContent.post_title);
+				}
 				// get current product type;
 				
 				for ( var i in $scope.pageContent.product_types ) {
 
 					if( angular.isDefined( $scope.pageContent.product_types[parseInt(i)] ) ) {
-
-						productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(results){
-
+						productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(initResults){
+							productsManager.filterProductsByPest(currentFilter, initResults).then(function(results){
 								//console.log('filtered list:', results );
 								
 								for (var index = 0; index < results.length; index++) {
@@ -582,10 +642,51 @@ define( function ( require, exports, module ) {
 
 							}, function(err){
 
-								console.error('Eh!?!', err );
+							});
+						});	
+						// productsManager.getByProductType( $scope.pageContent.product_types[parseInt(i)].slug ).then(function(results){
 
-							}
-						);
+						// 		//console.log('filtered list:', results );
+								
+						// 		for (var index = 0; index < results.length; index++) {
+						// 			var element = results[index];
+				
+						// 			if( element.post_name == $route.current.pathParams.ID  ) {
+				
+						// 				if( angular.isDefined( results[index - 1]) ) {
+				
+						// 					$scope.pageContent = results[index - 1];
+				
+						// 					//console.log('current:prev(new) insect:', $scope.pageContent);
+
+											
+				
+						// 				} else if( angular.isDefined( results[(results.length - 1)]) ) {
+				
+						// 					$scope.pageContent = results[(results.length - 1)]; //results[0];
+				
+						// 					console.log('last product:', $scope.pageContent);
+				
+						// 				}
+				
+						// 				console.info('going to cali:',  $scope.pageContent);
+										
+						// 				$location.path( '/products/' + $scope.pageContent.post_name );
+										
+						// 				break;
+				
+						// 			}
+
+						// 			$location.path( '/products/' + $scope.pageContent.post_name );
+									
+						// 		}
+
+						// 	}, function(err){
+
+						// 		console.error('Eh!?!', err );
+
+						// 	}
+						// );
 					} else {
 
 						//console.error(i);
@@ -628,6 +729,17 @@ define( function ( require, exports, module ) {
 
 			}
 
+		}
+
+		$scope.filterProductsByPest = function() {
+			var types = [
+				{slug: "mosquito"},
+				// {slug: "fly"}
+			];
+
+			productsManager.getByProductType("spray").then(function(result){
+				var filteredProducts = productsManager.filterProductsByPest(types, result);
+			});
 		}
 		
 		function getPageContent( cola ) {
@@ -819,12 +931,43 @@ define( function ( require, exports, module ) {
 
 		}
 
+		function _startHomeCarousel() {
+			if (angular.isDefined(window.carouselTimer)) {
+				_stopHomeCarousel();
+			}
+
+			var insects = [
+				'cockroach',
+				'fly',
+				'mosquito',
+				'ant',
+				'fishmoth',
+				'flea',
+			];
+
+			var currentIndex = insects.indexOf($scope.activeInsect.post_name)+1;
+
+			window.carouselTimer = $interval(function(){
+				var insect = insects[currentIndex++ % insects.length];
+				while (!$scope.pageContent["insect_"+insect]) { 
+					insect = insects[currentIndex++ % insects.length];
+				}
+				$scope.whatsBuggin(insect, true); 
+			}, 5000);
+		}
+
+		function _stopHomeCarousel () {
+			if (angular.isDefined(window.carouselTimer)) {
+				$interval.cancel(window.carouselTimer);
+			}
+		}
+
 		function _ini() {
 
 			//$rootScope.productsPageFilter = $route.current.pathParams.ID;
+			_stopHomeCarousel();
 
 			if( angular.isDefined($route.current.locals.app_data) ) {
-
 				if( $rootScope.isProductPage ) {
 
 					$scope.productsPageFilter = $route.current.pathParams.ID;
@@ -871,6 +1014,7 @@ define( function ( require, exports, module ) {
 					$scope.pageContent.insect_cockroach = true;
 
 					_showdefaultStat($route.current.locals.app_data.insects);
+					_startHomeCarousel();
 
 				} else {
 
@@ -920,8 +1064,8 @@ define( function ( require, exports, module ) {
 					$window.document.getElementsByName('keywords')[0].content = 
 						"";
 					$window.document.getElementsByName('description')[0].content =
-						"Your access to, and use of this site, is subject to the following terms and conditions and all applicable laws.";
-
+							"Your access to, and use of this site, is subject to the following terms and conditions and all applicable laws.";
+	
 				}  else if ($rootScope.isFAQ) {
 					$window.document.getElementsByName('keywords')[0].content = 
 						"";
@@ -933,7 +1077,6 @@ define( function ( require, exports, module ) {
 						"DOOM insecticide, insecticide, pesticide, insect repellent, aerosol, spray, plug-in unit, coil, mat, refill, liquid refill, repellent, protect, guard, all-night, get rid of insects, how to get rid of insects, how to get rid of bugs, kill flies, kill fishmoths, kill ants, kill mosquitos, kill mosquitoes, kill fleas, kill cockroaches, kill insects, kill bugs";
 					$window.document.getElementsByName('description')[0].content =
 						"Kill them now, or deal with the consequences.";
-
 				} else {
 					if( angular.isDefined($scope.pageContent) && angular.isDefined($scope.pageContent.doom_meta_keywords) ) {
 						$window.document.getElementsByName('keywords')[0].content = $scope.pageContent.doom_meta_keywords;
@@ -2108,7 +2251,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * APP MODULE
 		 */
-		appDirectivePageHome = appDirectivePageHome || angular.module( 'appDirectivePageHome', [ 'ngMap', 'appUtils', 'appFilters', 'appXHR', 'appMemCache', 'appSessionService', 'ngRoute', 'ngMaterial' ] );
+		appDirectivePageHome = appDirectivePageHome || angular.module( 'appDirectivePageHome', [ 'ngMap', 'appUtils', 'appFilters', 'appXHR', 'appMemCache', 'appSessionService', 'appAnalyticsEvents', 'ngRoute', 'ngMaterial', 'ngAnimate' ] );
 
 		appDirectivePageHome
 			.controller( Application.Controllers )

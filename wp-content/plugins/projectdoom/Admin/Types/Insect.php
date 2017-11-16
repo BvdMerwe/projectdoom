@@ -1,5 +1,16 @@
 <?php // FAQ Post Type
 
+//Secondary thumbnail plugin
+if (class_exists('MultiPostThumbnails')) {
+    new MultiPostThumbnails(
+        array(
+            'label' => 'Insect Side Profile',
+            'id' => 'secondary-image',
+            'post_type' => 'insect'
+        )
+    );
+}
+
 function post_type_insect() {
 
 #-----------------------------------------------------------------
@@ -50,7 +61,8 @@ function insect_edit_columns($columns){
       "title" => "Title",
       "insect_desc" => "Description",
       "insect_categories" => "Categories",
-      "insect_image" => "thumbnail",
+      "insect_image" => "Insect Top View",
+      "insect_side_image" => "Insect Side View",
       "date" => "Date"
     );
 
@@ -73,13 +85,26 @@ function insect_custom_columns($column){
 
         echo '<img style="max-height: 200px;max-width:180px" src="' . $post_featured_image . '" />';
 
-        break;
+		break;
+	  case "insect_side_image":
+		// SHOW THE SIDE IMAGE
+        $post_side_image = fids_get_side_image($post->ID);
+		
+		echo '<img style="max-height: 200px;max-width:180px" src="' . $post_side_image . '" />';
+
+		break;
     }
 }
 
 #-----------------------------------------------------------------
 # INSECT META OPTIONS
 #-----------------------------------------------------------------
+	function doom_insect_side_profile () {
+		$meta_boxes = array(
+		'doom_insect_sideview' => array( 'name' => 'doom_insect_sideview', 'title' => __('Insect Side Profile', 'doom'), 'desc' => 'Image for Side View', 'std' => '', 'type' => 'media')
+		);
+		return apply_filters( 'doom_insect_side_profile', $meta_boxes );
+	}
   function doom_insect_meta_boxes() {
 
   	$meta_boxes = array(

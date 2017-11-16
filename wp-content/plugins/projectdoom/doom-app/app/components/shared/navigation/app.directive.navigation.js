@@ -94,7 +94,7 @@ define( function ( require, exports, module ) {
 
 								
 								var pests = $route.current.locals.app_data.insects;
-								var rand = Math.floor(Math.random() * pests.length-1) + 0 ;
+								var rand = Math.floor(Math.random() * pests.length-1) + 1 ;
 
 								console.log('pests:', pests);
 								$location.path("/insects/"+pests[rand].post_name);

@@ -59,7 +59,7 @@ define( function ( require, exports, module ) {
 		
 			switch( type ) {
 		
-				case "localstorge":
+				case "localstorage":
 		
 					var deferred = $q.defer();
 

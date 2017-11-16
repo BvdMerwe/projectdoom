@@ -1137,7 +1137,7 @@ define( function ( require, exports, module ) {
                     });	
 				
 			}])
-			.run([ '$rootScope', '$location', '$route', '$routeParams', 'ngProgress', 'SessionService', function ( $rootScope, $location, $route, $routeParams, ngProgress, SessionService ) {
+			.run([ '$rootScope', '$location', '$route', '$routeParams', 'ngProgress', 'SessionService', 'AnalyticsEvents', function ( $rootScope, $location, $route, $routeParams, ngProgress, SessionService, AnalyticsEvents ) {
 
 				
 				/**
@@ -1223,6 +1223,7 @@ define( function ( require, exports, module ) {
                         var isProfilePage		= ( renderPath[ 1 ] == "single" );
 						
                         $rootScope.isProfilePage 	= isProfilePage;
+                        $rootScope.lastInsect       = $route.current.pathParams.ID;
 						
 					}
 				
@@ -1560,13 +1561,7 @@ define( function ( require, exports, module ) {
 
                     _render();
                     
-                    if( angular.isDefined(window.ga) ) {
-
-                        console.log( 'Google analytics available: ', $location.path() );
-
-                        ga('send', 'pageview', $location.path());
-
-                    }
+                    AnalyticsEvents.sendPage($location.path());
 
 					ngProgress.complete();
 

@@ -67,6 +67,10 @@ md-select-menu md-option {
   border-bottom: 1px solid #00833D;
 }
 
+md-select-menu:not(.md-overflow) md-content {
+  padding: 0 !important;
+}
+
 .no-margin {
   margin: 0 !important;
 }
@@ -112,6 +116,218 @@ h3.green-bold {
 
 .tag-group .primary-tag {
   font-weight: normal;
+}
+
+.insect-insects li,
+.product-insects li {
+  -webkit-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -moz-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -ms-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -o-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.insect-insects li button i,
+.product-insects li button i {
+  -webkit-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -moz-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -ms-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -o-transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  transition: 0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.home-image {
+  position: relative;
+}
+
+/**********************
+ANIMATIONS
+***********************/
+.single-insect-image-holder,
+.product-info-box {
+  position: relative;
+}
+
+.super-bug-image,
+.products-hero-image,
+.product-info-container,
+.animate-page-switch,
+.insect-profile-content-holder {
+  -webkit-transition: 0.55s ease-in-out;
+  -moz-transition: 0.55s ease-in-out;
+  -ms-transition: 0.55s ease-in-out;
+  -o-transition: 0.55s ease-in-out;
+  transition: 0.55s ease-in-out;
+}
+
+.super-bug-image.ng-enter,
+.products-hero-image.ng-enter,
+.product-info-container.ng-enter,
+.animate-page-switch.ng-enter,
+.insect-profile-content-holder.ng-enter {
+  position: absolute;
+  opacity: 0;
+}
+
+.super-bug-image.ng-enter-active,
+.products-hero-image.ng-enter-active,
+.product-info-container.ng-enter-active,
+.animate-page-switch.ng-enter-active,
+.insect-profile-content-holder.ng-enter-active {
+  opacity: 1;
+}
+
+.super-bug-image.ng-leave,
+.products-hero-image.ng-leave,
+.product-info-container.ng-leave,
+.animate-page-switch.ng-leave,
+.insect-profile-content-holder.ng-leave {
+  opacity: 1;
+}
+
+.super-bug-image.ng-leave-active,
+.products-hero-image.ng-leave-active,
+.product-info-container.ng-leave-active,
+.animate-page-switch.ng-leave-active,
+.insect-profile-content-holder.ng-leave-active {
+  opacity: 0;
+}
+
+.home-image .super-bug-image.ng-leave {
+  left: 0;
+}
+
+.product-info-container.ng-enter,
+.insect-profile-content-holder.ng-enter {
+  top: 0;
+  left: 0;
+}
+
+.insect-fact {
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -ms-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.insect-fact.ng-enter {
+  opacity: 0;
+}
+
+.insect-fact.ng-enter-active {
+  opacity: 1;
+}
+
+.insect-fact.ng-leave {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  opacity: 1;
+}
+
+.insect-fact.ng-leave-active {
+  top: 0;
+  z-index: 0;
+  opacity: 0;
+}
+
+.previous .super-bug-image.ng-enter,
+.previous .products-hero-image.ng-enter,
+.previous .insect-fact.ng-enter,
+.previous .product-info-container.ng-enter {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.previous .super-bug-image.ng-enter-active,
+.previous .products-hero-image.ng-enter-active,
+.previous .insect-fact.ng-enter-active,
+.previous .product-info-container.ng-enter-active {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+.previous .super-bug-image.ng-leave,
+.previous .products-hero-image.ng-leave,
+.previous .insect-fact.ng-leave,
+.previous .product-info-container.ng-leave {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+.previous .super-bug-image.ng-leave-active,
+.previous .products-hero-image.ng-leave-active,
+.previous .insect-fact.ng-leave-active,
+.previous .product-info-container.ng-leave-active {
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.next .super-bug-image.ng-enter,
+.next .products-hero-image.ng-enter,
+.next .insect-fact.ng-enter,
+.next .product-info-container.ng-enter {
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.next .super-bug-image.ng-enter-active,
+.next .products-hero-image.ng-enter-active,
+.next .insect-fact.ng-enter-active,
+.next .product-info-container.ng-enter-active {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+.next .super-bug-image.ng-leave,
+.next .products-hero-image.ng-leave,
+.next .insect-fact.ng-leave,
+.next .product-info-container.ng-leave {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+.next .super-bug-image.ng-leave-active,
+.next .products-hero-image.ng-leave-active,
+.next .insect-fact.ng-leave-active,
+.next .product-info-container.ng-leave-active {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 /***********************************************
@@ -1059,6 +1275,14 @@ END slider style
   display: block;
 }
 
+#configurator .step-1.inactive .revert:hover, #configurator .step-2.inactive .revert:hover, #configurator .step-3.inactive .revert:hover {
+  -webkit-transform: scale(1.1) translateY(10px);
+  -moz-transform: scale(1.1) translateY(10px);
+  -ms-transform: scale(1.1) translateY(10px);
+  -o-transform: scale(1.1) translateY(10px);
+  transform: scale(1.1) translateY(10px);
+}
+
 #configurator .insect-selector {
   -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -1079,6 +1303,12 @@ END slider style
   pointer-events: none;
 }
 
+#configurator .insect-selector .start-button button {
+  padding: auto;
+  padding: initial;
+  width: 100%;
+}
+
 #configurator .insect-selector .desc {
   -webkit-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   -moz-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -1089,6 +1319,10 @@ END slider style
   height: 150px;
   max-width: 110px;
   margin: 0 auto;
+}
+
+#configurator .insect-selector .desc p {
+  line-height: 1.325em;
 }
 
 #configurator .insect-selector .thumbnail i[class^='icon-'] {
@@ -1490,6 +1724,10 @@ END slider style
   }
   .home-image {
     opacity: 0.1;
+    min-height: 430px;
+  }
+  .home-activity {
+    max-width: 290px;
   }
   /***********************************************
   * Green Pages
@@ -1507,11 +1745,33 @@ END slider style
   ***********************************************/
   .insect-profile-content-holder {
     position: relative;
-    top: -40vh;
     margin-top: 0;
+  }
+  .page-insects-profile .super-hero-bg {
+    position: relative;
+    height: 150px;
+  }
+  .page-insects-profile .super-bug-image {
+    top: -70px;
+  }
+  .page-insects-profile .insect-controller-buttons {
+    top: 20%;
+    width: 80%;
+    left: 40px;
+  }
+  .page-insects-profile .insect-fact {
+    display: none;
+  }
+  .page-insects-profile .profile-box h3.page-title {
+    font-size: 15pt !important;
   }
   .page-insects .insect-fact {
     max-width: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
   }
   .page-insects .super-hero-bg {
     max-height: 100%;
@@ -1521,6 +1781,8 @@ END slider style
   }
   .page-insects .super-bug-image {
     top: 0;
+    left: 0;
+    width: 100%;
   }
   .page-insects .primary-cta.main {
     padding: 5px 15px;

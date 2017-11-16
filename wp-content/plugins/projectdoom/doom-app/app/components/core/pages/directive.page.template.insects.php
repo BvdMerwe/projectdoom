@@ -8,10 +8,10 @@
             <div layout-gt-sm="row" layout="column" layout-align="center center" layout-align-gt-sm="center start" class="super-hero-bg" <?php //md-swipe-left="prevInsect()" md-swipe-right="nextInsect()" ?>>
                 <div flex-gt-sm="50" class="single-insect-image-holder" flex="100" style="margin-top: -49px;">
                     <!--<div class="super-bug-image-bg" style="background-image:url('{{pageContent.image}}');"></div>-->
-                    <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
+                    <img data-ng-click="showImage()" data-ng-animate-swap="pageContent.image" data-ng-src="{{pageContent.image}}" class="md-card-image super-bug-image" alt="image caption" />
                 </div>
                 
-                <div class="super-hero-fact-holder" flex="100" flex-offset-gt-sm="10" flex-gt-sm="40" class="" layout-align="center start" layout-align-gt-sm="center start">
+                <div class="super-hero-fact-holder" layout="column" flex="100" flex-offset-gt-sm="10" flex-gt-sm="40" class="" layout-align="center center" layout-align-gt-sm="center start">
                     <div data-ng-switch="pageContent.post_name">
                         <div data-ng-switch-when="flea" class="insect-fact">
                             <h1 flex="100" class="page-title main"><br/>FLEAS</h1>
@@ -89,7 +89,7 @@
                 </div>
             </div>
                 
-            <div layout-gt-sm="row" layout="column" layout-align="space-between start" layout-align-gt-sm="center center" style="position:relative;top:-100px;">
+            <div layout-gt-sm="row" layout-align="space-between start" layout-align-gt-sm="center start" style="position:relative;top:-100px;">
                 <!-- PEST LINKS -->
                 <div layout="column" layout-gt-sm="column" flex-gt-sm="50" flex="100" layout-align="center center" layout-align-gt-sm="start start">
                     <div data-ng-switch="pageContent.post_name">
@@ -130,7 +130,7 @@
                 <!-- RELATED PRODU|CTS -->
                 <div layout="column" flex-gt-sm="40" flex-offset-gt-sm="10" flex="100" layout-align-gt-sm="start start" layout-align="center center">
                     <h3 flex="100" class="page-title">Products</h3>
-                    <div layout="row" flex="100">
+                    <div layout="row" flex="100" layout-align="center center" layout-align-gt-sm="start start">
                         <div flex="100" 
                             data-ui-carousel
                             single          = "true"
@@ -139,7 +139,7 @@
                             maxWidth        = "200px"
                             gutter          = "175px"
                             displayName     = "true"
-                            insectType      = ""
+                            insectType      = "{{pageContent.post_name}}"
                             productType     = "spray"
                             showFilter      = "true"
                             filterBy        = "product_types"

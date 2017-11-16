@@ -43,11 +43,11 @@
               <div class="name">
                 <h3>{{insect.post_title}}</h3>
               </div>
-              <div class="desc">
+              <div class="desc page-description">
                 <p>{{insect.doom_insect_config_description}}</p>
               </div>
               <div class="start-button">
-                <md-button data-ng-click="next(insect)" class="primary-cta">NEXT STEP</md-button>
+                <md-button data-ng-click="next(insect, $event)" class="primary-cta">NEXT STEP</md-button>
               </div>
             </div>
           </div>
@@ -155,7 +155,7 @@
         </div>
         <div class="text" flex-gt-sm="50">
           <h3 class="green-bold">Where have the bugs invaded?</h3>
-          <p>Drop pin on location or select an option below</p>
+          <p>Select a location on the map or select an option below</p>
           <md-select ng-model="config.location" multiple aria-label="locations">
               <md-option ng-value="'bedroom'">Bedroom</md-option>
               <md-option ng-value="'bathroom'">Bathroom</md-option>
@@ -173,7 +173,7 @@
       </div>
       <div class="final-container" layout="row" layout-fill layout-align="center start" layout-wrap>
         <div class="stats-container" flex="100" flex-gt-sm="33">
-          <h3 class="page-title">In your home</h3>
+          <h3 class="page-title">Your Solution</h3>
           <p ng-bind-html="selectedStat.formatted"></p>
           <div class="stat-controls">
             <div class="stat-selector" ng-click="showStat(stat)" ng-repeat="stat in result.stats">
@@ -189,7 +189,7 @@
           </div>
         </div>
         <div class="solution-container" flex="100" flex-gt-sm="33" flex-offset-gt-sm="0">
-          <h3 class="page-title">Your results and solution</h3>
+          <h3 class="page-title">{{result.product.post_title}}</h3>
           <p class="page-description">{{result.product.post_content}}</p>
           <div class="">
             <md-button class="primary-cta fill-width" data-ng-click="goto('/products/'+result.product.post_name)">View more</md-button>

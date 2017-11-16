@@ -71,6 +71,11 @@ md-select-menu {
   }
 }
 
+
+md-select-menu:not(.md-overflow) md-content {
+  padding: 0 !important;
+}
+
 .no-margin {
   margin: 0 !important;
 }
@@ -116,6 +121,144 @@ h3.green-bold {
 
 .tag-group .primary-tag {
   font-weight: normal;
+}
+
+
+.insect-insects li ,
+.product-insects li {
+  @include transition(0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19));
+  @include transition-delay(0s);
+  button i {
+    @include transition(0.3s 0s cubic-bezier(0.55, 0.06, 0.68, 0.19));
+    @include transition-delay(0s);
+  }
+}
+
+.home-image {
+  position: relative;
+}
+
+/**********************
+ANIMATIONS
+***********************/
+// .insect-profile-content-holder {
+
+//   @include transition(0.55s ease-in-out);
+// }
+
+
+.single-insect-image-holder,
+.product-info-box
+{
+  position: relative;
+}
+
+.super-bug-image, 
+.products-hero-image, 
+.product-info-container,
+.animate-page-switch, 
+.insect-profile-content-holder
+{
+  @include transition(0.55s ease-in-out);
+
+  &.ng-enter {
+    position: absolute;
+    opacity: 0;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+  &.ng-leave {
+    // position: absolute;
+    opacity: 1;
+  }
+  &.ng-leave-active {
+    // position: absolute;
+    opacity: 0;
+  }
+}
+
+.home-image .super-bug-image
+{ 
+  &.ng-leave {
+    left: 0;
+  }
+}
+
+.product-info-container, 
+.insect-profile-content-holder
+{ 
+  &.ng-enter {
+    top: 0;
+    left: 0;
+  }
+}
+
+
+.insect-fact {
+  @include transition(0.25s ease-in-out);
+
+  &.ng-enter {
+    opacity: 0;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+  &.ng-leave {
+    position: absolute;
+    z-index: 0;
+    top:0;
+    opacity: 1;
+  }
+  &.ng-leave-active {
+    top:0;
+    // position: absolute;
+    z-index: 0;
+    opacity: 0;
+  }
+}
+
+.previous {
+  .super-bug-image,
+  .products-hero-image,
+  .insect-fact,
+  .product-info-container
+  {
+    &.ng-enter {
+      @include transform(translateX(-50%));
+    }
+    &.ng-enter-active {
+      @include transform(translateX(0px));
+    }
+    &.ng-leave {
+      @include transform(translateX(0px));
+    }
+    &.ng-leave-active {
+      @include transform(translateX(50%));
+    }
+  }
+}
+
+.next {
+  .super-bug-image,
+  .products-hero-image,
+  .insect-fact,
+  .product-info-container
+  {
+
+    &.ng-enter {
+      @include transform(translateX(50%));
+    }
+    &.ng-enter-active {
+      @include transform(translateX(0px));
+    }
+    &.ng-leave {
+      @include transform(translateX(0px));
+    }
+    &.ng-leave-active {
+      @include transform(translateX(-50%));
+    }
+  }
 }
 /***********************************************
 * Body container STYLE
@@ -879,6 +1022,9 @@ END slider style
       }
       .revert {
         display: block;
+        &:hover {
+          @include transform(scale(1.1) translateY(10px));
+        }
       }
     }
   }
@@ -895,6 +1041,12 @@ END slider style
     .start-button {
       opacity: 0;
       pointer-events: none;
+
+      button {
+        padding: auto;
+        padding: initial;
+        width: 100%;
+      }
     }
     .desc {
       @include  transition(0.4s cubic-bezier(.25,.8,.25,1));
@@ -902,6 +1054,9 @@ END slider style
       height: 150px;
       max-width: 110px;
       margin: 0 auto;
+      p{
+        line-height: 1.325em;
+      }
     }
     .thumbnail {
       i[class^='icon-'] {
@@ -1253,6 +1408,10 @@ END slider style
   }
   .home-image {
     opacity: 0.1;
+    min-height: 430px;
+  }
+  .home-activity {
+    max-width: 290px;
   }
   /***********************************************
   * Green Pages
@@ -1273,12 +1432,39 @@ END slider style
   ***********************************************/
   .insect-profile-content-holder {
     position: relative;
-    top: -40vh;
+    // top: -40vh;
     margin-top:0;
   }
+  .page-insects-profile {
+    .super-hero-bg {
+      position: relative;
+      height: 150px;
+    }
+    .super-bug-image {
+      top: -70px;
+      // opacity: 0.5;
+    }
+    .insect-controller-buttons {
+      top: 20%;
+      width: 80%;
+      left: 40px;
+    }
+    .insect-fact {
+      // margin-top: -200px;
+      display: none;
+    }
+
+    .profile-box h3.page-title {
+      font-size: 15pt !important;
+    }
+  }
   .page-insects {
+    .single-insect-image-holder {
+      // min-height: 460px;
+    }
     .insect-fact {
       max-width: none;
+      @include transition(none);
     }
     .super-hero-bg {
       max-height: 100%;
@@ -1289,6 +1475,8 @@ END slider style
     }
     .super-bug-image {
       top: 0;
+      left: 0;
+      width: 100%;
     }
     .primary-cta.main {
       padding: 5px 15px;

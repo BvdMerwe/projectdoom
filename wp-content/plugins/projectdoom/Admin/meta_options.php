@@ -13,6 +13,7 @@ function doom_create_meta_box() {
 
 	//add_meta_box('page-meta-boxes', __('Page Settings', 'doom'), 'page_meta_boxes', 'insect', 'normal', 'high');
 	add_meta_box('insect-meta-boxes', __('Insect Details', 'doom'), 'insect_meta_boxes', 'insect', 'normal', 'high');
+	add_meta_box('insect-side-profile', __('Side Profile', 'doom'), 'insect_side_profile', 'insect', 'normal', 'high');
 	add_meta_box('product-meta-boxes', __('Product Details', 'doom'), 'product_meta_boxes', 'product', 'normal', 'high');
 
 }

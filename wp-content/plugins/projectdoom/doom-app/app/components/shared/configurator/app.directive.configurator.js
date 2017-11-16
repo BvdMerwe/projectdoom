@@ -78,10 +78,12 @@ define( function ( require, exports, module ) {
             }
           }
           scope.insects = insects;
+          
+          scope.init();        
         });
 
 			},
-			controller:  	[ '$scope', '$sce', '$filter', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$mdDialog', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'insectsManager','productsManager', function ( $scope, $sce, $filter, $http, $q, $route, $location, $timeout, $mdSidenav, $mdDialog, $log, transformRequestAsFormPost, Utils, ngProgress, insectsManager, productsManager ) {
+			controller:  	[ '$scope', '$sce', '$filter', '$http', '$q', '$route', '$location', '$timeout',	'$mdSidenav', '$mdDialog', '$log', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'insectsManager','productsManager', 'AnalyticsEvents', function ( $scope, $sce, $filter, $http, $q, $route, $location, $timeout, $mdSidenav, $mdDialog, $log, transformRequestAsFormPost, Utils, ngProgress, insectsManager, productsManager, AnalyticsEvents ) {
 
         $scope.config = {
           pest: "",
@@ -118,8 +120,12 @@ define( function ( require, exports, module ) {
           if ($scope.step1State == 'active') {
             $scope.step1State = 'inactive';
             $scope.step2State = 'active';
+            if (angular.isDefined(event)) {
+              AnalyticsEvents.send("Configurator", "interaction", "insect_changed", ""+$scope.config.pest.post_name);
+            }
             $location.path('/insects/'+$scope.config.pest.post_name);
           } else if ($scope.step2State == 'active') {
+            AnalyticsEvents.send("Configurator", "interaction", "set", "frequency");
             $scope.step2State = 'inactive';
             $scope.step3State = 'active';
           } else if ($scope.step3State == 'active') {
@@ -138,11 +144,24 @@ define( function ( require, exports, module ) {
               );
 
             } else {
+              AnalyticsEvents.send("Configurator", "interaction", "set", "location");
               $scope.result = $scope.evaluate($scope.config);
               $scope.showStat($scope.result.stats[0]);
               console.log($scope.config);
               console.log($scope.result);
               console.log($scope.products);
+              /*
+              $scope.config = {
+                pest: "",
+                duration: 1,
+                amount: 1,
+                location: [],
+              };
+              */
+              AnalyticsEvents.send("Configurator", "input", "pest", $scope.config.pest.post_name);
+              AnalyticsEvents.send("Configurator", "input", "duration", $scope.config.duration);
+              AnalyticsEvents.send("Configurator", "input", "amount", $scope.config.amount);
+              AnalyticsEvents.send("Configurator", "input", "location", $scope.config.location);
 
               var possibleSolution = [];
               //filter the products to match insect
@@ -163,36 +182,37 @@ define( function ( require, exports, module ) {
                   prodCatsStr.push(prod.insect_categories[c].slug);
                 }
                 //compare insect categories to product categories
-                for (var ic = 0; ic < $scope.config.pest.insect_categories.length; ic++) {
-                  var iCat = $scope.config.pest.insect_categories[ic].term_id;
-                  if (prodCats.includes(iCat)) {
-                    prod.score++;
-                  }
-                  if (prodCatsStr.includes($scope.config.pest.post_name)) {
-                    prod.score++;
-                  }
-                }
+                // for (var ic = 0; ic < $scope.config.pest.insect_categories.length; ic++) {
+                //   var iCat = $scope.config.pest.insect_categories[ic].term_id;
+                //   if (prodCats.includes(iCat)) {
+                //     prod.score++;
+                //   }
+                //   if (prodCatsStr.includes($scope.config.pest.post_name)) {
+                //     prod.score++;
+                //   }
+                // }
 
                 if ($scope.result.infestation) {
                   if (prodCatsStr.includes("infestation")) {
-                    prod.score++;
+                    prod.score += 0.5;
                   }
                 } else {
                   if (prodCatsStr.includes("single")) {
-                    prod.score++;
+                    // prod.score += 0.1;
                   }
                 }
                 if ($scope.config.location.includes("outside")) {
                   if (prodCatsStr.includes("outdoors")) {
-                    prod.score++;
+                    prod.score += 0.1;
                   }
                 } else {
                   if (prodCatsStr.includes("indoors")) {
-                    prod.score++;
+                    // prod.score += 0.1;
                   }
                 }
                 // if (prod.score > 0) {
                   possibleSolution.push(prod);
+                  // console.log(prod.post_name, prod.score);
                 // }
               }
               //get product with highest score
@@ -207,6 +227,16 @@ define( function ( require, exports, module ) {
               // console.log(possibleSolution);
               // console.log(solution.post_name, solution.score);
               $scope.result.product = solution;
+
+              /*
+              $scope.result = {
+                product: {},
+                stats: [],
+                infestation: false
+              };
+              */
+              AnalyticsEvents.send("Configurator", "output", "product", $scope.result.product.post_name);
+              // AnalyticsEvents.send("Configurator", "output", "infestation", $scope.result.infestation);
 
               $scope.finalPage = "active";
               $scope.step1State = "";
@@ -231,6 +261,7 @@ define( function ( require, exports, module ) {
         $scope.setState = function (state){
           $scope.state = state;
           $scope.breadcrumbState = state;
+          AnalyticsEvents.send("Configurator", "state", "state_changed", "step_"+state);
           switch (state) {
             case 1:
               if ($scope.config.pest == "") {
@@ -291,11 +322,13 @@ define( function ( require, exports, module ) {
           type: 'product'
         };
 
-        productsManager.getProducts(requestObjProducts).then(function(data){
-          var products = data;
-          $scope.products = products;
-        }, function(err){
-          console.log("Fek", err);
+        productsManager.getProducts(requestObjProducts).then(function(result){
+          productsManager.filterProductsByPest([{slug: $scope.config.pest}], result).then(function(data){
+            var products = data;
+            $scope.products = products;
+          }, function(err){
+            console.log("Fek", err);
+          });
         });
 
         var requestObjInsect = {
@@ -529,7 +562,7 @@ define( function ( require, exports, module ) {
           $location.path(path);
         }
         $scope.scrollTo = function(id) {
-
+          // AnalyticsEvents.send($route.current.$$route.action, "scroll_to_button", "clicked", id);
           Utils._strict( [ String ], arguments );
             // console.log(document.querySelector(id));
           var to = document.querySelector(id).offsetTop;
@@ -540,6 +573,17 @@ define( function ( require, exports, module ) {
         
         $scope.scrollToTop = function() {
           Utils.scrollWithEase(0);
+        }
+
+        $scope.init = function() {
+          productsManager.getProducts({method: 'GET',type: 'product'}).then(function(result){
+            productsManager.filterProductsByPest([{slug: $scope.config.pest.post_name}], result).then(function(data){
+              var products = data;
+              $scope.products = products;
+            }, function(err){
+              console.log("Fek", err);
+            });
+          });
         }
 			}],
       // controllerAs: 'vm',
@@ -552,7 +596,7 @@ define( function ( require, exports, module ) {
 		/*
 		 * APP MODULE
 		 */
-		appDirectiveConfigurator = appDirectiveConfigurator || angular.module( 'appDirectiveConfigurator', [ 'appUtils', 'appXHR', 'ngMaterial', 'ngProgress' ] );
+		appDirectiveConfigurator = appDirectiveConfigurator || angular.module( 'appDirectiveConfigurator', [ 'appUtils', 'appXHR', 'ngMaterial', 'ngProgress', 'appAnalyticsEvents' ] );
 
 		appDirectiveConfigurator
 			.directive( Application.Directives );

@@ -28,6 +28,21 @@ function post_type_doom() {
 			return $post_thumbnail_img[0];
 		}
 	}
+
+	//GETTING SIDE. IMAGEs
+	function fids_get_side_image($postID) {
+        // if (class_exists('MultiPostThumbnails')) {
+            $post_thumbnail_id = MultiPostThumbnails::get_post_thumbnail_id(
+                get_post_type(),
+                'secondary-image',
+                $postID
+            );
+            if ($post_thumbnail_id) {
+                $post_thumbnail_img = wp_get_attachment_image_src($post_thumbnail_id, 'small-square-thumb', true);
+                return $post_thumbnail_img[0];
+            }
+        // }
+	}
 }
 add_action('init', 'post_type_doom');
 

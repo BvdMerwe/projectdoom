@@ -141,7 +141,7 @@ define(function (require, exports, module) {
 					//enable and disable controls for start and end of list
 					scope.showLeft = true;
 					scope.showRight = true;
-					console.log(to , (amount + gutter) * (scope.itemLength -1));
+					// console.log(to+ elem.offsetWidth , (amount + gutter) * (scope.itemLength));
 					if (to <= 1){
 						scope.showLeft = false;
 					} else if (to + elem.offsetWidth >= (amount + gutter) * (scope.itemLength)) {
@@ -247,6 +247,12 @@ define(function (require, exports, module) {
 				scope.hide = function(){
 					angular.element(element[0]).addClass("hide");
 				}
+
+				scope.updateTypes = function() {
+					scope.contentType = attr.contenttype;
+					scope.insectType = attr.insecttype;
+					scope.productType = attr.producttype;
+				}
 			},
 			controller: ['$filter', '$rootScope', '$scope', '$http', '$q', '$route', '$location', '$timeout', '$mdSidenav', '$log', '$mdDialog', 'transformRequestAsFormPost', 'Utils', 'ngProgress', 'retailersManager', 'productsManager', 'insectsManager', 'packagesManager', function ($filter, $rootScope, $scope, $http, $q, $route, $location, $timeout, $mdSidenav, $log, $mdDialog, transformRequestAsFormPost, Utils, ngProgress, retailersManager, productsManager, insectsManager, packagesManager) {
 				//init data
@@ -271,10 +277,26 @@ define(function (require, exports, module) {
 				}
 
 				$scope.$on( "$routeChangeSuccess", function( ev, to, toParams, from, fromParams ){
-					
+					$scope.updateTypes();
 					//console.info('new route');
 					if ($scope.contentType === "retailer") {} else {
-						_initiateLayout( $route.current.locals.app_data.products );
+						if( ($rootScope.isInsectPage && $rootScope.isPathSlug) || $rootScope.isProfile ) {
+							var currentFilter = [];
+							if ($scope.insectType != undefined && $scope.insectType != "") {
+								currentFilter.push({slug: $scope.insectType});
+							} else {
+								currentFilter.push({slug: $rootScope.lastInsect});
+							}
+							var initResults = $route.current.locals.app_data.products;
+							// productsManager.getByProductType( $scope.productType ).then(function(initResults){
+								productsManager.filterProductsByPest(currentFilter, initResults).then(function(results){
+									_getUniqueCategories( results );
+									_initiateLayout(results);
+									$scope.filter(null, "spray");
+								});
+						} else {
+							_initiateLayout( $route.current.locals.app_data.products );							
+						}
 					}
 		
 				});
@@ -299,10 +321,41 @@ define(function (require, exports, module) {
 								break;
 							case 'product':
 								if (angular.isDefined($route.current.locals.app_data) && $scope.productType !== "") {
+									
 									$scope.items = [];
+									var currentFilter = [];
+									if ($scope.insectType != undefined && $scope.insectType != "") {
+										currentFilter.push({slug: $scope.insectType});
+									} else {
+										currentFilter.push({slug: $rootScope.lastInsect});
+									}
+
+									//IF is on page displaying products
+									if ($rootScope.isProductPage || $rootScope.isProducts) {
+										productsManager.getByProductType( $scope.productType ).then(function(initResults){
+											productsManager.filterProductsByPest(currentFilter, initResults).then(function(results){
+												_getUniqueCategories( results );
+												_initiateLayout(results);
+												// $scope.filter(null, "spray");
+											});
+										});
+										break;
+									}
+									//IF is on single insect page OR insect profile page
+									if ($rootScope.isInsectPage || $rootScope.isProfile) {
+										var initResults = $route.current.locals.app_data.products;
+										// productsManager.getByProductType( $scope.productType ).then(function(initResults){
+											productsManager.filterProductsByPest(currentFilter, initResults).then(function(results){
+												_getUniqueCategories( results );
+												_initiateLayout(results);
+												$scope.filter(null, "spray");
+											});
+										// });
+										break;
+									}
 
 									//console.warn('scoping...', $scope.productType);
-
+									/*REMOVED 23/10/2017* /
 									var results = $route.current.locals.app_data.products;
 
 									if( $rootScope.isProducts ) {
@@ -332,12 +385,13 @@ define(function (require, exports, module) {
 											}
 											
 										}
+										_getUniqueCategories( results );
+										_initiateLayout(results);
 									
 									}
 
-									_getUniqueCategories( results );
-									_initiateLayout(results);
 									
+									/**/
 
 									/* C|ORRECT
 									var results = $route.current.locals.app_data.products;
@@ -372,8 +426,8 @@ define(function (require, exports, module) {
 									//console.log( 'layout data', $filter('groupBy')( $scope.gridItems, 'product_types' ) );
 								} else {
 
-									/*
 									var results = $route.current.locals.app_data.products;
+									/*
 
 									for (var index = 0; index < results.length; index++) {
 										var element = results[index];
@@ -400,7 +454,7 @@ define(function (require, exports, module) {
 									_initiateLayout(results);
 									
 									_getUniqueCategories( results );
-									$scope.success(results);
+									// $scope.success(results);
 									$scope.productType = "22";
 								}
 								// productsManager.getProducts(requestObj).then($scope.success, $scope.error);
@@ -452,12 +506,12 @@ define(function (require, exports, module) {
 					loopScope:
 					for ( var index in results ) {
 
-						if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
+						if( ($rootScope.isInsectPage && $rootScope.isPathSlug) || $rootScope.isProfile ) {
 
 							//console.log( 'Finding',results[index], index, $rootScope.isPathSlug.toLowerCase() );
 
-							loop4:
-							for ( i in results[index].product_categories ) {
+							// loop4:
+							// for ( i in results[index].product_categories ) {
 
 								//if( angular.isDefined(!results[index].product_categories[i].name) || angular.isDefined(!$rootScope.isPathSlug) ) {
 
@@ -466,7 +520,7 @@ define(function (require, exports, module) {
 
 								//console.log('Finding',results[index].product_categories[i].name.toLowerCase(), $rootScope.isPathSlug.toLowerCase());
 
-								if( results[index].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
+								// if( results[index].product_categories[i].name.toLowerCase() == $rootScope.isPathSlug.toLowerCase() ) {
 									/** */
 									for (var keyes in results[index].product_types) {
 										if (results[index].product_types.hasOwnProperty(keyes)) {
@@ -484,15 +538,15 @@ define(function (require, exports, module) {
 											
 										}
 									}/**/
-									out.push(results[index]);
+									//out.push(results[index]);
 
 									//console.log( 'Got Em!', results[index] );
 
-									break loop4;
+									// break loop4;
 
-								}
+								// }
 
-							}
+							// }
 						
 						} else if( $rootScope.isProductPage ) {
 							
@@ -539,9 +593,11 @@ define(function (require, exports, module) {
 							*/
 
 						} else if( $rootScope.isProducts ) {
-
+							//hack 24/10
+							$scope.success(results);
+							return;
 							//console.log('isProducts', results[index], $scope.insectType, index );
-							/**/
+							/*REMOVED 24/10/2017* /
 							
 							loop4:
 							for ( var index2 in results[index].product_categories ) {
@@ -566,6 +622,7 @@ define(function (require, exports, module) {
 							//console.log('isProducts['+$scope.contentType+']', out );
 
 							//out.push(results[index]);
+
 
 						} else {
 
@@ -637,7 +694,7 @@ define(function (require, exports, module) {
 					}
 					//$scope.gridItems = results;
 					/***/
-					if( $rootScope.isProductPage || $rootScope.isInsectPage ) {
+					if( $rootScope.isProductPage || $rootScope.isInsectPage || $rootScope.isProfile) {
 						$timeout(function () {
 							_filterBtnClasses(activeFilter);
 						}, 250);						
@@ -672,10 +729,10 @@ define(function (require, exports, module) {
 						var container = $scope.thisElem[0].querySelector('.carousel');
 						var inner = $scope.thisElem[0].querySelector('.list');
 						var controls = $scope.thisElem[0].querySelector('.controls');
-						if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
-							controls.style.display = "none";
-						} else {
-							if( controls !== null ) {
+						if (controls != undefined) {
+							if (parseInt(inner.offsetWidth, 10) < parseInt(container.offsetWidth, 10)) {
+								controls.style.display = "none";
+							} else {
 								controls.style.display = "";
 							}
 						}
@@ -686,7 +743,7 @@ define(function (require, exports, module) {
 
 				$scope.filter = function ($ev, key) {
 					
-					console.log('Filtering...', key, $scope.contentType, $scope.filterBy, $ev);
+					//console.log('Filtering...', key, $scope.contentType, $scope.filterBy, $ev);
 					//_filterBtnClasses(key);
 					
 					var newItems = [];
@@ -700,14 +757,16 @@ define(function (require, exports, module) {
 					} else {
 
 						//_filterBtnClasses(key);
-
+						if (isNaN(key)) {
+							key = _getCategoryId(key);
+						}
 						switch ($scope.contentType) {
 							case 'insect':
 								for (var index = 0; index < $scope.items.length; index++) {
 									//var element = $scope.gridItems[index];
 									for (var index2 = 0; index2 < $scope.items[index].insect_categories.length; index2++) {
 										//var element = $scope.gridItems[index].insect_categories[index2];
-										if ($scope.items[index].insect_categories[index2].term_id == key) {
+										if ($scope.items[index].insect_categories[index2].term_id == key || $scope.items[index].insect_categories[index2].slug == key) {
 											newItems.push($scope.items[index]);
 										}
 									}
@@ -721,7 +780,7 @@ define(function (require, exports, module) {
 											//var element = $scope.gridItems[index];
 											for (var index2 = 0; index2 < $scope.items[index].insect_categories.length; index2++) {
 												//var element = $scope.gridItems[index].product_categories[index2];
-												if ($scope.items[index].insect_categories[index2].term_id == key) {
+												if ($scope.items[index].insect_categories[index2].term_id == key || $scope.items[index].insect_categories[index2].slug == key) {
 													newItems.push($scope.items[index]);
 												}
 											}
@@ -830,11 +889,13 @@ define(function (require, exports, module) {
 												newItems = fallbackItems;
 											}/***/
 
-										} else if( $rootScope.isInsectPage && $rootScope.isPathSlug ) {
+
+											_filterBtnClasses(key);
 											
-											
-											
-											/*
+											$scope.success(newItems);
+
+										} else if( ($rootScope.isInsectPage && $rootScope.isPathSlug) || $rootScope.isProfile ) {
+
 											var prodLength = $scope.items;//$route.current.locals.app_data.products.length;
 											var currentProduct = $filter('pick')( $route.current.locals.app_data.products, 'post_name == "' + $route.current.pathParams.ID + '"' )[0];
 
@@ -864,8 +925,6 @@ define(function (require, exports, module) {
 												}
 
 											}
-
-											//console.log('looking:!', currentProduct, $route.current.locals.app_data.products, $rootScope.isPathSlug, $route.current.pathParams.ID);
 											/*
 											// check if current product has the same product type as the requested filter
 											bigCheck:
@@ -921,15 +980,34 @@ define(function (require, exports, module) {
 
 											//var currentProduct = $filter('pick')( $route.current.locals.app_data.taxonomy.product_types, 'term_id == "' + $route.current.pathParams.ID + '"' )[0];
 											
-											productsManager.getByProductType( key ).then(function(results) {
+											productsManager.getByProductType( key ).then(function(initResults) {
 
-													console.warn('Guckl', results, key);
-
-													newItems = results;
-
-													_filterBtnClasses(key);
+												productsManager.filterProductsByPest([{slug: $rootScope.lastInsect}], initResults).then(function(results){
 													
-													$scope.success(newItems);
+													console.warn('Guckl', results, key);
+													
+													if( results.length == 0 ) {
+								
+														$mdDialog.show(
+															$mdDialog.alert()
+																.clickOutsideToClose(true)
+																.textContent( 'No Items available' )
+																.ariaLabel('carousel validation message')
+														);
+								
+														return;
+								
+														//$scope.success($route.current.locals.app_data.products);
+													} else {
+
+														newItems = results;
+
+														_filterBtnClasses(key);
+														_initiateLayout(results);
+														
+														// $scope.success(newItems);
+													}
+												});
 
 												}, function(error) {
 
@@ -943,17 +1021,18 @@ define(function (require, exports, module) {
 												//var element = $scope.gridItems[index];
 												for (var index2 = 0; index2 < $scope.items[index].product_types.length; index2++) {
 													//var element = $scope.gridItems[index].product_categories[index2];
-													if ($scope.items[index].product_types[index2].term_id == key) {
+													if ($scope.items[index].product_types[index2].term_id == key || $scope.items[index].insect_categories[index2].slug == key) {
 														//console.log('BammmmBAH!', $scope.items[index].product_types[index2].term_id, key, $scope.items[index]);
 														newItems.push($scope.items[index]);
 
 													}
 												}
 											}
+											_filterBtnClasses(key);
+										
+											$scope.success(newItems);
 
 										}
-
-										console.log('newitens:', newItems,  $rootScope.isInsectPage,  $rootScope.isPathSlug);
 
 										/** /
 										$scope.items = $route.current.locals.app_data.products;
@@ -1043,9 +1122,6 @@ define(function (require, exports, module) {
 
 					} else {
 					*/
-						_filterBtnClasses(key);
-					
-						$scope.success(newItems);
 					
 					//}
 
@@ -1054,6 +1130,19 @@ define(function (require, exports, module) {
 				$scope.goto = function (type, name) {
 					// window.scrollTo('body', 0)
 					Utils.scrollWithEase(0);
+					if (angular.isDefined($scope.insectType) && $scope.insectType !== "") {
+						$rootScope.lastInsect = $scope.insectType;
+						console.warn("Gotta go to "+$scope.insectType+" products");
+					} else if ($scope.insectType == "") {
+						for (var i = 0; i < $scope.items.length; i++) {
+							if (name == $scope.items[i].post_name) {
+								$rootScope.lastProduct = $scope.items[i];
+								$rootScope.lastInsect = "";
+								break;
+							}
+						}
+						console.warn("Gotta go to products related to "+$rootScope.lastProduct.post_name);
+					}
 					switch (type) {
 						case 'insect':
 						case 'product':
@@ -1131,13 +1220,19 @@ define(function (require, exports, module) {
 						Utils.removeClass(filterToolBarBtns[index], 'active-filter');
 
 					}
-
-					var activeFilter = document.querySelector('[data-filter-id="' + parseInt(key) + '"]');
-
+					var activeFilter;
+					activeFilter = document.querySelector('[data-filter-id="' + parseInt(key) + '"]');
 					//console.log('activeFilter:', activeFilter, key);
 
 					Utils.addClass(activeFilter, 'active-filter');
 
+				}
+				function _getCategoryId (key) {
+					for (var i = 0; i < $scope.filterCategories.length; i++) {
+						if ($scope.filterCategories[i].slug == key) {
+							return $scope.filterCategories[i].term_id;
+						}
+					}
 				}
 				function _getUniqueCategories(results) {
 

@@ -287,7 +287,9 @@ define( function ( require, exports, module ) {
 							}
 							
 						}
-		
+						
+						dataHolder = _self.sortProductsByDate(dataHolder);
+
 						deferred.resolve(dataHolder );
 
 					},function(error){
@@ -299,6 +301,172 @@ define( function ( require, exports, module ) {
 		
 				return deferred.promise;
 		
+			},
+			filterProductsByPest: function(pestTypes, productList) {
+				Utils._strict( [ Array, Array ], arguments );
+				
+				var _self 		= this,
+					deferred 	= $q.defer(),
+					filteredList = [];
+
+					//console.log('geting', term);
+				if (productList == undefined || productList.length < 1) { //not ideal
+					_self.getProducts({
+						'type': 'product',
+						'method': 'GET'
+					}).then( function(results){
+						
+						deferred.resolve(results);
+					}, function (e) {
+						console.error(e);
+						deferred.resolve(e);
+					} );
+				} else {
+					/*
+					filter objects
+						level 1 - the product type
+								- we will default to Spray as it is available accross all insects
+						level 2 - the product variants (odourless/lavendar)
+								- we will be relying of the product sorting on the backend side to deal with this
+						level 3 - the PEST problem that they solve (the pest/pests that they target)
+								- the next most relevant product will be one that targets only exactly the same pest
+								- the most relevant after that will be that pest including one other,
+								- etc
+						level 4 - the severity of the pest problem (single occurrence / maintenance / infestation)
+					/**/
+
+					/* 
+					foreach product
+						set score to 0
+						foreach pest type in product
+							foreach provided pest type
+								if product pest type matches provided pest type
+									set toAdd to true
+									negate 1 from score
+								else add 1 to score
+							if toAdd is true
+								case single occurrence
+									add 1 to score
+								case maintenance
+									add 2 to score
+								case infestation
+									add 3 to score
+						if toAdd is true 
+							add to new list
+					endfor
+					/**/
+
+					var recievedCats = [];
+					for (var iP = 0; iP < productList.length; iP++) {
+						var toAdd = false;
+						var productCats = [];
+						productList[iP].score = 0;
+
+						for (var iPT = 0; iPT < productList[iP].product_categories.length; iPT++) {
+							for (var iT = 0; iT < pestTypes.length; iT++) {
+								//check only insect types
+								switch (productList[iP].product_categories[iPT].slug) {
+									case "fly":
+									case "cockroach":
+									case "mosquito":
+									case "ant":
+									case "flea":
+									case "fishmoth":
+										if ((pestTypes[iT].term_id != undefined && productList[iP].product_categories[iPT].term_id == pestTypes[iT].term_id) || 
+										(productList[iP].product_categories[iPT].slug == pestTypes[iT].slug)) {
+											toAdd = true;
+											productList[iP].score -= 1;
+										} else {
+											productList[iP].score += 1;
+										}
+										if (!productCats.includes(productList[iP].product_categories[iPT].slug)) {
+											productCats.push(productList[iP].product_categories[iPT].slug);
+										}
+										if ((productList[iP].product_categories[iPT].slug == pestTypes[iT].slug) && !recievedCats.includes(pestTypes[iT].slug)) {
+											recievedCats.push(pestTypes[iT].slug);
+										}
+										break;
+								}
+								//check for severity
+								switch (productList[iP].product_categories[iPT].slug) {
+									case "single":
+										productList[iP].score += 0.1;
+										break;
+									case "maintenance":
+										productList[iP].score += 0.2;
+										break;
+									case "infestation":
+										productList[iP].score += 0.3;
+										break;
+								}
+							}
+						}
+						if (toAdd && (productCats.length >= recievedCats.length)) {
+							// filteredList.push({name: productList[iP].post_name, score: productList[iP].score});
+							filteredList.push(productList[iP]);
+						}
+
+						// console.log("productCats",productCats);
+						// console.log("recievedCats",recievedCats);
+					}
+					// console.log("filtered List",filteredList);
+					var retList = _self.sortProductsByScore(filteredList);
+					//MANUAL OVERRIDES - 
+					//	fleas and fishmoths
+					if (retList.length > 1 && recievedCats.length == 1 && (recievedCats[0] == "flea" || recievedCats[0] == "fishmoth")) {
+						//find fogger and move it to front
+						for (var i = 0; i < retList.length; i++) {
+							if (retList[i].post_name.toLowerCase().indexOf("fogger") > -1) {
+								var item = retList[i];
+								retList.splice(i, 1);
+								retList.splice(0, 0, item);								
+							}
+						}
+						//OR HACK and just splice last product into first
+						// retList.splice(0, 0, retList.splice(retList.length-1, 1)[0])
+					}
+					//	ant
+					if (retList.length > 1 && recievedCats.length == 1 && (recievedCats[0] == "ant")) { 
+						//find crawling defend and put it in front (Nixed because not needed)
+					}
+					// console.log("sorted filtered List",retList);
+					deferred.resolve(retList);
+				}
+				return deferred.promise;
+			},
+			sortProductsByDate: function (array) {
+				var interval = Math.floor(array.length/1.3);
+				while (interval > 0) {
+					for(var i=0; i+interval<array.length; i+=1) {
+						if (array[i].post_date > array[i+interval].post_date) {
+							var small = array[i+interval];
+							array[i+interval] = array[i];
+							array[i] = small;
+						}
+					}
+					interval = Math.floor(interval/1.3);
+				}
+				return array;
+			},
+			sortProductsByScore: function (array) {
+				var interval = Math.floor(array.length/1.3);
+				while (interval > 0) {
+					for(var i=0; i+interval<array.length; i+=1) {
+						if (array[i].score > array[i+interval].score) {
+							var small = array[i+interval];
+							array[i+interval] = array[i];
+							array[i] = small;
+						} else if (array[i].score == array[i+interval].score) {
+							if (array[i].post_date > array[i+interval].post_date) {
+								var small = array[i+interval];
+								array[i+interval] = array[i];
+								array[i] = small;
+							}
+						}
+					}
+					interval = Math.floor(interval/1.3);
+				}
+				return array;
 			},
 			flush: function() {
 		

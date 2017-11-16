@@ -35,7 +35,7 @@
                 var to = elem.offsetTop;
                 // console.log(document.querySelector(".collapsible-item[title='"+collapsibleItemToOpen.title+"']"));
                 // window.scrollTo(0, to);
-                Utils.scrollWithEase(to);
+                // Utils.scrollWithEase(to);
                 //additional jump for parent scrollable search result container
                 var containers = document.querySelectorAll(".search-results._md");
                 var contTo = elem.offsetParent.offsetTop;

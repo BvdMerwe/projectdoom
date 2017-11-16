@@ -87,11 +87,16 @@ class DataGetter
         WHERE pm.post_id = $post_id
         AND (pm.meta_key LIKE 'doom_%'
         OR pm.meta_key LIKE 'fids_%'
-        OR pm.meta_key LIKE '_thumbnail_id')");
+        OR pm.meta_key LIKE '_thumbnail_id'
+        OR pm.meta_key LIKE 'insect_secondary-image_thumbnail_id')");
       foreach ($keys as $i => $key) {
         $post[$key->meta_key] = $key->meta_value;
         if ($key->meta_key == '_thumbnail_id') {
           $post["image"] = $wpdb->get_results($wpdb->prepare("
+            SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
+        }
+        if ($key->meta_key == 'insect_secondary-image_thumbnail_id') {
+          $post["side_image"] = $wpdb->get_results($wpdb->prepare("
             SELECT guid FROM $wpdb->posts WHERE ID = %d",$key->meta_value))[0]->guid;
         }
       }
@@ -395,8 +400,8 @@ static public function getFaqs() {
         SELECT meta_key, meta_value
         FROM $wpdb->postmeta AS pm
         WHERE pm.post_id = $post->ID
-        AND pm.meta_key LIKE 'doom_%'
-        OR pm.meta_key LIKE '_thumbnail_id'");
+        AND (pm.meta_key LIKE 'doom_%'
+        OR pm.meta_key LIKE '_thumbnail_id')");
       foreach ($keys as $i => $key) {
         $post->{$key->meta_key} = $key->meta_value;
         if ($key->meta_key == '_thumbnail_id') {
@@ -434,8 +439,8 @@ static public function getFaqs() {
           SELECT meta_key, meta_value
           FROM $wpdb->postmeta AS pm
           WHERE pm.post_id = $post->ID
-          AND pm.meta_key LIKE 'doom_%'
-          OR pm.meta_key LIKE '_thumbnail_id'");
+          AND (pm.meta_key LIKE 'doom_%'
+          OR pm.meta_key LIKE '_thumbnail_id')");
         foreach ($keys as $i => $key) {
           $post->{$key->meta_key} = $key->meta_value;
           if ($key->meta_key == '_thumbnail_id') {

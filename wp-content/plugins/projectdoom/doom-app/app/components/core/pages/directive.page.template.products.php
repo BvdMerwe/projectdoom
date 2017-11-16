@@ -18,8 +18,8 @@
             <div layout-gt-sm="row" layout="column" layout-align-gt-sm="start start" layout-align="center center">
                 <div flex="50" flex-md="100"  class="" style=""> 
                     <div class="bg-box product-image-holder">
-                        <img data-ng-click="showImage()" data-ng-if="pageContent.image" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
-                        <div class="product-controller-buttons">
+                        <img data-ng-animate-swap="pageContent.image" data-ng-click="showImage()" data-ng-src="{{pageContent.image}}" class="products-hero-image" alt="" style="width:100%;" />
+                        <div class="product-controller-buttons" data-ng-if="pageContent.product_type != 'coil'">
                             <button class="icon-chevron-left-thin" data-ui-hero-product data-nav-direction="back" data-ng-click="prevProduct()"></button>
                             <button class="icon-chevron-right-thin" data-ui-hero-product data-nav-direction="forward" data-ng-click="nextProduct()"></button>
                         </div>
@@ -33,20 +33,24 @@
                             {{productType.name}}
                         </md-button>
                         -->
+                        
                         <md-button
                             class="md-button primary-tag"
                             data-ng-click="filterProducts('spray')"
+                            data-ng-if="$root.lastInsect || (!$root.lastInsect && pageContent.product_type == 'spray')"
                             data-ng-class="{active: pageContent.product_type == 'spray'}">
                             Spray
                         </md-button>
                         <md-button
                             class="md-button primary-tag "
+                            data-ng-if="$root.lastInsect == 'mosquito' || pageContent.product_type == 'coil'"
                             data-ng-click="filterProducts('coil')"
                             data-ng-class="{active: pageContent.product_type == 'coil'}">
                             Coil
                         </md-button>
                         <md-button
                             class="md-button primary-tag "
+                            data-ng-if="$root.lastInsect == 'mosquito' || pageContent.product_type == 'electric'"
                             data-ng-click="filterProducts('electric')"
                             data-ng-class="{active: pageContent.product_type == 'electric'}">
                             Electric
@@ -68,9 +72,9 @@
                         displayName ="false"
                         contentType = "product"></div> -->
 
-                    <div class="tag-group">
+                    <div class="tag-group" hide-xs hide-sm show-gt-sm>
                         <md-button class="md-primary primary-tag" ng-repeat="tag in pageContent.product_categories">{{tag.name}}</md-button>
-                        <md-button class="md-primary primary-tag" ng-repeat="tag in pageContent.product_types">{{tag.name}}</md-button>
+                        <!-- <md-button class="md-primary primary-tag" ng-repeat="tag in pageContent.product_types">{{tag.name}}</md-button> -->
                         <!-- <md-button class="md-primary primary-tag">Infestation</md-button>
                         <md-button class="md-primary primary-tag">Spray</md-button>
                         <md-button class="md-primary primary-tag">Multi-Insects</md-button>
@@ -78,52 +82,56 @@
                     </div>
                     
                 </div>
-                <div flex="40" flex-offset-gt-sm="10" flex-offset="0" flex-md="100" layout-align-gt-sm="center start" class="" style="">
-                    <div class="product-meta-info">
-                        <h1 flex="100" class="page-title"  style="font-size: 24pt;">{{pageContent.post_title}}</h1>
-                        <span class="hr-divider"></span>
-                        <p flex="100" class="page-description">{{pageContent.post_content}}</p>
+                <div flex="40" flex-offset-gt-sm="10" flex-offset="0" flex-md="100" layout-align-gt-sm="center start" class="product-info-box" style="">
+                    <div data-ng-animate-swap="pageContent.post_title" class="product-info-container">
+                        <div class="product-meta-info">
+                            <h1 flex="100" class="page-title"  style="font-size: 24pt;">{{pageContent.post_title}}</h1>
+                            <span class="hr-divider"></span>
+                            <p flex="100" class="page-description">{{pageContent.post_content}}</p>
+                        </div>
+                        <!-- <ul class="product-insects">
+                            <li data-ng-class="{active: pageContent.insect_ant == true}" class="icon-insect-ant" title="Ants">
+                                <i class="icon-ant"></i>
+                            </li>
+                            <li data-ng-class="{active: pageContent.insect_cockroach == true}" class="icon-insect-cockroach" title="Cockroaches">
+                                <i class="icon-cockroach"></i>
+                            </li>
+                            <li data-ng-class="{active: pageContent.insect_fishmoth == true}" class="icon-insect-fishmoth" title="Fishmoths">
+                                <i class="icon-fishmoth"></i>
+                            </li>
+                            <li data-ng-class="{active: pageContent.insect_flea == true}" class="icon-insect-flea" title="Fleas">
+                                <i class="icon-flea"></i>
+                            </li>
+                            <li data-ng-class="{active: pageContent.insect_fly == true}" class="icon-insect-fly" title="Flies">
+                                <i class="icon-fly"></i>
+                            </li>
+                            <li data-ng-class="{active: pageContent.insect_mosquito == true}" class="icon-insect-mosquito" title="Mosquitoes">
+                                <i class="icon-mosquito"></i>
+                            </li>
+                        </ul> -->
+                        <ul class="product-insects">
+                            <li data-ng-if="pageContent.insect_ant == true" class="icon-insect-ant active" title="Ants">
+                                <i class="icon-ant"></i>
+                            </li>
+                            <li data-ng-if="pageContent.insect_cockroach == true" class="icon-insect-cockroach active" title="Cockroaches">
+                                <i class="icon-cockroach"></i>
+                            </li>
+                            <li data-ng-if="pageContent.insect_fishmoth == true" class="icon-insect-fishmoth active" title="Fishmoths">
+                                <i class="icon-fishmoth"></i>
+                            </li>
+                            <li data-ng-if="pageContent.insect_flea == true" class="icon-insect-flea active" title="Fleas">
+                                <i class="icon-flea"></i>
+                            </li>
+                            <li data-ng-if="pageContent.insect_fly == true" class="icon-insect-fly active" title="Flies">
+                                <i class="icon-fly"></i>
+                            </li>
+                            <li data-ng-if="pageContent.insect_mosquito == true" class="icon-insect-mosquito active" title="Mosquitoes">
+                                <i class="icon-mosquito"></i>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="product-insects">
-                        <li data-ng-class="{active: pageContent.insect_ant == true}" class="icon-insect-ant" title="Ants">
-                            <i class="icon-ant"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.insect_cockroach == true}" class="icon-insect-cockroach" title="Cockroaches">
-                            <i class="icon-cockroach"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.insect_fishmoth == true}" class="icon-insect-fishmoth" title="Fishmoths">
-                            <i class="icon-fishmoth"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.insect_flea == true}" class="icon-insect-flea" title="Fleas">
-                            <i class="icon-flea"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.insect_fly == true}" class="icon-insect-fly" title="Flies">
-                            <i class="icon-fly"></i>
-                        </li>
-                        <li data-ng-class="{active: pageContent.insect_mosquito == true}" class="icon-insect-mosquito" title="Mosquitoes">
-                            <i class="icon-mosquito"></i>
-                        </li>
-                        <!--
-                        <li class="icon-insect-cockroach active" title="Cockroaches"></li>
-                        <li class="icon-insect-fly" title="Flies"></li>
-                        <li class="icon-insect-mosquito active" title="Mosquitoes"></li>
-                        <li class="icon-insect-ant" title="Ants"></li>
-                        <li class="icon-insect-fishmoth" title="Fishmoths"></li>
-                        <li class="icon-insect-flea" title="Fleas">
-                            <i class="icon-flea"></i>
-                        </li>
-                        -->
-                    </ul>
-                    <!-- <md-button class="md-primary primary-cta">Get Product Coupon</md-button>
-					<br /><br /> -->
 
 					<ang-accordion one-at-a-time="true" icon-position="right" close-icon-class="icon-plus" open-icon-class="icon-minus">
-						<collapsible-item title="More Info" ng-if="pageContent.doom_product_more_info">
-							<div>
-								<p ng-bind-html="pageContent.doom_product_more_info | trustAsHtml"></p>
-							</div>
-                        </collapsible-item>
-
 						<collapsible-item title="Ideal For" ng-if="pageContent.doom_product_ideal_for">
 							<div>
 								<p ng-bind-html="pageContent.doom_product_ideal_for | trustAsHtml"></p>
@@ -140,7 +148,13 @@
 							<div>
                                 <p ng-bind-html="pageContent.doom_product_directions | trustAsHtml"></p>
                             </div>
-						</collapsible-item>
+                        </collapsible-item>
+                        
+						<collapsible-item title="More Info" ng-if="pageContent.doom_product_more_info">
+							<div>
+								<p ng-bind-html="pageContent.doom_product_more_info | trustAsHtml"></p>
+							</div>
+                        </collapsible-item>
 
 						<collapsible-item title="Storage &amp; Disposal" ng-if="pageContent.doom_product_storage_disposal">
 							<div>
@@ -158,9 +172,9 @@
                     
                     <div class="products-widget"> 
                         <br/>
-                        <h3 class="page-title">Similar Products</h3>
+                        <h3 class="page-title">More Products</h3>
                         <br />
-                        <div layout="row" <?php //layout-align="center center" ?>>
+                        <div layout="row" layout-align="center center" layout-align-gt-sm="start start">
                             <div data-ui-carousel
                                 single          = "true"
                                 cta             = "true"
@@ -1056,8 +1070,7 @@
                 gutter = "10px"
                 displayName ="false"
                 productType     = ""
-                contentType="retailer"
-                layout="column" layout-align="center center"></div>
+                contentType="retailer"></div>
 
         </div>
 

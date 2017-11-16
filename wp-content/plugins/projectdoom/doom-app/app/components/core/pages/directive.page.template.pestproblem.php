@@ -35,42 +35,42 @@
 							<div class="center-content" style="width:100%;"  layout-gt-sm="row" layout-align-gt-sm="center center" style="margin:40px auto;text-align:center;">
 								<ul class="product-insects home-activity" insect-type="all"> 
 									<li data-ng-class="{active: pageContent.insect_cockroach == true, stat: activeInsect.post_name == 'cockroach'}" class="icon-insect-cockroach" title="Cockroaches">
-										<button type="button" data-ng-disabled="!pageContent.insect_cockroach" class="md-btn" data-ng-click="whatsBuggin('cockroach')">
+										<button type="button" data-ng-disabled="!pageContent.insect_cockroach" class="md-btn" data-ng-click="whatsBuggin('cockroach', false)">
 											<i class="icon-cockroach"></i>
 											<br />
 											<p>Cockroaches</p>
 										</button>
 									</li>
 									<li data-ng-class="{active: pageContent.insect_fly == true, stat: activeInsect.post_name == 'fly'}" class="icon-insect-fly" title="Flies">
-										<button type="button" data-ng-disabled="!pageContent.insect_fly" class="md-btn" data-ng-click="whatsBuggin('fly')">	
+										<button type="button" data-ng-disabled="!pageContent.insect_fly" class="md-btn" data-ng-click="whatsBuggin('fly', false)">	
 											<i class="icon-fly"></i>
 											<br />
 											<p>flies</p>
 										</button>
 									</li>
 									<li data-ng-class="{active: pageContent.insect_mosquito == true, stat: activeInsect.post_name == 'mosquito'}" class="icon-insect-mosquito" title="Mosquitoes">
-										<button  data-ng-disabled="!pageContent.insect_mosquito" type="button" class="md-btn"  data-ng-click="whatsBuggin('mosquito')">
+										<button  data-ng-disabled="!pageContent.insect_mosquito" type="button" class="md-btn"  data-ng-click="whatsBuggin('mosquito', false)">
 											<i class="icon-mosquito"></i>
 											<br />
 											<p>Mosquitoes</p>
 										</button>
 									</li>
 									<li data-ng-class="{active: pageContent.insect_ant == true, stat: activeInsect.post_name == 'ant' }" class="icon-insect-ant" title="Ants">
-										<button type="button" data-ng-disabled="!pageContent.insect_ant" class="md-btn" data-ng-click="whatsBuggin('ant')">
+										<button type="button" data-ng-disabled="!pageContent.insect_ant" class="md-btn" data-ng-click="whatsBuggin('ant', false)">
 											<i class="icon-ant"></i>
 											<br />
 											<p>Ants</p>
 										</button>
 									</li>
 									<li data-ng-class="{active: pageContent.insect_fishmoth == true, stat: activeInsect.post_name == 'fishmoth'}" class="icon-insect-fishmoth" title="Fishmoths">
-										<button type="button" data-ng-disabled="!pageContent.insect_fishmoth" class="md-btn" data-ng-click="whatsBuggin('fishmoth')">
+										<button type="button" data-ng-disabled="!pageContent.insect_fishmoth" class="md-btn" data-ng-click="whatsBuggin('fishmoth', false)">
 											<i class="icon-fishmoth"></i>
 											<br />
 											<p>fishmoths</p>
 										</button>
 									</li>
 									<li data-ng-class="{active: pageContent.insect_flea == true, stat: activeInsect.post_name == 'flea'}" class="icon-insect-flea" title="Fleas">
-										<button type="button" data-ng-disabled="!pageContent.insect_flea" class="md-btn" data-ng-click="whatsBuggin('flea')">
+										<button type="button" data-ng-disabled="!pageContent.insect_flea" class="md-btn" data-ng-click="whatsBuggin('flea', false)">
 											<i class="icon-flea"></i>
 											<br />
 											<p>fleas</p>
@@ -82,7 +82,7 @@
 								
 								<div layout-gt-sm="row" layout-fill layout-align="center center" style="margin:50px auto;margin-bottom:0;">
 
-                                    <ui-randomstat id="home-page-stat" ishome="true" active-insect="{{activeInsect.post_name}}" duration="3000"></ui-randomstat>
+                                    <ui-randomstat id="home-page-stat" ishome="true" active-insect="{{activeInsect.post_name}}" duration="1500"></ui-randomstat>
                                     <!--<ui-randomstat  layout="column" flex="100" timer="true"></ui-randomstat>-->
 
                                 </div>
@@ -97,5 +97,5 @@
 
 						</div>
 						<div class="home-image" flex="100" flex-offset-gt-sm="10" flex-gt-sm="40" flex-order="1" flex-order-gt-sm="2" class="" style="" layout-align="center center">
-							<img data-ng-src="{{activeInsect.image}}" data-ng-if="activeInsect.image" data-ng-click="" flex="100" class="super-bug-image" alt="" style="position:relative;left:0;top:0;" />
+							<img ng-animate-swap="activeInsect" data-ng-src="{{activeInsect.image}}" data-ng-click="" flex="100" class="super-bug-image" alt="" />
 						</div>
